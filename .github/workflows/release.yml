@@ -1,7 +1,12 @@
 name: Publish video release
-# Manual, single run on a standard runner: attaches the rendered MP4 files committed in release/
+# Single run on a standard runner: attaches the rendered MP4 files committed in release/
 # to a GitHub Release. Rendering itself happens locally (see README).
+# Runs manually (workflow_dispatch, once this file is on the default branch) or when
+# release/RELEASE_TAG is changed on the working branch — only that file triggers it.
 on:
+  push:
+    branches: [ccr-443bddaf-7eho4h]
+    paths: [release/RELEASE_TAG]
   workflow_dispatch:
     inputs:
       tag:
@@ -24,10 +29,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ inputs.tag }}" \
+          TAG="${{ inputs.tag }}"; [ -z "$TAG" ] && TAG="$(tr -d '[:space:]' < release/RELEASE_TAG)"
+          gh release create "$TAG" \
             release/beles-web-final-1080x1920.mp4 \
             release/preview-720x1280.mp4 \
             release/beles-web-subtitles-ky.srt \
             --target "${{ github.sha }}" \
-            --title "Beles Web — Reels 1080×1920 (${{ inputs.tag }})" \
+            --title "Beles Web — Reels 1080×1920 ($TAG)" \
             --notes "Вертикальный ролик 1080×1920, 30 fps, H.264 + AAC 48 kHz, 26.5 s. Превью 720×1280 и субтитры SRT (кыргызский). Исходный код монтажа — в этом репозитории, см. README."
