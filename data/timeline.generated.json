@@ -1,0 +1,615 @@
+{
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "durationInFrames": 794,
+ "video": "media/source.mp4",
+ "audio": "media/voice.wav",
+ "clips": [
+  {
+   "id": "hook",
+   "srcInFrame": 1499,
+   "srcOutFrame": 1591,
+   "startFrame": 0,
+   "durationFrames": 92
+  },
+  {
+   "id": "help",
+   "srcInFrame": 1939,
+   "srcOutFrame": 1994,
+   "startFrame": 92,
+   "durationFrames": 55
+  },
+  {
+   "id": "offer",
+   "srcInFrame": 3533,
+   "srcOutFrame": 3679,
+   "startFrame": 147,
+   "durationFrames": 146
+  },
+  {
+   "id": "range",
+   "srcInFrame": 7308,
+   "srcOutFrame": 7490,
+   "startFrame": 293,
+   "durationFrames": 182
+  },
+  {
+   "id": "devices",
+   "srcInFrame": 8743,
+   "srcOutFrame": 8832,
+   "startFrame": 475,
+   "durationFrames": 89
+  },
+  {
+   "id": "level",
+   "srcInFrame": 9007,
+   "srcOutFrame": 9095,
+   "startFrame": 564,
+   "durationFrames": 88
+  },
+  {
+   "id": "cta",
+   "srcInFrame": 9827,
+   "srcOutFrame": 9969,
+   "startFrame": 652,
+   "durationFrames": 142
+  }
+ ],
+ "camera": [
+  {
+   "frame": 0,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 92,
+   "mode": "wide",
+   "smooth": false
+  },
+  {
+   "frame": 147,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 293,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 475,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 564,
+   "mode": "close",
+   "smooth": false
+  },
+  {
+   "frame": 652,
+   "mode": "medium",
+   "smooth": false
+  }
+ ],
+ "cards": [
+  {
+   "id": "c-hero",
+   "startFrame": 154,
+   "endFrame": 293,
+   "image": "site/desktop-home-ky-full.png",
+   "imageWidth": 2880,
+   "imageHeight": 13910,
+   "url": "zeket.kg",
+   "label": "МИСАЛ",
+   "views": [
+    {
+     "frame": 0,
+     "x": 0,
+     "y": 0,
+     "w": 2880
+    },
+    {
+     "frame": 39,
+     "x": 0,
+     "y": 330,
+     "w": 2880
+    },
+    {
+     "frame": 90,
+     "x": 150,
+     "y": 720,
+     "w": 1560
+    }
+   ],
+   "highlight": {
+    "from": 2.2,
+    "to": 4.5,
+    "x": 225,
+    "y": 885,
+    "w": 1030,
+    "h": 250,
+    "fromFrame": 66,
+    "toFrame": 135
+   }
+  },
+  {
+   "id": "c-how",
+   "startFrame": 298,
+   "endFrame": 379,
+   "image": "site/desktop-home-ky-full.png",
+   "imageWidth": 2880,
+   "imageHeight": 13910,
+   "url": "zeket.kg/ky",
+   "views": [
+    {
+     "frame": 0,
+     "x": 0,
+     "y": 2060,
+     "w": 2880
+    },
+    {
+     "frame": 45,
+     "x": 860,
+     "y": 2540,
+     "w": 1900
+    }
+   ],
+   "cursor": {
+    "from": 1,
+    "to": 2.1,
+    "x0": 1500,
+    "y0": 3200,
+    "x1": 2230,
+    "y1": 2830,
+    "fromFrame": 30,
+    "toFrame": 63
+   }
+  },
+  {
+   "id": "c-reports",
+   "startFrame": 379,
+   "endFrame": 475,
+   "image": "site/desktop-reports-ky-full.png",
+   "imageWidth": 2880,
+   "imageHeight": 12766,
+   "url": "zeket.kg/ky/fund-reports",
+   "views": [
+    {
+     "frame": 0,
+     "x": 0,
+     "y": 0,
+     "w": 2880
+    },
+    {
+     "frame": 42,
+     "x": 0,
+     "y": 280,
+     "w": 2880
+    },
+    {
+     "frame": 93,
+     "x": 140,
+     "y": 560,
+     "w": 2100
+    }
+   ]
+  }
+ ],
+ "titles": [
+  {
+   "id": "t-hook",
+   "startFrame": 0,
+   "endFrame": 92,
+   "accent": "Бизнесиңиз бар,",
+   "main": "сайтыңыз жокпу?"
+  },
+  {
+   "id": "t-offer",
+   "startFrame": 151,
+   "endFrame": 293,
+   "accent": "Заманбап · кооз",
+   "main": "Сайт жасап беребиз"
+  },
+  {
+   "id": "t-range",
+   "startFrame": 296,
+   "endFrame": 475,
+   "accent": "Лендингден баштап",
+   "main": "эң татаал платформалар"
+  },
+  {
+   "id": "t-level",
+   "startFrame": 566,
+   "endFrame": 652,
+   "accent": "Убакыт келди",
+   "main": "Жаңы деңгээлге"
+  }
+ ],
+ "phones": [
+  {
+   "id": "p-mobile",
+   "from": "devices@291.45",
+   "to": "devices@294.4",
+   "image": "site/mobile-home-ky-full.png",
+   "imageWidth": 1170,
+   "imageHeight": 35316,
+   "scrollFrom": 666,
+   "scrollTo": 2700,
+   "label": "Телефон · компьютер",
+   "startFrame": 476,
+   "endFrame": 564
+  }
+ ],
+ "subtitles": [
+  {
+   "startFrame": 0,
+   "endFrame": 44,
+   "words": [
+    {
+     "text": "Сиздин",
+     "key": false
+    },
+    {
+     "text": "бизнесиңиз",
+     "key": true
+    },
+    {
+     "text": "бар,",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 44,
+   "endFrame": 63,
+   "words": [
+    {
+     "text": "бирок",
+     "key": false
+    },
+    {
+     "text": "дагы",
+     "key": false
+    },
+    {
+     "text": "эле",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 63,
+   "endFrame": 92,
+   "words": [
+    {
+     "text": "сайтыңыз",
+     "key": true
+    },
+    {
+     "text": "жокпу?",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 92,
+   "endFrame": 122,
+   "words": [
+    {
+     "text": "Анда",
+     "key": false
+    },
+    {
+     "text": "биз",
+     "key": false
+    },
+    {
+     "text": "сизге",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 122,
+   "endFrame": 147,
+   "words": [
+    {
+     "text": "жардам",
+     "key": true
+    },
+    {
+     "text": "беребиз.",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 147,
+   "endFrame": 183,
+   "words": [
+    {
+     "text": "Биз",
+     "key": false
+    },
+    {
+     "text": "бизнесиңиз",
+     "key": true
+    },
+    {
+     "text": "үчүн",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 183,
+   "endFrame": 233,
+   "words": [
+    {
+     "text": "заманбап,",
+     "key": true
+    },
+    {
+     "text": "кооз",
+     "key": true
+    },
+    {
+     "text": "жана",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 233,
+   "endFrame": 259,
+   "words": [
+    {
+     "text": "кардар",
+     "key": true
+    },
+    {
+     "text": "алып",
+     "key": false
+    },
+    {
+     "text": "келе",
+     "key": false
+    },
+    {
+     "text": "турган",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 259,
+   "endFrame": 293,
+   "words": [
+    {
+     "text": "сайт",
+     "key": true
+    },
+    {
+     "text": "жасап",
+     "key": false
+    },
+    {
+     "text": "беребиз.",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 293,
+   "endFrame": 339,
+   "words": [
+    {
+     "text": "Жөнөкөй",
+     "key": false
+    },
+    {
+     "text": "лендингден",
+     "key": true
+    },
+    {
+     "text": "баштап",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 339,
+   "endFrame": 376,
+   "words": [
+    {
+     "text": "интернет",
+     "key": false
+    },
+    {
+     "text": "дүкөндөрдү,",
+     "key": true
+    }
+   ]
+  },
+  {
+   "startFrame": 376,
+   "endFrame": 400,
+   "words": [
+    {
+     "text": "брондоо",
+     "key": true
+    },
+    {
+     "text": "системаларын",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 400,
+   "endFrame": 432,
+   "words": [
+    {
+     "text": "жана",
+     "key": false
+    },
+    {
+     "text": "эң",
+     "key": false
+    },
+    {
+     "text": "татаал",
+     "key": true
+    }
+   ]
+  },
+  {
+   "startFrame": 432,
+   "endFrame": 475,
+   "words": [
+    {
+     "text": "веб-платформаларды",
+     "key": true
+    },
+    {
+     "text": "түзөбүз.",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 475,
+   "endFrame": 520,
+   "words": [
+    {
+     "text": "Сайтыңыз",
+     "key": false
+    },
+    {
+     "text": "телефонго",
+     "key": true
+    },
+    {
+     "text": "да,",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 520,
+   "endFrame": 564,
+   "words": [
+    {
+     "text": "компьютерге",
+     "key": true
+    },
+    {
+     "text": "да",
+     "key": false
+    },
+    {
+     "text": "ыңгайлуу",
+     "key": true
+    },
+    {
+     "text": "болот.",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 564,
+   "endFrame": 609,
+   "words": [
+    {
+     "text": "Бизнесиңизди",
+     "key": false
+    },
+    {
+     "text": "жаңы",
+     "key": true
+    },
+    {
+     "text": "деңгээлге",
+     "key": true
+    }
+   ]
+  },
+  {
+   "startFrame": 609,
+   "endFrame": 653,
+   "words": [
+    {
+     "text": "көтөрүүгө",
+     "key": false
+    },
+    {
+     "text": "убакыт",
+     "key": true
+    },
+    {
+     "text": "келди.",
+     "key": false
+    }
+   ]
+  },
+  {
+   "startFrame": 653,
+   "endFrame": 683,
+   "words": [
+    {
+     "text": "Бизге",
+     "key": false
+    },
+    {
+     "text": "азыр",
+     "key": false
+    },
+    {
+     "text": "WhatsApp",
+     "key": true
+    }
+   ]
+  },
+  {
+   "startFrame": 683,
+   "endFrame": 717,
+   "words": [
+    {
+     "text": "аркылуу",
+     "key": false
+    },
+    {
+     "text": "жазыңыз,",
+     "key": true
+    }
+   ]
+  },
+  {
+   "startFrame": 717,
+   "endFrame": 778,
+   "words": [
+    {
+     "text": "долбооруңуз",
+     "key": true
+    },
+    {
+     "text": "тууралуу",
+     "key": false
+    },
+    {
+     "text": "талкуулайын.",
+     "key": false
+    }
+   ]
+  }
+ ],
+ "endCard": {
+  "startFrame": 658,
+  "endFrame": 794,
+  "accent": "Бизге азыр жазыңыз:",
+  "main": "WhatsApp"
+ }
+}

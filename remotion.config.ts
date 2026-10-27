@@ -1,0 +1,5 @@
+import { Config } from '@remotion/cli/config';
+
+Config.setVideoImageFormat('png');
+Config.setConcurrency(2);
+Config.setChromiumOpenGlRenderer('swangle');

@@ -1,0 +1,33 @@
+name: Publish video release
+# Manual, single run on a standard runner: attaches the rendered MP4 files committed in release/
+# to a GitHub Release. Rendering itself happens locally (see README).
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag
+        required: true
+        default: v1.0.0
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check files
+        run: |
+          ls -la release
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact release/beles-web-final-1080x1920.mp4 || true
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ inputs.tag }}" \
+            release/beles-web-final-1080x1920.mp4 \
+            release/preview-720x1280.mp4 \
+            release/beles-web-subtitles-ky.srt \
+            --target "${{ github.sha }}" \
+            --title "Beles Web — Reels 1080×1920 (${{ inputs.tag }})" \
+            --notes "Вертикальный ролик 1080×1920, 30 fps, H.264 + AAC 48 kHz, 26.5 s. Превью 720×1280 и субтитры SRT (кыргызский). Исходный код монтажа — в этом репозитории, см. README."

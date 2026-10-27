@@ -1,0 +1,26 @@
+{
+  "name": "beles-web-video",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vertical Reels edit (Remotion + FFmpeg) — web-development promo with zeket.kg demo",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "prepare-media": "bash scripts/prepare-media.sh",
+    "build-data": "node scripts/build-timeline.mjs",
+    "render": "bash scripts/render.sh",
+    "verify": "bash scripts/verify.sh"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "5.1.0",
+    "@fontsource/oswald": "5.1.0",
+    "@remotion/cli": "4.0.300",
+    "@remotion/fonts": "4.0.300",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.300"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

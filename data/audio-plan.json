@@ -1,0 +1,74 @@
+{
+ "fps": 30,
+ "durationInFrames": 794,
+ "clips": [
+  {
+   "id": "hook",
+   "srcInFrame": 1499,
+   "srcOutFrame": 1591,
+   "startFrame": 0
+  },
+  {
+   "id": "help",
+   "srcInFrame": 1939,
+   "srcOutFrame": 1994,
+   "startFrame": 92
+  },
+  {
+   "id": "offer",
+   "srcInFrame": 3533,
+   "srcOutFrame": 3679,
+   "startFrame": 147
+  },
+  {
+   "id": "range",
+   "srcInFrame": 7308,
+   "srcOutFrame": 7490,
+   "startFrame": 293
+  },
+  {
+   "id": "devices",
+   "srcInFrame": 8743,
+   "srcOutFrame": 8832,
+   "startFrame": 475
+  },
+  {
+   "id": "level",
+   "srcInFrame": 9007,
+   "srcOutFrame": 9095,
+   "startFrame": 564
+  },
+  {
+   "id": "cta",
+   "srcInFrame": 9827,
+   "srcOutFrame": 9969,
+   "startFrame": 652
+  }
+ ],
+ "sfx": [
+  {
+   "type": "whoosh",
+   "frame": 154
+  },
+  {
+   "type": "whoosh",
+   "frame": 298
+  },
+  {
+   "type": "whoosh",
+   "frame": 379
+  },
+  {
+   "type": "whoosh",
+   "frame": 476
+  },
+  {
+   "type": "pop",
+   "frame": 220
+  },
+  {
+   "type": "pop",
+   "frame": 663
+  }
+ ]
+}

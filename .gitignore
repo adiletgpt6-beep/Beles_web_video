@@ -1,0 +1,9 @@
+node_modules/
+out/*.mp4
+!out/.gitkeep
+# raw/derived source media stay local (not published)
+input/*
+!input/README.md
+public/media/
+.remotion/
+*.log
