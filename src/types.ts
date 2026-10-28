@@ -39,6 +39,7 @@ export type Card = {
   highlight?: Highlight;
   cursor?: { fromFrame: number; toFrame: number; x0: number; y0: number; x1: number; y1: number };
   label?: string;
+  hold?: boolean; // no exit animation: the next shot continues this card
   // card → large demo of the same page (card-local frames, target rect in final px)
   expand?: { fromFrame: number; toFrame: number; x: number; y: number; w: number; h: number };
 };
@@ -99,6 +100,50 @@ export type Badge = {
   y: number;
 };
 
+type Rect = { x: number; y: number; w: number; h: number };
+type Morph = { s: number; fx: number; fy: number };
+// V5 compositions (all frames scene-local unless named startFrame/endFrame; srcStart = source frame at scene start)
+export type BehindTextData = {
+  startFrame: number;
+  endFrame: number;
+  srcStart: number;
+  matteFrom: number;
+  matteTo: number;
+  y: number;
+  words: { text: string; from: number; to: number; color: 'white' | 'cyan' }[];
+};
+export type VideoCardData = {
+  startFrame: number;
+  endFrame: number;
+  srcStart: number;
+  rect: Rect;
+  target: Morph;
+  textTop: number;
+  lines: { big: boolean; words: { text: string; frame: number }[] }[];
+};
+export type SiteStageData = {
+  startFrame: number;
+  endFrame: number;
+  srcStart: number;
+  from: Rect;
+  window: Rect;
+  circle: Rect;
+  target: Morph;
+  url: string;
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
+  views: ViewKey[];
+  highlight?: Highlight;
+  cursor?: { fromFrame: number; toFrame: number; x0: number; y0: number; x1: number; y1: number };
+};
+export type IconRowData = {
+  startFrame: number;
+  endFrame: number;
+  y: number;
+  items: { icon: 'browser' | 'cart' | 'calendar' | 'layers'; label: string; frame: number; activeFrom: number; activeTo: number }[];
+};
+
 export type Timeline = {
   fps: number;
   width: number;
@@ -114,4 +159,8 @@ export type Timeline = {
   subtitles: Subtitle[];
   badge?: Badge;
   typeScenes: TypeSceneData[];
+  behindText?: BehindTextData;
+  videoCards: VideoCardData[];
+  siteStages: SiteStageData[];
+  iconRows: IconRowData[];
 };

@@ -1,5 +1,5 @@
 {
-  "_doc": "V4 edit decision list. Segment in/out and every subtitle time are SOURCE seconds of input/1000218256.mp4 (30 fps CFR). Overlay anchors 'segId@sec' are also source seconds. Card view/highlight/cursor and desktop view times are seconds relative to the card/desktop start. scripts/build-timeline.mjs converts everything to final-timeline frames. Takes were chosen by gaze into the lens first (MediaPipe + eye crops, see docs/v2-report.md), then by speech. V3: every segment has word-level times (words[].t, source s) driving the active-word subtitles; sfx use 'lands' = moment the move ends (the sound peak is placed there). V4: kinetic captions without any background (white + cyan key words, place: chest|low|top); 'scene': true groups are drawn by a full-screen typeScene instead of the caption layer.",
+  "_doc": "V5 edit decision list. Segment in/out and every subtitle time are SOURCE seconds of input/1000218256.mp4 (30 fps CFR). Overlay anchors 'segId@sec' are also source seconds. Card view/highlight/cursor and desktop view times are seconds relative to the card/desktop start. scripts/build-timeline.mjs converts everything to final-timeline frames. Takes were chosen by gaze into the lens first (MediaPipe + eye crops, see docs/v2-report.md), then by speech. V3: every segment has word-level times (words[].t, source s) driving the active-word subtitles; sfx use 'lands' = moment the move ends (the sound peak is placed there). V4: kinetic captions without any background (white + cyan key words, place: chest|low|top); 'scene': true groups are drawn by a full-screen typeScene instead of the caption layer. V5: behindText (keyword behind the presenter via matte), videoCards (rounded video card), siteStages (site window + presenter in a circle), iconRows (service types named in the speech).",
   "fps": 30,
   "width": 1080,
   "height": 1920,
@@ -81,13 +81,15 @@
       "text": "Анда биз сизге жардам беребиз.",
       "subs": [
         {
-          "text": "Анда биз сизге"
+          "text": "Анда биз сизге",
+          "scene": true
         },
         {
           "text": "жардам беребиз.",
           "key": [
             "жардам"
-          ]
+          ],
+          "scene": true
         }
       ],
       "words": [
@@ -216,13 +218,15 @@
           "text": "Жөнөкөй лендингден баштап",
           "key": [
             "лендингден"
-          ]
+          ],
+          "place": "low"
         },
         {
           "text": "интернет дүкөндөрдү,",
           "key": [
             "дүкөндөрдү"
-          ]
+          ],
+          "place": "low"
         },
         {
           "text": "брондоо системаларын",
@@ -508,113 +512,8 @@
         "y": 885,
         "w": 1030,
         "h": 250
-      }
-    },
-    {
-      "id": "c-how",
-      "from": "range@271.85",
-      "to": "range@275.9",
-      "image": "site/desktop-home-ky-full.png",
-      "imageWidth": 2880,
-      "imageHeight": 13910,
-      "url": "zeket.kg/ky",
-      "views": [
-        {
-          "t": 0,
-          "x": 0,
-          "y": 2060,
-          "w": 2880
-        },
-        {
-          "t": 0.6,
-          "x": 0,
-          "y": 2060,
-          "w": 2880
-        },
-        {
-          "t": 1.1,
-          "x": 380,
-          "y": 2160,
-          "w": 2320
-        },
-        {
-          "t": 1.7,
-          "x": 1640,
-          "y": 2470,
-          "w": 1180
-        },
-        {
-          "t": 2.75,
-          "x": 1640,
-          "y": 2470,
-          "w": 1180
-        },
-        {
-          "t": 3.2,
-          "x": 380,
-          "y": 2160,
-          "w": 2320
-        },
-        {
-          "t": 3.55,
-          "x": 860,
-          "y": 2540,
-          "w": 1900
-        }
-      ],
-      "cursor": {
-        "from": 1.6,
-        "to": 2.25,
-        "x0": 1900,
-        "y0": 3250,
-        "x1": 2230,
-        "y1": 2830
       },
-      "expand": {
-        "from": 0.7,
-        "to": 3.3,
-        "x": 40,
-        "y": 322,
-        "w": 1000,
-        "h": 960
-      },
-      "highlight": {
-        "from": 2.3,
-        "to": 2.9,
-        "x": 1874,
-        "y": 2620,
-        "w": 766,
-        "h": 380
-      }
-    },
-    {
-      "id": "c-reports",
-      "from": "range@275.9",
-      "to": "range@279.2",
-      "image": "site/desktop-reports-ky-full.png",
-      "imageWidth": 2880,
-      "imageHeight": 12766,
-      "url": "zeket.kg/ky/fund-reports",
-      "views": [
-        {
-          "t": 0,
-          "x": 0,
-          "y": 0,
-          "w": 2880
-        },
-        {
-          "t": 1.3,
-          "x": 0,
-          "y": 280,
-          "w": 2880
-        },
-        {
-          "t": 3.0,
-          "x": 140,
-          "y": 560,
-          "w": 2100
-        }
-      ]
+      "hold": true
     }
   ],
   "phones": [
@@ -678,29 +577,49 @@
   "sfx": [
     {
       "type": "whoosh_in",
+      "lands": "hook@39.80",
+      "gainDb": -3
+    },
+    {
+      "type": "pop",
+      "lands": "hook@41.62",
+      "gainDb": -2
+    },
+    {
+      "type": "swish",
+      "lands": "help@64.95"
+    },
+    {
+      "type": "pop",
+      "lands": "help@65.60",
+      "gainDb": -3
+    },
+    {
+      "type": "whoosh_in",
       "lands": "offer@101.15"
     },
     {
       "type": "pop",
       "lands": "offer@103.42",
-      "gainDb": -2
-    },
-    {
-      "type": "swish",
-      "lands": "range@272.15",
-      "gainDb": -3
+      "gainDb": -4
     },
     {
       "type": "whoosh_in",
-      "lands": "range@272.95"
+      "lands": "range@272.10",
+      "gainDb": -2
     },
     {
       "type": "tick",
-      "lands": "range@274.10"
+      "lands": "range@273.79"
     },
     {
       "type": "swish",
-      "lands": "range@276.15",
+      "lands": "range@274.55",
+      "gainDb": -3
+    },
+    {
+      "type": "tick",
+      "lands": "range@277.12",
       "gainDb": -4
     },
     {
@@ -711,14 +630,6 @@
       "type": "whoosh_in",
       "lands": "devices@293.32",
       "gainDb": -2
-    },
-    {
-      "type": "tick",
-      "lands": "cta@328.47"
-    },
-    {
-      "type": "chime",
-      "lands": "cta@328.63"
     },
     {
       "type": "whoosh_in",
@@ -733,6 +644,14 @@
       "type": "swish",
       "lands": "level@302.15",
       "gainDb": -3
+    },
+    {
+      "type": "tick",
+      "lands": "cta@328.47"
+    },
+    {
+      "type": "chime",
+      "lands": "cta@328.63"
     }
   ],
   "typeScenes": [
@@ -758,6 +677,195 @@
         "text": "көтөрүүгө",
         "at": "level@301.66"
       }
+    }
+  ],
+  "behindText": {
+    "from": "hook@39.27",
+    "to": "hook@42.47",
+    "matteFrom": 1178,
+    "matteTo": 1275,
+    "y": 650,
+    "words": [
+      {
+        "text": "БИЗНЕС",
+        "from": "hook@39.70",
+        "to": "hook@41.45",
+        "color": "white"
+      },
+      {
+        "text": "САЙТ?",
+        "from": "hook@41.50",
+        "to": "hook@42.46",
+        "color": "cyan"
+      }
+    ]
+  },
+  "videoCards": [
+    {
+      "from": "help@64.62",
+      "to": "help@66.45",
+      "rect": {
+        "x": 250,
+        "y": 800,
+        "w": 580,
+        "h": 760
+      },
+      "target": {
+        "s": 0.82,
+        "fx": 540,
+        "fy": 860
+      },
+      "textTop": 330,
+      "lines": [
+        {
+          "big": false,
+          "words": [
+            {
+              "text": "Анда",
+              "at": "help@64.74"
+            },
+            {
+              "text": "биз",
+              "at": "help@64.88"
+            },
+            {
+              "text": "сизге",
+              "at": "help@65.22"
+            }
+          ]
+        },
+        {
+          "big": true,
+          "words": [
+            {
+              "text": "жардам",
+              "at": "help@65.50"
+            }
+          ]
+        },
+        {
+          "big": false,
+          "words": [
+            {
+              "text": "беребиз.",
+              "at": "help@65.90"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "siteStages": [
+    {
+      "from": "range@271.74",
+      "to": "range@274.6",
+      "fromRect": {
+        "x": 90,
+        "y": 322,
+        "w": 900,
+        "h": 384
+      },
+      "window": {
+        "x": 40,
+        "y": 240,
+        "w": 1000,
+        "h": 760
+      },
+      "circle": {
+        "x": 370,
+        "y": 1030,
+        "w": 340,
+        "h": 340
+      },
+      "target": {
+        "s": 0.78,
+        "fx": 540,
+        "fy": 790
+      },
+      "url": "zeket.kg/ky",
+      "image": "site/desktop-home-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 13910,
+      "views": [
+        {
+          "t": 0,
+          "x": 150,
+          "y": 720,
+          "w": 1560
+        },
+        {
+          "t": 0.35,
+          "x": 150,
+          "y": 720,
+          "w": 1560
+        },
+        {
+          "t": 1.0,
+          "x": 0,
+          "y": 2060,
+          "w": 2880
+        },
+        {
+          "t": 1.45,
+          "x": 0,
+          "y": 2060,
+          "w": 2880
+        },
+        {
+          "t": 2.0,
+          "x": 1640,
+          "y": 2470,
+          "w": 1180
+        }
+      ],
+      "cursor": {
+        "from": 1.5,
+        "to": 2.05,
+        "x0": 1900,
+        "y0": 3250,
+        "x1": 2230,
+        "y1": 2830
+      },
+      "highlight": {
+        "from": 2.1,
+        "to": 2.86,
+        "x": 1874,
+        "y": 2620,
+        "w": 766,
+        "h": 380
+      }
+    }
+  ],
+  "iconRows": [
+    {
+      "from": "range@274.56",
+      "to": "range@279.2",
+      "y": 330,
+      "items": [
+        {
+          "icon": "browser",
+          "label": "лендинг",
+          "at": "range@274.56"
+        },
+        {
+          "icon": "cart",
+          "label": "интернет дүкөн",
+          "at": "range@274.6"
+        },
+        {
+          "icon": "calendar",
+          "label": "брондоо",
+          "at": "range@274.64",
+          "activeFrom": "range@274.66",
+          "activeTo": "range@277.05"
+        },
+        {
+          "icon": "layers",
+          "label": "веб-платформа",
+          "at": "range@274.68",
+          "activeFrom": "range@277.08"
+        }
+      ]
     }
   ]
 }

@@ -24,18 +24,18 @@ jobs:
       - name: Check files
         run: |
           ls -la release
-          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact release/beles-web-v4-1080x1920.mp4 || true
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact release/beles-web-v5-1080x1920.mp4 || true
       - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ inputs.tag }}"; [ -z "$TAG" ] && TAG="$(tr -d '[:space:]' < release/RELEASE_TAG)"
           gh release create "$TAG" \
+            release/beles-web-v5-1080x1920.mp4 \
+            release/preview-v5-720x1280.mp4 \
+            release/beles-web-v5-subtitles-ky.srt \
             release/beles-web-v4-1080x1920.mp4 \
-            release/preview-v4-720x1280.mp4 \
-            release/beles-web-v4-subtitles-ky.srt \
-            release/beles-web-v3-1080x1920.mp4 \
             release/v1-beles-web-final-1080x1920.mp4 \
             --target "${{ github.sha }}" \
             --title "Beles Web — Reels 1080×1920 ($TAG)" \
-            --notes "V4: субтитры без подложки — белый текст и крупные голубые ключевые слова с побуквенным входом, полноэкранная типографическая сцена, сайт с раскрытием карточки и match cut, WhatsApp-блок с номером 0998 08 38 28 по жесту. 1080×1920, 30 fps, H.264 + AAC 48 kHz, 28.2 s, −15 LUFS. Для сравнения приложены V3 и V1. Отчёт: docs/v4-report.md."
+            --notes "V5: крупное слово за ведущим (маска), видеокарточка и круглая маска рядом с сайтом, окно zeket.kg с продолжением движения и кликом, иконки услуг из речи, бело-голубые субтитры без подложки, WhatsApp 0998 08 38 28 по жесту. 1080×1920, 30 fps, H.264 + AAC 48 kHz, 28.2 s, −15 LUFS. Для сравнения приложены V4 и V1. Отчёт: docs/v5-report.md."

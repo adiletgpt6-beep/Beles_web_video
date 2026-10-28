@@ -54,32 +54,52 @@
  "sfx": [
   {
    "type": "whoosh_in",
+   "frame": 5,
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "frame": 71,
+   "gainDb": -2
+  },
+  {
+   "type": "swish",
+   "frame": 101,
+   "gainDb": 0
+  },
+  {
+   "type": "pop",
+   "frame": 125,
+   "gainDb": -3
+  },
+  {
+   "type": "whoosh_in",
    "frame": 158,
    "gainDb": 0
   },
   {
    "type": "pop",
    "frame": 237,
-   "gainDb": -2
-  },
-  {
-   "type": "swish",
-   "frame": 311,
-   "gainDb": -3
+   "gainDb": -4
   },
   {
    "type": "whoosh_in",
-   "frame": 330,
-   "gainDb": 0
+   "frame": 304,
+   "gainDb": -2
   },
   {
    "type": "tick",
-   "frame": 375,
+   "frame": 366,
    "gainDb": 0
   },
   {
    "type": "swish",
-   "frame": 432,
+   "frame": 384,
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "frame": 466,
    "gainDb": -4
   },
   {
@@ -91,16 +111,6 @@
    "type": "whoosh_in",
    "frame": 574,
    "gainDb": -2
-  },
-  {
-   "type": "tick",
-   "frame": 730,
-   "gainDb": 0
-  },
-  {
-   "type": "chime",
-   "frame": 735,
-   "gainDb": 0
   },
   {
    "type": "whoosh_in",
@@ -116,6 +126,16 @@
    "type": "swish",
    "frame": 670,
    "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "frame": 730,
+   "gainDb": 0
+  },
+  {
+   "type": "chime",
+   "frame": 735,
+   "gainDb": 0
   }
  ]
 }

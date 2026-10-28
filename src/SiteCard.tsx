@@ -37,7 +37,7 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
   const { fps } = useVideoConfig();
   const len = card.endFrame - card.startFrame;
   const enter = spring({ frame: f, fps, config: { damping: 18, stiffness: 140, mass: 0.8 } });
-  const exit = interpolate(f, [len - 8, len], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic) });
+  const exit = card.hold ? 0 : interpolate(f, [len - 8, len], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic) });
   // Optional "card → large demo of the same page": the card rect grows (same top edge, same page,
   // continuous scale) and later shrinks back. k = 0 small card, 1 = expanded.
   const ex = card.expand;

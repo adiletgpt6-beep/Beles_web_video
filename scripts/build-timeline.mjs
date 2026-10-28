@@ -77,6 +77,7 @@ const cards = (edit.cards ?? []).map((c) => {
     views: c.views.map((v) => ({ frame: sec(v.t), x: v.x, y: v.y, w: v.w })),
     highlight: c.highlight && { ...c.highlight, fromFrame: sec(c.highlight.from), toFrame: sec(c.highlight.to) },
     cursor: c.cursor && { ...c.cursor, fromFrame: sec(c.cursor.from), toFrame: sec(c.cursor.to) },
+    hold: !!c.hold,
     expand: c.expand && { x: c.expand.x, y: c.expand.y, w: c.expand.w, h: c.expand.h, fromFrame: sec(c.expand.from), toFrame: sec(c.expand.to) },
   };
 });
@@ -106,6 +107,67 @@ const typeScenes = (edit.typeScenes ?? []).map((t) => {
     small: { text: t.small.text, frame: rel(t.small.at) },
     big: t.big.map((b) => ({ text: b.text, frame: rel(b.at) })),
     rise: t.rise && { text: t.rise.text, frame: rel(t.rise.at) },
+  };
+});
+// V5 compositions
+const srcAt = (g) => {
+  const c = clips.find((x) => g >= x.startFrame && g < x.startFrame + x.durationFrames) ?? clips[clips.length - 1];
+  return c.srcInFrame + (g - c.startFrame);
+};
+const local = (start) => (a) => anchor(a) - start;
+const bt = edit.behindText;
+const behindText = bt && (() => {
+  const startFrame = anchor(bt.from);
+  const L = local(startFrame);
+  return {
+    startFrame,
+    endFrame: anchor(bt.to),
+    srcStart: srcAt(startFrame),
+    matteFrom: bt.matteFrom,
+    matteTo: bt.matteTo,
+    y: bt.y,
+    words: bt.words.map((w) => ({ text: w.text, from: L(w.from), to: L(w.to), color: w.color })),
+  };
+})();
+const videoCards = (edit.videoCards ?? []).map((v) => {
+  const startFrame = anchor(v.from);
+  const L = local(startFrame);
+  return {
+    startFrame,
+    endFrame: anchor(v.to),
+    srcStart: srcAt(startFrame),
+    rect: v.rect,
+    target: v.target,
+    textTop: v.textTop,
+    lines: v.lines.map((l) => ({ big: !!l.big, words: l.words.map((w) => ({ text: w.text, frame: L(w.at) })) })),
+  };
+});
+const siteStages = (edit.siteStages ?? []).map((st) => {
+  const startFrame = anchor(st.from);
+  return {
+    ...st,
+    startFrame,
+    endFrame: anchor(st.to),
+    srcStart: srcAt(startFrame),
+    from: st.fromRect,
+    views: st.views.map((v) => ({ frame: sec(v.t), x: v.x, y: v.y, w: v.w })),
+    highlight: st.highlight && { ...st.highlight, fromFrame: sec(st.highlight.from), toFrame: sec(st.highlight.to) },
+    cursor: st.cursor && { ...st.cursor, fromFrame: sec(st.cursor.from), toFrame: sec(st.cursor.to) },
+  };
+});
+for (const st of siteStages) {
+  delete st.to;
+  delete st.fromRect;
+}
+const iconRows = (edit.iconRows ?? []).map((r) => {
+  const startFrame = anchor(r.from);
+  const endFrame = anchor(r.to);
+  const L = local(startFrame);
+  return {
+    startFrame,
+    endFrame,
+    y: r.y,
+    items: r.items.map((it) => ({ icon: it.icon, label: it.label, frame: L(it.at), activeFrom: it.activeFrom ? L(it.activeFrom) : 9999, activeTo: it.activeTo ? L(it.activeTo) : endFrame - startFrame + 1 })),
   };
 });
 const badge = edit.badge && {
@@ -181,6 +243,10 @@ const timeline = {
   endCard,
   badge,
   typeScenes,
+  behindText,
+  videoCards,
+  siteStages,
+  iconRows,
 };
 fs.writeFileSync(path.join(root, 'data/timeline.generated.json'), JSON.stringify(timeline, null, 1));
 

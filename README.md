@@ -54,7 +54,7 @@ python3 scripts/make-sfx.py assets/sfx   # → assets/sfx/*.wav (уже в ре�
 npx -y playwright@1.56.1 --version >/dev/null; node scripts/capture-site.cjs   # необязательно: переснять сайт (нужен Playwright+Chromium; скриншоты уже в репо)
 node scripts/build-timeline.mjs          # → data/timeline.generated.json, EDL, SRT
 node scripts/build-audio.mjs             # → public/media/voice.wav (голос + музыка + акценты; STEMS=1 — стем музыки для проверки)
-NAME=beles-web-v4-1080x1920 PREVIEW=preview-v4-720x1280 bash scripts/render.sh
+NAME=beles-web-v5-1080x1920 PREVIEW=preview-v5-720x1280 bash scripts/render.sh
 bash scripts/verify.sh                   # проверки
 ```
 
@@ -64,10 +64,12 @@ bash scripts/verify.sh                   # проверки
 
 ## Результат
 
-**V4 (текущая)** — субтитры без подложки (белый текст + крупные голубые ключевые слова, побуквенный вход), полноэкранная типографическая сцена, WhatsApp‑блок с номером по жесту. Отчёт: [`docs/v4-report.md`](docs/v4-report.md).
-- Release v4.0.0: https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v4.0.0
-  - [beles-web-v4-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v4.0.0/beles-web-v4-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 yuv420p, AAC 48 kHz, faststart, 28.17 с, −15.0 LUFS
-  - [preview-v4-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v4.0.0/preview-v4-720x1280.mp4)
-- Предыдущие версии: V3 — Release v3.0.0 ([отчёт](docs/v3-report.md)), V2 — v2.0.0, V1 — v1.0.0; файлы в `release/`.
+**V5 (текущая)** — текст за ведущим (маска), видеокарточка и круглая маска, окно сайта с продолжением движения и кликом, иконки услуг из речи; бело‑голубые субтитры без подложки; WhatsApp 0998 08 38 28 по жесту. Отчёт: [`docs/v5-report.md`](docs/v5-report.md).
+- Release v5.0.0: https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v5.0.0
+  - [beles-web-v5-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v5.0.0/beles-web-v5-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 yuv420p, AAC 48 kHz, faststart, 28.17 с, −15.0 LUFS
+  - [preview-v5-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v5.0.0/preview-v5-720x1280.mp4)
+- Предыдущие версии: V4 — Release v4.0.0 ([отчёт](docs/v4-report.md)), V3, V2, V1 — в `release/` и одноимённых Release.
+
+Маска ведущего для первых секунд: `python3 scripts/segment-presenter.py <selfie_multiclass_256x256.tflite> 1178 1275` (модель MediaPipe, https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/latest/selfie_multiclass_256x256.tflite) — выполнить после `prepare-media.sh`, до рендера.
 
 Шрифты (OFL) — `assets/fonts/`; музыка и эффекты синтезируются в репозитории (`scripts/make-music.py`, `scripts/make-sfx.py`), сторонних аудио нет.

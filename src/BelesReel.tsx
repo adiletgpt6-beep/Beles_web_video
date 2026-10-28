@@ -15,6 +15,7 @@ import { TitleBlock } from './TitleBlock';
 import { PhoneShotView } from './PhoneShot';
 import { Captions } from './Captions';
 import { TypeScene } from './TypeScene';
+import { BehindText, IconRow, SiteStage, VideoCard } from './scenes';
 import { WhatsAppBadge } from './WhatsAppBadge';
 
 // Block rendering until the local fonts (incl. Kyrgyz ө ү ң) are really loaded.
@@ -84,6 +85,26 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
             'linear-gradient(180deg, rgba(10,2,2,0.45) 0%, rgba(10,2,2,0) 38%)',
         }}
       />
+      {timeline.behindText ? (
+        <Sequence from={timeline.behindText.startFrame} durationInFrames={timeline.behindText.endFrame - timeline.behindText.startFrame} layout="none">
+          <BehindText data={timeline.behindText} camera={timeline.camera} />
+        </Sequence>
+      ) : null}
+      {(timeline.videoCards ?? []).map((v, i) => (
+        <Sequence key={`vc${i}`} from={v.startFrame} durationInFrames={v.endFrame - v.startFrame} layout="none">
+          <VideoCard data={v} camera={timeline.camera} video={timeline.video} />
+        </Sequence>
+      ))}
+      {(timeline.siteStages ?? []).map((st, i) => (
+        <Sequence key={`ss${i}`} from={st.startFrame} durationInFrames={st.endFrame - st.startFrame} layout="none">
+          <SiteStage data={st} camera={timeline.camera} video={timeline.video} />
+        </Sequence>
+      ))}
+      {(timeline.iconRows ?? []).map((r, i) => (
+        <Sequence key={`ir${i}`} from={r.startFrame} durationInFrames={r.endFrame - r.startFrame} layout="none">
+          <IconRow data={r} />
+        </Sequence>
+      ))}
       {(timeline.typeScenes ?? []).map((t) => (
         <Sequence key={t.id} from={t.startFrame} durationInFrames={t.endFrame - t.startFrame} layout="none">
           <TypeScene scene={t} />
