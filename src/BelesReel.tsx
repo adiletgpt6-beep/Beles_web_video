@@ -15,6 +15,7 @@ import { TitleBlock } from './TitleBlock';
 import { PhoneShotView } from './PhoneShot';
 import { Subtitles } from './Subtitles';
 import { EndCard } from './EndCard';
+import { WhatsAppBadge } from './WhatsAppBadge';
 
 // Block rendering until the local fonts (incl. Kyrgyz ө ү ң) are really loaded.
 const useFonts = () => {
@@ -98,6 +99,15 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
           layout="none"
         >
           <EndCard accent={timeline.endCard.accent} main={timeline.endCard.main} />
+        </Sequence>
+      ) : null}
+      {timeline.badge ? (
+        <Sequence
+          from={timeline.badge.startFrame}
+          durationInFrames={timeline.badge.endFrame - timeline.badge.startFrame}
+          layout="none"
+        >
+          <WhatsAppBadge badge={timeline.badge} />
         </Sequence>
       ) : null}
       <Subtitles subtitles={timeline.subtitles} />

@@ -19,7 +19,7 @@ export const Subtitles: React.FC<{ subtitles: Subtitle[] }> = ({ subtitles }) =>
           position: 'absolute',
           left: SUB.left,
           right: SUB.right,
-          bottom: 1920 - SUB.bottom,
+          bottom: 1920 - (cur.bottom ?? SUB.bottom),
           display: 'flex',
           justifyContent: 'center',
         }}

@@ -24,16 +24,17 @@ jobs:
       - name: Check files
         run: |
           ls -la release
-          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact release/beles-web-final-1080x1920.mp4 || true
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact release/beles-web-v2-1080x1920.mp4 || true
       - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ inputs.tag }}"; [ -z "$TAG" ] && TAG="$(tr -d '[:space:]' < release/RELEASE_TAG)"
           gh release create "$TAG" \
-            release/beles-web-final-1080x1920.mp4 \
-            release/preview-720x1280.mp4 \
-            release/beles-web-subtitles-ky.srt \
+            release/beles-web-v2-1080x1920.mp4 \
+            release/preview-v2-720x1280.mp4 \
+            release/beles-web-v2-subtitles-ky.srt \
+            release/v1-beles-web-final-1080x1920.mp4 \
             --target "${{ github.sha }}" \
             --title "Beles Web — Reels 1080×1920 ($TAG)" \
-            --notes "Вертикальный ролик 1080×1920, 30 fps, H.264 + AAC 48 kHz, 26.5 s. Превью 720×1280 и субтитры SRT (кыргызский). Исходный код монтажа — в этом репозитории, см. README."
+            --notes "V2: дубли перевыбраны по взгляду в камеру, WhatsApp под указывающим жестом, план телефон → компьютер, тихая оригинальная музыка. 1080×1920, 30 fps, H.264 + AAC 48 kHz, 28.2 s, −15 LUFS. Для сравнения приложена V1. Отчёт: docs/v2-report.md."

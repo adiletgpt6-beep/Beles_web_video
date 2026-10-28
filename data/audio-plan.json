@@ -1,74 +1,89 @@
 {
  "fps": 30,
- "durationInFrames": 794,
+ "durationInFrames": 845,
+ "music": {
+  "generator": "scripts/make-music.py",
+  "gainDb": -18
+ },
  "clips": [
   {
    "id": "hook",
-   "srcInFrame": 1499,
-   "srcOutFrame": 1591,
+   "srcInFrame": 1178,
+   "srcOutFrame": 1274,
    "startFrame": 0
   },
   {
    "id": "help",
    "srcInFrame": 1939,
    "srcOutFrame": 1994,
-   "startFrame": 92
+   "startFrame": 96
   },
   {
    "id": "offer",
-   "srcInFrame": 3533,
-   "srcOutFrame": 3679,
-   "startFrame": 147
+   "srcInFrame": 3017,
+   "srcOutFrame": 3170,
+   "startFrame": 151
   },
   {
    "id": "range",
-   "srcInFrame": 7308,
-   "srcOutFrame": 7490,
-   "startFrame": 293
+   "srcInFrame": 8152,
+   "srcOutFrame": 8376,
+   "startFrame": 304
   },
   {
    "id": "devices",
    "srcInFrame": 8743,
    "srcOutFrame": 8832,
-   "startFrame": 475
+   "startFrame": 528
   },
   {
    "id": "level",
    "srcInFrame": 9007,
-   "srcOutFrame": 9095,
-   "startFrame": 564
+   "srcOutFrame": 9093,
+   "startFrame": 617
   },
   {
    "id": "cta",
    "srcInFrame": 9827,
    "srcOutFrame": 9969,
-   "startFrame": 652
+   "startFrame": 703
   }
  ],
  "sfx": [
   {
    "type": "whoosh",
-   "frame": 154
-  },
-  {
-   "type": "whoosh",
-   "frame": 298
-  },
-  {
-   "type": "whoosh",
-   "frame": 379
-  },
-  {
-   "type": "whoosh",
-   "frame": 476
+   "frame": 157,
+   "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 220
+   "frame": 229,
+   "gainDb": -2
   },
   {
-   "type": "pop",
-   "frame": 663
+   "type": "whoosh",
+   "frame": 308,
+   "gainDb": -3
+  },
+  {
+   "type": "whoosh",
+   "frame": 429,
+   "gainDb": -5
+  },
+  {
+   "type": "whoosh",
+   "frame": 529,
+   "gainDb": 0
+  },
+  {
+   "type": "whoosh",
+   "frame": 571,
+   "gainDb": -4
+  },
+  {
+   "type": "click",
+   "frame": 729,
+   "gainDb": 0
   }
  ]
 }

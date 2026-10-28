@@ -1,0 +1,168 @@
+{
+  "_doc": "Edit decision list. Segment in/out and every subtitle time are SOURCE seconds of input/1000218256.mp4 (30 fps CFR). Overlay anchors 'segId@sec' are also source seconds. Card view/highlight/cursor times are seconds relative to the card start. scripts/build-timeline.mjs converts everything to final-timeline frames.",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "video": "media/source.mp4",
+  "audio": "media/voice.wav",
+  "segments": [
+    {
+      "id": "hook",
+      "in": 49.95,
+      "out": 53.02,
+      "camera": "medium",
+      "take": "3 of 3 (18.8 / 39.4 / 50.1 s)",
+      "text": "Сиздин бизнесиңиз бар, бирок дагы эле сайтыңыз жокпу?",
+      "subs": [
+        { "t": [49.98, 51.42], "text": "Сиздин бизнесиңиз бар,", "key": ["бизнесиңиз"] },
+        { "t": [51.42, 52.08], "text": "бирок дагы эле" },
+        { "t": [52.08, 53.02], "text": "сайтыңыз жокпу?", "key": ["сайтыңыз"] }
+      ]
+    },
+    {
+      "id": "help",
+      "in": 64.62,
+      "out": 66.45,
+      "camera": "wide",
+      "take": "2 of 2 (59.6 / 64.7 s)",
+      "text": "Анда биз сизге жардам беребиз.",
+      "subs": [
+        { "t": [64.62, 65.62], "text": "Анда биз сизге" },
+        { "t": [65.62, 66.45], "text": "жардам беребиз.", "key": ["жардам"] }
+      ]
+    },
+    {
+      "id": "offer",
+      "in": 117.76,
+      "out": 122.62,
+      "camera": "card",
+      "take": "3 of 3 (100.7 incomplete-ending / 113.0 cut off / 117.9 s)",
+      "text": "Биз бизнесиңиз үчүн заманбап, кооз жана кардар алып келе турган сайт жасап беребиз.",
+      "subs": [
+        { "t": [117.76, 118.98], "text": "Биз бизнесиңиз үчүн", "key": ["бизнесиңиз"] },
+        { "t": [118.98, 120.62], "text": "заманбап, кооз жана", "key": ["заманбап", "кооз"] },
+        { "t": [120.62, 121.5], "text": "кардар алып келе турган", "key": ["кардар"] },
+        { "t": [121.5, 122.62], "text": "сайт жасап беребиз.", "key": ["сайт"] }
+      ]
+    },
+    {
+      "id": "range",
+      "in": 243.6,
+      "out": 249.66,
+      "camera": "card",
+      "take": "5th attempt (153.3 / 176.4 / 199.8 / 243.7 / 250.8 / 271.9 s); best acoustic score, shortest inner pause",
+      "text": "Жөнөкөй лендингден баштап интернет дүкөндөрдү, брондоо системаларын жана эң татаал веб-платформаларды түзөбүз.",
+      "subs": [
+        { "t": [243.6, 245.12], "text": "Жөнөкөй лендингден баштап", "key": ["лендингден"] },
+        { "t": [245.12, 246.38], "text": "интернет дүкөндөрдү,", "key": ["дүкөндөрдү"] },
+        { "t": [246.38, 247.18], "text": "брондоо системаларын", "key": ["брондоо"] },
+        { "t": [247.18, 248.24], "text": "жана эң татаал", "key": ["татаал"] },
+        { "t": [248.24, 249.66], "text": "веб-платформаларды түзөбүз.", "key": ["веб-платформаларды"] }
+      ]
+    },
+    {
+      "id": "devices",
+      "in": 291.42,
+      "out": 294.4,
+      "camera": "medium",
+      "take": "2 of 2 (287.5 has a 0.9 s hesitation / 291.5 s)",
+      "text": "Сайтыңыз телефонго да, компьютерге да ыңгайлуу болот.",
+      "subs": [
+        { "t": [291.42, 292.92], "text": "Сайтыңыз телефонго да,", "key": ["телефонго"] },
+        { "t": [292.92, 294.4], "text": "компьютерге да ыңгайлуу болот.", "key": ["компьютерге", "ыңгайлуу"] }
+      ]
+    },
+    {
+      "id": "level",
+      "in": 300.24,
+      "out": 303.15,
+      "camera": "close",
+      "take": "1 of 1",
+      "text": "Бизнесиңизди жаңы деңгээлге көтөрүүгө убакыт келди.",
+      "subs": [
+        { "t": [300.24, 301.72], "text": "Бизнесиңизди жаңы деңгээлге", "key": ["жаңы", "деңгээлге"] },
+        { "t": [301.72, 303.15], "text": "көтөрүүгө убакыт келди.", "key": ["убакыт"] }
+      ]
+    },
+    {
+      "id": "cta",
+      "in": 327.58,
+      "out": 332.3,
+      "camera": "medium",
+      "take": "last complete attempt of 5 (315.1 / 317.8 / 322.8 / 325.1 / 327.7 s)",
+      "text": "Бизге азыр WhatsApp аркылуу жазыңыз, долбооруңуз тууралуу талкуулайын.",
+      "subs": [
+        { "t": [327.6, 328.6], "text": "Бизге азыр WhatsApp", "key": ["WhatsApp"] },
+        { "t": [328.6, 329.72], "text": "аркылуу жазыңыз,", "key": ["жазыңыз"] },
+        { "t": [329.72, 331.75], "text": "долбооруңуз тууралуу талкуулайын.", "key": ["долбооруңуз"] }
+      ]
+    }
+  ],
+  "camera": [],
+  "titles": [
+    { "id": "t-hook", "from": "hook@49.98", "to": "hook@53.02", "accent": "Бизнесиңиз бар,", "main": "сайтыңыз жокпу?" },
+    { "id": "t-offer", "from": "offer@117.9", "to": "offer@122.62", "accent": "Заманбап · кооз", "main": "Сайт жасап беребиз" },
+    { "id": "t-range", "from": "range@243.7", "to": "range@249.66", "accent": "Лендингден баштап", "main": "эң татаал платформалар" },
+    { "id": "t-level", "from": "level@300.3", "to": "level@303.15", "accent": "Убакыт келди", "main": "Жаңы деңгээлге" }
+  ],
+  "cards": [
+    {
+      "id": "c-hero",
+      "from": "offer@118.0",
+      "to": "offer@122.62",
+      "image": "site/desktop-home-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 13910,
+      "url": "zeket.kg",
+      "label": "МИСАЛ",
+      "views": [
+        { "t": 0, "x": 0, "y": 0, "w": 2880 },
+        { "t": 1.3, "x": 0, "y": 330, "w": 2880 },
+        { "t": 3.0, "x": 150, "y": 720, "w": 1560 }
+      ],
+      "highlight": { "from": 2.2, "to": 4.5, "x": 225, "y": 885, "w": 1030, "h": 250 }
+    },
+    {
+      "id": "c-how",
+      "from": "range@243.75",
+      "to": "range@246.45",
+      "image": "site/desktop-home-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 13910,
+      "url": "zeket.kg/ky",
+      "views": [
+        { "t": 0, "x": 0, "y": 2060, "w": 2880 },
+        { "t": 1.5, "x": 860, "y": 2540, "w": 1900 }
+      ],
+      "cursor": { "from": 1.0, "to": 2.1, "x0": 1500, "y0": 3200, "x1": 2230, "y1": 2830 }
+    },
+    {
+      "id": "c-reports",
+      "from": "range@246.45",
+      "to": "range@249.66",
+      "image": "site/desktop-reports-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 12766,
+      "url": "zeket.kg/ky/fund-reports",
+      "views": [
+        { "t": 0, "x": 0, "y": 0, "w": 2880 },
+        { "t": 1.4, "x": 0, "y": 280, "w": 2880 },
+        { "t": 3.1, "x": 140, "y": 560, "w": 2100 }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "id": "p-mobile",
+      "from": "devices@291.45",
+      "to": "devices@294.4",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "scrollFrom": 666,
+      "scrollTo": 2700,
+      "label": "Телефон · компьютер"
+    }
+  ],
+  "endCard": { "from": "cta@327.75", "to": "cta@332.3", "accent": "Бизге азыр жазыңыз:", "main": "WhatsApp" }
+}

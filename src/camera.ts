@@ -10,6 +10,8 @@ const PRESETS: Record<CameraMode, { s: number; ox: number; oy: number }> = {
   close: { s: 1.26, ox: 540, oy: 760 },
   // Pushes the presenter down so the upper ~37% of the frame is free for title + site card.
   card: { s: 1.25, ox: 540, oy: 0 },
+  // Tighter variant of "card" for consecutive card takes, so the cut between two takes reads as a punch-in.
+  card2: { s: 1.32, ox: 540, oy: 0 },
 };
 
 const toAffine = (m: CameraMode) => {

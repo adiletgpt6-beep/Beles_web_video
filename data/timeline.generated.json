@@ -2,57 +2,57 @@
  "fps": 30,
  "width": 1080,
  "height": 1920,
- "durationInFrames": 794,
+ "durationInFrames": 845,
  "video": "media/source.mp4",
  "audio": "media/voice.wav",
  "clips": [
   {
    "id": "hook",
-   "srcInFrame": 1499,
-   "srcOutFrame": 1591,
+   "srcInFrame": 1178,
+   "srcOutFrame": 1274,
    "startFrame": 0,
-   "durationFrames": 92
+   "durationFrames": 96
   },
   {
    "id": "help",
    "srcInFrame": 1939,
    "srcOutFrame": 1994,
-   "startFrame": 92,
+   "startFrame": 96,
    "durationFrames": 55
   },
   {
    "id": "offer",
-   "srcInFrame": 3533,
-   "srcOutFrame": 3679,
-   "startFrame": 147,
-   "durationFrames": 146
+   "srcInFrame": 3017,
+   "srcOutFrame": 3170,
+   "startFrame": 151,
+   "durationFrames": 153
   },
   {
    "id": "range",
-   "srcInFrame": 7308,
-   "srcOutFrame": 7490,
-   "startFrame": 293,
-   "durationFrames": 182
+   "srcInFrame": 8152,
+   "srcOutFrame": 8376,
+   "startFrame": 304,
+   "durationFrames": 224
   },
   {
    "id": "devices",
    "srcInFrame": 8743,
    "srcOutFrame": 8832,
-   "startFrame": 475,
+   "startFrame": 528,
    "durationFrames": 89
   },
   {
    "id": "level",
    "srcInFrame": 9007,
-   "srcOutFrame": 9095,
-   "startFrame": 564,
-   "durationFrames": 88
+   "srcOutFrame": 9093,
+   "startFrame": 617,
+   "durationFrames": 86
   },
   {
    "id": "cta",
    "srcInFrame": 9827,
    "srcOutFrame": 9969,
-   "startFrame": 652,
+   "startFrame": 703,
    "durationFrames": 142
   }
  ],
@@ -63,32 +63,32 @@
    "smooth": false
   },
   {
-   "frame": 92,
+   "frame": 96,
    "mode": "wide",
    "smooth": false
   },
   {
-   "frame": 147,
+   "frame": 151,
    "mode": "card",
    "smooth": false
   },
   {
-   "frame": 293,
-   "mode": "card",
+   "frame": 304,
+   "mode": "card2",
    "smooth": false
   },
   {
-   "frame": 475,
+   "frame": 528,
    "mode": "medium",
    "smooth": false
   },
   {
-   "frame": 564,
+   "frame": 617,
    "mode": "close",
    "smooth": false
   },
   {
-   "frame": 652,
+   "frame": 703,
    "mode": "medium",
    "smooth": false
   }
@@ -96,8 +96,8 @@
  "cards": [
   {
    "id": "c-hero",
-   "startFrame": 154,
-   "endFrame": 293,
+   "startFrame": 157,
+   "endFrame": 304,
    "image": "site/desktop-home-ky-full.png",
    "imageWidth": 2880,
    "imageHeight": 13910,
@@ -111,33 +111,33 @@
      "w": 2880
     },
     {
-     "frame": 39,
+     "frame": 42,
      "x": 0,
      "y": 330,
      "w": 2880
     },
     {
-     "frame": 90,
+     "frame": 96,
      "x": 150,
      "y": 720,
      "w": 1560
     }
    ],
    "highlight": {
-    "from": 2.2,
-    "to": 4.5,
+    "from": 2.4,
+    "to": 4.9,
     "x": 225,
     "y": 885,
     "w": 1030,
     "h": 250,
-    "fromFrame": 66,
-    "toFrame": 135
+    "fromFrame": 72,
+    "toFrame": 147
    }
   },
   {
    "id": "c-how",
-   "startFrame": 298,
-   "endFrame": 379,
+   "startFrame": 308,
+   "endFrame": 429,
    "image": "site/desktop-home-ky-full.png",
    "imageWidth": 2880,
    "imageHeight": 13910,
@@ -150,27 +150,27 @@
      "w": 2880
     },
     {
-     "frame": 45,
+     "frame": 48,
      "x": 860,
      "y": 2540,
      "w": 1900
     }
    ],
    "cursor": {
-    "from": 1,
-    "to": 2.1,
+    "from": 1.4,
+    "to": 2.6,
     "x0": 1500,
     "y0": 3200,
     "x1": 2230,
     "y1": 2830,
-    "fromFrame": 30,
-    "toFrame": 63
+    "fromFrame": 42,
+    "toFrame": 78
    }
   },
   {
    "id": "c-reports",
-   "startFrame": 379,
-   "endFrame": 475,
+   "startFrame": 429,
+   "endFrame": 528,
    "image": "site/desktop-reports-ky-full.png",
    "imageWidth": 2880,
    "imageHeight": 12766,
@@ -183,13 +183,13 @@
      "w": 2880
     },
     {
-     "frame": 42,
+     "frame": 39,
      "x": 0,
      "y": 280,
      "w": 2880
     },
     {
-     "frame": 93,
+     "frame": 90,
      "x": 140,
      "y": 560,
      "w": 2100
@@ -200,46 +200,71 @@
  "titles": [
   {
    "id": "t-hook",
-   "startFrame": 0,
-   "endFrame": 92,
+   "startFrame": 1,
+   "endFrame": 96,
    "accent": "Бизнесиңиз бар,",
    "main": "сайтыңыз жокпу?"
   },
   {
    "id": "t-offer",
-   "startFrame": 151,
-   "endFrame": 293,
+   "startFrame": 155,
+   "endFrame": 304,
    "accent": "Заманбап · кооз",
    "main": "Сайт жасап беребиз"
   },
   {
    "id": "t-range",
-   "startFrame": 296,
-   "endFrame": 475,
+   "startFrame": 306,
+   "endFrame": 528,
    "accent": "Лендингден баштап",
    "main": "эң татаал платформалар"
   },
   {
    "id": "t-level",
-   "startFrame": 566,
-   "endFrame": 652,
+   "startFrame": 655,
+   "endFrame": 703,
    "accent": "Убакыт келди",
    "main": "Жаңы деңгээлге"
   }
  ],
  "phones": [
   {
-   "id": "p-mobile",
-   "from": "devices@291.45",
-   "to": "devices@294.4",
+   "id": "p-devices",
    "image": "site/mobile-home-ky-full.png",
    "imageWidth": 1170,
    "imageHeight": 35316,
    "scrollFrom": 666,
-   "scrollTo": 2700,
+   "scrollTo": 2100,
    "label": "Телефон · компьютер",
-   "startFrame": 476,
-   "endFrame": 564
+   "desktop": {
+    "image": "site/desktop-home-ky-full.png",
+    "imageWidth": 2880,
+    "imageHeight": 13910,
+    "views": [
+     {
+      "frame": 42,
+      "x": 0,
+      "y": 0,
+      "w": 2880
+     },
+     {
+      "frame": 84,
+      "x": 0,
+      "y": 300,
+      "w": 2880
+     },
+     {
+      "frame": 129,
+      "x": 120,
+      "y": 560,
+      "w": 2200
+     }
+    ],
+    "fromFrame": 42
+   },
+   "startFrame": 529,
+   "endFrame": 655,
+   "labelEndFrame": 88
   }
  ],
  "subtitles": [
@@ -263,7 +288,7 @@
   },
   {
    "startFrame": 44,
-   "endFrame": 63,
+   "endFrame": 70,
    "words": [
     {
      "text": "бирок",
@@ -274,14 +299,14 @@
      "key": false
     },
     {
-     "text": "эле",
+     "text": "деле",
      "key": false
     }
    ]
   },
   {
-   "startFrame": 63,
-   "endFrame": 92,
+   "startFrame": 70,
+   "endFrame": 96,
    "words": [
     {
      "text": "сайтыңыз",
@@ -294,8 +319,8 @@
    ]
   },
   {
-   "startFrame": 92,
-   "endFrame": 122,
+   "startFrame": 96,
+   "endFrame": 126,
    "words": [
     {
      "text": "Анда",
@@ -312,8 +337,8 @@
    ]
   },
   {
-   "startFrame": 122,
-   "endFrame": 147,
+   "startFrame": 126,
+   "endFrame": 151,
    "words": [
     {
      "text": "жардам",
@@ -326,8 +351,8 @@
    ]
   },
   {
-   "startFrame": 147,
-   "endFrame": 183,
+   "startFrame": 151,
+   "endFrame": 191,
    "words": [
     {
      "text": "Биз",
@@ -344,8 +369,8 @@
    ]
   },
   {
-   "startFrame": 183,
-   "endFrame": 233,
+   "startFrame": 191,
+   "endFrame": 251,
    "words": [
     {
      "text": "заманбап,",
@@ -362,8 +387,8 @@
    ]
   },
   {
-   "startFrame": 233,
-   "endFrame": 259,
+   "startFrame": 251,
+   "endFrame": 278,
    "words": [
     {
      "text": "кардар",
@@ -384,8 +409,8 @@
    ]
   },
   {
-   "startFrame": 259,
-   "endFrame": 293,
+   "startFrame": 278,
+   "endFrame": 304,
    "words": [
     {
      "text": "сайт",
@@ -402,8 +427,8 @@
    ]
   },
   {
-   "startFrame": 293,
-   "endFrame": 339,
+   "startFrame": 304,
+   "endFrame": 344,
    "words": [
     {
      "text": "Жөнөкөй",
@@ -420,8 +445,8 @@
    ]
   },
   {
-   "startFrame": 339,
-   "endFrame": 376,
+   "startFrame": 344,
+   "endFrame": 380,
    "words": [
     {
      "text": "интернет",
@@ -434,8 +459,8 @@
    ]
   },
   {
-   "startFrame": 376,
-   "endFrame": 400,
+   "startFrame": 380,
+   "endFrame": 431,
    "words": [
     {
      "text": "брондоо",
@@ -448,8 +473,8 @@
    ]
   },
   {
-   "startFrame": 400,
-   "endFrame": 432,
+   "startFrame": 431,
+   "endFrame": 474,
    "words": [
     {
      "text": "жана",
@@ -466,12 +491,16 @@
    ]
   },
   {
-   "startFrame": 432,
-   "endFrame": 475,
+   "startFrame": 474,
+   "endFrame": 528,
    "words": [
     {
      "text": "веб-платформаларды",
      "key": true
+    },
+    {
+     "text": "да",
+     "key": false
     },
     {
      "text": "түзөбүз.",
@@ -480,8 +509,8 @@
    ]
   },
   {
-   "startFrame": 475,
-   "endFrame": 520,
+   "startFrame": 528,
+   "endFrame": 573,
    "words": [
     {
      "text": "Сайтыңыз",
@@ -498,8 +527,8 @@
    ]
   },
   {
-   "startFrame": 520,
-   "endFrame": 564,
+   "startFrame": 573,
+   "endFrame": 617,
    "words": [
     {
      "text": "компьютерге",
@@ -520,8 +549,8 @@
    ]
   },
   {
-   "startFrame": 564,
-   "endFrame": 609,
+   "startFrame": 617,
+   "endFrame": 662,
    "words": [
     {
      "text": "Бизнесиңизди",
@@ -538,8 +567,8 @@
    ]
   },
   {
-   "startFrame": 609,
-   "endFrame": 653,
+   "startFrame": 662,
+   "endFrame": 704,
    "words": [
     {
      "text": "көтөрүүгө",
@@ -556,8 +585,8 @@
    ]
   },
   {
-   "startFrame": 653,
-   "endFrame": 683,
+   "startFrame": 704,
+   "endFrame": 734,
    "words": [
     {
      "text": "Бизге",
@@ -574,8 +603,8 @@
    ]
   },
   {
-   "startFrame": 683,
-   "endFrame": 717,
+   "startFrame": 734,
+   "endFrame": 768,
    "words": [
     {
      "text": "аркылуу",
@@ -588,8 +617,8 @@
    ]
   },
   {
-   "startFrame": 717,
-   "endFrame": 778,
+   "startFrame": 768,
+   "endFrame": 829,
    "words": [
     {
      "text": "долбооруңуз",
@@ -606,10 +635,11 @@
    ]
   }
  ],
- "endCard": {
-  "startFrame": 658,
-  "endFrame": 794,
-  "accent": "Бизге азыр жазыңыз:",
-  "main": "WhatsApp"
+ "badge": {
+  "startFrame": 722,
+  "endFrame": 845,
+  "text": "WhatsApp аркылуу жазыңыз",
+  "x": 640,
+  "y": 1275
  }
 }

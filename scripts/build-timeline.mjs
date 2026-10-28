@@ -80,7 +80,28 @@ const cards = (edit.cards ?? []).map((c) => {
   };
 });
 const titles = (edit.titles ?? []).map((t) => ({ id: t.id, startFrame: anchor(t.from), endFrame: anchor(t.to), accent: t.accent, main: t.main }));
-const phones = (edit.phones ?? []).map((p) => ({ ...p, startFrame: anchor(p.from), endFrame: anchor(p.to) }));
+const phones = (edit.phones ?? []).map((p) => {
+  const startFrame = anchor(p.from);
+  const endFrame = anchor(p.to);
+  const out = { ...p, startFrame, endFrame };
+  delete out.from;
+  delete out.to;
+  if (p.labelUntil) out.labelEndFrame = anchor(p.labelUntil) - startFrame;
+  delete out.labelUntil;
+  if (p.desktop) {
+    const from = anchor(p.desktop.from) - startFrame;
+    out.desktop = { ...p.desktop, fromFrame: from, views: p.desktop.views.map((v) => ({ frame: from + sec(v.t), x: v.x, y: v.y, w: v.w })) };
+    delete out.desktop.from;
+  }
+  return out;
+});
+const badge = edit.badge && {
+  startFrame: anchor(edit.badge.from),
+  endFrame: anchor(edit.badge.to),
+  text: edit.badge.text,
+  x: edit.badge.x,
+  y: edit.badge.y,
+};
 const endCard = edit.endCard && { startFrame: anchor(edit.endCard.from), endFrame: anchor(edit.endCard.to), accent: edit.endCard.accent, main: edit.endCard.main };
 
 // 4. Subtitles: authored per segment in source seconds, re-timed to the final cut.
@@ -93,7 +114,12 @@ for (const s of edit.segments) {
     startFrame = Math.max(startFrame, c.startFrame);
     endFrame = Math.min(endFrame, c.startFrame + c.durationFrames);
     const keys = new Set(g.key ?? []);
-    subtitles.push({ startFrame, endFrame, words: g.text.split(' ').map((w) => ({ text: w, key: keys.has(w.replace(/[.,!?…]/g, '')) })) });
+    subtitles.push({
+      startFrame,
+      endFrame,
+      words: g.text.split(' ').map((w) => ({ text: w, key: keys.has(w.replace(/[.,!?…]/g, '')) })),
+      ...(g.bottom ? { bottom: g.bottom } : {}),
+    });
   }
 }
 subtitles.sort((a, b) => a.startFrame - b.startFrame);
@@ -119,6 +145,7 @@ const timeline = {
   phones,
   subtitles,
   endCard,
+  badge,
 };
 fs.writeFileSync(path.join(root, 'data/timeline.generated.json'), JSON.stringify(timeline, null, 1));
 
@@ -141,14 +168,11 @@ const srt = subtitles.map((s, i) => `${i + 1}\n${srtTime(s.startFrame)} --> ${sr
 fs.writeFileSync(path.join(root, 'data/subtitles.srt'), srt.join('\n'));
 
 // 7. Audio plan: exact same frame-accurate cuts + sound effects at overlay entrances.
-const sfx = [];
-for (const c of cards) sfx.push({ type: 'whoosh', frame: c.startFrame });
-for (const p of phones) sfx.push({ type: 'whoosh', frame: p.startFrame });
-for (const c of cards) if (c.highlight) sfx.push({ type: 'pop', frame: c.startFrame + c.highlight.fromFrame });
-if (endCard) sfx.push({ type: 'pop', frame: endCard.startFrame + 5 });
+// Sound accents are listed explicitly in edit.json (only on meaningful appearances).
+const sfx = (edit.sfx ?? []).map((x) => ({ type: x.type, frame: anchor(x.at), gainDb: x.gainDb ?? 0 }));
 fs.writeFileSync(
   path.join(root, 'data/audio-plan.json'),
-  JSON.stringify({ fps: FPS, durationInFrames, clips: clips.map((c) => ({ id: c.id, srcInFrame: c.srcInFrame, srcOutFrame: c.srcOutFrame, startFrame: c.startFrame })), sfx }, null, 1),
+  JSON.stringify({ fps: FPS, durationInFrames, music: edit.music ?? null, clips: clips.map((c) => ({ id: c.id, srcInFrame: c.srcInFrame, srcOutFrame: c.srcOutFrame, startFrame: c.startFrame })), sfx }, null, 1),
 );
 
 console.log(`final duration: ${durationInFrames} frames = ${(durationInFrames / FPS).toFixed(2)} s, ${clips.length} clips, ${subtitles.length} subtitle groups`);

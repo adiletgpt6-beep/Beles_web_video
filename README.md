@@ -20,7 +20,8 @@
 | `scripts/build-timeline.mjs` | Пересчитывает всё в кадры финала → `data/timeline.generated.json`, `data/edl.csv`, `data/edl.edl` (CMX3600), `data/subtitles.srt`, `data/audio-plan.json` |
 | `scripts/build-audio.mjs` | Голос: те же кадровые склейки + фейды 12 мс, highpass, мягкий denoise, компрессия, 2‑проходный loudnorm −15 LUFS / TP −1.5 dBTP, звуки появления |
 | `scripts/prepare-media.sh` | AV1 → H.264 CRF 12 (одно поколение, 30 fps CFR, bt709) с мягкой коррекцией; звук → WAV 48 kHz |
-| `scripts/make-sfx.sh` | Синтез двух тихих UI‑звуков средствами FFmpeg (без сторонних сэмплов) |
+| `scripts/make-sfx.sh` | Синтез тихих UI‑звуков (whoosh, pop, click) средствами FFmpeg |
+| `scripts/make-music.py` | Синтез оригинальной фоновой музыки (numpy, детерминированно); вызывается из `build-audio.mjs` |
 | `scripts/capture-site.cjs` | Съёмка zeket.kg/ky (desktop @2x, мобильная iPhone 13 @3x) |
 | `scripts/render.sh` | Финальный рендер + мультиплекс + превью 720p |
 | `scripts/verify.sh` | Технические проверки экспорта → `docs/verification-raw.txt` |
@@ -52,8 +53,8 @@ bash scripts/prepare-media.sh            # → public/media/source.mp4, source48
 bash scripts/make-sfx.sh                 # → assets/sfx/*.wav (уже в репо)
 npx -y playwright@1.56.1 --version >/dev/null; node scripts/capture-site.cjs   # необязательно: переснять сайт (нужен Playwright+Chromium; скриншоты уже в репо)
 node scripts/build-timeline.mjs          # → data/timeline.generated.json, EDL, SRT
-node scripts/build-audio.mjs             # → public/media/voice.wav
-bash scripts/render.sh                   # → out/beles-web-final-1080x1920.mp4, out/preview-720x1280.mp4
+node scripts/build-audio.mjs             # → public/media/voice.wav (голос + музыка + акценты; STEMS=1 — стем музыки для проверки)
+bash scripts/render.sh                   # → out/beles-web-v2-1080x1920.mp4, out/preview-v2-720x1280.mp4
 bash scripts/verify.sh                   # проверки
 ```
 
@@ -63,8 +64,10 @@ bash scripts/verify.sh                   # проверки
 
 ## Результат
 
-- **Смотреть / скачать (Release v1.0.0):** https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v1.0.0
-  - [beles-web-final-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v1.0.0/beles-web-final-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 High yuv420p CRF 16, AAC 48 kHz, faststart, 26.47 с, −15.1 LUFS
-  - [preview-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v1.0.0/preview-720x1280.mp4)
-- Те же файлы лежат в репозитории: [`release/`](release/).
-- Отчёт о проверке: [`docs/verification.md`](docs/verification.md).
+**V2 (текущая)** — дубли перевыбраны по взгляду в камеру, WhatsApp под указывающим жестом, музыка. Отчёт: [`docs/v2-report.md`](docs/v2-report.md).
+- Release v2.0.0: https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v2.0.0
+  - [beles-web-v2-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v2.0.0/beles-web-v2-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 High yuv420p CRF 16, AAC 48 kHz, faststart, 28.17 с, −15.0 LUFS
+  - [preview-v2-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v2.0.0/preview-v2-720x1280.mp4)
+- Те же файлы в репозитории: [`release/`](release/).
+
+**V1** (для сравнения): Release v1.0.0 — https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v1.0.0, файл `release/v1-beles-web-final-1080x1920.mp4`, данные `data/v1/`, отчёт [`docs/verification.md`](docs/verification.md).

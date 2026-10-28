@@ -11,3 +11,7 @@ ffmpeg -hide_banner -y -f lavfi -i "anoisesrc=d=0.42:c=pink:r=48000:a=0.5" \
 ffmpeg -hide_banner -y -f lavfi -i "sine=f=1250:d=0.09:r=48000" -f lavfi -i "sine=f=1870:d=0.09:r=48000" \
   -filter_complex "[0][1]amix=inputs=2,afade=t=in:d=0.004,afade=t=out:st=0.01:d=0.08:curve=exp,volume=0.8" \
   -ac 1 -c:a pcm_s16le assets/sfx/pop.wav
+# short soft click for the WhatsApp badge landing
+ffmpeg -hide_banner -y -f lavfi -i "sine=f=2200:d=0.035:r=48000" -f lavfi -i "anoisesrc=d=0.035:c=white:r=48000:a=0.3" \
+  -filter_complex "[0][1]amix=inputs=2,highpass=f=900,afade=t=in:d=0.002,afade=t=out:st=0.004:d=0.03:curve=exp,volume=0.9" \
+  -ac 1 -c:a pcm_s16le assets/sfx/click.wav

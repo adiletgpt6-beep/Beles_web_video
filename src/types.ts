@@ -1,7 +1,7 @@
 // All *Frame values are in FINAL-timeline frames at timeline.fps (30).
 // Source positions (srcInFrame) are frames of public/media/source.mp4 (30 fps CFR).
 
-export type CameraMode = 'wide' | 'medium' | 'close' | 'card';
+export type CameraMode = 'wide' | 'medium' | 'close' | 'card' | 'card2';
 
 export type Clip = {
   id: string;
@@ -59,10 +59,28 @@ export type PhoneShot = {
   scrollFrom: number; // screenshot px (top of viewport)
   scrollTo: number;
   label?: string;
+  labelEndFrame?: number; // label fades out here (shot-local frame)
+  // optional second half: the phone slides away and a desktop browser takes over
+  desktop?: {
+    fromFrame: number; // shot-local
+    image: string;
+    imageWidth: number;
+    imageHeight: number;
+    views: ViewKey[]; // shot-local frames
+  };
 };
 
 export type SubWord = { text: string; key: boolean };
-export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[] };
+export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[]; bottom?: number };
+
+// Call-to-action badge placed where the presenter points (pointing gesture verified on the source).
+export type Badge = {
+  startFrame: number; // animation start (slightly before the finger settles)
+  endFrame: number;
+  text: string;
+  x: number; // badge centre, final-frame px
+  y: number;
+};
 
 export type Timeline = {
   fps: number;
@@ -78,4 +96,5 @@ export type Timeline = {
   phones: PhoneShot[];
   subtitles: Subtitle[];
   endCard?: { startFrame: number; endFrame: number; accent: string; main: string };
+  badge?: Badge;
 };
