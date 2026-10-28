@@ -75,9 +75,19 @@ export type PhoneShot = {
 };
 
 export type SubWord = { text: string; key: boolean; startFrame: number };
-// place: 'top' moves the group above the presenter (used in the finale, where the contact block owns the lower third)
-export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[]; place?: 'top' | 'bottom' };
-export type SubVariant = 'A' | 'B' | 'C' | 'D' | 'E';
+// place: 'chest' (default, beside the hands/chest), 'low' (lower, below a site plan), 'top' (above the head,
+// used in the finale where the contact block owns the lower third). scene: drawn by a TypeScene instead.
+export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[]; place?: 'chest' | 'low' | 'top'; scene?: boolean };
+
+// Full-screen typographic scene (dark grid background); frames are scene-local.
+export type TypeSceneData = {
+  id: string;
+  startFrame: number;
+  endFrame: number;
+  small: { text: string; frame: number };
+  big: { text: string; frame: number }[];
+  rise?: { text: string; frame: number };
+};
 
 // Call-to-action badge placed where the presenter points (pointing gesture verified on the source).
 export type Badge = {
@@ -102,6 +112,6 @@ export type Timeline = {
   titles: Title[];
   phones: PhoneShot[];
   subtitles: Subtitle[];
-  endCard?: { startFrame: number; endFrame: number; accent: string; main: string };
   badge?: Badge;
+  typeScenes: TypeSceneData[];
 };

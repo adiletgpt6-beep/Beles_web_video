@@ -1,0 +1,744 @@
+{
+  "_doc": "V3 edit decision list. Segment in/out and every subtitle time are SOURCE seconds of input/1000218256.mp4 (30 fps CFR). Overlay anchors 'segId@sec' are also source seconds. Card view/highlight/cursor and desktop view times are seconds relative to the card/desktop start. scripts/build-timeline.mjs converts everything to final-timeline frames. Takes were chosen by gaze into the lens first (MediaPipe + eye crops, see docs/v2-report.md), then by speech. V3: every segment has word-level times (words[].t, source s) driving the active-word subtitles; sfx use 'lands' = moment the move ends (the sound peak is placed there).",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "video": "media/source.mp4",
+  "audio": "media/voice.wav",
+  "music": {
+    "generator": "scripts/make-music.py",
+    "gainDb": -18,
+    "accentAt": "cta@328.62"
+  },
+  "segments": [
+    {
+      "id": "hook",
+      "in": 39.27,
+      "out": 42.48,
+      "camera": "medium",
+      "take": "2 of 3 (V1 used 50.1: eyelids drop / looks down at 50.7–51.4 and 52.0–52.7; 39.4 looks into the lens almost throughout)",
+      "text": "Сиздин бизнесиңиз бар, бирок дагы деле сайтыңыз жокпу?",
+      "subs": [
+        {
+          "text": "Сиздин бизнесиңиз бар,",
+          "key": [
+            "бизнесиңиз"
+          ]
+        },
+        {
+          "text": "бирок дагы деле"
+        },
+        {
+          "text": "сайтыңыз жокпу?",
+          "key": [
+            "сайтыңыз"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Сиздин",
+          "t": 39.39
+        },
+        {
+          "w": "бизнесиңиз",
+          "t": 39.75
+        },
+        {
+          "w": "бар,",
+          "t": 40.33
+        },
+        {
+          "w": "бирок",
+          "t": 40.59
+        },
+        {
+          "w": "дагы",
+          "t": 41.05
+        },
+        {
+          "w": "деле",
+          "t": 41.29
+        },
+        {
+          "w": "сайтыңыз",
+          "t": 41.53
+        },
+        {
+          "w": "жокпу?",
+          "t": 41.91
+        }
+      ],
+      "speechEnd": 42.31
+    },
+    {
+      "id": "help",
+      "in": 64.62,
+      "out": 66.45,
+      "camera": "wide",
+      "take": "2 of 2 (kept; 59.6 looks down at 60.0–60.8)",
+      "text": "Анда биз сизге жардам беребиз.",
+      "subs": [
+        {
+          "text": "Анда биз сизге"
+        },
+        {
+          "text": "жардам беребиз.",
+          "key": [
+            "жардам"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Анда",
+          "t": 64.74
+        },
+        {
+          "w": "биз",
+          "t": 64.88
+        },
+        {
+          "w": "сизге",
+          "t": 65.22
+        },
+        {
+          "w": "жардам",
+          "t": 65.5
+        },
+        {
+          "w": "беребиз.",
+          "t": 65.9
+        }
+      ],
+      "speechEnd": 66.3
+    },
+    {
+      "id": "offer",
+      "in": 100.57,
+      "out": 105.68,
+      "camera": "card",
+      "take": "1 of 3 (V1 used 117.9: eyes lowered at 118.9–119.6 and 121.2–122.2; 100.7 keeps eye contact; ending 'беребиз' confirmed by both models)",
+      "text": "Биз бизнесиңиз үчүн заманбап, кооз жана кардар алып келе турган сайт жасап беребиз.",
+      "subs": [
+        {
+          "text": "Биз бизнесиңиз үчүн",
+          "key": [
+            "бизнесиңиз"
+          ]
+        },
+        {
+          "text": "заманбап, кооз жана",
+          "key": [
+            "заманбап",
+            "кооз"
+          ]
+        },
+        {
+          "text": "кардар алып келе турган",
+          "key": [
+            "кардар"
+          ]
+        },
+        {
+          "text": "сайт жасап беребиз.",
+          "key": [
+            "сайт"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Биз",
+          "t": 100.69
+        },
+        {
+          "w": "бизнесиңиз",
+          "t": 100.87
+        },
+        {
+          "w": "үчүн",
+          "t": 101.41
+        },
+        {
+          "w": "заманбап,",
+          "t": 101.75
+        },
+        {
+          "w": "кооз",
+          "t": 102.78
+        },
+        {
+          "w": "жана",
+          "t": 103.6
+        },
+        {
+          "w": "кардар",
+          "t": 103.75
+        },
+        {
+          "w": "алып",
+          "t": 104.13
+        },
+        {
+          "w": "келе",
+          "t": 104.29
+        },
+        {
+          "w": "турган",
+          "t": 104.48
+        },
+        {
+          "w": "сайт",
+          "t": 104.73
+        },
+        {
+          "w": "жасап",
+          "t": 104.97
+        },
+        {
+          "w": "беребиз.",
+          "t": 105.23
+        }
+      ],
+      "speechEnd": 105.52
+    },
+    {
+      "id": "range",
+      "in": 271.74,
+      "out": 279.2,
+      "camera": "card2",
+      "take": "6th attempt (V1 used 243.7: eyes half-closed / reading from 245.0 to 249.5; 271.9 keeps eye contact through the whole line)",
+      "text": "Жөнөкөй лендингден баштап интернет дүкөндөрдү, брондоо системаларын жана эң татаал веб-платформаларды да түзөбүз.",
+      "subs": [
+        {
+          "text": "Жөнөкөй лендингден баштап",
+          "key": [
+            "лендингден"
+          ]
+        },
+        {
+          "text": "интернет дүкөндөрдү,",
+          "key": [
+            "дүкөндөрдү"
+          ]
+        },
+        {
+          "text": "брондоо системаларын",
+          "key": [
+            "брондоо"
+          ]
+        },
+        {
+          "text": "жана эң татаал",
+          "key": [
+            "татаал"
+          ]
+        },
+        {
+          "text": "веб-платформаларды да түзөбүз.",
+          "key": [
+            "веб-платформаларды"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Жөнөкөй",
+          "t": 271.86
+        },
+        {
+          "w": "лендингден",
+          "t": 272.2
+        },
+        {
+          "w": "баштап",
+          "t": 272.64
+        },
+        {
+          "w": "интернет",
+          "t": 272.94
+        },
+        {
+          "w": "дүкөндөрдү,",
+          "t": 273.38
+        },
+        {
+          "w": "брондоо",
+          "t": 274.37
+        },
+        {
+          "w": "системаларын",
+          "t": 274.62
+        },
+        {
+          "w": "жана",
+          "t": 276.02
+        },
+        {
+          "w": "эң",
+          "t": 276.38
+        },
+        {
+          "w": "татаал",
+          "t": 276.68
+        },
+        {
+          "w": "веб-платформаларды",
+          "t": 277.08
+        },
+        {
+          "w": "да",
+          "t": 278.34
+        },
+        {
+          "w": "түзөбүз.",
+          "t": 278.58
+        }
+      ],
+      "speechEnd": 279.05
+    },
+    {
+      "id": "devices",
+      "in": 291.42,
+      "out": 294.4,
+      "camera": "medium",
+      "take": "2 of 2 (kept; mostly covered by the phone → desktop plan)",
+      "text": "Сайтыңыз телефонго да, компьютерге да ыңгайлуу болот.",
+      "subs": [
+        {
+          "text": "Сайтыңыз телефонго да,",
+          "key": [
+            "телефонго"
+          ]
+        },
+        {
+          "text": "компьютерге да ыңгайлуу болот.",
+          "key": [
+            "компьютерге",
+            "ыңгайлуу"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Сайтыңыз",
+          "t": 291.54
+        },
+        {
+          "w": "телефонго",
+          "t": 291.9
+        },
+        {
+          "w": "да,",
+          "t": 292.38
+        },
+        {
+          "w": "компьютерге",
+          "t": 292.44
+        },
+        {
+          "w": "да",
+          "t": 293.32
+        },
+        {
+          "w": "ыңгайлуу",
+          "t": 293.45
+        },
+        {
+          "w": "болот.",
+          "t": 293.85
+        }
+      ],
+      "speechEnd": 294.06
+    },
+    {
+      "id": "level",
+      "in": 300.24,
+      "out": 303.1,
+      "camera": "close",
+      "take": "only take; eyes drop at 300.8–301.4, so the voice starts under the desktop site plan and the face returns at 301.5 (eye contact)",
+      "text": "Бизнесиңизди жаңы деңгээлге көтөрүүгө убакыт келди.",
+      "subs": [
+        {
+          "text": "Бизнесиңизди жаңы деңгээлге",
+          "key": [
+            "жаңы",
+            "деңгээлге"
+          ]
+        },
+        {
+          "text": "көтөрүүгө убакыт келди.",
+          "key": [
+            "убакыт"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Бизнесиңизди",
+          "t": 300.35
+        },
+        {
+          "w": "жаңы",
+          "t": 300.98
+        },
+        {
+          "w": "деңгээлге",
+          "t": 301.16
+        },
+        {
+          "w": "көтөрүүгө",
+          "t": 301.66
+        },
+        {
+          "w": "убакыт",
+          "t": 302.2
+        },
+        {
+          "w": "келди.",
+          "t": 302.68
+        }
+      ],
+      "speechEnd": 303.02
+    },
+    {
+      "id": "cta",
+      "in": 327.58,
+      "out": 332.3,
+      "camera": "medium",
+      "take": "last complete attempt (kept; eye contact; right hand points down-right at 328.40–328.93)",
+      "text": "Бизге азыр WhatsApp аркылуу жазыңыз, долбооруңуз тууралуу талкуулайын.",
+      "subs": [
+        {
+          "text": "Бизге азыр WhatsApp",
+          "key": [
+            "WhatsApp"
+          ]
+        },
+        {
+          "text": "аркылуу жазыңыз,",
+          "key": [
+            "жазыңыз"
+          ]
+        },
+        {
+          "text": "долбооруңуз тууралуу талкуулайын.",
+          "key": [
+            "долбооруңуз"
+          ]
+        }
+      ],
+      "words": [
+        {
+          "w": "Бизге",
+          "t": 327.7
+        },
+        {
+          "w": "азыр",
+          "t": 327.86
+        },
+        {
+          "w": "WhatsApp",
+          "t": 328.18
+        },
+        {
+          "w": "аркылуу",
+          "t": 328.32
+        },
+        {
+          "w": "жазыңыз,",
+          "t": 328.78
+        },
+        {
+          "w": "долбооруңуз",
+          "t": 329.82
+        },
+        {
+          "w": "тууралуу",
+          "t": 330.44
+        },
+        {
+          "w": "талкуулайын.",
+          "t": 330.72
+        }
+      ],
+      "speechEnd": 331.47,
+      "subPlace": "top"
+    }
+  ],
+  "camera": [],
+  "titles": [
+    {
+      "id": "t-offer",
+      "from": "offer@100.7",
+      "to": "offer@105.68",
+      "accent": "Заманбап · кооз",
+      "main": "Сайт жасап беребиз"
+    },
+    {
+      "id": "t-range",
+      "from": "range@271.8",
+      "to": "range@279.2",
+      "accent": "Лендингден баштап",
+      "main": "эң татаал платформалар"
+    }
+  ],
+  "cards": [
+    {
+      "id": "c-hero",
+      "from": "offer@100.75",
+      "to": "offer@105.68",
+      "image": "site/desktop-home-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 13910,
+      "url": "zeket.kg",
+      "label": "МИСАЛ",
+      "views": [
+        {
+          "t": 0,
+          "x": 0,
+          "y": 0,
+          "w": 2880
+        },
+        {
+          "t": 1.4,
+          "x": 0,
+          "y": 330,
+          "w": 2880
+        },
+        {
+          "t": 3.2,
+          "x": 150,
+          "y": 720,
+          "w": 1560
+        }
+      ],
+      "highlight": {
+        "from": 2.4,
+        "to": 4.9,
+        "x": 225,
+        "y": 885,
+        "w": 1030,
+        "h": 250
+      }
+    },
+    {
+      "id": "c-how",
+      "from": "range@271.85",
+      "to": "range@275.9",
+      "image": "site/desktop-home-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 13910,
+      "url": "zeket.kg/ky",
+      "views": [
+        {
+          "t": 0,
+          "x": 0,
+          "y": 2060,
+          "w": 2880
+        },
+        {
+          "t": 0.6,
+          "x": 0,
+          "y": 2060,
+          "w": 2880
+        },
+        {
+          "t": 1.1,
+          "x": 380,
+          "y": 2160,
+          "w": 2320
+        },
+        {
+          "t": 1.7,
+          "x": 1640,
+          "y": 2470,
+          "w": 1180
+        },
+        {
+          "t": 2.75,
+          "x": 1640,
+          "y": 2470,
+          "w": 1180
+        },
+        {
+          "t": 3.2,
+          "x": 380,
+          "y": 2160,
+          "w": 2320
+        },
+        {
+          "t": 3.55,
+          "x": 860,
+          "y": 2540,
+          "w": 1900
+        }
+      ],
+      "cursor": {
+        "from": 1.6,
+        "to": 2.25,
+        "x0": 1900,
+        "y0": 3250,
+        "x1": 2230,
+        "y1": 2830
+      },
+      "expand": {
+        "from": 0.7,
+        "to": 3.3,
+        "x": 40,
+        "y": 322,
+        "w": 1000,
+        "h": 1010
+      },
+      "highlight": {
+        "from": 2.3,
+        "to": 2.9,
+        "x": 1874,
+        "y": 2620,
+        "w": 766,
+        "h": 380
+      }
+    },
+    {
+      "id": "c-reports",
+      "from": "range@275.9",
+      "to": "range@279.2",
+      "image": "site/desktop-reports-ky-full.png",
+      "imageWidth": 2880,
+      "imageHeight": 12766,
+      "url": "zeket.kg/ky/fund-reports",
+      "views": [
+        {
+          "t": 0,
+          "x": 0,
+          "y": 0,
+          "w": 2880
+        },
+        {
+          "t": 1.3,
+          "x": 0,
+          "y": 280,
+          "w": 2880
+        },
+        {
+          "t": 3.0,
+          "x": 140,
+          "y": 560,
+          "w": 2100
+        }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "id": "p-devices",
+      "from": "devices@291.45",
+      "to": "level@301.5",
+      "labelUntil": "devices@294.4",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "scrollFrom": 666,
+      "scrollTo": 1250,
+      "label": "Телефон · компьютер",
+      "desktop": {
+        "from": "devices@292.85",
+        "image": "site/desktop-home-ky-full.png",
+        "imageWidth": 2880,
+        "imageHeight": 13910,
+        "views": [
+          {
+            "t": 0,
+            "x": 0,
+            "y": 330,
+            "w": 2880
+          },
+          {
+            "t": 1.2,
+            "x": 0,
+            "y": 330,
+            "w": 2880
+          },
+          {
+            "t": 2.8,
+            "x": 120,
+            "y": 560,
+            "w": 2200
+          }
+        ],
+        "match": {
+          "mobile": {
+            "cx": 585,
+            "cy": 1984.5,
+            "w": 1074
+          },
+          "desktop": {
+            "cx": 740,
+            "cy": 1012,
+            "w": 1000
+          }
+        }
+      }
+    }
+  ],
+  "badge": {
+    "from": "cta@328.2",
+    "to": "cta@332.3",
+    "text": "WhatsApp аркылуу жазыңыз",
+    "number": "0998 08 38 28",
+    "x": 535,
+    "y": 1290
+  },
+  "sfx": [
+    {
+      "type": "whoosh_in",
+      "lands": "offer@101.15"
+    },
+    {
+      "type": "pop",
+      "lands": "offer@103.42",
+      "gainDb": -2
+    },
+    {
+      "type": "swish",
+      "lands": "range@272.15",
+      "gainDb": -3
+    },
+    {
+      "type": "whoosh_in",
+      "lands": "range@272.95"
+    },
+    {
+      "type": "tick",
+      "lands": "range@274.10"
+    },
+    {
+      "type": "swish",
+      "lands": "range@276.15",
+      "gainDb": -4
+    },
+    {
+      "type": "whoosh_in",
+      "lands": "devices@291.85"
+    },
+    {
+      "type": "whoosh_in",
+      "lands": "devices@293.32",
+      "gainDb": -2
+    },
+    {
+      "type": "swish",
+      "lands": "level@301.45",
+      "gainDb": -3
+    },
+    {
+      "type": "tick",
+      "lands": "cta@328.47"
+    },
+    {
+      "type": "chime",
+      "lands": "cta@328.63"
+    }
+  ]
+}

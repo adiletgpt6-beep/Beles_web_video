@@ -6,7 +6,8 @@ export const COLORS = {
   gold: '#FFC25C', // warm gold-orange accent, readable on the red curtain
   goldDeep: '#F29A2E',
   ink: '#1A0B08',
-  pill: 'rgba(22, 9, 7, 0.72)',
+  cyan: '#38CCFF', // V4 key-word accent (bright blue, reads on the red curtain and on the white shirt with a thin outline)
+  outline: '#14070A',
 };
 
 export const FONTS = {

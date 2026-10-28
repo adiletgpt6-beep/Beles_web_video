@@ -96,6 +96,18 @@ const phones = (edit.phones ?? []).map((p) => {
   }
   return out;
 });
+const typeScenes = (edit.typeScenes ?? []).map((t) => {
+  const startFrame = anchor(t.from);
+  const rel = (a) => anchor(a) - startFrame;
+  return {
+    id: t.id,
+    startFrame,
+    endFrame: anchor(t.to),
+    small: { text: t.small.text, frame: rel(t.small.at) },
+    big: t.big.map((b) => ({ text: b.text, frame: rel(b.at) })),
+    rise: t.rise && { text: t.rise.text, frame: rel(t.rise.at) },
+  };
+});
 const badge = edit.badge && {
   startFrame: anchor(edit.badge.from),
   endFrame: anchor(edit.badge.to),
@@ -140,6 +152,7 @@ for (const s of edit.segments) {
         startFrame: Math.max(startFrame, anchor(`${s.id}@${w.t.toFixed(3)}`)),
       })),
       ...(g.place ? { place: g.place } : s.subPlace ? { place: s.subPlace } : {}),
+      ...(g.scene ? { scene: true } : {}),
     });
   });
 }
@@ -167,6 +180,7 @@ const timeline = {
   subtitles,
   endCard,
   badge,
+  typeScenes,
 };
 fs.writeFileSync(path.join(root, 'data/timeline.generated.json'), JSON.stringify(timeline, null, 1));
 

@@ -4,8 +4,8 @@
 # Optional: CHROME=/path/to/chrome-headless-shell (otherwise Remotion downloads its own).
 set -euo pipefail
 cd "$(dirname "$0")/.."
-NAME="${NAME:-beles-web-v3-1080x1920}"
-PREVIEW="${PREVIEW:-preview-v3-720x1280}"
+NAME="${NAME:-beles-web-v4-1080x1920}"
+PREVIEW="${PREVIEW:-preview-v4-720x1280}"
 BROWSER_ARGS=()
 if [ -n "${CHROME:-}" ]; then BROWSER_ARGS=(--browser-executable="$CHROME"); fi
 mkdir -p out

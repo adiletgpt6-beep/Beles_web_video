@@ -75,9 +75,9 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
             top: (h.y - v.y) * s - pad,
             width: h.w * s + pad * 2,
             height: h.h * s + pad * 2,
-            border: `5px solid ${COLORS.gold}`,
+            border: `5px solid ${COLORS.cyan}`,
             borderRadius: 16,
-            boxShadow: `0 0 0 4000px rgba(10,4,3,${0.28 * a * o}), 0 0 26px rgba(255,180,70,0.7)`,
+            boxShadow: `0 0 0 4000px rgba(10,4,3,${0.28 * a * o}), 0 0 26px rgba(56,204,255,0.7)`,
             opacity: a * o,
           }}
         />
@@ -178,7 +178,7 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
             top: CARD.y + CARD.h - 20,
             padding: '8px 18px',
             borderRadius: 14,
-            background: COLORS.gold,
+            background: COLORS.cyan,
             color: COLORS.ink,
             fontFamily: FONTS.body,
             fontWeight: 800,

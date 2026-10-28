@@ -33,7 +33,7 @@ export const TitleBlock: React.FC<{ title: Title }> = ({ title }) => {
               fontWeight: 700,
               fontSize: 44,
               lineHeight: '50px',
-              color: COLORS.gold,
+              color: COLORS.cyan,
               textShadow: '0 3px 14px rgba(0,0,0,0.45)',
               opacity: inA,
               transform: `translateY(${(1 - inA) * 14}px)`,

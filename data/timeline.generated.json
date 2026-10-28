@@ -210,7 +210,7 @@
     "x": 40,
     "y": 322,
     "w": 1000,
-    "h": 1010,
+    "h": 960,
     "fromFrame": 21,
     "toFrame": 99
    }
@@ -245,22 +245,7 @@
    ]
   }
  ],
- "titles": [
-  {
-   "id": "t-offer",
-   "startFrame": 155,
-   "endFrame": 304,
-   "accent": "Заманбап · кооз",
-   "main": "Сайт жасап беребиз"
-  },
-  {
-   "id": "t-range",
-   "startFrame": 306,
-   "endFrame": 528,
-   "accent": "Лендингден баштап",
-   "main": "эң татаал платформалар"
-  }
- ],
+ "titles": [],
  "phones": [
   {
    "id": "p-devices",
@@ -269,7 +254,6 @@
    "imageHeight": 35316,
    "scrollFrom": 666,
    "scrollTo": 1250,
-   "label": "Телефон · компьютер",
    "desktop": {
     "image": "site/desktop-home-ky-full.png",
     "imageWidth": 2880,
@@ -309,8 +293,7 @@
     "fromFrame": 42
    },
    "startFrame": 529,
-   "endFrame": 655,
-   "labelEndFrame": 88
+   "endFrame": 617
   }
  ],
  "subtitles": [
@@ -553,7 +536,7 @@
   },
   {
    "startFrame": 431,
-   "endFrame": 463,
+   "endFrame": 500,
    "words": [
     {
      "text": "жана",
@@ -569,18 +552,18 @@
      "text": "татаал",
      "key": true,
      "startFrame": 452
+    },
+    {
+     "text": "веб-платформаларды",
+     "key": false,
+     "startFrame": 464
     }
    ]
   },
   {
-   "startFrame": 463,
+   "startFrame": 500,
    "endFrame": 529,
    "words": [
-    {
-     "text": "веб-платформаларды",
-     "key": true,
-     "startFrame": 464
-    },
     {
      "text": "да",
      "key": false,
@@ -612,11 +595,12 @@
      "key": false,
      "startFrame": 556
     }
-   ]
+   ],
+   "place": "low"
   },
   {
    "startFrame": 556,
-   "endFrame": 619,
+   "endFrame": 587,
    "words": [
     {
      "text": "компьютерге",
@@ -627,7 +611,14 @@
      "text": "да",
      "key": false,
      "startFrame": 585
-    },
+    }
+   ],
+   "place": "low"
+  },
+  {
+   "startFrame": 587,
+   "endFrame": 619,
+   "words": [
     {
      "text": "ыңгайлуу",
      "key": true,
@@ -638,11 +629,12 @@
      "key": false,
      "startFrame": 601
     }
-   ]
+   ],
+   "place": "low"
   },
   {
    "startFrame": 619,
-   "endFrame": 658,
+   "endFrame": 674,
    "words": [
     {
      "text": "Бизнесиңизди",
@@ -651,25 +643,26 @@
     },
     {
      "text": "жаңы",
-     "key": true,
+     "key": false,
      "startFrame": 639
     },
     {
      "text": "деңгээлге",
-     "key": true,
+     "key": false,
      "startFrame": 645
-    }
-   ]
-  },
-  {
-   "startFrame": 658,
-   "endFrame": 705,
-   "words": [
+    },
     {
      "text": "көтөрүүгө",
      "key": false,
      "startFrame": 660
-    },
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 674,
+   "endFrame": 705,
+   "words": [
     {
      "text": "убакыт",
      "key": true,
@@ -684,7 +677,7 @@
   },
   {
    "startFrame": 705,
-   "endFrame": 724,
+   "endFrame": 738,
    "words": [
     {
      "text": "Бизге",
@@ -700,19 +693,19 @@
      "text": "WhatsApp",
      "key": true,
      "startFrame": 721
+    },
+    {
+     "text": "аркылуу",
+     "key": false,
+     "startFrame": 726
     }
    ],
    "place": "top"
   },
   {
-   "startFrame": 724,
+   "startFrame": 738,
    "endFrame": 769,
    "words": [
-    {
-     "text": "аркылуу",
-     "key": false,
-     "startFrame": 726
-    },
     {
      "text": "жазыңыз,",
      "key": true,
@@ -751,5 +744,30 @@
   "number": "0998 08 38 28",
   "x": 535,
   "y": 1290
- }
+ },
+ "typeScenes": [
+  {
+   "id": "ts-level",
+   "startFrame": 608,
+   "endFrame": 675,
+   "small": {
+    "text": "Бизнесиңизди",
+    "frame": 13
+   },
+   "big": [
+    {
+     "text": "жаңы",
+     "frame": 31
+    },
+    {
+     "text": "деңгээлге",
+     "frame": 37
+    }
+   ],
+   "rise": {
+    "text": "көтөрүүгө",
+    "frame": 52
+   }
+  }
+ ]
 }

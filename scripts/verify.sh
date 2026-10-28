@@ -2,7 +2,7 @@
 # Technical checks of the exported MP4 (writes docs/verification-raw.txt).
 set -uo pipefail
 cd "$(dirname "$0")/.."
-F="${1:-out/beles-web-v3-1080x1920.mp4}"
+F="${1:-out/beles-web-v4-1080x1920.mp4}"
 {
   echo "== file: $F ($(stat -c %s "$F") bytes)"
   echo "== streams"
@@ -29,4 +29,4 @@ PY
   ffmpeg -hide_banner -nostats -i "$F" -vf blackdetect=d=0.1:pic_th=0.95 -an -f null - 2>&1 | grep blackdetect || echo none
   echo "== silences > 0.5 s at -40 dB"
   ffmpeg -hide_banner -nostats -i "$F" -af silencedetect=n=-40dB:d=0.5 -vn -f null - 2>&1 | grep -E "silence_(start|end)" || echo none
-} | tee "${2:-docs/verification-v3-raw.txt}"
+} | tee "${2:-docs/verification-v4-raw.txt}"

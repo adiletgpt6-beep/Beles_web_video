@@ -9,7 +9,7 @@ import { viewAt } from './SiteCard';
 // keeps its place and size — both pages are positioned so that headline stays continuous.
 // The presenter stays visible (blurred) behind it; the plan spans the cut between two takes (J/L-cut).
 // It leaves with a directional move up (light motion blur), revealing the close-up.
-const PHONE = { w: 540, h: 1100, top: 300, radius: 64, bezel: 16 };
+const PHONE = { w: 520, h: 1040, top: 290, radius: 62, bezel: 16 };
 const DESK = { x: 50, w: 980, top: 420, h: 640, bar: 46, radius: 22 };
 const MORPH = 14; // frames
 const EXIT = 10; // frames

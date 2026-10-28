@@ -93,11 +93,6 @@
    "gainDb": -2
   },
   {
-   "type": "swish",
-   "frame": 649,
-   "gainDb": -3
-  },
-  {
    "type": "tick",
    "frame": 730,
    "gainDb": 0
@@ -106,6 +101,21 @@
    "type": "chime",
    "frame": 735,
    "gainDb": 0
+  },
+  {
+   "type": "whoosh_in",
+   "frame": 607,
+   "gainDb": 0
+  },
+  {
+   "type": "pop",
+   "frame": 641,
+   "gainDb": -2
+  },
+  {
+   "type": "swish",
+   "frame": 670,
+   "gainDb": -3
   }
  ]
 }

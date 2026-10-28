@@ -8,13 +8,13 @@ import {
   Sequence,
   staticFile,
 } from 'remotion';
-import type { SubVariant, Timeline } from './types';
+import type { Timeline } from './types';
 import { useCamera } from './camera';
 import { SiteCard } from './SiteCard';
 import { TitleBlock } from './TitleBlock';
 import { PhoneShotView } from './PhoneShot';
-import { Subtitles } from './Subtitles';
-import { EndCard } from './EndCard';
+import { Captions } from './Captions';
+import { TypeScene } from './TypeScene';
 import { WhatsAppBadge } from './WhatsAppBadge';
 
 // Block rendering until the local fonts (incl. Kyrgyz ө ү ң) are really loaded.
@@ -28,6 +28,7 @@ const useFonts = () => {
       document.fonts.load(`600 40px Montserrat`, sample),
       document.fonts.load(`700 40px Montserrat`, sample),
       document.fonts.load(`800 40px Montserrat`, sample),
+      document.fonts.load(`900 40px Montserrat`, sample),
       document.fonts.load(`italic 700 40px Montserrat`, sample),
     ])
       .then(() => document.fonts.ready)
@@ -71,14 +72,7 @@ const Presenter: React.FC<{ timeline: Timeline; blur?: boolean }> = ({ timeline 
   );
 };
 
-// Subtitle concept used in the finished film (chosen after the A–E comparison, see docs/v3-report.md).
-export const SUB_VARIANT: SubVariant = 'D';
-
-export const BelesReel: React.FC<{ timeline: Timeline; subVariant?: SubVariant; styleLabel?: string }> = ({
-  timeline,
-  subVariant = SUB_VARIANT,
-  styleLabel,
-}) => {
+export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
   const fontsReady = useFonts();
   return (
     <AbsoluteFill style={{ backgroundColor: '#140504' }}>
@@ -87,9 +81,14 @@ export const BelesReel: React.FC<{ timeline: Timeline; subVariant?: SubVariant; 
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(180deg, rgba(10,2,2,0.45) 0%, rgba(10,2,2,0.0) 38%, rgba(10,2,2,0) 70%, rgba(10,2,2,0.28) 100%)',
+            'linear-gradient(180deg, rgba(10,2,2,0.45) 0%, rgba(10,2,2,0) 38%)',
         }}
       />
+      {(timeline.typeScenes ?? []).map((t) => (
+        <Sequence key={t.id} from={t.startFrame} durationInFrames={t.endFrame - t.startFrame} layout="none">
+          <TypeScene scene={t} />
+        </Sequence>
+      ))}
       {timeline.titles.map((t) => (
         <Sequence key={t.id} from={t.startFrame} durationInFrames={t.endFrame - t.startFrame} layout="none">
           <TitleBlock title={t} />
@@ -105,15 +104,6 @@ export const BelesReel: React.FC<{ timeline: Timeline; subVariant?: SubVariant; 
           <PhoneShotView shot={p} />
         </Sequence>
       ))}
-      {timeline.endCard ? (
-        <Sequence
-          from={timeline.endCard.startFrame}
-          durationInFrames={timeline.endCard.endFrame - timeline.endCard.startFrame}
-          layout="none"
-        >
-          <EndCard accent={timeline.endCard.accent} main={timeline.endCard.main} />
-        </Sequence>
-      ) : null}
       {timeline.badge ? (
         <Sequence
           from={timeline.badge.startFrame}
@@ -123,27 +113,7 @@ export const BelesReel: React.FC<{ timeline: Timeline; subVariant?: SubVariant; 
           <WhatsAppBadge badge={timeline.badge} />
         </Sequence>
       ) : null}
-      {fontsReady ? <Subtitles subtitles={timeline.subtitles} variant={subVariant} /> : null}
-      {styleLabel ? (
-        <div
-          style={{
-            position: 'absolute',
-            left: 40,
-            right: 40,
-            bottom: 70,
-            padding: '18px 24px',
-            borderRadius: 18,
-            background: 'rgba(0,0,0,0.78)',
-            color: '#fff',
-            fontFamily: 'Montserrat, sans-serif',
-            fontWeight: 700,
-            fontSize: 38,
-            textAlign: 'center',
-          }}
-        >
-          {styleLabel}
-        </div>
-      ) : null}
+      {fontsReady ? <Captions subtitles={timeline.subtitles} /> : null}
       <Audio src={staticFile(timeline.audio)} />
     </AbsoluteFill>
   );
