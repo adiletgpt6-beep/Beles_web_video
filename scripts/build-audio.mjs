@@ -33,7 +33,8 @@ const mixIn = ['[v]'];
 let next = 1;
 if (plan.music) {
   const bed = path.join(root, 'public/media/music_bed.wav');
-  execFileSync('python3', [path.join(root, 'scripts/make-music.py'), total.toFixed(3), bed], { stdio: 'inherit' });
+  const accentArgs = plan.music.accentFrame != null ? [(plan.music.accentFrame / FPS).toFixed(3)] : [];
+  execFileSync('python3', [path.join(root, 'scripts/make-music.py'), total.toFixed(3), bed, ...accentArgs], { stdio: 'inherit' });
   inputs.push('-i', bed);
   const g = plan.music.gainDb ?? -24;
   // Keep the speech band clear, then duck under the voice (≈ −3 dB extra while speaking).
@@ -50,7 +51,7 @@ if (plan.music) {
 plan.sfx.forEach((s, i) => {
   inputs.push('-i', path.join(root, `assets/sfx/${s.type}.wav`));
   const delay = Math.round((s.frame / FPS) * 1000);
-  const base = s.type === 'whoosh' ? -16 : s.type === 'click' ? -17 : -18; // well under the voice
+  const base = { whoosh_in: -17, swish: -19, tick: -18, pop: -19, chime: -21 }[s.type] ?? -18; // well under the voice
   parts.push(`[${next}:a]adelay=${delay}:all=1,volume=${base + (s.gainDb ?? 0)}dB[s${i}]`);
   mixIn.push(`[s${i}]`);
   next++;

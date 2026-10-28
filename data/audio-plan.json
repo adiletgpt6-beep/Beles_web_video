@@ -3,7 +3,9 @@
  "durationInFrames": 845,
  "music": {
   "generator": "scripts/make-music.py",
-  "gainDb": -18
+  "gainDb": -18,
+  "accentAt": "cta@328.62",
+  "accentFrame": 735
  },
  "clips": [
   {
@@ -51,38 +53,58 @@
  ],
  "sfx": [
   {
-   "type": "whoosh",
-   "frame": 157,
+   "type": "whoosh_in",
+   "frame": 158,
    "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 229,
+   "frame": 237,
    "gainDb": -2
   },
   {
-   "type": "whoosh",
-   "frame": 308,
+   "type": "swish",
+   "frame": 311,
    "gainDb": -3
   },
   {
-   "type": "whoosh",
-   "frame": 429,
-   "gainDb": -5
-  },
-  {
-   "type": "whoosh",
-   "frame": 529,
+   "type": "whoosh_in",
+   "frame": 330,
    "gainDb": 0
   },
   {
-   "type": "whoosh",
-   "frame": 571,
+   "type": "tick",
+   "frame": 375,
+   "gainDb": 0
+  },
+  {
+   "type": "swish",
+   "frame": 432,
    "gainDb": -4
   },
   {
-   "type": "click",
-   "frame": 729,
+   "type": "whoosh_in",
+   "frame": 530,
+   "gainDb": 0
+  },
+  {
+   "type": "whoosh_in",
+   "frame": 574,
+   "gainDb": -2
+  },
+  {
+   "type": "swish",
+   "frame": 649,
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "frame": 730,
+   "gainDb": 0
+  },
+  {
+   "type": "chime",
+   "frame": 735,
    "gainDb": 0
   }
  ]

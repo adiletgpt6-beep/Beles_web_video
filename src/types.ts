@@ -39,6 +39,8 @@ export type Card = {
   highlight?: Highlight;
   cursor?: { fromFrame: number; toFrame: number; x0: number; y0: number; x1: number; y1: number };
   label?: string;
+  // card → large demo of the same page (card-local frames, target rect in final px)
+  expand?: { fromFrame: number; toFrame: number; x: number; y: number; w: number; h: number };
 };
 
 export type Title = {
@@ -67,17 +69,22 @@ export type PhoneShot = {
     imageWidth: number;
     imageHeight: number;
     views: ViewKey[]; // shot-local frames
+    // match cut anchor: the same element in both screenshots (centre + width, screenshot px)
+    match?: { mobile: { cx: number; cy: number; w: number }; desktop: { cx: number; cy: number; w: number } };
   };
 };
 
-export type SubWord = { text: string; key: boolean };
-export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[]; bottom?: number };
+export type SubWord = { text: string; key: boolean; startFrame: number };
+// place: 'top' moves the group above the presenter (used in the finale, where the contact block owns the lower third)
+export type Subtitle = { startFrame: number; endFrame: number; words: SubWord[]; place?: 'top' | 'bottom' };
+export type SubVariant = 'A' | 'B' | 'C' | 'D' | 'E';
 
 // Call-to-action badge placed where the presenter points (pointing gesture verified on the source).
 export type Badge = {
   startFrame: number; // animation start (slightly before the finger settles)
   endFrame: number;
   text: string;
+  number: string; // shown exactly as given (0998 08 38 28)
   x: number; // badge centre, final-frame px
   y: number;
 };

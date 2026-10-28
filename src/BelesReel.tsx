@@ -8,7 +8,7 @@ import {
   Sequence,
   staticFile,
 } from 'remotion';
-import type { Timeline } from './types';
+import type { SubVariant, Timeline } from './types';
 import { useCamera } from './camera';
 import { SiteCard } from './SiteCard';
 import { TitleBlock } from './TitleBlock';
@@ -20,6 +20,7 @@ import { WhatsAppBadge } from './WhatsAppBadge';
 // Block rendering until the local fonts (incl. Kyrgyz ө ү ң) are really loaded.
 const useFonts = () => {
   const [handle] = useState(() => delayRender('fonts'));
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     const sample = 'ӨөҮүҢң Сайт';
     Promise.all([
@@ -30,12 +31,17 @@ const useFonts = () => {
       document.fonts.load(`italic 700 40px Montserrat`, sample),
     ])
       .then(() => document.fonts.ready)
-      .then(() => continueRender(handle))
+      .then(() => setReady(true))
       .catch((e) => {
         console.error(e);
-        continueRender(handle);
+        setReady(true);
       });
   }, [handle]);
+  // release the frame only after the text layout has been re-measured with the real fonts
+  useEffect(() => {
+    if (ready) continueRender(handle);
+  }, [ready, handle]);
+  return ready;
 };
 
 const Presenter: React.FC<{ timeline: Timeline; blur?: boolean }> = ({ timeline }) => {
@@ -65,8 +71,15 @@ const Presenter: React.FC<{ timeline: Timeline; blur?: boolean }> = ({ timeline 
   );
 };
 
-export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
-  useFonts();
+// Subtitle concept used in the finished film (chosen after the A–E comparison, see docs/v3-report.md).
+export const SUB_VARIANT: SubVariant = 'D';
+
+export const BelesReel: React.FC<{ timeline: Timeline; subVariant?: SubVariant; styleLabel?: string }> = ({
+  timeline,
+  subVariant = SUB_VARIANT,
+  styleLabel,
+}) => {
+  const fontsReady = useFonts();
   return (
     <AbsoluteFill style={{ backgroundColor: '#140504' }}>
       <Presenter timeline={timeline} />
@@ -110,7 +123,27 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
           <WhatsAppBadge badge={timeline.badge} />
         </Sequence>
       ) : null}
-      <Subtitles subtitles={timeline.subtitles} />
+      {fontsReady ? <Subtitles subtitles={timeline.subtitles} variant={subVariant} /> : null}
+      {styleLabel ? (
+        <div
+          style={{
+            position: 'absolute',
+            left: 40,
+            right: 40,
+            bottom: 70,
+            padding: '18px 24px',
+            borderRadius: 18,
+            background: 'rgba(0,0,0,0.78)',
+            color: '#fff',
+            fontFamily: 'Montserrat, sans-serif',
+            fontWeight: 700,
+            fontSize: 38,
+            textAlign: 'center',
+          }}
+        >
+          {styleLabel}
+        </div>
+      ) : null}
       <Audio src={staticFile(timeline.audio)} />
     </AbsoluteFill>
   );

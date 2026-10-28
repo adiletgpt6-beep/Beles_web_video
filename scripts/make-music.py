@@ -4,7 +4,9 @@ Modern minimal instrumental, 96 BPM, A minor, progression Am–F–C–G:
 warm detuned pad, soft pluck arpeggio with a dotted-8th echo, sub bass, gentle kick and shaker.
 It ends on a resolved Am chord with a natural fade.
 
-Usage: python3 scripts/make-music.py <seconds> assets/music/bed.wav
+Usage: python3 scripts/make-music.py <seconds> out.wav [accent_seconds]
+
+With accent_seconds the groove stops there and a resolving Am chord (with a soft bell) rings out to the end.
 """
 import sys
 import wave
@@ -46,7 +48,7 @@ def adsr(n, a, d, s, r):
     return env
 
 
-def main(total, out):
+def main(total, out, accent=None):
     n = int(total * SR)
     L = np.zeros(n)
     R = np.zeros(n)
@@ -62,8 +64,10 @@ def main(total, out):
         if t0 >= total - 0.3:
             break
         last = t0 + BAR >= total - 0.01
+        if accent is not None and t0 >= accent:
+            break
         notes, root = prog[0] if last else prog[b % 4]
-        dur = min(BAR + 0.6, total - t0)
+        dur = min(BAR + 0.6, total - t0, (accent - t0 + 0.25) if accent is not None else 1e9)
         m = int(dur * SR)
         t = np.arange(m) / SR
         s0 = int(t0 * SR)
@@ -81,7 +85,7 @@ def main(total, out):
         # sub bass on beats 1 and 3
         for beat in (0, 2):
             bt = t0 + beat * BEAT
-            if bt >= total:
+            if bt >= total or (accent is not None and bt >= accent):
                 continue
             bm = int(min(2 * BEAT, total - bt) * SR)
             tb = np.arange(bm) / SR
@@ -94,7 +98,7 @@ def main(total, out):
             pattern = [0, 2, 1, 3, 2, 1, 3, 2]
             for step, idx in enumerate(pattern):
                 pt = t0 + step * BEAT / 2
-                if pt >= total - 0.3:
+                if pt >= total - 0.3 or (accent is not None and pt >= accent - 0.05):
                     continue
                 pm = int(0.5 * SR)
                 tp = np.arange(pm) / SR
@@ -113,6 +117,8 @@ def main(total, out):
         if b > 0 and not last:
             for beat in range(4):
                 bt = t0 + beat * BEAT
+                if accent is not None and bt >= accent - 0.05:
+                    continue
                 if beat in (0, 2):
                     km = int(0.35 * SR)
                     tk = np.arange(km) / SR
@@ -132,12 +138,26 @@ def main(total, out):
                 if i0 < n:
                     L[i0:j1] += 0.035 * shaker[: j1 - i0]
                     R[i0:j1] += 0.045 * shaker[: j1 - i0]
-    # global fades: 0.6 s in, 1.4 s out
+    if accent is not None:
+        # resolving Am chord + soft bell from the accent to the end (number on screen)
+        i0 = int(accent * SR)
+        m = n - i0
+        t = np.arange(m) / SR
+        pad = np.zeros(m)
+        for k, nn in enumerate([45, 57, 60, 64, 69]):
+            f = midi(nn)
+            for det, ph in ((-0.1, 0.2), (0.11, 0.7)):
+                pad += saw(f * 2 ** (det / 12), t, ph + k * 0.3)
+        pad = onepole_lp(pad / 10.0, 1100.0) * adsr(m, 0.05, 0.6, 0.8, 1.2)
+        bell = sum(a * np.sin(2 * np.pi * midi(nn) * t) * np.exp(-t * dcy) for nn, a, dcy in ((81, 0.08, 2.2), (88, 0.05, 2.8)))
+        L[i0:] += 0.55 * pad + 1.8 * bell
+        R[i0:] += 0.55 * np.roll(pad, 240) + 1.8 * bell
+    # global fades: 0.6 s in, 0.9 s out (after the last word)
     fi = int(0.6 * SR)
-    fo = int(1.4 * SR)
+    fo = int(0.9 * SR)
     for ch in (L, R):
         ch[:fi] *= np.linspace(0, 1, fi)
-        ch[-fo:] *= np.linspace(1, 0, fo) ** 1.5
+        ch[-fo:] *= np.linspace(1, 0, fo) ** 1.2
     st = np.stack([L, R], 1)
     st /= np.max(np.abs(st)) / 0.7
     pcm = (st * 32767).astype(np.int16)
@@ -150,4 +170,4 @@ def main(total, out):
 
 
 if __name__ == '__main__':
-    main(float(sys.argv[1]), sys.argv[2])
+    main(float(sys.argv[1]), sys.argv[2], float(sys.argv[3]) if len(sys.argv) > 3 else None)

@@ -4,6 +4,8 @@ import type { Card, ViewKey } from './types';
 import { CARD, COLORS, FONTS } from './layout';
 
 const smooth = Easing.bezier(0.45, 0, 0.2, 1);
+const inOut = Easing.bezier(0.65, 0, 0.35, 1);
+const EXPAND_FRAMES = 12;
 
 // Interpolates the visible window over the screenshot between keyframes (frames are card-local).
 export const viewAt = (views: ViewKey[], f: number) => {
@@ -36,9 +38,27 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
   const len = card.endFrame - card.startFrame;
   const enter = spring({ frame: f, fps, config: { damping: 18, stiffness: 140, mass: 0.8 } });
   const exit = interpolate(f, [len - 8, len], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic) });
-  const contentH = CARD.h - CARD.bar;
+  // Optional "card → large demo of the same page": the card rect grows (same top edge, same page,
+  // continuous scale) and later shrinks back. k = 0 small card, 1 = expanded.
+  const ex = card.expand;
+  const k = ex
+    ? Math.min(
+        interpolate(f, [ex.fromFrame, ex.fromFrame + EXPAND_FRAMES], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: inOut }),
+        interpolate(f, [ex.toFrame - EXPAND_FRAMES, ex.toFrame], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: inOut }),
+      )
+    : 0;
+  const R = ex
+    ? { x: CARD.x + (ex.x - CARD.x) * k, y: CARD.y + (ex.y - CARD.y) * k, w: CARD.w + (ex.w - CARD.w) * k, h: CARD.h + (ex.h - CARD.h) * k }
+    : { x: CARD.x, y: CARD.y, w: CARD.w, h: CARD.h };
+  // gentle motion blur proportional to the rect speed (only while it moves)
+  const kPrev = ex ? Math.min(
+    interpolate(f - 1, [ex.fromFrame, ex.fromFrame + EXPAND_FRAMES], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: inOut }),
+    interpolate(f - 1, [ex.toFrame - EXPAND_FRAMES, ex.toFrame], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: inOut }),
+  ) : 0;
+  const blurPx = ex ? Math.min(2.5, Math.abs(k - kPrev) * 18) : 0;
+  const contentH = R.h - CARD.bar;
   const v = viewAt(card.views, f);
-  const s = CARD.w / v.w;
+  const s = R.w / v.w;
 
   let hl: React.ReactNode = null;
   if (card.highlight) {
@@ -82,13 +102,15 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
 
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
+      {ex ? <AbsoluteFill style={{ background: `rgba(14,4,3,${0.55 * k})`, backdropFilter: k > 0.01 ? `blur(${(10 * k).toFixed(1)}px)` : undefined }} /> : null}
       <div
         style={{
           position: 'absolute',
-          left: CARD.x,
-          top: CARD.y,
-          width: CARD.w,
-          height: CARD.h,
+          left: R.x,
+          top: R.y,
+          width: R.w,
+          height: R.h,
+          filter: blurPx > 0.2 ? `blur(${blurPx.toFixed(2)}px)` : undefined,
           borderRadius: CARD.radius,
           overflow: 'hidden',
           background: '#fff',
@@ -131,7 +153,7 @@ export const SiteCard: React.FC<{ card: Card }> = ({ card }) => {
             {card.url}
           </div>
         </div>
-        <div style={{ position: 'relative', width: CARD.w, height: contentH, overflow: 'hidden', background: '#F4F8F6' }}>
+        <div style={{ position: 'relative', width: R.w, height: contentH, overflow: 'hidden', background: '#F4F8F6' }}>
           <Img
             src={staticFile(card.image)}
             style={{

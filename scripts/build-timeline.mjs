@@ -77,6 +77,7 @@ const cards = (edit.cards ?? []).map((c) => {
     views: c.views.map((v) => ({ frame: sec(v.t), x: v.x, y: v.y, w: v.w })),
     highlight: c.highlight && { ...c.highlight, fromFrame: sec(c.highlight.from), toFrame: sec(c.highlight.to) },
     cursor: c.cursor && { ...c.cursor, fromFrame: sec(c.cursor.from), toFrame: sec(c.cursor.to) },
+    expand: c.expand && { x: c.expand.x, y: c.expand.y, w: c.expand.w, h: c.expand.h, fromFrame: sec(c.expand.from), toFrame: sec(c.expand.to) },
   };
 });
 const titles = (edit.titles ?? []).map((t) => ({ id: t.id, startFrame: anchor(t.from), endFrame: anchor(t.to), accent: t.accent, main: t.main }));
@@ -99,28 +100,48 @@ const badge = edit.badge && {
   startFrame: anchor(edit.badge.from),
   endFrame: anchor(edit.badge.to),
   text: edit.badge.text,
+  number: edit.badge.number,
   x: edit.badge.x,
   y: edit.badge.y,
 };
 const endCard = edit.endCard && { startFrame: anchor(edit.endCard.from), endFrame: anchor(edit.endCard.to), accent: edit.endCard.accent, main: edit.endCard.main };
 
-// 4. Subtitles: authored per segment in source seconds, re-timed to the final cut.
+// 4. Subtitles: phrase groups authored per segment; every word carries its own start (source seconds,
+// from word-level alignment), so groups and the active-word highlight are re-timed to the final cut.
+const LEAD = 0.06; // group appears this much before its first word is heard
 const subtitles = [];
 for (const s of edit.segments) {
   const c = byId[s.id];
-  for (const g of s.subs ?? []) {
-    let startFrame = anchor(`${s.id}@${g.t[0]}`);
-    let endFrame = anchor(`${s.id}@${g.t[1]}`);
-    startFrame = Math.max(startFrame, c.startFrame);
-    endFrame = Math.min(endFrame, c.startFrame + c.durationFrames);
+  const segEnd = c.startFrame + c.durationFrames;
+  let wi = 0;
+  const groups = (s.subs ?? []).map((g) => {
+    const toks = g.text.split(' ');
+    const words = toks.map((tok) => {
+      const w = s.words[wi++];
+      if (!w || w.w !== tok) throw new Error(`segment ${s.id}: subtitle word "${tok}" does not match aligned word "${w && w.w}"`);
+      return w;
+    });
+    return { g, words };
+  });
+  if (wi !== s.words.length) throw new Error(`segment ${s.id}: subtitles do not cover all words`);
+  groups.forEach(({ g, words }, gi) => {
     const keys = new Set(g.key ?? []);
+    const startFrame = Math.max(c.startFrame, anchor(`${s.id}@${Math.max(s.in, words[0].t - LEAD).toFixed(3)}`));
+    const next = groups[gi + 1];
+    const endFrame = next
+      ? anchor(`${s.id}@${Math.max(s.in, next.words[0].t - LEAD).toFixed(3)}`)
+      : Math.min(segEnd, anchor(`${s.id}@${Math.min(s.out, s.speechEnd + 0.35).toFixed(3)}`));
     subtitles.push({
       startFrame,
       endFrame,
-      words: g.text.split(' ').map((w) => ({ text: w, key: keys.has(w.replace(/[.,!?…]/g, '')) })),
-      ...(g.bottom ? { bottom: g.bottom } : {}),
+      words: words.map((w) => ({
+        text: w.w,
+        key: keys.has(w.w.replace(/[.,!?…]/g, '')),
+        startFrame: Math.max(startFrame, anchor(`${s.id}@${w.t.toFixed(3)}`)),
+      })),
+      ...(g.place ? { place: g.place } : s.subPlace ? { place: s.subPlace } : {}),
     });
-  }
+  });
 }
 subtitles.sort((a, b) => a.startFrame - b.startFrame);
 for (let i = 0; i < subtitles.length - 1; i++) {
@@ -169,10 +190,16 @@ fs.writeFileSync(path.join(root, 'data/subtitles.srt'), srt.join('\n'));
 
 // 7. Audio plan: exact same frame-accurate cuts + sound effects at overlay entrances.
 // Sound accents are listed explicitly in edit.json (only on meaningful appearances).
-const sfx = (edit.sfx ?? []).map((x) => ({ type: x.type, frame: anchor(x.at), gainDb: x.gainDb ?? 0 }));
+// "lands" anchors give the moment a move ends; the sound is shifted so its peak falls exactly there.
+const PEAK = { whoosh_in: 0.36, swish: 0.16, tick: 0, pop: 0, chime: 0 };
+const sfx = (edit.sfx ?? []).map((x) => ({
+  type: x.type,
+  frame: Math.max(0, anchor(x.lands) - Math.round((PEAK[x.type] ?? 0) * FPS)),
+  gainDb: x.gainDb ?? 0,
+}));
 fs.writeFileSync(
   path.join(root, 'data/audio-plan.json'),
-  JSON.stringify({ fps: FPS, durationInFrames, music: edit.music ?? null, clips: clips.map((c) => ({ id: c.id, srcInFrame: c.srcInFrame, srcOutFrame: c.srcOutFrame, startFrame: c.startFrame })), sfx }, null, 1),
+  JSON.stringify({ fps: FPS, durationInFrames, music: edit.music ? { ...edit.music, accentFrame: edit.music.accentAt ? anchor(edit.music.accentAt) : null } : null, clips: clips.map((c) => ({ id: c.id, srcInFrame: c.srcInFrame, srcOutFrame: c.srcOutFrame, startFrame: c.startFrame })), sfx }, null, 1),
 );
 
 console.log(`final duration: ${durationInFrames} frames = ${(durationInFrames / FPS).toFixed(2)} s, ${clips.length} clips, ${subtitles.length} subtitle groups`);

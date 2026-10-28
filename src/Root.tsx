@@ -20,6 +20,16 @@ export const RemotionRoot: React.FC = () => {
         height={tl.height}
         defaultProps={{ timeline: tl }}
       />
+      {/* Same film with a selectable subtitle concept, for the A–E comparison preview. */}
+      <Composition
+        id="SubStyle"
+        component={BelesReel}
+        durationInFrames={tl.durationInFrames}
+        fps={tl.fps}
+        width={tl.width}
+        height={tl.height}
+        defaultProps={{ timeline: tl, subVariant: 'A' as const, styleLabel: 'A' }}
+      />
     </>
   );
 };

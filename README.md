@@ -20,7 +20,8 @@
 | `scripts/build-timeline.mjs` | Пересчитывает всё в кадры финала → `data/timeline.generated.json`, `data/edl.csv`, `data/edl.edl` (CMX3600), `data/subtitles.srt`, `data/audio-plan.json` |
 | `scripts/build-audio.mjs` | Голос: те же кадровые склейки + фейды 12 мс, highpass, мягкий denoise, компрессия, 2‑проходный loudnorm −15 LUFS / TP −1.5 dBTP, звуки появления |
 | `scripts/prepare-media.sh` | AV1 → H.264 CRF 12 (одно поколение, 30 fps CFR, bt709) с мягкой коррекцией; звук → WAV 48 kHz |
-| `scripts/make-sfx.sh` | Синтез тихих UI‑звуков (whoosh, pop, click) средствами FFmpeg |
+| `scripts/make-sfx.py` | Синтез палитры эффектов (whoosh_in, swish, tick, pop, chime) |
+| `scripts/render-substyles.sh` | Рендер сравнения пяти стилей субтитров → `out/subtitle-styles-preview.mp4` |
 | `scripts/make-music.py` | Синтез оригинальной фоновой музыки (numpy, детерминированно); вызывается из `build-audio.mjs` |
 | `scripts/capture-site.cjs` | Съёмка zeket.kg/ky (desktop @2x, мобильная iPhone 13 @3x) |
 | `scripts/render.sh` | Финальный рендер + мультиплекс + превью 720p |
@@ -50,11 +51,11 @@ input/1000218256.mp4      # 1080×1920, 30 fps, AV1 + AAC, ~5:41
 ```bash
 npm ci
 bash scripts/prepare-media.sh            # → public/media/source.mp4, source48k.wav
-bash scripts/make-sfx.sh                 # → assets/sfx/*.wav (уже в репо)
+python3 scripts/make-sfx.py assets/sfx   # → assets/sfx/*.wav (уже в репо)
 npx -y playwright@1.56.1 --version >/dev/null; node scripts/capture-site.cjs   # необязательно: переснять сайт (нужен Playwright+Chromium; скриншоты уже в репо)
 node scripts/build-timeline.mjs          # → data/timeline.generated.json, EDL, SRT
 node scripts/build-audio.mjs             # → public/media/voice.wav (голос + музыка + акценты; STEMS=1 — стем музыки для проверки)
-bash scripts/render.sh                   # → out/beles-web-v2-1080x1920.mp4, out/preview-v2-720x1280.mp4
+NAME=beles-web-v3-1080x1920 PREVIEW=preview-v3-720x1280 bash scripts/render.sh
 bash scripts/verify.sh                   # проверки
 ```
 
@@ -64,10 +65,11 @@ bash scripts/verify.sh                   # проверки
 
 ## Результат
 
-**V2 (текущая)** — дубли перевыбраны по взгляду в камеру, WhatsApp под указывающим жестом, музыка. Отчёт: [`docs/v2-report.md`](docs/v2-report.md).
-- Release v2.0.0: https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v2.0.0
-  - [beles-web-v2-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v2.0.0/beles-web-v2-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 High yuv420p CRF 16, AAC 48 kHz, faststart, 28.17 с, −15.0 LUFS
-  - [preview-v2-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v2.0.0/preview-v2-720x1280.mp4)
-- Те же файлы в репозитории: [`release/`](release/).
+**V3 (текущая)** — субтитры с движущейся акцентной плашкой (выбраны из 5 концепций), продуманные переходы, WhatsApp‑блок с номером по жесту. Отчёт: [`docs/v3-report.md`](docs/v3-report.md).
+- Release v3.0.0: https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v3.0.0
+  - [beles-web-v3-1080x1920.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v3.0.0/beles-web-v3-1080x1920.mp4) — 1080×1920, 30 fps CFR, H.264 yuv420p CRF 16, AAC 48 kHz, faststart, 28.17 с, −15.0 LUFS
+  - [subtitle-styles-preview.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v3.0.0/subtitle-styles-preview.mp4) — сравнение стилей A–E на одном фрагменте
+  - [preview-v3-720x1280.mp4](https://github.com/adiletgpt6-beep/Beles_web_video/releases/download/v3.0.0/preview-v3-720x1280.mp4)
+- Предыдущие версии: V2 — Release v2.0.0 / `release/beles-web-v2-1080x1920.mp4` ([отчёт](docs/v2-report.md)); V1 — Release v1.0.0 / `release/v1-beles-web-final-1080x1920.mp4` ([отчёт](docs/verification.md)).
 
-**V1** (для сравнения): Release v1.0.0 — https://github.com/adiletgpt6-beep/Beles_web_video/releases/tag/v1.0.0, файл `release/v1-beles-web-final-1080x1920.mp4`, данные `data/v1/`, отчёт [`docs/verification.md`](docs/verification.md).
+Шрифты (OFL) — `assets/fonts/`; музыка и эффекты синтезируются в репозитории (`scripts/make-music.py`, `scripts/make-sfx.py`), сторонних аудио нет.
