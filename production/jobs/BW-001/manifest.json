@@ -57,5 +57,5 @@
     "git_blob_sha": "b7e78177b2666208818a3c071af8730c64066062",
     "user_approved": true
   },
-  "delivery_verification": "pending_clean_checkout"
+  "delivery_verification": "production/jobs/BW-001/delivery.json"
 }

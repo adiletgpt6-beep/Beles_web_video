@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "active_job_id": null,
+  "next_suggested_job_id": "BW-002",
+  "jobs": [
+    {
+      "job_id": "BW-001",
+      "role": "approved_baseline",
+      "status": "approved",
+      "source_sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
+      "manifest": "production/jobs/BW-001/manifest.json",
+      "next_step": "Ждать новый исходник; утверждённую V5 не переделывать.",
+      "delivery_verified": true
+    }
+  ]
+}

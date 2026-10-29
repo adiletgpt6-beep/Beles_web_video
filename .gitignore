@@ -7,3 +7,7 @@ input/*
 public/media/
 .remotion/
 *.log
+.beles.lock
+__pycache__/
+production/.beles-ingest-*/
+**/.beles-*

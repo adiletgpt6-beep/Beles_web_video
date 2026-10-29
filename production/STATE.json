@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29",
+  "updated_at": "2026-10-29T08:40:48+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
-  "system_status": "setup_in_progress",
+  "system_status": "validation_in_progress",
   "approved_style": "Beles V5",
   "baseline": {
     "commit": "060d9cda2ed764984ad76717c16bb17d031e1fff",
@@ -22,20 +22,38 @@
   "next_suggested_job_id": "BW-002",
   "baseline_job_id": "BW-001",
   "pending": [
-    "Verify BW-001 source reconstruction from clean GitHub checkout against manifest size/SHA-256 and ffprobe",
-    "Implement and test reusable ingest/verify/restore/checkpoint/status commands with duplicate detection",
-    "Create durable job queue; BW-001 is approved baseline, next real footage uses next free ID (suggested BW-002)",
-    "Test missing/corrupt media recovery and saved next step; update README/INGEST/PROMPTS/STATE/HANDOFF",
-    "Mark ready only after actual end-to-end verification"
+    "Publish tested workflow and verify commands again from an independent GitHub clone before marking ready"
   ],
   "source": {
     "original_name": "1000218256.mp4",
     "bytes": 19586471,
     "sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
-    "durable_upload_verified": false,
+    "durable_upload_verified": true,
     "storage": "github_git_parts",
     "manifest": "production/jobs/BW-001/manifest.json",
-    "upload_checkpoint": "All four Git blobs attached in this checkpoint; clean-checkout reconstruction pending"
+    "upload_checkpoint": "74026a6a37d99836924e1ea85d1eb9c87d34c406",
+    "delivery_proof": "production/jobs/BW-001/delivery.json",
+    "clean_checkout_report": "production/reports/BW-001-clean-checkout.json"
   },
-  "checkpoint_file": "production/HANDOFF.md"
+  "checkpoint_file": "production/HANDOFF.md",
+  "workflow": {
+    "entrypoint": "scripts/beles.py",
+    "registry": "production/registry.json",
+    "commands": [
+      "ingest",
+      "restore",
+      "verify",
+      "checkpoint",
+      "status",
+      "queue",
+      "next",
+      "sync"
+    ],
+    "transport": "github_git_parts",
+    "part_bytes": 6291456,
+    "max_source_bytes": 104857600,
+    "automatic_paid_services": false,
+    "tests_report": "production/reports/workflow-integration.json",
+    "verification_report": "production/reports/VERIFICATION.md"
+  }
 }
