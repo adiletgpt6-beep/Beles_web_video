@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "active_job_id": null,
-  "next_suggested_job_id": "BW-002",
+  "next_suggested_job_id": "BW-003",
   "jobs": [
     {
       "job_id": "BW-001",
@@ -11,6 +11,15 @@
       "manifest": "production/jobs/BW-001/manifest.json",
       "next_step": "Ждать новый исходник; утверждённую V5 не переделывать.",
       "delivery_verified": true
+    },
+    {
+      "job_id": "BW-002",
+      "role": "edit",
+      "status": "staged",
+      "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+      "manifest": "production/jobs/BW-002/manifest.json",
+      "next_step": "Завершить загрузку бинарных частей 2–12 в GitHub; затем в чистом GitHub clone выполнить restore BW-002 и verify BW-002 --record-delivery; опубликовать доказательство и выдать короткий промпт Claude.",
+      "delivery_verified": false
     }
   ]
 }

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "job_id": "BW-002",
+  "role": "edit",
+  "repository": "adiletgpt6-beep/Beles_web_video",
+  "approved_style": "Beles V5",
+  "contact": "0998 08 38 28",
+  "created_at": "2026-10-29T09:41:13+00:00",
+  "brief": {
+    "title": "Beles — новая съёмка 1000219289.mp4",
+    "instructions": "Смонтировать новый ролик Beles из этого исходника в утверждённом стиле V5. Тему, связную речь и лучшие дубли определить по самому видео; не выдумывать содержание. Сохранить темп V5, бело-голубые субтитры без общей подложки и WhatsApp 0998 08 38 28. Сайт использовать только если он относится к новой речи, не переносить zeket.kg автоматически. Сохранить отдельно исходный код, таймлайн, субтитры, финальный MP4 и превью, дать ссылки посмотреть и скачать. Платные API/runners не запускать без указания пользователя.",
+    "language": "ky",
+    "site": null
+  },
+  "source": {
+    "original_name": "1000219289.mp4",
+    "bytes": 70809997,
+    "sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+    "cache_path": "input/BW-002/1000219289.mp4",
+    "storage": "github_git_parts",
+    "parts": [
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00001.bin",
+        "bytes": 6291456,
+        "sha256": "55f27c465e1ce9b49df4a5a7212c869aa862b4ab3720d7c84d2d265aa0d257c8",
+        "git_blob_sha": "056dec1ddb92aeabe6cfd811f9e0bbdb87fdd79f"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00002.bin",
+        "bytes": 6291456,
+        "sha256": "2400e47ce95ed5866f7a534f800b007b80b0d9d177b7711e4ac8a52fcddc2baf",
+        "git_blob_sha": "e6165ee20015d7d3e8bbdd19b975f39c7f4e651b"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00003.bin",
+        "bytes": 6291456,
+        "sha256": "d219f974031dcfd2e24a75d951a5beede88612663a5f40fa97ba2f7cc3ec2c4d",
+        "git_blob_sha": "01a31facdeb439a87a76ec7a16effbb5c2f9cf1b"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00004.bin",
+        "bytes": 6291456,
+        "sha256": "20fa33597203b0e5437ef1500f21c0ca72d345306b4cf87bd4873318507f61bf",
+        "git_blob_sha": "1d016025f59e0853fd82351a612a8fc821c23866"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00005.bin",
+        "bytes": 6291456,
+        "sha256": "b4c9f2668f6b201e907b80e4847f05555a6217862872174671a9abd9ef079b80",
+        "git_blob_sha": "741cd8d6e3c04406fa3206d246100740906ed9fc"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00006.bin",
+        "bytes": 6291456,
+        "sha256": "0f60d5ea8c638a0af01284acc5cc21c53e232fdff4ffc24996c96da7e4a1f8de",
+        "git_blob_sha": "95439444151dad965ffcce260ceafd86cf1d7083"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00007.bin",
+        "bytes": 6291456,
+        "sha256": "7cc2bad36e0d7086db017c0598bca541f5afa95a135946bb47e5b1e438358bff",
+        "git_blob_sha": "e919d68434121fae6a5f2588efe38cfb791baaf2"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00008.bin",
+        "bytes": 6291456,
+        "sha256": "07b78f9989fc8c9edcf262f8a0251ebb96de713c6d7acab4eebb7252ab534d46",
+        "git_blob_sha": "d1f174e4d5978501ee153e1d57bacea62893def3"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00009.bin",
+        "bytes": 6291456,
+        "sha256": "956b86c229fb2b675cf5a4bff9b02946bbf76b4d634ed201c26bb83406df1558",
+        "git_blob_sha": "fb1af7e3f13cd4868abe9429f7a39f8eb26eb5e7"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00010.bin",
+        "bytes": 6291456,
+        "sha256": "0db03a0ad3e1aa520e277222343096a2eb965d36314b8e42d218ef2306f7ae68",
+        "git_blob_sha": "59c18379d016f5759d5c4c1be6168ad7890b5935"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00011.bin",
+        "bytes": 6291456,
+        "sha256": "f3da218405ad471b2aa63b3b0fa5d364a3e3eb3498276bec2fc45aca71b546a0",
+        "git_blob_sha": "cf81bad48e7ba67e0f910c0012b7349403b1b92c"
+      },
+      {
+        "path": "production/media/09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640/part-00012.bin",
+        "bytes": 1603981,
+        "sha256": "9ed0e631fb6c60448774c58bcb4607425fc4ea7856b6577bcbdb2434f43665af",
+        "git_blob_sha": "d171e2580423b08c35e3838255d1c1ecabb870cd"
+      }
+    ],
+    "probe": {
+      "duration_seconds": 308.709297,
+      "width": 1080,
+      "height": 1920,
+      "frame_rate": "30/1",
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "sample_rate": 44100,
+      "channels": 2
+    }
+  },
+  "delivery_verification": "production/jobs/BW-002/delivery.json",
+  "ingest": {
+    "status": "upload_in_progress",
+    "uploaded_part_numbers": [
+      1
+    ],
+    "remaining_part_numbers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "delivery_verified": false,
+    "original_attachment": {
+      "library_file_id": "libfile_a6d5e8a4516c8191b168563bd3ba1768",
+      "uploaded_name": "1000219289.mp4"
+    }
+  }
+}

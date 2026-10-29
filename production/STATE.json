@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29T08:44:06+00:00",
+  "updated_at": "2026-10-29T11:06:21+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -19,9 +19,11 @@
     "international": "+996 998 08 38 28"
   },
   "active_job_id": null,
-  "next_suggested_job_id": "BW-002",
+  "next_suggested_job_id": "BW-003",
   "baseline_job_id": "BW-001",
-  "pending": [],
+  "pending": [
+    "Finish BW-002 media upload: parts 2–12, clean GitHub clone restore/verify and publish delivery proof before Claude prompt"
+  ],
   "source": {
     "original_name": "1000218256.mp4",
     "bytes": 19586471,
@@ -60,5 +62,6 @@
     "new_edit_created": false,
     "large_source_transport_ready": false
   },
-  "readiness_scope": "Source archive delivery, verification, recovery, duplicate protection and resumable job queue; Git-parts originals up to 100 MiB"
+  "readiness_scope": "Source archive delivery, verification, recovery, duplicate protection and resumable job queue; Git-parts originals up to 100 MiB",
+  "pending_ingest_job_id": "BW-002"
 }
