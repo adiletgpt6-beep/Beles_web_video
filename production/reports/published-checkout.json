@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-10-29T08:42:46.692448+00:00",
+  "checked_commit": "0cae66705a6e2277e51617b5a637c344126c8d32",
+  "origin": "https://github.com/adiletgpt6-beep/Beles_web_video.git",
+  "method": "Second independent shallow GitHub clone; published CLI only; no copied input MP4",
+  "checks": {
+    "fresh_restore": true,
+    "parts_size_sha256_git_sha_and_whole_mp4_ffprobe": true,
+    "repeat_restore_and_ingest_no_changes_or_new_jobs": true,
+    "deleted_mp4_recovered": true,
+    "same_size_corrupt_mp4_detected_and_recovered": true,
+    "missing_and_corrupt_parts_recovered_from_published_git_objects": true,
+    "new_chat_saved_next_step_and_baseline_lock_and_no_BW002": true,
+    "baseline_code_style_and_result_unchanged": true,
+    "delivery_proof_recorded": true
+  },
+  "passed": true,
+  "bytes": 19586471,
+  "sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
+  "probe": {
+    "duration_seconds": 341.449433,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "av1",
+    "audio_codec": "aac",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "parts": [
+    {
+      "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00001.bin",
+      "bytes": 6291456,
+      "sha256": "3c97d9c0d79c53263e0057729b99b5ee83f2676cba326bb400bf81b84a979d01",
+      "git_blob_sha": "aa2a01630051d654503aa90b615c78dd0fce5d4d",
+      "verified": true,
+      "repaired": false
+    },
+    {
+      "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00002.bin",
+      "bytes": 6291456,
+      "sha256": "0e46ec6ff2b954c5b74f15ecaf749e6f7538c182ea3edc659348fec93cab9fcd",
+      "git_blob_sha": "ce8eeef7426f0817eb7024a2620aed9fa4952623",
+      "verified": true,
+      "repaired": false
+    },
+    {
+      "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00003.bin",
+      "bytes": 6291456,
+      "sha256": "e1ce0774466a49812007b29830237dde282749f42019d63acaaeb8fa641d6210",
+      "git_blob_sha": "f32bc57c08c7d5b6c1d9efcc632f44cd7540af44",
+      "verified": true,
+      "repaired": false
+    },
+    {
+      "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00004.bin",
+      "bytes": 712103,
+      "sha256": "20b9ce4bc481b6fbd7328fd88a30779750cde992cd640ffaea232901103394a1",
+      "git_blob_sha": "88dbfdcd09bfa56a508fba1dee1ff9f8f4309026",
+      "verified": true,
+      "repaired": false
+    }
+  ],
+  "next_job_id": null,
+  "next_suggested_job_id": "BW-002",
+  "tool_sha256": "157516ce923947e762b11baea968f5bd00e0cd3e8363c17d86d6d3da2381b72b"
+}

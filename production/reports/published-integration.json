@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "tests_run": 10,
+  "seconds": 11.685,
+  "cases": [
+    {
+      "test": "test_baseline_locked_and_empty_queue",
+      "passed": true
+    },
+    {
+      "test": "test_baseline_restore_verify_and_repeat",
+      "passed": true
+    },
+    {
+      "test": "test_chat_handoff_via_two_independent_git_clones",
+      "passed": true
+    },
+    {
+      "test": "test_deleted_and_same_size_corrupt_mp4",
+      "passed": true
+    },
+    {
+      "test": "test_duplicate_baseline_and_new_source",
+      "passed": true
+    },
+    {
+      "test": "test_failed_restore_preserves_valid_cache",
+      "passed": true
+    },
+    {
+      "test": "test_invalid_input_paths_and_size_limit",
+      "passed": true
+    },
+    {
+      "test": "test_lock_and_idempotent_sync",
+      "passed": true
+    },
+    {
+      "test": "test_missing_and_corrupt_parts_repaired_from_git",
+      "passed": true
+    },
+    {
+      "test": "test_unpublished_source_cannot_enter_queue",
+      "passed": true
+    }
+  ],
+  "scope": "Real BW-001 archive + synthetic video in disposable local Git repos; no network or production BW-002 created",
+  "python": "3.12.14",
+  "ffprobe": "ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers",
+  "tool_sha256": "157516ce923947e762b11baea968f5bd00e0cd3e8363c17d86d6d3da2381b72b"
+}

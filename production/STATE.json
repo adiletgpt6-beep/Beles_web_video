@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29T08:40:48+00:00",
+  "updated_at": "2026-10-29T08:44:06+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
-  "system_status": "validation_in_progress",
+  "system_status": "ready",
   "approved_style": "Beles V5",
   "baseline": {
     "commit": "060d9cda2ed764984ad76717c16bb17d031e1fff",
@@ -21,9 +21,7 @@
   "active_job_id": null,
   "next_suggested_job_id": "BW-002",
   "baseline_job_id": "BW-001",
-  "pending": [
-    "Publish tested workflow and verify commands again from an independent GitHub clone before marking ready"
-  ],
+  "pending": [],
   "source": {
     "original_name": "1000218256.mp4",
     "bytes": 19586471,
@@ -54,6 +52,13 @@
     "max_source_bytes": 104857600,
     "automatic_paid_services": false,
     "tests_report": "production/reports/workflow-integration.json",
-    "verification_report": "production/reports/VERIFICATION.md"
-  }
+    "verification_report": "production/reports/VERIFICATION.md",
+    "verified_implementation_commit": "0cae66705a6e2277e51617b5a637c344126c8d32",
+    "published_checkout_report": "production/reports/published-checkout.json",
+    "published_integration_report": "production/reports/published-integration.json",
+    "published_integration_tests_passed": 10,
+    "new_edit_created": false,
+    "large_source_transport_ready": false
+  },
+  "readiness_scope": "Source archive delivery, verification, recovery, duplicate protection and resumable job queue; Git-parts originals up to 100 MiB"
 }
