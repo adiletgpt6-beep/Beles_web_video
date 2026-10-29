@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "job_id": "BW-001",
+  "role": "approved_baseline",
+  "repository": "adiletgpt6-beep/Beles_web_video",
+  "approved_style": "Beles V5",
+  "contact": "0998 08 38 28",
+  "source": {
+    "original_name": "1000218256.mp4",
+    "bytes": 19586471,
+    "sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
+    "cache_path": "input/1000218256.mp4",
+    "storage": "github_git_parts",
+    "parts": [
+      {
+        "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00001.bin",
+        "bytes": 6291456,
+        "sha256": "3c97d9c0d79c53263e0057729b99b5ee83f2676cba326bb400bf81b84a979d01",
+        "git_blob_sha": "aa2a01630051d654503aa90b615c78dd0fce5d4d"
+      },
+      {
+        "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00002.bin",
+        "bytes": 6291456,
+        "sha256": "0e46ec6ff2b954c5b74f15ecaf749e6f7538c182ea3edc659348fec93cab9fcd",
+        "git_blob_sha": "ce8eeef7426f0817eb7024a2620aed9fa4952623"
+      },
+      {
+        "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00003.bin",
+        "bytes": 6291456,
+        "sha256": "e1ce0774466a49812007b29830237dde282749f42019d63acaaeb8fa641d6210",
+        "git_blob_sha": "f32bc57c08c7d5b6c1d9efcc632f44cd7540af44"
+      },
+      {
+        "path": "production/media/fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382/part-00004.bin",
+        "bytes": 712103,
+        "sha256": "20b9ce4bc481b6fbd7328fd88a30779750cde992cd640ffaea232901103394a1",
+        "git_blob_sha": "88dbfdcd09bfa56a508fba1dee1ff9f8f4309026"
+      }
+    ],
+    "probe": {
+      "duration_seconds": 341.449433,
+      "width": 1080,
+      "height": 1920,
+      "frame_rate": "30/1",
+      "video_codec": "av1",
+      "audio_codec": "aac",
+      "sample_rate": 44100,
+      "channels": 2
+    }
+  },
+  "approved_result": {
+    "commit": "060d9cda2ed764984ad76717c16bb17d031e1fff",
+    "path": "release/beles-web-v5-1080x1920.mp4",
+    "release_tag": "v5.0.0",
+    "bytes": 14533378,
+    "sha256": "630176bc90162456ab8c58a0ca289b90b9809831d1e833c5d9c7931ad64dbfe0",
+    "git_blob_sha": "b7e78177b2666208818a3c071af8730c64066062",
+    "user_approved": true
+  },
+  "delivery_verification": "pending_clean_checkout"
+}

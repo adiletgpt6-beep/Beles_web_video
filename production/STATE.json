@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-28",
+  "updated_at": "2026-10-29",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "setup_in_progress",
@@ -22,17 +22,20 @@
   "next_suggested_job_id": "BW-002",
   "baseline_job_id": "BW-001",
   "pending": [
-    "Create and test per-job ingestion/restore/checkpoint commands",
-    "Upload original source 1000218256.mp4 or register a verified durable GitHub asset",
-    "Create job registry and baseline job BW-001",
-    "Verify clean-checkout media restore without ChatGPT attachments",
-    "Verify remote files/checksums and only then mark the production system ready"
+    "Verify BW-001 source reconstruction from clean GitHub checkout against manifest size/SHA-256 and ffprobe",
+    "Implement and test reusable ingest/verify/restore/checkpoint/status commands with duplicate detection",
+    "Create durable job queue; BW-001 is approved baseline, next real footage uses next free ID (suggested BW-002)",
+    "Test missing/corrupt media recovery and saved next step; update README/INGEST/PROMPTS/STATE/HANDOFF",
+    "Mark ready only after actual end-to-end verification"
   ],
   "source": {
     "original_name": "1000218256.mp4",
     "bytes": 19586471,
     "sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
-    "durable_upload_verified": false
+    "durable_upload_verified": false,
+    "storage": "github_git_parts",
+    "manifest": "production/jobs/BW-001/manifest.json",
+    "upload_checkpoint": "All four Git blobs attached in this checkpoint; clean-checkout reconstruction pending"
   },
   "checkpoint_file": "production/HANDOFF.md"
 }
