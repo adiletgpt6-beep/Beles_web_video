@@ -1,5 +1,14 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-03 — подготовлен Studio PR #171 (проверка R2 upload)
+
+- Создан draft PR https://github.com/adiletzainidinov/balago-video/pull/171, head 8acd875f5a21f1add7c878592d09940c4d8a7542. Изменены apps/balago-studio/src/lib/intake.ts, handlers.ts и новый маршрут POST /api/uploads/[id]/inspect.
+- Новый endpoint под существующей авторизацией владельца, same-origin JSON/CSRF и rate limit 20/min возвращает uploadId, repository, objectKey, manifest size, client-reported SHA-256, status, R2 HEAD size/contentType и результат их сопоставления. Не выдаёт presigned URL, не создаёт Issue/VID и не модифицирует upload.
+- Код только в draft PR: CI, тесты, merge и production НЕ подтверждены. uploadId существующего пользовательского R2 объекта не получен. SHA-256 R2 байтов независимо не вычислен, broker Claude не проверен, привязка BW-002 не выполнена.
+- Следующее действие: добавить unit tests для inspect (owner auth/CSRF, несуществующий upload, HEAD mismatch, отсутствие побочных эффектов), проверить CI и preview; затем безопасно получить uploadId из авторизованной Studio session без нового upload. Сверить server repository, HEAD и независимо вычисленный digest байтов R2 с BW-002. Только после этого оформить R2 transport и Claude broker в существующем BW-002.
+- Не нажимать Submit; не менять BW-001, STATE pending_ingest_job_id, manifest ingest status, не запускать платные сервисы.
+
+
 ## Проверка 2026-11-03 — Studio PR #170 объединён; BW-002 ожидает серверной привязки
 
 - Подтверждено через GitHub API: PR #170 в adiletzainidinov/balago-video merged в main, merge commit 8ea4de10aeff62743d49ddcf3083c31f5b7eb248. По сообщению пользователя production UI позволяет выбрать adiletgpt6-beep/Beles_web_video.
