@@ -1,5 +1,15 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## Проверка 2026-11-03 — Studio PR #170 объединён; BW-002 ожидает серверной привязки
+
+- Подтверждено через GitHub API: PR #170 в adiletzainidinov/balago-video merged в main, merge commit 8ea4de10aeff62743d49ddcf3083c31f5b7eb248. По сообщению пользователя production UI позволяет выбрать adiletgpt6-beep/Beles_web_video.
+- Прочитан актуальный код apps/balago-studio/src/lib/intake.ts и handlers.ts: reassignUploadRepository сохраняет repository в приватном R2 manifest под блокировкой, если status=verified. Ответ содержит repository/uploadId, но не objectKey, size, sha256. Прямого авторизованного read-only endpoint для проверки существующего upload по ID и привязки к BW-002 нет.
+- submitUpload создаёт новый VID и GitHub Issue: НЕ вызывать для BW-002. Вызов reassign со стороны пользовательского UI не доказывает серверное состояние без повторного чтения приватного manifest.
+- confirmUploadDigest получает SHA-256 из клиентского запроса и сверяет R2 HEAD size/contentType; это НЕ независимый пересчёт SHA-256 байтов объекта на сервере. Нельзя утверждать, что SHA-256 R2 совпал с ожидаемым 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640.
+- Нет авторизованного доступа этой сессии к приватному R2 manifest/object и сессии пользователя Studio. uploadId/objectKey неизвестны; безопасная привязка и тест Claude source broker не завершены. Статусы BW-002, Git-parts 1/12 и pending_ingest_job_id остаются неизменными. Production deployment API через подключённый Vercel tool недоступен (tool not found); пользователь ранее подтвердил новый UI скриншотом, но независимая проверка deploy не выполнена.
+- Следующий шаг: добавить в Studio защищённый read-only endpoint для текущего verified upload (с той же auth/CSRF проверкой), возвращающий uploadId, repository, objectKey, size, sha256 и HEAD-метаданные; не раскрывать токены и presigned URL. Независимо потоково пересчитать SHA-256 R2 объекта на сервере или в авторизованном Claude Code через Studio broker, сравнить 70 809 997 байт и ожидаемый digest. После проверки атомарно обновить manifest/checkpoint BW-002 на R2 transport, реализовать и проверить доступ Claude через broker без нового VID/Issue, обновить STATE/HANDOFF. До этого не запускать монтаж или платные сервисы.
+
+
 ## 2026-11-03 — переход BW-002 на BalaGo Studio / Cloudflare R2
 
 - Пользователь загрузил в BalaGo Studio файл `1000219289.mp4` (UI: 67.5 MB, «Видео загружено, SHA-256 сохранён»). Однако UI показывал выбранный `adiletgpt6-beep/banamind-render`; кнопка Submit НЕ нажата. Нельзя считать объект привязанным к BW-002 или подтверждать совпадение R2 SHA с ожидаемым `09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640` до серверной проверки.
