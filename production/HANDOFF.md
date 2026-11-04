@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-04 — Studio PR #171: тесты добавлены, CI startup_failure
+
+- В Studio draft PR #171 добавлен apps/balago-studio/tests/inspect.test.ts, commit 3c18b47f0fdb44f3c0da9cd87c91c7e5adbd2d79: owner-only access, CSRF, 404/400, R2 HEAD mismatch, read-only/no Issue/VID.
+- Проверка GitHub Actions по ветке feat/studio-bw002-r2-inspect-20261103 показала 7 завершённых workflow runs с conclusion=startup_failure; последний https://github.com/adiletzainidinov/balago-video/actions/runs/41871356954. Успешного CI не обнаружено. Платные Actions повторно не запускались.
+- Не считать тесты пройденными и не объединять draft PR до локальной/preview проверки. R2 object SHA-256 и uploadId по-прежнему не получены; BW-002 не привязан. STATE и manifest не менять.
+- Следующий шаг: устранить блокировку GitHub Actions без платных запусков или выполнить npm run check в доступной среде, затем получить существующий uploadId из авторизованного интерфейса и выполнить read-only inspection. После независимого SHA-256 подтвердить BW-002 и настроить broker.
+
+
 ## 2026-11-03 — подготовлен Studio PR #171 (проверка R2 upload)
 
 - Создан draft PR https://github.com/adiletzainidinov/balago-video/pull/171, head 8acd875f5a21f1add7c878592d09940c4d8a7542. Изменены apps/balago-studio/src/lib/intake.ts, handlers.ts и новый маршрут POST /api/uploads/[id]/inspect.
