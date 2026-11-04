@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio PR #171 объединён; production deploy ожидается
+
+- Vercel preview на commit c95335076615329264f6b1ce51b0aa276083cd62 завершился READY; npm typecheck, Vitest 50/50 tests и Next.js production build прошли. В том числе tests/inspect.test.ts 4/4.
+- GitHub Studio PR #171 https://github.com/adiletzainidinov/balago-video/pull/171 переведён из draft и успешно squash-merged в main: cee34fc24b710cc271acab66334aa1b1e16ba64a.
+- Production Vercel deployment для cee34fc24b710cc271acab66334aa1b1e16ba64a начался, на момент записи BUILDING. После READY владелец может открыть balago-studio.vercel.app и нажать «Проверить существующую загрузку (без нового задания)». Кнопка использует browser localStorage uploadId, показывает R2 HEAD и client-reported SHA. Не нажимать «Отправить в работу».
+- Независимый SHA-256 байтов R2 и uploadId пока не подтверждены; BW-002 остаётся pending, manifest и STATE без изменений. Следующий шаг: получить inspection и проверить R2 SHA по байтам перед привязкой.
+
+
 ## 2026-11-05 — Studio PR #171: UI проверки сохранённой загрузки
 
 - Studio branch feat/studio-bw002-r2-inspect-20261103, commit 347925cf0a42fccedf82453cbfab5c6736de2bab: в apps/balago-studio/src/app/studio-app.tsx добавлена кнопка «Проверить существующую загрузку (без нового задания)». Использует сохранённый в браузере uploadId (localStorage balago-studio:current), POST /api/uploads/{id}/inspect и показывает server repository, objectKey, R2 HEAD размер, client-reported SHA-256 и предупреждение об отсутствии независимой проверки хеша. Не создаёт Issue, VID, новый upload.
