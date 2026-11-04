@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio PR #171: UI проверки сохранённой загрузки
+
+- Studio branch feat/studio-bw002-r2-inspect-20261103, commit 347925cf0a42fccedf82453cbfab5c6736de2bab: в apps/balago-studio/src/app/studio-app.tsx добавлена кнопка «Проверить существующую загрузку (без нового задания)». Использует сохранённый в браузере uploadId (localStorage balago-studio:current), POST /api/uploads/{id}/inspect и показывает server repository, objectKey, R2 HEAD размер, client-reported SHA-256 и предупреждение об отсутствии независимой проверки хеша. Не создаёт Issue, VID, новый upload.
+- Сеть к GitHub из локального контейнера недоступна (DNS github.com), поэтому npm check локально на исходниках не выполнен. GitHub Actions по ветке имели startup_failure. Нельзя считать тесты пройденными или PR развернутым.
+- Нужно проверить сборку в доступном CI/preview без дополнительных платных GitHub Actions, безопасно merge/deploy PR, затем пользователь в авторизованной Studio нажимает только кнопку проверки (не Submit). После этого сверить R2 digest независимо, записать verified R2 transport для BW-002, проверить broker.
+- Не менять manifest/STATE до подтверждения байтов; не создавать новый ID, не перезагружать MP4.
+
+
 ## 2026-11-04 — Studio PR #171: тесты добавлены, CI startup_failure
 
 - В Studio draft PR #171 добавлен apps/balago-studio/tests/inspect.test.ts, commit 3c18b47f0fdb44f3c0da9cd87c91c7e5adbd2d79: owner-only access, CSRF, 404/400, R2 HEAD mismatch, read-only/no Issue/VID.
