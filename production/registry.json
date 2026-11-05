@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_job_id": "BW-002",
+  "active_job_id": null,
   "next_suggested_job_id": "BW-003",
   "jobs": [
     {
@@ -15,10 +15,10 @@
     {
       "job_id": "BW-002",
       "role": "edit",
-      "status": "in_progress",
+      "status": "rendered",
       "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
       "manifest": "production/jobs/BW-002/manifest.json",
-      "next_step": "Закончить ASR (large-v3 черновик + kyrgyz-whisper-medium), составить docs/transcript.md и edit-plan.md в production/jobs/BW-002/, затем edit.json и рендер.",
+      "next_step": "Показать пользователю production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4 (после push — по ссылке в ветке); получить правки или утверждение; опубликовать коммиты, как только GitHub снова принимает push.",
       "delivery_verified": true
     }
   ]

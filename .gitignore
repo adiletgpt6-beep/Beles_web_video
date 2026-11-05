@@ -11,3 +11,6 @@ public/media/
 __pycache__/
 production/.beles-ingest-*/
 **/.beles-*
+
+# BW-002 raw per-frame gaze data (1.6 MB, regenerable with scripts/gaze/gaze.py); summary is committed
+production/jobs/BW-002/data/asr/gaze.json
