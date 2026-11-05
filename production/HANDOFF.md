@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio PR #173 merged, production deploying
+
+- Studio PR #173 https://github.com/adiletzainidinov/balago-video/pull/173 merged with squash SHA 5142c0305895666e1c4c8b7cd3a5f6aee64af591; GitHub mergeable true, Vercel preview tests 53/53 passed. Production deployment initializing at checkpoint.
+- Broker now allows only exact existing BW-002 with repository adiletgpt6-beep/Beles_web_video, uploadId f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc, 70809997 bytes and expected SHA-256; no new VID/Issue. CLI studio-fetch.mjs supports BW-002.
+- Next: wait production READY, verify STUDIO_SOURCE_TOKEN_SHA256 configured on Vercel and STUDIO_SOURCE_TOKEN available in Claude Code runtime (never print secrets). From authorized Claude runtime run `node studio-fetch.mjs adiletgpt6-beep/Beles_web_video BW-002 ./input/BW-002/1000219289.mp4`; inspect SHA-256, size, ffprobe, then mark BW-002 delivery only after actual clean fetch. If token missing, record precise blocker; never submit new video or expose presigned GET URL.
+- BW-002 checkpoint blocked until independent broker download; old Git-parts upload remains incomplete. No paid render authorized.
+
+
 ## 2026-11-05 — Studio source broker for existing BW-002 (branch, not yet merged)
 
 - R2 integrity verified by owner Studio screenshot: 70809997 bytes, SHA-256 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640.
