@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio R2 digest production READY; ожидание результата владельца
+
+- Vercel production deploy Studio main e0569a7e99c8022330bb0941eceed21b31423573 confirmed READY. Protected read-only POST /api/uploads/{id}/verify-bytes available via owner-authenticated Studio UI; no server-side owner session in GitHub connector, so cannot invoke on behalf of owner from GitHub.
+- User should open https://balago-studio.vercel.app, inspect existing upload f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc and click «Проверить SHA-256 по байтам R2» (do not click Submit). Need exact actualSha256 and matches from UI.
+- Read current BW-002 manifest/STATE: still github_git_parts, ingest upload_in_progress, uploaded_part_numbers=[1], delivery_verified=false; STATE pending_ingest_job_id=BW-002. DO NOT mark completed until R2 byte digest verified and R2 source transport integrated; current scripts/beles.py restore expects Git parts and will fail if simply flipping storage field.
+- After digest, implement/test R2 broker source for existing BW-002 and update restore/verify/queue semantics without new ID, paid render or reupload.
+
+
 ## 2026-11-05 — PR #172 validated and merged
 
 - Vercel preview build for commit 7895e6c3fa4c82c0d27e53b800168fa3d600d818: READY; 51/51 Vitest tests passed; Next.js production build completed with /api/uploads/[id]/verify-bytes.
