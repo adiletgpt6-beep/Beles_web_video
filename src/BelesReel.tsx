@@ -17,6 +17,7 @@ import { Captions } from './Captions';
 import { TypeScene } from './TypeScene';
 import { BehindText, IconRow, SiteStage, VideoCard } from './scenes';
 import { WhatsAppBadge } from './WhatsAppBadge';
+import { Bulb, SearchBar, SideScene } from './demos';
 
 // Block rendering until the local fonts (incl. Kyrgyz ө ү ң) are really loaded.
 const useFonts = () => {
@@ -85,6 +86,24 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
             'linear-gradient(180deg, rgba(10,2,2,0.45) 0%, rgba(10,2,2,0) 38%)',
         }}
       />
+      {(timeline.searchBars ?? []).map((s, i) => (
+        <Sequence key={`sb${i}`} from={s.startFrame} durationInFrames={s.endFrame - s.startFrame} layout="none">
+          <SearchBar data={s} />
+        </Sequence>
+      ))}
+      {(timeline.sideScenes ?? []).map((s, i) => (
+        <Sequence key={`sd${i}`} from={s.startFrame} durationInFrames={s.endFrame - s.startFrame} layout="none">
+          <SideScene data={s} />
+        </Sequence>
+      ))}
+      {(timeline.bulbs ?? []).map((b, i) => (
+        <Sequence key={`bulb${i}`} from={b.startFrame} durationInFrames={b.endFrame - b.startFrame} layout="none">
+          <Bulb x={b.x} y={b.y} len={b.endFrame - b.startFrame} />
+        </Sequence>
+      ))}
+      {timeline.vignette ? (
+        <AbsoluteFill style={{ background: `radial-gradient(78% 60% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,${timeline.vignette}) 100%)` }} />
+      ) : null}
       {timeline.behindText ? (
         <Sequence from={timeline.behindText.startFrame} durationInFrames={timeline.behindText.endFrame - timeline.behindText.startFrame} layout="none">
           <BehindText data={timeline.behindText} camera={timeline.camera} face={timeline.face} />

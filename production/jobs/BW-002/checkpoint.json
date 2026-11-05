@@ -2,14 +2,17 @@
   "schema_version": 1,
   "job_id": "BW-002",
   "status": "rendered",
-  "updated_at": "2026-11-05T02:35:02+00:00",
-  "next_step": "Показать пользователю production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4 (после push — по ссылке в ветке); получить правки или утверждение; опубликовать коммиты, как только GitHub снова принимает push.",
-  "note": "2026-11-05: v1 отрендерен и проверен (35,63 с, 1069 кадров, −14,9 LUFS/−2,7 dBTP, SHA-256 01ad7c6c…bda43). Покадровый просмотр выполнен, 6 правок внесены до финального рендера. Не прослушано ушами. Push блокирован сервером GitHub (fatal error in commit_refs).",
+  "updated_at": "2026-11-05T08:26:06+00:00",
+  "next_step": "Получить отзыв пользователя на v2 (production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
+  "note": "2026-11-05: v2 — полная переработка графики (поисковый хук, телефон с реальным zeket.kg, демо-магазин и демо-автоматизация с меткой ДЕМО, окно десктопа, лампочка, WhatsApp с кнопкой), речь/дубли/склейки как в v1. Проверено: verify.sh, −14,9 LUFS/−1,9 dBTP, покадровый просмотр каждого 6-го кадра, надписи сверены. Не прослушано ушами.",
   "artifacts": [
     "production/jobs/BW-002/docs/verification.md",
     "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
     "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
-    "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4"
+    "production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4",
+    "production/jobs/BW-002/release/beles-bw002-v2-subtitles-ky.srt",
+    "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4",
+    "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4"
   ],
   "events": [
     {
@@ -43,6 +46,21 @@
         "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
         "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
         "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4"
+      ]
+    },
+    {
+      "at": "2026-11-05T08:26:06+00:00",
+      "status": "rendered",
+      "next_step": "Получить отзыв пользователя на v2 (production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
+      "note": "2026-11-05: v2 — полная переработка графики (поисковый хук, телефон с реальным zeket.kg, демо-магазин и демо-автоматизация с меткой ДЕМО, окно десктопа, лампочка, WhatsApp с кнопкой), речь/дубли/склейки как в v1. Проверено: verify.sh, −14,9 LUFS/−1,9 dBTP, покадровый просмотр каждого 6-го кадра, надписи сверены. Не прослушано ушами.",
+      "artifacts": [
+        "production/jobs/BW-002/docs/verification.md",
+        "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
+        "production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v2-subtitles-ky.srt",
+        "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4",
+        "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4"
       ]
     }
   ]

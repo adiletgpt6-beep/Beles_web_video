@@ -182,7 +182,28 @@ const badge = edit.badge && {
   number: edit.badge.number,
   x: edit.badge.x,
   y: edit.badge.y,
+  ...(edit.badge.cta ? { cta: edit.badge.cta } : {}),
+  ...(edit.badge.button ? { button: edit.badge.button } : {}),
 };
+// BW-002 v2 scenes: search-bar hook, side phone/desktop demos, idea bulb (all anchors → frames)
+const searchBars = (edit.searchBars ?? []).map((s) => {
+  const startFrame = anchor(s.from);
+  const L = local(startFrame);
+  return { startFrame, endFrame: anchor(s.to), typed: s.typed, typeFrom: L(s.typeFrom), typeTo: L(s.typeTo), dotsFrom: L(s.dotsFrom), y: s.y };
+});
+const sideScenes = (edit.sideScenes ?? []).map((sc) => {
+  const startFrame = anchor(sc.from);
+  const L = local(startFrame);
+  const beats = (b) => Object.fromEntries(Object.entries(b).map(([k, v]) => [k, L(v)]));
+  return {
+    startFrame,
+    endFrame: anchor(sc.to),
+    phone: sc.phone,
+    contents: sc.contents.map((c) => ({ from: L(c.from), content: c.content.beats ? { ...c.content, beats: beats(c.content.beats) } : c.content })),
+    ...(sc.desktop ? { desktop: { ...sc.desktop, from: L(sc.desktop.from), views: sc.desktop.views.map((v) => ({ frame: sec(v.t), x: v.x, y: v.y, w: v.w })) } } : {}),
+  };
+});
+const bulbs = (edit.bulbs ?? []).map((b) => ({ startFrame: anchor(b.from), endFrame: anchor(b.to), x: b.x, y: b.y }));
 const endCard = edit.endCard && { startFrame: anchor(edit.endCard.from), endFrame: anchor(edit.endCard.to), accent: edit.endCard.accent, main: edit.endCard.main };
 
 // 4. Subtitles: phrase groups authored per segment; every word carries its own start (source seconds,
@@ -235,6 +256,10 @@ for (let i = 0; i < subtitles.length - 1; i++) {
 const timeline = {
   ...(edit.face ? { face: edit.face } : {}),
   ...(edit.captionTopY ? { captionTopY: edit.captionTopY } : {}),
+  ...(edit.vignette ? { vignette: edit.vignette } : {}),
+  ...(searchBars.length ? { searchBars } : {}),
+  ...(sideScenes.length ? { sideScenes } : {}),
+  ...(bulbs.length ? { bulbs } : {}),
   fps: FPS,
   width: edit.width,
   height: edit.height,

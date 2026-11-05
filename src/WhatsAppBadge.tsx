@@ -62,6 +62,36 @@ export const WhatsAppBadge: React.FC<{ badge: Badge }> = ({ badge }) => {
             {badge.number}
           </div>
         </div>
+        {badge.cta || badge.button ? (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 10, opacity: interpolate(f, [12, 20], [0, 1], { ...clamp, easing: out }), transform: `translateY(${(1 - interpolate(f, [12, 20], [0, 1], clamp)) * 20}px)` }}>
+            {badge.cta ? <span style={{ fontFamily: FONTS.body, fontWeight: 700, fontSize: 30, color: '#2B2B2E' }}>{badge.cta}</span> : null}
+            {badge.button ? (
+              <span
+                style={{
+                  position: 'relative',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 10,
+                  padding: '12px 24px',
+                  borderRadius: 28,
+                  background: WA_GREEN,
+                  color: '#fff',
+                  fontFamily: FONTS.body,
+                  fontWeight: 800,
+                  fontSize: 30,
+                  // soft pulse: scale + ring every 1.2 s, never jumps
+                  transform: `scale(${1 + 0.035 * Math.max(0, Math.sin(((f - 20) / 36) * Math.PI * 2))})`,
+                  boxShadow: `0 0 0 ${6 + 10 * Math.max(0, Math.sin(((f - 20) / 36) * Math.PI * 2))}px rgba(37,211,102,${0.28 - 0.2 * Math.max(0, Math.sin(((f - 20) / 36) * Math.PI * 2))})`,
+                }}
+              >
+                <svg width={28} height={28} viewBox="0 0 24 24">
+                  <path d={WA_PATH} fill="#fff" />
+                </svg>
+                {badge.button}
+              </span>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </AbsoluteFill>
   );

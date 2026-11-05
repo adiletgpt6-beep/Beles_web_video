@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — BW-002 v2: полная переработка графики (premium digital agency), проверено, опубликовано
+
+- Запрос пользователя: переработать «1000221122.mp4» (35,6 с) — файла с таким именем нет, это BW-002 v1; v2 собран из тех же дублей оригинала, речь/склейки без изменений.
+- Новое в `src/`: `demos.tsx` (SearchBar — хук с поисковой строкой; SideScene — смартфон слева от ведущего с реальным сайтом zeket.kg / демо-магазином / демо-автоматизацией и окном десктопа; Bulb), камера `right` (ведущий справа), WhatsApp-плашка с CTA-строкой и пульсирующей кнопкой, виньетка; `build-timeline.mjs` маппит `searchBars/sideScenes/bulbs/badge.cta`; `build-audio.mjs` — `VOICE_EQ=1`. Эталон V5 не затронут (сборка baseline даёт тот же timeline).
+- Результат: `production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4` (22 557 063 байт, SHA-256 `b908098d…2400`), превью, SRT; отчёт `docs/verification.md` (раздел v2), план `docs/edit-plan.md` (раздел «v2: графика»). v1 оставлен рядом; данные v1 — `data/v1/`.
+- Команды воспроизведения v2: `EDIT=production/jobs/BW-002/data/edit.json OUT_DIR=production/jobs/BW-002/data node scripts/build-timeline.mjs`; `VOICE_EQ=1 PLAN=production/jobs/BW-002/data/audio-plan.json MEDIA=public/media/bw002 node scripts/build-audio.mjs`; `NAME=… ENTRY=production/jobs/BW-002/src/index.ts COMP=BelesReelBW002 AUDIO=public/media/bw002/voice.wav bash scripts/render.sh`; затем bsf-перемаркировка bt709 как в verification.
+- Не выполнено: прослушивание ушами, просмотр на телефоне, утверждение пользователя. Следующий шаг: отзыв пользователя (правки → edit.json/demos.tsx → повторный рендер ~40 мин).
+
 ## 2026-11-05 — BW-002 v1 смонтирован локально, проверен; push в GitHub блокирован сервером
 
 - Сделано (Claude Code, облачная среда, без платных сервисов): локальный ASR (faster-whisper large-v3 черновик таймингов + `nineninesix/kyrgyz-whisper-medium` текст + скоринг спорных слов), оценка взгляда MediaPipe, выбор 8 дублей, `production/jobs/BW-002/data/edit.json` → timeline/EDL/SRT/audio-plan, микс −15 LUFS, рендер Remotion, покадровая проверка, 6 исправлений, повторный рендер. Документы: `production/jobs/BW-002/docs/transcript.md`, `edit-plan.md`, `verification.md`, `verification-raw.txt`.

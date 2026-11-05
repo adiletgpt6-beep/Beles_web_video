@@ -1,7 +1,8 @@
 // All *Frame values are in FINAL-timeline frames at timeline.fps (30).
 // Source positions (srcInFrame) are frames of public/media/source.mp4 (30 fps CFR).
 
-export type CameraMode = 'wide' | 'medium' | 'close' | 'card' | 'card2';
+// 'right': presenter pushed to the right 55% of the frame so a device demo can stand on the left (BW-002 v2).
+export type CameraMode = 'wide' | 'medium' | 'close' | 'card' | 'card2' | 'right';
 
 export type Clip = {
   id: string;
@@ -98,6 +99,22 @@ export type Badge = {
   number: string; // shown exactly as given (0998 08 38 28)
   x: number; // badge centre, final-frame px
   y: number;
+  cta?: string; // BW-002 v2: extra line under the number (visual title, not speech)
+  button?: string; // BW-002 v2: pulsing WhatsApp button label
+};
+
+// BW-002 v2 scenes (frames scene-local unless named startFrame/endFrame)
+export type SearchBarData = { startFrame: number; endFrame: number; typed: string; typeFrom: number; typeTo: number; dotsFrom: number; y: number };
+export type SideSceneContent =
+  | { kind: 'site'; image: string; imageWidth: number; imageHeight: number; scrollFrom: number; scrollTo: number; label?: string }
+  | { kind: 'store'; beats: Record<string, number>; label?: string }
+  | { kind: 'automation'; beats: Record<string, number>; label?: string };
+export type SideSceneData = {
+  startFrame: number;
+  endFrame: number;
+  phone: { x: number; y: number; w: number; h: number };
+  contents: { from: number; content: SideSceneContent }[]; // sequential screens on the same phone
+  desktop?: { from: number; x: number; y: number; w: number; h: number; url: string; image: string; imageWidth: number; imageHeight: number; views: ViewKey[] };
 };
 
 type Rect = { x: number; y: number; w: number; h: number };
@@ -149,6 +166,10 @@ export type Timeline = {
   // optional per-job presenter metrics (see src/camera.ts) and caption 'top' row position
   face?: { cx: number; cy: number; top: number; cardScale?: number; card2Scale?: number };
   captionTopY?: number;
+  vignette?: number; // 0..1 cinematic edge darkening (BW-002 v2)
+  searchBars?: SearchBarData[];
+  sideScenes?: SideSceneData[];
+  bulbs?: { startFrame: number; endFrame: number; x: number; y: number }[];
   fps: number;
   width: number;
   height: number;

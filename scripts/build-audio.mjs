@@ -30,7 +30,9 @@ plan.clips.forEach((c, i) => {
 });
 parts.push(plan.clips.map((_, i) => `[c${i}]`).join('') + `concat=n=${plan.clips.length}:v=0:a=1[cat]`);
 // Gentle voice chain: rumble cut, light broadband denoise, soft compression; split for the music side-chain.
-parts.push(`[cat]highpass=f=75,afftdn=nr=7:nf=-44:tn=1,acompressor=threshold=-21dB:ratio=2.3:attack=8:release=140:makeup=1.5,asplit=2[v][vkey]`);
+// VOICE_EQ=1 (BW-002 v2): gentle presence lift and low-mid cleanup after the denoiser; off by default (V5 mix unchanged).
+const voiceEq = process.env.VOICE_EQ ? 'equalizer=f=3200:t=q:w=1.2:g=2,equalizer=f=190:t=q:w=1.1:g=-1.5,' : '';
+parts.push(`[cat]highpass=f=75,afftdn=nr=7:nf=-44:tn=1,${voiceEq}acompressor=threshold=-21dB:ratio=2.3:attack=8:release=140:makeup=1.5,asplit=2[v][vkey]`);
 
 const mixIn = ['[v]'];
 let next = 1;
