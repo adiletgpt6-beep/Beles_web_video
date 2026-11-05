@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — BW-003: исходник уже загружен в R2, ожидается независимый digest
+
+- Пользователь через BalaGo Studio загрузил новый файл 1000221272.mp4 для следующего ролика BW-003. Это отдельный исходник от BW-002, новый VID/Issue не создавать.
+- Studio owner inspect screenshot: uploadId ced83175-8979-410f-8742-df793118b3de; repository adiletgpt6-beep/Beles_web_video; R2 objectKey live/raw/ced83175-8979-410f-8742-df793118b3de/source.mp4; HEAD size 17528359 bytes; object exists; size/type match. Client-reported SHA starts with 88a058563539d8596ce356b8ab92ba0e333697... but screenshot truncates it; do not invent the full digest.
+- NEXT: owner clicks «Проверить SHA-256 по байтам R2» and shares result. Only after full actualSha256 and matches=true, register BW-003 once in Beles and implement/access broker for this exact upload. Do not change BW-002, do not call Studio submit/create VID, do not upload again or run paid services.
+- Style: follow current STYLE_GUIDE.md, visually unique concept for every promotional video; retain approved V5 pacing/quality, dynamic subtitles and WhatsApp.
+
+
 ## 2026-11-05 — BW-002 v4: финальная доработка, задание завершено
 
 - Правки пользователя выполнены: стартовая сцена «Инстаграм или сайт» — ведущий в крупной рамке смартфона, меньше пустого тёмного фона; демо-магазин с прокруткой каталога (6 карточек), корзиной и оформлением; субтитры подняты (chest 1480, low 1520), safe zones проверены, ө/ү/ң перепроверены; наезд на «кардарларга ыңгайлуу», мягче переходы экранов/устройств; номер 0998 08 38 28 появляется по цифрам + блик + кнопка.
