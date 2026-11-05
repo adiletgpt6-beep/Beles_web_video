@@ -422,6 +422,42 @@ def register_r2(root, args):
             "storage": R2_STORAGE, "upload_id": upload_id, "next_step": cp["next_step"]}
 
 
+def register_studio_issue(root, args):
+    """Register an existing Studio Issue by its exact source metadata, never by guessed screenshot IDs."""
+    body = Path(args.issue_file).read_text(encoding="utf-8")
+    repo = re.search(r"\\*\\*Репозиторий:\\*\\* \\x60([^\\x60]+)\\x60", body)
+    studio = re.search(r"^## (VID-[0-9]{3,4})\\b", body, re.M)
+    upload = re.search(r"<!-- studio-upload-id: ([0-9a-f-]{36}) -->", body)
+    key = re.search(r"^- Ключ R2: \\x60([^\\x60]+)\\x60", body, re.M)
+    size = re.search(r"^- Размер \\(байт\\): \\x60([0-9]+)\\x60", body, re.M)
+    digest = re.search(r"^- SHA-256: \\x60([0-9a-f]{64})\\x60", body, re.M)
+    if not all((repo, studio, upload, key, size, digest)):
+        raise Error("Studio Issue lacks exact repo/VID/uploadId/R2 key/bytes/SHA. Do not guess or register.")
+    expected_repo = read_json(root / "production/STATE.json")["repository"]
+    if repo.group(1) != expected_repo:
+        raise Error("Studio Issue belongs to a different repository")
+    if key.group(1) != f"live/raw/{upload.group(1)}/source.mp4":
+        raise Error("Studio uploadId and object key mismatch")
+    # The owner must submit a real Studio Issue, not a screenshot transcribed as trusted metadata.
+    args.sha256 = digest.group(1)
+    args.bytes = int(size.group(1))
+    args.upload_id = upload.group(1)
+    args.object_key = key.group(1)
+    args.name = f"{studio.group(1)}.mp4"
+    args.title = args.title or f"Beles Studio {studio.group(1)}"
+    result = register_r2(root, args)
+    jid = result["job_id"]
+    manifest_path = root / "production/jobs" / jid / "manifest.json"
+    manifest = read_json(manifest_path)
+    existing_studio = manifest.get("studio", {})
+    if existing_studio and existing_studio.get("video_id") != studio.group(1):
+        raise Error("Existing BW job already linked to a different Studio video ID")
+    if not existing_studio:
+        manifest["studio"] = {"video_id": studio.group(1), "upload_id": upload.group(1)}
+        write_json(manifest_path, manifest)
+    return {**result, "studio_video_id": studio.group(1), "job_id": jid}
+
+
 def repair_part(root, part):
     path = safe_path(root, part["path"])
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -597,6 +633,14 @@ def main(argv=None):
     reg.add_argument("--site")
     reg.add_argument("--verified-by", default="owner_studio_r2_byte_digest")
     reg.add_argument("--verified-at", default=dt.date.today().isoformat())
+    issue = sub.add_parser("register-studio-issue", help="Register Studio VID Issue from its exact GitHub body")
+    issue.add_argument("issue_file", help="Issue body saved verbatim from GitHub")
+    issue.add_argument("--brief", required=True)
+    issue.add_argument("--title")
+    issue.add_argument("--language", default="ky")
+    issue.add_argument("--site")
+    issue.add_argument("--verified-by", default="studio_submitted_issue_sha256_client_then_claude_verify")
+    issue.add_argument("--verified-at", default=dt.date.today().isoformat())
     for name in ("status", "queue", "next", "sync"):
         cmd = sub.add_parser(name)
         if name == "status":
@@ -629,10 +673,10 @@ def main(argv=None):
             result = verify(root, args.job_id)
         else:
             with lock(root):
-                if args.command in ("ingest", "register-r2"):
+                if args.command in ("ingest", "register-r2", "register-studio-issue"):
                     if not args.brief.strip():
                         raise Error("A nonempty brief is required")
-                    result = ingest(root, args) if args.command == "ingest" else register_r2(root, args)
+                    result = (ingest(root, args) if args.command == "ingest" else register_r2(root, args) if args.command == "register-r2" else register_studio_issue(root, args))
                 elif args.command == "restore":
                     result = restore(root, args.job_id)
                 elif args.command == "verify":
