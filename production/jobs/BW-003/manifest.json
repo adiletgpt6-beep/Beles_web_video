@@ -19,7 +19,16 @@
     "cache_path": "input/BW-003/1000221272.mp4",
     "storage": "cloudflare_r2_studio_broker",
     "parts": [],
-    "probe": null,
+    "probe": {
+      "duration_seconds": 216.735057,
+      "width": 1080,
+      "height": 1920,
+      "frame_rate": "30/1",
+      "video_codec": "av1",
+      "audio_codec": "aac",
+      "sample_rate": 44100,
+      "channels": 2
+    },
     "r2": {
       "provider": "cloudflare_r2",
       "repository": "adiletgpt6-beep/Beles_web_video",
@@ -29,14 +38,29 @@
       "sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
       "digest_method": "studio_owner_authenticated_r2_read_range_sha256",
       "verified_by": "owner_studio_r2_byte_digest_2026-11-05",
-      "verified_at_date": "2026-11-05"
+      "verified_at_date": "2026-11-05",
+      "claude_download": {
+        "date": "2026-11-05T12:57:00+00:00",
+        "environment": "claude_code_cloud_container",
+        "method": "studio_source_broker_studio_fetch_mjs",
+        "downloader_sha256": "fcee607e5c7018f1606cfb336de8de776031fcb9a5b2b8deb4164f5bfb69de68",
+        "bytes": 17528359,
+        "sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
+        "probe_recorded_from_this_download": true,
+        "report": "production/reports/BW-003-r2-delivery.json"
+      }
     },
     "delivery_transport": "cloudflare_r2_studio_broker"
   },
   "delivery_verification": "production/jobs/BW-003/delivery.json",
   "ingest": {
-    "status": "r2_upload_verified_by_owner",
+    "status": "downloaded_via_r2_broker_pending_record",
     "delivery_verified": false,
-    "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload."
+    "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload.",
+    "studio_broker": {
+      "pr": "adiletzainidinov/balago-video#175",
+      "commit": "17bc2dc",
+      "resolve_bw003_http": 200
+    }
   }
 }
