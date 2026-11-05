@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "job_id": "BW-002",
-  "status": "queued",
-  "updated_at": "2026-11-05T00:38:11+00:00",
-  "next_step": "Исходник BW-002 получать только командой Studio broker из START_HERE.md (Git-parts 1/12 не использовать); затем расшифровать кыргызскую речь и выбрать дубли. Монтаж и платные сервисы — только по отдельному указанию пользователя.",
-  "note": "2026-11-05: Claude Code в чистой облачной среде скачал оригинал через Studio source broker (STUDIO_SOURCE_TOKEN из окружения, подписанный URL не раскрыт): 70809997 байт, SHA-256 09d4a16d…fc640 совпал с manifest, ffprobe (1080x1920, 30 fps, h264/aac, 308.71 с) совпал. Отчёт production/reports/BW-002-r2-delivery.json, delivery.json записан. Новый ID не создавался, видео повторно не загружалось, монтаж не запускался.",
+  "status": "in_progress",
+  "updated_at": "2026-11-05T00:49:32+00:00",
+  "next_step": "Закончить ASR (large-v3 черновик + kyrgyz-whisper-medium), составить docs/transcript.md и edit-plan.md в production/jobs/BW-002/, затем edit.json и рендер.",
+  "note": "2026-11-05: начат монтаж по указанию пользователя. Исходник input/BW-002/1000219289.mp4 подтверждён (SHA совпал). Идёт локальный ASR на CPU (без платных API), промежуточные медиа в public/media/bw002/ (gitignored). Рабочие файлы задания — production/jobs/BW-002/.",
   "artifacts": [],
   "events": [
     {
@@ -12,6 +12,13 @@
       "status": "queued",
       "next_step": "Исходник BW-002 получать только командой Studio broker из START_HERE.md (Git-parts 1/12 не использовать); затем расшифровать кыргызскую речь и выбрать дубли. Монтаж и платные сервисы — только по отдельному указанию пользователя.",
       "note": "2026-11-05: Claude Code в чистой облачной среде скачал оригинал через Studio source broker (STUDIO_SOURCE_TOKEN из окружения, подписанный URL не раскрыт): 70809997 байт, SHA-256 09d4a16d…fc640 совпал с manifest, ffprobe (1080x1920, 30 fps, h264/aac, 308.71 с) совпал. Отчёт production/reports/BW-002-r2-delivery.json, delivery.json записан. Новый ID не создавался, видео повторно не загружалось, монтаж не запускался.",
+      "artifacts": []
+    },
+    {
+      "at": "2026-11-05T00:49:32+00:00",
+      "status": "in_progress",
+      "next_step": "Закончить ASR (large-v3 черновик + kyrgyz-whisper-medium), составить docs/transcript.md и edit-plan.md в production/jobs/BW-002/, затем edit.json и рендер.",
+      "note": "2026-11-05: начат монтаж по указанию пользователя. Исходник input/BW-002/1000219289.mp4 подтверждён (SHA совпал). Идёт локальный ASR на CPU (без платных API), промежуточные медиа в public/media/bw002/ (gitignored). Рабочие файлы задания — production/jobs/BW-002/.",
       "artifacts": []
     }
   ]
