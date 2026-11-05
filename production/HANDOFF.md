@@ -1,5 +1,12 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — PR #172 validated and merged
+
+- Vercel preview build for commit 7895e6c3fa4c82c0d27e53b800168fa3d600d818: READY; 51/51 Vitest tests passed; Next.js production build completed with /api/uploads/[id]/verify-bytes.
+- Studio PR #172 merged into main, merge SHA e0569a7e99c8022330bb0941eceed21b31423573. Production deployment of this merge not yet confirmed READY.
+- Next: on Studio owner UI inspect existing upload, then click «Проверить SHA-256 по байтам R2». Record actualSha256 and matches. Only if actualSha256 == 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640 and size 70809997, proceed to BW-002 R2 transport linkage. No reupload, no new Issue/VID, no paid render.
+
+
 ## 2026-11-05 — PR #172: independent R2 byte SHA-256 verification
 
 - Studio PR https://github.com/adiletzainidinov/balago-video/pull/172 (draft), branch feat/studio-bw002-r2-byte-digest-20261105, latest commit 7895e6c3fa4c82c0d27e53b800168fa3d600d818.
