@@ -109,6 +109,7 @@ export type BehindTextData = {
   srcStart: number;
   matteFrom: number;
   matteTo: number;
+  matteDir?: string; // folder inside public/ with <srcFrame>.png cut-outs (default media/matte)
   y: number;
   words: { text: string; from: number; to: number; color: 'white' | 'cyan' }[];
 };
@@ -141,10 +142,13 @@ export type IconRowData = {
   startFrame: number;
   endFrame: number;
   y: number;
-  items: { icon: 'browser' | 'cart' | 'calendar' | 'layers'; label: string; frame: number; activeFrom: number; activeTo: number }[];
+  items: { icon: 'browser' | 'cart' | 'calendar' | 'layers' | 'phone' | 'laptop'; label: string; frame: number; activeFrom: number; activeTo: number }[];
 };
 
 export type Timeline = {
+  // optional per-job presenter metrics (see src/camera.ts) and caption 'top' row position
+  face?: { cx: number; cy: number; top: number; cardScale?: number; card2Scale?: number };
+  captionTopY?: number;
   fps: number;
   width: number;
   height: number;
