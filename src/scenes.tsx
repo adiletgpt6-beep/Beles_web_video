@@ -159,7 +159,7 @@ export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[]; f
                     transform: `translateY(${(1 - a) * size * 0.5}px)`,
                   }}
                 >
-                  {ch === ' ' ? ' ' : ch}
+                  {ch === ' ' ? '\u00A0' : ch}
                 </span>
               );
             })}
