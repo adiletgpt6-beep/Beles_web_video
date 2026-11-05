@@ -1,10 +1,10 @@
-# BW-003 — queued
+# BW-003 — in_progress
 
 Роль: edit. Стиль: Beles V5. WhatsApp: 0998 08 38 28.
 
-Следующий шаг: Ждать короткий промпт пользователя на монтаж BW-003. Затем: исходник уже в input/BW-003/1000221272.mp4 (в новой среде — команда брокера из HANDOFF задания + verify BW-003); прочитать brief.md, STYLE_GUIDE.md, EDITING_LESSONS.md, WEBSITE_SHOWCASE_RULES.md; расшифровать кыргызскую речь (локальный ASR), выбрать дубли, записать уникальную визуальную концепцию в production/jobs/BW-003/docs/ перед монтажом. Эталон V5 и файлы BW-002 не менять; платные API/Actions не запускать.
+Следующий шаг: Закончить локальный ASR (faster-whisper large-v3 черновик + kyrgyz-whisper-medium), оценку взгляда MediaPipe, составить docs/transcript.md и VISUAL_CONCEPT.md, затем edit.json и рендер.
 
-2026-11-05: Claude Code скачал исходник через Studio source broker (BW-003 resolve → 200 после Studio PR #175 / 17bc2dc; токен и подписанный URL не раскрывались): 17528359 байт, SHA-256 88a05856…965d совпали с manifest и проверкой владельца по байтам R2; ffprobe 1080×1920, 30/1, av1 + aac 44100 Hz stereo, 216.735 с записан в source.probe (коммит 4d934fe). verify --record-delivery: delivery.json записан, staged → queued. Отчёт production/reports/BW-003-r2-delivery.json. MP4 в Git не публикуется. Монтаж, прослушивание, рендер, платные сервисы, VID/Issue и повторная загрузка не выполнялись.
+2026-11-05: монтаж начат по brief.md (разрешение пользователя). Исходник input/BW-003/1000221272.mp4 проверен (SHA совпал). Установлены npm-зависимости; идёт установка Python ASR/vision (без платных API); готовятся промежуточные медиа public/media/bw003/ (gitignored). Рабочие файлы — production/jobs/BW-003/.
 
 Исходник: `1000221272.mp4`, 17528359 байт.
 SHA-256: `88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d`. Манифест: `manifest.json`.
