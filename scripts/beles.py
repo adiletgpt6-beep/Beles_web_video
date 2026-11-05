@@ -425,12 +425,12 @@ def register_r2(root, args):
 def register_studio_issue(root, args):
     """Register an existing Studio Issue by its exact source metadata, never by guessed screenshot IDs."""
     body = Path(args.issue_file).read_text(encoding="utf-8")
-    repo = re.search(r"\\*\\*Репозиторий:\\*\\* \\x60([^\\x60]+)\\x60", body)
-    studio = re.search(r"^## (VID-[0-9]{3,4})\\b", body, re.M)
+    repo = re.search(r"\*\*Репозиторий:\*\* \x60([^\x60]+)\x60", body)
+    studio = re.search(r"^## (VID-[0-9]{3,4})\b", body, re.M)
     upload = re.search(r"<!-- studio-upload-id: ([0-9a-f-]{36}) -->", body)
-    key = re.search(r"^- Ключ R2: \\x60([^\\x60]+)\\x60", body, re.M)
-    size = re.search(r"^- Размер \\(байт\\): \\x60([0-9]+)\\x60", body, re.M)
-    digest = re.search(r"^- SHA-256: \\x60([0-9a-f]{64})\\x60", body, re.M)
+    key = re.search(r"^- Ключ R2: \x60([^\x60]+)\x60", body, re.M)
+    size = re.search(r"^- Размер \(байт\): \x60([0-9]+)\x60", body, re.M)
+    digest = re.search(r"^- SHA-256: \x60([0-9a-f]{64})\x60", body, re.M)
     if not all((repo, studio, upload, key, size, digest)):
         raise Error("Studio Issue lacks exact repo/VID/uploadId/R2 key/bytes/SHA. Do not guess or register.")
     expected_repo = read_json(root / "production/STATE.json")["repository"]
