@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29T11:06:21+00:00",
+  "updated_at": "2026-11-05T00:40:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -18,11 +18,11 @@
     "display": "0998 08 38 28",
     "international": "+996 998 08 38 28"
   },
-  "active_job_id": null,
+  "active_job_id": "BW-002",
   "next_suggested_job_id": "BW-003",
   "baseline_job_id": "BW-001",
   "pending": [
-    "Finish BW-002 media upload: parts 2–12, clean GitHub clone restore/verify and publish delivery proof before Claude prompt"
+    "BW-002: исходник доставлен и проверен через Studio R2 broker (2026-11-05); монтаж не начат — ждать указания пользователя / короткий промпт"
   ],
   "source": {
     "original_name": "1000218256.mp4",
@@ -60,8 +60,17 @@
     "published_integration_report": "production/reports/published-integration.json",
     "published_integration_tests_passed": 10,
     "new_edit_created": false,
-    "large_source_transport_ready": false
+    "large_source_transport_ready": true,
+    "large_source_transport": "cloudflare_r2_studio_broker (balago-studio.vercel.app/studio-fetch.mjs, STUDIO_SOURCE_TOKEN in Claude Code env)"
   },
   "readiness_scope": "Source archive delivery, verification, recovery, duplicate protection and resumable job queue; Git-parts originals up to 100 MiB",
-  "pending_ingest_job_id": "BW-002"
+  "pending_ingest_job_id": null,
+  "bw002_delivery": {
+    "delivery_proof": "production/jobs/BW-002/delivery.json",
+    "report": "production/reports/BW-002-r2-delivery.json",
+    "bytes": 70809997,
+    "sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+    "verified_in_claude_code": true,
+    "edit_started": false
+  }
 }

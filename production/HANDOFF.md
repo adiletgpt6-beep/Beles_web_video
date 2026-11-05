@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — BW-002 доставлен: Claude Code скачал оригинал через Studio broker и проверил
+
+- Claude Code (чистая облачная среда, `input/` был пуст, секрет `STUDIO_SOURCE_TOKEN` присутствовал в окружении) выполнил команду из START_HERE.md: `studio-fetch.mjs` (SHA-256 скрипта `fcee607e…de68`) получил оригинал по подписанному R2 URL; URL и токен не печатались и не сохранялись.
+- Независимая проверка: 70 809 997 байт, SHA-256 `09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640` — совпадает с manifest; ffprobe 1080×1920, 30/1, h264 + aac 44100 Hz stereo, 308.709 с — совпадает с `manifest.source.probe`. Отчёт: `production/reports/BW-002-r2-delivery.json`; доказательство доставки: `production/jobs/BW-002/delivery.json` (transport `cloudflare_r2_studio_broker`).
+- Checkpoint BW-002 переведён blocked → queued через `beles.py checkpoint`; registry/STATE синхронизированы, `next` теперь возвращает BW-002. `ingest.status` = `delivered_via_r2_broker`.
+- Ограничения: Git-parts транспорт остаётся 1/12 и больше не нужен — `beles.py restore/verify BW-002` по-прежнему падают на отсутствующей part-00002, восстановление только командой broker. MP4 в Git не публикуется (`input/*` в .gitignore). Новый ID не создавался, видео повторно не загружалось, монтаж, прослушивание и платные сервисы не запускались.
+- Следующий шаг: пользователь даёт короткий промпт на монтаж; Claude повторяет команду broker, затем расшифровка кыргызской речи и выбор дублей по brief.md в стиле V5.
+
 ## 2026-11-05 — Studio BW-002 broker production READY, next Claude action
 
 - Production Vercel Studio commit 5142c0305895666e1c4c8b7cd3a5f6aee64af591 confirmed READY. Vercel production env lists STUDIO_SOURCE_TOKEN_SHA256 as configured (value not requested/read), plus R2 credentials and STUDIO_TARGET_REPOS including Beles. This does NOT establish that Claude Code runtime has matching STUDIO_SOURCE_TOKEN.

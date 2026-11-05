@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_job_id": null,
+  "active_job_id": "BW-002",
   "next_suggested_job_id": "BW-003",
   "jobs": [
     {
@@ -15,11 +15,11 @@
     {
       "job_id": "BW-002",
       "role": "edit",
-      "status": "staged",
+      "status": "queued",
       "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
       "manifest": "production/jobs/BW-002/manifest.json",
-      "next_step": "Завершить загрузку бинарных частей 2–12 в GitHub; затем в чистом GitHub clone выполнить restore BW-002 и verify BW-002 --record-delivery; опубликовать доказательство и выдать короткий промпт Claude.",
-      "delivery_verified": false
+      "next_step": "Исходник BW-002 получать только командой Studio broker из START_HERE.md (Git-parts 1/12 не использовать); затем расшифровать кыргызскую речь и выбрать дубли. Монтаж и платные сервисы — только по отдельному указанию пользователя.",
+      "delivery_verified": true
     }
   ]
 }

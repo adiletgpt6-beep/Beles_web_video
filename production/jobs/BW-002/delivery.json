@@ -1,0 +1,25 @@
+{
+  "job_id": "BW-002",
+  "verified": true,
+  "bytes": 70809997,
+  "sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+  "transport": "cloudflare_r2_studio_broker",
+  "parts": [],
+  "git_parts_complete": false,
+  "probe": {
+    "duration_seconds": 308.709297,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "checked_commit": "119f7c8138d236ca5e8aff959b26570aec987b99",
+  "checked_at": "2026-11-05T00:38:11+00:00",
+  "origin": "https://github.com/adiletgpt6-beep/Beles_web_video.git",
+  "environment": "Claude Code cloud container, fresh clone, authenticated Studio broker download",
+  "report": "production/reports/BW-002-r2-delivery.json",
+  "restore_command": "node studio-fetch.mjs adiletgpt6-beep/Beles_web_video BW-002 input/BW-002/1000219289.mp4 (see START_HERE.md)"
+}

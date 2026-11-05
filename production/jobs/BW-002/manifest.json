@@ -112,12 +112,22 @@
       "verified_at_date": "2026-11-05",
       "verified_by": "owner_studio_screenshot",
       "access": "private_studio_object_store",
-      "transport_ready_for_claude": false
-    }
+      "transport_ready_for_claude": true,
+      "claude_download": {
+        "date": "2026-11-05T00:38:11+00:00",
+        "environment": "claude_code_cloud_container",
+        "method": "studio_source_broker_studio_fetch_mjs",
+        "bytes": 70809997,
+        "sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+        "probe_matches_manifest": true,
+        "report": "production/reports/BW-002-r2-delivery.json"
+      }
+    },
+    "delivery_transport": "cloudflare_r2_studio_broker"
   },
   "delivery_verification": "production/jobs/BW-002/delivery.json",
   "ingest": {
-    "status": "upload_in_progress",
+    "status": "delivered_via_r2_broker",
     "uploaded_part_numbers": [
       1
     ],
@@ -134,10 +144,12 @@
       11,
       12
     ],
-    "delivery_verified": false,
+    "delivery_verified": true,
     "original_attachment": {
       "library_file_id": "libfile_a6d5e8a4516c8191b168563bd3ba1768",
       "uploaded_name": "1000219289.mp4"
-    }
+    },
+    "delivery_verified_at": "2026-11-05T00:38:11+00:00",
+    "git_parts_note": "Git-parts transport incomplete (1/12) and no longer required; do not re-upload."
   }
 }
