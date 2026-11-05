@@ -215,8 +215,11 @@ def next_id(items):
 
 def broker_command(m):
     s = m["source"]
+    # Submitted Studio uploads resolve by VID-XXX, older one-off Beles sources by BW-XXX.
+    studio_id = (m.get("studio") or {}).get("video_id")
+    video_id = studio_id if studio_id and re.fullmatch(r"VID-[0-9]{3,4}", studio_id) else m["job_id"]
     return (f"curl -fsSL {BROKER_SCRIPT} -o /tmp/belestudio-fetch.mjs && "
-            f"node /tmp/belestudio-fetch.mjs {m['repository']} {m['job_id']} {s['cache_path']}")
+            f"node /tmp/belestudio-fetch.mjs {m['repository']} {video_id} {s['cache_path']}")
 
 
 def delivery(root, m):
