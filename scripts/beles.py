@@ -441,6 +441,16 @@ def register_studio_issue(root, args):
         raise Error("Studio Issue belongs to a different repository")
     if key.group(1) != f"live/raw/{upload.group(1)}/source.mp4":
         raise Error("Studio uploadId and object key mismatch")
+    # Preflight: never mutate an existing BW job when its Studio association conflicts.
+    for existing, _ in jobs(root):
+        linked = existing.get("studio") or {}
+        if (existing["source"]["sha256"] == digest.group(1) or
+                (existing["source"].get("r2") or {}).get("upload_id") == upload.group(1)):
+            if linked and (linked.get("video_id") != studio.group(1) or
+                           linked.get("upload_id") != upload.group(1)):
+                raise Error(f"Conflicting Studio identity for existing {existing['job_id']}")
+            if existing["source"]["sha256"] != digest.group(1):
+                raise Error(f"Upload ID already belongs to {existing['job_id']} with different SHA")
     # The owner must submit a real Studio Issue, not a screenshot transcribed as trusted metadata.
     args.sha256 = digest.group(1)
     args.bytes = int(size.group(1))
