@@ -2,17 +2,20 @@
   "schema_version": 1,
   "job_id": "BW-002",
   "status": "rendered",
-  "updated_at": "2026-11-05T08:26:06+00:00",
-  "next_step": "Получить отзыв пользователя на v2 (production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
-  "note": "2026-11-05: v2 — полная переработка графики (поисковый хук, телефон с реальным zeket.kg, демо-магазин и демо-автоматизация с меткой ДЕМО, окно десктопа, лампочка, WhatsApp с кнопкой), речь/дубли/склейки как в v1. Проверено: verify.sh, −14,9 LUFS/−1,9 dBTP, покадровый просмотр каждого 6-го кадра, надписи сверены. Не прослушано ушами.",
+  "updated_at": "2026-11-05T09:35:16+00:00",
+  "next_step": "Получить отзыв пользователя на v3 (production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
+  "note": "2026-11-05: v3 — финальная полировка (мягкий вход, крупнее демо, субтитры/safe zones, анимация WhatsApp, тексты перепроверены, zeket.kg помечен как внешний пример). verify.sh: 1067 кадров, −14,9 LUFS/−1,9 dBTP; покадровый просмотр выполнен. Не прослушано ушами.",
   "artifacts": [
     "production/jobs/BW-002/docs/verification.md",
     "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
     "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
     "production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4",
     "production/jobs/BW-002/release/beles-bw002-v2-subtitles-ky.srt",
+    "production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4",
+    "production/jobs/BW-002/release/beles-bw002-v3-subtitles-ky.srt",
     "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4",
-    "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4"
+    "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4",
+    "production/jobs/BW-002/release/preview-bw002-v3-720x1280.mp4"
   ],
   "events": [
     {
@@ -61,6 +64,24 @@
         "production/jobs/BW-002/release/beles-bw002-v2-subtitles-ky.srt",
         "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4",
         "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4"
+      ]
+    },
+    {
+      "at": "2026-11-05T09:35:16+00:00",
+      "status": "rendered",
+      "next_step": "Получить отзыв пользователя на v3 (production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
+      "note": "2026-11-05: v3 — финальная полировка (мягкий вход, крупнее демо, субтитры/safe zones, анимация WhatsApp, тексты перепроверены, zeket.kg помечен как внешний пример). verify.sh: 1067 кадров, −14,9 LUFS/−1,9 dBTP; покадровый просмотр выполнен. Не прослушано ушами.",
+      "artifacts": [
+        "production/jobs/BW-002/docs/verification.md",
+        "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
+        "production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v2-subtitles-ky.srt",
+        "production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v3-subtitles-ky.srt",
+        "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4",
+        "production/jobs/BW-002/release/preview-bw002-v2-720x1280.mp4",
+        "production/jobs/BW-002/release/preview-bw002-v3-720x1280.mp4"
       ]
     }
   ]
