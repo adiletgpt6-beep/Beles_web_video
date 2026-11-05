@@ -1,11 +1,16 @@
 {
   "schema_version": 1,
   "job_id": "BW-002",
-  "status": "in_progress",
-  "updated_at": "2026-11-05T00:49:32+00:00",
-  "next_step": "Закончить ASR (large-v3 черновик + kyrgyz-whisper-medium), составить docs/transcript.md и edit-plan.md в production/jobs/BW-002/, затем edit.json и рендер.",
-  "note": "2026-11-05: начат монтаж по указанию пользователя. Исходник input/BW-002/1000219289.mp4 подтверждён (SHA совпал). Идёт локальный ASR на CPU (без платных API), промежуточные медиа в public/media/bw002/ (gitignored). Рабочие файлы задания — production/jobs/BW-002/.",
-  "artifacts": [],
+  "status": "rendered",
+  "updated_at": "2026-11-05T02:35:02+00:00",
+  "next_step": "Показать пользователю production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4 (после push — по ссылке в ветке); получить правки или утверждение; опубликовать коммиты, как только GitHub снова принимает push.",
+  "note": "2026-11-05: v1 отрендерен и проверен (35,63 с, 1069 кадров, −14,9 LUFS/−2,7 dBTP, SHA-256 01ad7c6c…bda43). Покадровый просмотр выполнен, 6 правок внесены до финального рендера. Не прослушано ушами. Push блокирован сервером GitHub (fatal error in commit_refs).",
+  "artifacts": [
+    "production/jobs/BW-002/docs/verification.md",
+    "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
+    "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
+    "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4"
+  ],
   "events": [
     {
       "at": "2026-11-05T00:38:11+00:00",
@@ -20,6 +25,25 @@
       "next_step": "Закончить ASR (large-v3 черновик + kyrgyz-whisper-medium), составить docs/transcript.md и edit-plan.md в production/jobs/BW-002/, затем edit.json и рендер.",
       "note": "2026-11-05: начат монтаж по указанию пользователя. Исходник input/BW-002/1000219289.mp4 подтверждён (SHA совпал). Идёт локальный ASR на CPU (без платных API), промежуточные медиа в public/media/bw002/ (gitignored). Рабочие файлы задания — production/jobs/BW-002/.",
       "artifacts": []
+    },
+    {
+      "at": "2026-11-05T02:07:14+00:00",
+      "status": "in_progress",
+      "next_step": "Дождаться рендера out/beles-bw002-v1-1080x1920.mp4, выполнить scripts/verify.sh и покадровый просмотр, положить MP4/превью/SRT в production/jobs/BW-002/release/, затем checkpoint rendered + HANDOFF/STATE и push (GitHub сейчас отклоняет push: 'fatal error in commit_refs').",
+      "note": "2026-11-05: ASR локально (large-v3 черновик + kyrgyz-whisper-medium + скоринг), взгляд MediaPipe; выбраны 8 дублей, edit.json/timeline/EDL/SRT, микс −15 LUFS собран, стоп-кадры проверены и исправлены (card-кадрирование, строка карточки, тайминг ЭМНЕ ТАБАТ?, субтитр у руки). Идёт полный рендер Remotion. Сайт в речи не упомянут — zeket.kg не использован. Платные API/Actions не запускались.",
+      "artifacts": []
+    },
+    {
+      "at": "2026-11-05T02:35:02+00:00",
+      "status": "rendered",
+      "next_step": "Показать пользователю production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4 (после push — по ссылке в ветке); получить правки или утверждение; опубликовать коммиты, как только GitHub снова принимает push.",
+      "note": "2026-11-05: v1 отрендерен и проверен (35,63 с, 1069 кадров, −14,9 LUFS/−2,7 dBTP, SHA-256 01ad7c6c…bda43). Покадровый просмотр выполнен, 6 правок внесены до финального рендера. Не прослушано ушами. Push блокирован сервером GitHub (fatal error in commit_refs).",
+      "artifacts": [
+        "production/jobs/BW-002/docs/verification.md",
+        "production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4",
+        "production/jobs/BW-002/release/beles-bw002-v1-subtitles-ky.srt",
+        "production/jobs/BW-002/release/preview-bw002-v1-720x1280.mp4"
+      ]
     }
   ]
 }
