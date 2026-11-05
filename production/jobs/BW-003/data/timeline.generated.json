@@ -1,0 +1,744 @@
+{
+ "face": {
+  "cx": 540,
+  "cy": 700,
+  "top": 495,
+  "cardScale": 1.36,
+  "card2Scale": 1.44
+ },
+ "captionTopY": 190,
+ "captionBottom": 1480,
+ "vignette": 0.28,
+ "fadeIn": 6,
+ "overlays": [
+  {
+   "kind": "clock",
+   "y": 180,
+   "caption": "ТҮНКҮ СААТ · 02:00",
+   "cardTitle": "Кардар товар тандады",
+   "cardLine": "Сатып алгысы келет — азыр",
+   "startFrame": 111,
+   "endFrame": 251,
+   "beats": {
+    "clock": 6,
+    "ticks": 62,
+    "cart": 92
+   }
+  },
+  {
+   "kind": "chat",
+   "x": 90,
+   "y": 170,
+   "w": 640,
+   "h": 490,
+   "contact": "Кардар",
+   "status": "онлайн · 02:03",
+   "msg1": "Саламатсызбы! Бул товар барбы?",
+   "msg2": "Баасы канча? Заказ кылайын",
+   "seen": "Жооп жок…",
+   "waitLabel": "Кардар күтүп жатат",
+   "startFrame": 251,
+   "endFrame": 340,
+   "beats": {
+    "panel": 0,
+    "msg1": 8,
+    "msg2": 26,
+    "seen": 46,
+    "wait": 55,
+    "sleep": 64
+   }
+  },
+  {
+   "kind": "ticket",
+   "x": 250,
+   "y": 160,
+   "w": 580,
+   "title": "Сайт заказ кабыл алды",
+   "rows": [
+    {
+     "label": "Товар",
+     "value": "тандалды"
+    },
+    {
+     "label": "Убакыт",
+     "value": "02:04"
+    },
+    {
+     "label": "Буйрутма",
+     "value": "берилди"
+    }
+   ],
+   "stamp": "Кабыл алынды",
+   "startFrame": 340,
+   "endFrame": 432,
+   "beats": {
+    "ticket": 5,
+    "line1": 32,
+    "line2": 43,
+    "line3": 53,
+    "paid": 71
+   }
+  },
+  {
+   "kind": "dial",
+   "cx": 540,
+   "cy": 600,
+   "r": 380,
+   "title": "Күнү-түнү",
+   "sub": "онлайн жардамчыңыз",
+   "startFrame": 432,
+   "endFrame": 540,
+   "beats": {
+    "dial": 4,
+    "run": 16,
+    "moon": 61,
+    "text": 44,
+    "text2": 67
+   }
+  },
+  {
+   "kind": "services",
+   "y": 165,
+   "items": [
+    {
+     "kind": "landing",
+     "label": "Лендинг",
+     "sub": "бир беттүү сайт"
+    },
+    {
+     "kind": "store",
+     "label": "Интернет-дүкөн",
+     "sub": "каталог · себет · заказ"
+    },
+    {
+     "kind": "system",
+     "label": "Веб-система",
+     "sub": "ар кандай татаалдыктагы"
+    }
+   ],
+   "startFrame": 540,
+   "endFrame": 733,
+   "beats": {
+    "s1": 20,
+    "s2": 35,
+    "s3": 123,
+    "a1": 20,
+    "a2": 35,
+    "a3": 123,
+    "a4": 171
+   }
+  },
+  {
+   "kind": "sleep",
+   "x": 300,
+   "y": 150,
+   "w": 480,
+   "h": 540,
+   "date": "Түн",
+   "notes": [
+    {
+     "title": "Жаңы заказ",
+     "line": "Сайт аркылуу",
+     "time": "02:48"
+    },
+    {
+     "title": "Жаңы заказ",
+     "line": "Сайт аркылуу",
+     "time": "03:12"
+    },
+    {
+     "title": "Жаңы заявка",
+     "line": "Байланыш формасы",
+     "time": "05:36"
+    }
+   ],
+   "startFrame": 733,
+   "endFrame": 817,
+   "beats": {
+    "phone": 1,
+    "n1": 30,
+    "n2": 43,
+    "n3": 57,
+    "zzz": 30
+   }
+  },
+  {
+   "kind": "cta",
+   "x": 90,
+   "y": 1130,
+   "w": 900,
+   "typed": "Сайт керек",
+   "title": "WhatsApp · Beles",
+   "number": "0998 08 38 28",
+   "line": "Азыр жазыңыз",
+   "startFrame": 817,
+   "endFrame": 970,
+   "beats": {
+    "panel": 1,
+    "typed": 4,
+    "send": 32,
+    "reply": 42,
+    "shine": 82
+   }
+  }
+ ],
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "durationInFrames": 970,
+ "video": "media/bw003/source.mp4",
+ "audio": "media/bw003/voice.wav",
+ "clips": [
+  {
+   "id": "hook",
+   "srcInFrame": 599,
+   "srcOutFrame": 710,
+   "startFrame": 0,
+   "durationFrames": 111
+  },
+  {
+   "id": "imagine",
+   "srcInFrame": 1347,
+   "srcOutFrame": 1487,
+   "startFrame": 111,
+   "durationFrames": 140
+  },
+  {
+   "id": "insta",
+   "srcInFrame": 1698,
+   "srcOutFrame": 1787,
+   "startFrame": 251,
+   "durationFrames": 89
+  },
+  {
+   "id": "site",
+   "srcInFrame": 2949,
+   "srcOutFrame": 3041,
+   "startFrame": 340,
+   "durationFrames": 92
+  },
+  {
+   "id": "helper",
+   "srcInFrame": 3476,
+   "srcOutFrame": 3584,
+   "startFrame": 432,
+   "durationFrames": 108
+  },
+  {
+   "id": "services",
+   "srcInFrame": 5447,
+   "srcOutFrame": 5640,
+   "startFrame": 540,
+   "durationFrames": 193
+  },
+  {
+   "id": "sleep",
+   "srcInFrame": 6104,
+   "srcOutFrame": 6188,
+   "startFrame": 733,
+   "durationFrames": 84
+  },
+  {
+   "id": "cta",
+   "srcInFrame": 6257,
+   "srcOutFrame": 6410,
+   "startFrame": 817,
+   "durationFrames": 153
+  }
+ ],
+ "camera": [
+  {
+   "frame": 0,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 46,
+   "mode": "close",
+   "smooth": true
+  },
+  {
+   "frame": 111,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 251,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 340,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 432,
+   "mode": "card2",
+   "smooth": false
+  },
+  {
+   "frame": 540,
+   "mode": "card2",
+   "smooth": false
+  },
+  {
+   "frame": 733,
+   "mode": "card",
+   "smooth": false
+  },
+  {
+   "frame": 817,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 858,
+   "mode": "close",
+   "smooth": true
+  }
+ ],
+ "cards": [],
+ "titles": [],
+ "phones": [],
+ "subtitles": [
+  {
+   "startFrame": 6,
+   "endFrame": 32,
+   "words": [
+    {
+     "text": "Инстаграмыңыз",
+     "key": true,
+     "startFrame": 8
+    },
+    {
+     "text": "барбы,",
+     "key": false,
+     "startFrame": 21
+    }
+   ]
+  },
+  {
+   "startFrame": 32,
+   "endFrame": 73,
+   "words": [
+    {
+     "text": "анда",
+     "key": false,
+     "startFrame": 33
+    },
+    {
+     "text": "сайттын",
+     "key": true,
+     "startFrame": 47
+    },
+    {
+     "text": "эмне",
+     "key": false,
+     "startFrame": 57
+    },
+    {
+     "text": "кереги",
+     "key": false,
+     "startFrame": 60
+    },
+    {
+     "text": "бар",
+     "key": false,
+     "startFrame": 71
+    }
+   ]
+  },
+  {
+   "startFrame": 73,
+   "endFrame": 108,
+   "words": [
+    {
+     "text": "деп",
+     "key": false,
+     "startFrame": 75
+    },
+    {
+     "text": "ойлойсузбу?",
+     "key": true,
+     "startFrame": 79
+    }
+   ]
+  },
+  {
+   "startFrame": 115,
+   "endFrame": 140,
+   "words": [
+    {
+     "text": "Элестетиңиз,",
+     "key": true,
+     "startFrame": 117
+    }
+   ]
+  },
+  {
+   "startFrame": 140,
+   "endFrame": 201,
+   "words": [
+    {
+     "text": "кардарыңыз",
+     "key": false,
+     "startFrame": 142
+    },
+    {
+     "text": "түнкү",
+     "key": true,
+     "startFrame": 173
+    },
+    {
+     "text": "саат",
+     "key": true,
+     "startFrame": 180
+    },
+    {
+     "text": "экиде",
+     "key": true,
+     "startFrame": 186
+    }
+   ]
+  },
+  {
+   "startFrame": 201,
+   "endFrame": 252,
+   "words": [
+    {
+     "text": "товар",
+     "key": false,
+     "startFrame": 203
+    },
+    {
+     "text": "сатып",
+     "key": true,
+     "startFrame": 214
+    },
+    {
+     "text": "алгысы",
+     "key": false,
+     "startFrame": 219
+    },
+    {
+     "text": "келди.",
+     "key": false,
+     "startFrame": 230
+    }
+   ]
+  },
+  {
+   "startFrame": 252,
+   "endFrame": 295,
+   "words": [
+    {
+     "text": "Инстаграмда",
+     "key": true,
+     "startFrame": 254
+    },
+    {
+     "text": "сиз",
+     "key": false,
+     "startFrame": 279
+    }
+   ]
+  },
+  {
+   "startFrame": 295,
+   "endFrame": 341,
+   "words": [
+    {
+     "text": "жооп",
+     "key": false,
+     "startFrame": 297
+    },
+    {
+     "text": "бергенче",
+     "key": false,
+     "startFrame": 306
+    },
+    {
+     "text": "күтөт.",
+     "key": true,
+     "startFrame": 315
+    }
+   ]
+  },
+  {
+   "startFrame": 341,
+   "endFrame": 370,
+   "words": [
+    {
+     "text": "Ал",
+     "key": false,
+     "startFrame": 343
+    },
+    {
+     "text": "эми",
+     "key": false,
+     "startFrame": 352
+    },
+    {
+     "text": "сайтта",
+     "key": true,
+     "startFrame": 361
+    }
+   ]
+  },
+  {
+   "startFrame": 370,
+   "endFrame": 391,
+   "words": [
+    {
+     "text": "өзү",
+     "key": true,
+     "startFrame": 372
+    },
+    {
+     "text": "тандап",
+     "key": false,
+     "startFrame": 383
+    }
+   ]
+  },
+  {
+   "startFrame": 391,
+   "endFrame": 434,
+   "words": [
+    {
+     "text": "буйрутма",
+     "key": true,
+     "startFrame": 393
+    },
+    {
+     "text": "бере",
+     "key": false,
+     "startFrame": 404
+    },
+    {
+     "text": "алат.",
+     "key": false,
+     "startFrame": 411
+    }
+   ]
+  },
+  {
+   "startFrame": 434,
+   "endFrame": 474,
+   "words": [
+    {
+     "text": "Сайт",
+     "key": true,
+     "startFrame": 436
+    },
+    {
+     "text": "бул",
+     "key": false,
+     "startFrame": 452
+    },
+    {
+     "text": "сиздин",
+     "key": false,
+     "startFrame": 462
+    }
+   ]
+  },
+  {
+   "startFrame": 474,
+   "endFrame": 497,
+   "words": [
+    {
+     "text": "күнү-түнү",
+     "key": true,
+     "startFrame": 476
+    },
+    {
+     "text": "иштеген",
+     "key": false,
+     "startFrame": 484
+    }
+   ]
+  },
+  {
+   "startFrame": 497,
+   "endFrame": 536,
+   "words": [
+    {
+     "text": "онлайн",
+     "key": false,
+     "startFrame": 499
+    },
+    {
+     "text": "жардамчыңыз.",
+     "key": true,
+     "startFrame": 508
+    }
+   ]
+  },
+  {
+   "startFrame": 542,
+   "endFrame": 573,
+   "words": [
+    {
+     "text": "Биз",
+     "key": false,
+     "startFrame": 544
+    },
+    {
+     "text": "лендинг,",
+     "key": true,
+     "startFrame": 560
+    }
+   ]
+  },
+  {
+   "startFrame": 573,
+   "endFrame": 612,
+   "words": [
+    {
+     "text": "интернет-дүкөн",
+     "key": true,
+     "startFrame": 575
+    },
+    {
+     "text": "жана",
+     "key": false,
+     "startFrame": 601
+    }
+   ]
+  },
+  {
+   "startFrame": 612,
+   "endFrame": 662,
+   "words": [
+    {
+     "text": "ар",
+     "key": false,
+     "startFrame": 614
+    },
+    {
+     "text": "кандай",
+     "key": false,
+     "startFrame": 622
+    },
+    {
+     "text": "татаалдыктагы",
+     "key": true,
+     "startFrame": 636
+    }
+   ]
+  },
+  {
+   "startFrame": 662,
+   "endFrame": 733,
+   "words": [
+    {
+     "text": "веб-системаларды",
+     "key": true,
+     "startFrame": 663
+    },
+    {
+     "text": "жасап",
+     "key": false,
+     "startFrame": 701
+    },
+    {
+     "text": "беребиз.",
+     "key": false,
+     "startFrame": 711
+    }
+   ]
+  },
+  {
+   "startFrame": 733,
+   "endFrame": 780,
+   "words": [
+    {
+     "text": "Бизнесиңиз",
+     "key": false,
+     "startFrame": 734
+    },
+    {
+     "text": "сиз",
+     "key": false,
+     "startFrame": 751
+    },
+    {
+     "text": "уктап",
+     "key": true,
+     "startFrame": 763
+    },
+    {
+     "text": "жатканда",
+     "key": false,
+     "startFrame": 771
+    }
+   ]
+  },
+  {
+   "startFrame": 780,
+   "endFrame": 813,
+   "words": [
+    {
+     "text": "дагы",
+     "key": false,
+     "startFrame": 782
+    },
+    {
+     "text": "иштесин.",
+     "key": true,
+     "startFrame": 790
+    }
+   ]
+  },
+  {
+   "startFrame": 819,
+   "endFrame": 856,
+   "words": [
+    {
+     "text": "Сайт",
+     "key": true,
+     "startFrame": 821
+    },
+    {
+     "text": "керек",
+     "key": false,
+     "startFrame": 840
+    },
+    {
+     "text": "болсо,",
+     "key": false,
+     "startFrame": 849
+    }
+   ],
+   "place": "top"
+  },
+  {
+   "startFrame": 856,
+   "endFrame": 914,
+   "words": [
+    {
+     "text": "азыр",
+     "key": false,
+     "startFrame": 858
+    },
+    {
+     "text": "бизге",
+     "key": false,
+     "startFrame": 883
+    },
+    {
+     "text": "жазыңыз.",
+     "key": true,
+     "startFrame": 891
+    }
+   ],
+   "place": "top"
+  }
+ ],
+ "typeScenes": [],
+ "videoCards": [],
+ "siteStages": [],
+ "iconRows": []
+}

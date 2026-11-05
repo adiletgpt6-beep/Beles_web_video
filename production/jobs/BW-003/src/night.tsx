@@ -558,7 +558,11 @@ const SleepPhone: React.FC<{ o: Overlay }> = ({ o }) => {
     { title: 'Жаңы заявка', line: 'Байланыш формасы', time: '05:36' },
   ];
   const glow = notes.reduce((g, _, i) => Math.max(g, 1 - Math.min(1, Math.max(0, f - (B[`n${i + 1}`] ?? 1e9)) / 18)), 0);
-  const clockMin = Math.floor(Math.max(0, f - (B.phone ?? 0)) / 10);
+  // the lock-screen clock runs through the night (≈2.2 min per frame from 02:40); each notification is
+  // stamped with the clock value at the moment it lands, so times on screen are consistent by construction
+  const clockAt = (fr: number) => 160 + Math.floor(Math.max(0, fr - (B.phone ?? 0)) * 2.2);
+  const hhmm = (min: number) => `${String(Math.floor(min / 60) % 24).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+  const clockMin = clockAt(f);
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       {/* phone lying on a dark surface, slight perspective */}
@@ -567,7 +571,7 @@ const SleepPhone: React.FC<{ o: Overlay }> = ({ o }) => {
         <div style={{ position: 'absolute', left: 14, top: 14, right: 14, bottom: 14, borderRadius: 42, overflow: 'hidden', background: 'linear-gradient(180deg, #0B1230 0%, #141B3C 100%)' }}>
           <div style={{ position: 'absolute', top: 20, left: 0, right: 0, textAlign: 'center', fontFamily: FONTS.body, fontWeight: 600, fontSize: 22, color: NIGHT.dim }}>{(o.date as string) ?? 'Түн'}</div>
           <div style={{ position: 'absolute', top: 48, left: 0, right: 0, textAlign: 'center', fontFamily: FONTS.head, fontWeight: 700, fontSize: 118, color: NIGHT.white, letterSpacing: 2, fontVariantNumeric: 'tabular-nums', opacity: 0.55 + 0.45 * glow }}>
-            {String(2 + Math.floor((40 + clockMin) / 60)).padStart(2, '0')}:{String((40 + clockMin) % 60).padStart(2, '0')}
+            {hhmm(clockMin)}
           </div>
           <div style={{ position: 'absolute', top: 200, left: 18, right: 18 }}>
             {notes.map((n, i) => {
@@ -580,7 +584,7 @@ const SleepPhone: React.FC<{ o: Overlay }> = ({ o }) => {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: FONTS.body, fontWeight: 800, fontSize: 25, color: NIGHT.white }}>
                       <span>{n.title}</span>
-                      <span style={{ fontWeight: 600, color: NIGHT.dim, fontSize: 20 }}>{n.time}</span>
+                      <span style={{ fontWeight: 600, color: NIGHT.dim, fontSize: 20 }}>{hhmm(clockAt(B[`n${i + 1}`] ?? 0))}</span>
                     </div>
                     <div style={{ fontFamily: FONTS.body, fontWeight: 600, fontSize: 21, color: NIGHT.dim, marginTop: 2 }}>{n.line}</div>
                   </div>

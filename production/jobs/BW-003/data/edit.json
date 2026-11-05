@@ -1,0 +1,235 @@
+{
+ "_doc": "BW-003 edit decision list (source input/BW-003/1000221272.mp4, AV1 1080x1920 30 fps → public/media/bw003/source.mp4 H.264 CFR, same studio/presenter as BW-001/BW-002). Units as in V5: segment in/out and all word/anchor times are SOURCE seconds; overlay beats are anchors mapped to overlay-local frames by scripts/build-timeline.mjs. Takes chosen by gaze into the lens (MediaPipe, data/asr/gaze-summary.txt) and the cleanest complete delivery (kyrgyz-whisper-medium regions + faster-whisper word onsets, docs/transcript.md). Concept «Түнкү смена» (docs/VISUAL_CONCEPT.md): night sky over the presenter, 02:00 clock hook, DM thread that waits for a reply, order receipt printing itself, day-night dial, wireframe service panels, lock screen with order notifications, WhatsApp chat CTA. No V5/BW-002 scene (behind-text, video card, site stage, icon rows, type scene, side phone, badge) is used.",
+ "sourceName": "1000221272.mp4",
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "video": "media/bw003/source.mp4",
+ "audio": "media/bw003/voice.wav",
+ "face": { "cx": 540, "cy": 700, "top": 495, "cardScale": 1.36, "card2Scale": 1.44 },
+ "captionTopY": 190,
+ "captionBottom": 1480,
+ "vignette": 0.28,
+ "fadeIn": 6,
+ "music": { "generator": "scripts/make-music.py (MUSIC_BPM=80 MUSIC_TRANSPOSE=-3 MUSIC_NO_DRUMS=1)", "gainDb": -20, "accentAt": "cta@210.4" },
+ "segments": [
+  {
+   "id": "hook",
+   "in": 19.95,
+   "out": 23.65,
+   "camera": "medium",
+   "take": "first of two identical deliveries in region 20.01–26.98 (1% down-gaze; the 14.24–17.57 take looks down at 16.5–16.9)",
+   "text": "Инстаграмыңыз барбы, анда сайттын эмне кереги бар деп ойлойсузбу?",
+   "subs": [
+    { "text": "Инстаграмыңыз барбы,", "key": ["Инстаграмыңыз"] },
+    { "text": "анда сайттын эмне кереги бар", "key": ["сайттын"] },
+    { "text": "деп ойлойсузбу?", "key": ["ойлойсузбу"] }
+   ],
+   "words": [
+    { "w": "Инстаграмыңыз", "t": 20.22 }, { "w": "барбы,", "t": 20.66 }, { "w": "анда", "t": 21.08 }, { "w": "сайттын", "t": 21.52 },
+    { "w": "эмне", "t": 21.88 }, { "w": "кереги", "t": 21.98 }, { "w": "бар", "t": 22.32 }, { "w": "деп", "t": 22.46 }, { "w": "ойлойсузбу?", "t": 22.6 }
+   ],
+   "speechEnd": 23.2
+  },
+  {
+   "id": "imagine",
+   "in": 44.9,
+   "out": 49.55,
+   "camera": "card",
+   "take": "2 of 2 (38.40–42.52 3% down; 45.32–49.13 0% down, steady gaze)",
+   "text": "Элестетиңиз, кардарыңыз түнкү саат экиде товар сатып алгысы келди.",
+   "subs": [
+    { "text": "Элестетиңиз,", "key": ["Элестетиңиз"] },
+    { "text": "кардарыңыз түнкү саат экиде", "key": ["түнкү", "саат", "экиде"] },
+    { "text": "товар сатып алгысы келди.", "key": ["сатып"] }
+   ],
+   "words": [
+    { "w": "Элестетиңиз,", "t": 45.1 }, { "w": "кардарыңыз", "t": 45.94 }, { "w": "түнкү", "t": 46.96 }, { "w": "саат", "t": 47.2 }, { "w": "экиде", "t": 47.4 },
+    { "w": "товар", "t": 47.96 }, { "w": "сатып", "t": 48.32 }, { "w": "алгысы", "t": 48.5 }, { "w": "келди.", "t": 48.88 }
+   ],
+   "speechEnd": 49.13
+  },
+  {
+   "id": "insta",
+   "in": 56.6,
+   "out": 59.55,
+   "camera": "card",
+   "take": "1 of 3 (56.97–59.15 0% down, clean; 78.01–82.45 restarts inside; 66.27–67.52 looks down)",
+   "text": "Инстаграмда сиз жооп бергенче күтөт.",
+   "subs": [
+    { "text": "Инстаграмда сиз", "key": ["Инстаграмда"] },
+    { "text": "жооп бергенче күтөт.", "key": ["күтөт"] }
+   ],
+   "words": [
+    { "w": "Инстаграмда", "t": 56.7 }, { "w": "сиз", "t": 57.52 }, { "w": "жооп", "t": 58.14 }, { "w": "бергенче", "t": 58.44 }, { "w": "күтөт.", "t": 58.74 }
+   ],
+   "speechEnd": 59.1
+  },
+  {
+   "id": "site",
+   "in": 98.3,
+   "out": 101.35,
+   "camera": "card",
+   "take": "single clean delivery 98.70–100.96 (0% down, open-hands gesture 99.4–100.6); 89.15–97.43 repeats the phrase three times",
+   "text": "Ал эми сайтта өзү тандап буйрутма бере алат.",
+   "subs": [
+    { "text": "Ал эми сайтта", "key": ["сайтта"] },
+    { "text": "өзү тандап", "key": ["өзү"] },
+    { "text": "буйрутма бере алат.", "key": ["буйрутма"] }
+   ],
+   "words": [
+    { "w": "Ал", "t": 98.4 }, { "w": "эми", "t": 98.7 }, { "w": "сайтта", "t": 99.0 }, { "w": "өзү", "t": 99.36 }, { "w": "тандап", "t": 99.72 },
+    { "w": "буйрутма", "t": 100.06 }, { "w": "бере", "t": 100.44 }, { "w": "алат.", "t": 100.66 }
+   ],
+   "speechEnd": 100.96
+  },
+  {
+   "id": "helper",
+   "in": 115.85,
+   "out": 119.45,
+   "camera": "card2",
+   "take": "2 of 2 (109.95–113.04 4% down; 116.31–118.98 0% down)",
+   "text": "Сайт бул сиздин күнү-түнү иштеген онлайн жардамчыңыз.",
+   "subs": [
+    { "text": "Сайт бул сиздин", "key": ["Сайт"] },
+    { "text": "күнү-түнү иштеген", "key": ["күнү-түнү"] },
+    { "text": "онлайн жардамчыңыз.", "key": ["жардамчыңыз"] }
+   ],
+   "words": [
+    { "w": "Сайт", "t": 116.0 }, { "w": "бул", "t": 116.54 }, { "w": "сиздин", "t": 116.86 }, { "w": "күнү-түнү", "t": 117.34 }, { "w": "иштеген", "t": 117.6 },
+    { "w": "онлайн", "t": 118.1 }, { "w": "жардамчыңыз.", "t": 118.4 }
+   ],
+   "speechEnd": 118.98
+  },
+  {
+   "id": "services",
+   "in": 181.55,
+   "out": 188.0,
+   "camera": "card2",
+   "take": "last of five attempts, 182.06–187.56: complete sentence, 0% down (136.83–141.13 truncated; 148.62–166.60 restarts and looks down 26–45%; 168.87–180.63 says it twice)",
+   "text": "Биз лендинг, интернет-дүкөн жана ар кандай татаалдыктагы веб-системаларды жасап беребиз.",
+   "subs": [
+    { "text": "Биз лендинг,", "key": ["лендинг"] },
+    { "text": "интернет-дүкөн жана", "key": ["интернет-дүкөн"] },
+    { "text": "ар кандай татаалдыктагы", "key": ["татаалдыктагы"] },
+    { "text": "веб-системаларды жасап беребиз.", "key": ["веб-системаларды"] }
+   ],
+   "words": [
+    { "w": "Биз", "t": 181.7 }, { "w": "лендинг,", "t": 182.22 }, { "w": "интернет-дүкөн", "t": 182.72 }, { "w": "жана", "t": 183.6 }, { "w": "ар", "t": 184.02 },
+    { "w": "кандай", "t": 184.3 }, { "w": "татаалдыктагы", "t": 184.78 }, { "w": "веб-системаларды", "t": 185.68 }, { "w": "жасап", "t": 186.94 }, { "w": "беребиз.", "t": 187.26 }
+   ],
+   "speechEnd": 187.64
+  },
+  {
+   "id": "sleep",
+   "in": 203.45,
+   "out": 206.25,
+   "camera": "card",
+   "take": "4 of 4 in region 194.47–205.77 (2% down): final intonation, hand-to-cheek 'sleeping' gesture 204.5–205.0, natural pause after",
+   "text": "Бизнесиңиз сиз уктап жатканда дагы иштесин.",
+   "subs": [
+    { "text": "Бизнесиңиз сиз уктап жатканда", "key": ["уктап"] },
+    { "text": "дагы иштесин.", "key": ["иштесин"] }
+   ],
+   "words": [
+    { "w": "Бизнесиңиз", "t": 203.5 }, { "w": "сиз", "t": 204.08 }, { "w": "уктап", "t": 204.46 }, { "w": "жатканда", "t": 204.74 }, { "w": "дагы", "t": 205.1 }, { "w": "иштесин.", "t": 205.38 }
+   ],
+   "speechEnd": 205.77
+  },
+  {
+   "id": "cta",
+   "in": 208.55,
+   "out": 213.65,
+   "camera": "medium",
+   "subPlace": "top",
+   "take": "single take 209.08–211.41 (0% down), raised index finger 210.8–211.1, smile held until 213.7",
+   "text": "Сайт керек болсо, азыр бизге жазыңыз.",
+   "subs": [
+    { "text": "Сайт керек болсо,", "key": ["Сайт"] },
+    { "text": "азыр бизге жазыңыз.", "key": ["жазыңыз"] }
+   ],
+   "words": [
+    { "w": "Сайт", "t": 208.7 }, { "w": "керек", "t": 209.32 }, { "w": "болсо,", "t": 209.62 }, { "w": "азыр", "t": 209.92 }, { "w": "бизге", "t": 210.78 }, { "w": "жазыңыз.", "t": 211.04 }
+   ],
+   "speechEnd": 211.44
+  }
+ ],
+ "camera": [
+  { "at": "hook@21.5", "mode": "close", "smooth": true },
+  { "at": "cta@209.92", "mode": "close", "smooth": true }
+ ],
+ "overlays": [
+  {
+   "kind": "clock", "from": "imagine@44.9", "to": "imagine@49.55", "y": 180,
+   "beats": { "clock": "imagine@45.1", "ticks": "imagine@46.96", "cart": "imagine@47.96" },
+   "caption": "ТҮНКҮ СААТ · 02:00", "cardTitle": "Кардар товар тандады", "cardLine": "Сатып алгысы келет — азыр"
+  },
+  {
+   "kind": "chat", "from": "insta@56.6", "to": "insta@59.55", "x": 90, "y": 170, "w": 640, "h": 490,
+   "beats": { "panel": "insta@56.6", "msg1": "insta@56.85", "msg2": "insta@57.45", "seen": "insta@58.14", "wait": "insta@58.44", "sleep": "insta@58.74" },
+   "contact": "Кардар", "status": "онлайн · 02:03", "msg1": "Саламатсызбы! Бул товар барбы?", "msg2": "Баасы канча? Заказ кылайын", "seen": "Жооп жок…", "waitLabel": "Кардар күтүп жатат"
+  },
+  {
+   "kind": "ticket", "from": "site@98.3", "to": "site@101.35", "x": 250, "y": 160, "w": 580,
+   "beats": { "ticket": "site@98.45", "line1": "site@99.36", "line2": "site@99.72", "line3": "site@100.06", "paid": "site@100.66" },
+   "title": "Сайт заказ кабыл алды",
+   "rows": [ { "label": "Товар", "value": "тандалды" }, { "label": "Убакыт", "value": "02:04" }, { "label": "Буйрутма", "value": "берилди" } ],
+   "stamp": "Кабыл алынды"
+  },
+  {
+   "kind": "dial", "from": "helper@115.85", "to": "helper@119.45", "cx": 540, "cy": 600, "r": 380,
+   "beats": { "dial": "helper@116.0", "run": "helper@116.4", "moon": "helper@117.9", "text": "helper@117.34", "text2": "helper@118.1" },
+   "title": "Күнү-түнү", "sub": "онлайн жардамчыңыз"
+  },
+  {
+   "kind": "services", "from": "services@181.55", "to": "services@188.0", "y": 165,
+   "beats": { "s1": "services@182.22", "s2": "services@182.72", "s3": "services@185.68", "a1": "services@182.22", "a2": "services@182.72", "a3": "services@185.68", "a4": "services@187.26" },
+   "items": [
+    { "kind": "landing", "label": "Лендинг", "sub": "бир беттүү сайт" },
+    { "kind": "store", "label": "Интернет-дүкөн", "sub": "каталог · себет · заказ" },
+    { "kind": "system", "label": "Веб-система", "sub": "ар кандай татаалдыктагы" }
+   ]
+  },
+  {
+   "kind": "sleep", "from": "sleep@203.45", "to": "sleep@206.25", "x": 300, "y": 150, "w": 480, "h": 540,
+   "beats": { "phone": "sleep@203.5", "n1": "sleep@204.46", "n2": "sleep@204.9", "n3": "sleep@205.38", "zzz": "sleep@204.46" },
+   "date": "Түн",
+   "notes": [
+    { "title": "Жаңы заказ", "line": "Сайт аркылуу", "time": "02:48" },
+    { "title": "Жаңы заказ", "line": "Сайт аркылуу", "time": "03:12" },
+    { "title": "Жаңы заявка", "line": "Байланыш формасы", "time": "05:36" }
+   ]
+  },
+  {
+   "kind": "cta", "from": "cta@208.55", "to": "cta@213.65", "x": 90, "y": 1130, "w": 900,
+   "beats": { "panel": "cta@208.6", "typed": "cta@208.7", "send": "cta@209.62", "reply": "cta@209.95", "shine": "cta@211.3" },
+   "typed": "Сайт керек", "title": "WhatsApp · Beles", "number": "0998 08 38 28", "line": "Азыр жазыңыз"
+  }
+ ],
+ "sfx": [
+  { "type": "whoosh_in", "lands": "imagine@45.35" },
+  { "type": "tick", "lands": "imagine@46.96" },
+  { "type": "pop", "lands": "imagine@48.1" },
+  { "type": "swish", "lands": "insta@56.75" },
+  { "type": "pop", "lands": "insta@56.95", "gainDb": -3 },
+  { "type": "pop", "lands": "insta@57.55", "gainDb": -3 },
+  { "type": "tick", "lands": "insta@58.2" },
+  { "type": "whoosh_in", "lands": "site@99.15" },
+  { "type": "tick", "lands": "site@99.4" },
+  { "type": "tick", "lands": "site@99.76" },
+  { "type": "tick", "lands": "site@100.1" },
+  { "type": "pop", "lands": "site@100.7" },
+  { "type": "whoosh_in", "lands": "helper@116.3" },
+  { "type": "pop", "lands": "helper@117.4", "gainDb": -4 },
+  { "type": "swish", "lands": "services@182.5" },
+  { "type": "swish", "lands": "services@183.0" },
+  { "type": "swish", "lands": "services@185.95" },
+  { "type": "swish", "lands": "sleep@203.85" },
+  { "type": "pop", "lands": "sleep@204.55" },
+  { "type": "pop", "lands": "sleep@205.0" },
+  { "type": "pop", "lands": "sleep@205.45" },
+  { "type": "tick", "lands": "cta@209.62" },
+  { "type": "pop", "lands": "cta@210.05" },
+  { "type": "chime", "lands": "cta@210.45" }
+ ]
+}
