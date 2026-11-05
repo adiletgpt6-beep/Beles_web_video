@@ -2,7 +2,7 @@
 
 Источник истины — актуальная основная ветка этого репозитория. Прошлые чаты не заменяют файлы и сохранённый checkpoint.
 
-1. Прочитайте `production/STATE.json`, `production/STYLE_GUIDE.md` и `production/HANDOFF.md`.
+1. Прочитайте `production/STATE.json`, `production/STYLE_GUIDE.md`, `production/EDITING_LESSONS.md` и `production/HANDOFF.md`. Для демонстрации сайтов также прочитайте `production/WEBSITE_SHOWCASE_RULES.md`. Перед каждым рекламным монтажом применяйте обязательный QA-чеклист из EDITING_LESSONS.
 2. Выполните `python3 scripts/beles.py queue` и `python3 scripts/beles.py next`. Для существующего активного ID прочитайте его manifest, brief, HANDOFF и checkpoint.
 3. Новый исходник принимайте по `production/INGEST.md`; сообщения для ChatGPT/Claude — `production/PROMPTS.md`.
 4. Перед сменой чата сохраните рабочие файлы и следующий конкретный шаг задания в GitHub. `sync` восстанавливает производные registry/HANDOFF из manifest + checkpoint.
