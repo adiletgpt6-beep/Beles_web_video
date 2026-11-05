@@ -54,7 +54,8 @@ const PresenterMorph: React.FC<{
   circle: boolean;
   target: { s: number; fx: number; fy: number }; // source point (fx, fy) → shape centre at scale s
   face?: Face;
-}> = ({ video, srcStart, sceneStart, camera, k, rect, circle, target, face = DEFAULT_FACE }) => {
+  phone?: boolean;
+}> = ({ video, srcStart, sceneStart, camera, k, rect, circle, target, face = DEFAULT_FACE, phone }) => {
   const f = useCurrentFrame();
   const cam = cameraAt(camera, sceneStart + f, face);
   const cx = rect.x + rect.w / 2;
@@ -64,24 +65,31 @@ const PresenterMorph: React.FC<{
   const tx = lerp(cam.tx, t1.tx, k);
   const ty = lerp(cam.ty, t1.ty, k);
   const R = { x: lerp(0, rect.x, k), y: lerp(0, rect.y, k), w: lerp(1080, rect.w, k), h: lerp(1920, rect.h, k) };
-  const radius = circle ? lerp(0, rect.w / 2, k) : lerp(0, 44, k);
+  const radius = circle ? lerp(0, rect.w / 2, k) : lerp(0, phone ? rect.w * 0.13 : 44, k);
+  const bezel = phone ? 12 * k : 0;
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: R.x,
-        top: R.y,
-        width: R.w,
-        height: R.h,
-        borderRadius: radius,
-        overflow: 'hidden',
-        boxShadow: k > 0.02 ? `0 30px 70px rgba(0,0,0,${0.6 * k}), 0 0 0 ${5 * k}px rgba(56,204,255,${0.85 * k})` : undefined,
-      }}
-    >
-      <div style={{ position: 'absolute', left: -R.x, top: -R.y, width: 1080, height: 1920 }}>
-        <SourceVideo src={video} startFrom={srcStart} s={s} tx={tx} ty={ty} />
+    <>
+      {phone && k > 0.02 ? (
+        <div style={{ position: 'absolute', left: R.x - bezel, top: R.y - bezel, width: R.w + bezel * 2, height: R.h + bezel * 2, borderRadius: radius + bezel, background: '#0D0D0F', boxShadow: `0 40px 90px rgba(0,0,0,${0.62 * k}), inset 0 0 0 3px #3A3A3E, 0 0 50px rgba(56,204,255,${0.14 * k})`, opacity: k }} />
+      ) : null}
+      <div
+        style={{
+          position: 'absolute',
+          left: R.x,
+          top: R.y,
+          width: R.w,
+          height: R.h,
+          borderRadius: radius,
+          overflow: 'hidden',
+          boxShadow: k > 0.02 && !phone ? `0 30px 70px rgba(0,0,0,${0.6 * k}), 0 0 0 ${5 * k}px rgba(56,204,255,${0.85 * k})` : undefined,
+        }}
+      >
+        <div style={{ position: 'absolute', left: -R.x, top: -R.y, width: 1080, height: 1920 }}>
+          <SourceVideo src={video} startFrom={srcStart} s={s} tx={tx} ty={ty} />
+        </div>
       </div>
-    </div>
+      {phone && k > 0.02 ? <div style={{ position: 'absolute', top: R.y + 10, left: R.x + R.w / 2 - 46, width: 92, height: 26, borderRadius: 13, background: '#0D0D0F', opacity: k }} /> : null}
+    </>
   );
 };
 
@@ -189,7 +197,7 @@ export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; vid
       <AbsoluteFill style={{ opacity: Math.min(1, k * 1.5) }}>
         <PatternBg drift={f * 0.5} />
       </AbsoluteFill>
-      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.rect} circle={false} target={data.target} face={face} />
+      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.rect} circle={false} target={data.target} face={face} phone={data.phone} />
       <div style={{ position: 'absolute', left: 90, width: 810, top: data.textTop, opacity: 1 - textOut, transform: `translateY(${-textOut * 30}px)` }}>
         {data.lines.map((l, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: 'center', gap: 18, marginBottom: l.big ? 10 : 6 }}>

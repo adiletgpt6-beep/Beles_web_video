@@ -1,5 +1,5 @@
 {
- "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger. V2 (2026-11-05, full rework requested by the user): search-bar hook, presenter pushed right ('right' camera) with a phone beside him — real zeket.kg site scrolling (label zeket.kg), demo online store (catalog → product → cart → checkout → new-order toast) and demo automation flow (request → manager notification → CRM), labelled ДЕМО; phone + desktop window for 'телефонго да, компьютерге да'; idea bulb; WhatsApp badge with consultation line and pulsing button; cinematic vignette. Speech, takes and cuts are identical to v1. V3 (final polish): soft 6-frame fade-in, hook in-point trimmed, bigger phone demos (UI scaled from a 396 px base), consistent chest captions, delicate badge float + shine, external site labelled as an interface example.",
+ "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger. V2 (2026-11-05, full rework requested by the user): search-bar hook, presenter pushed right ('right' camera) with a phone beside him — real zeket.kg site scrolling (label zeket.kg), demo online store (catalog → product → cart → checkout → new-order toast) and demo automation flow (request → manager notification → CRM), labelled ДЕМО; phone + desktop window for 'телефонго да, компьютерге да'; idea bulb; WhatsApp badge with consultation line and pulsing button; cinematic vignette. Speech, takes and cuts are identical to v1. V3 (final polish): soft 6-frame fade-in, hook in-point trimmed, bigger phone demos (UI scaled from a 396 px base), consistent chest captions, delicate badge float + shine, external site labelled as an interface example. V4 (final): opening card drawn as a smartphone and enlarged (less empty dark space), captions raised to 1480, catalog scroll + cart screen in the demo store, smoother phone screen switches, extra push-in on the offer, number digits appear one by one. Real external stores were unreachable from the render environment (network policy), so the store stays an own mock-up labelled ДЕМО.",
  "sourceName": "1000219289.mp4",
  "fps": 30,
  "width": 1080,
@@ -516,6 +516,11 @@
    "smooth": true
   },
   {
+   "at": "offer@124.10",
+   "mode": "close",
+   "smooth": true
+  },
+  {
    "at": "idea@284.20",
    "mode": "close",
    "smooth": true
@@ -551,17 +556,17 @@
    "from": "insta@68.45",
    "to": "insta@72.70",
    "rect": {
-    "x": 250,
-    "y": 820,
-    "w": 580,
-    "h": 760
+    "x": 190,
+    "y": 660,
+    "w": 700,
+    "h": 960
    },
    "target": {
-    "s": 0.82,
+    "s": 0.98,
     "fx": 533,
     "fy": 760
    },
-   "textTop": 300,
+   "textTop": 230,
    "lines": [
     {
      "big": false,
@@ -607,7 +612,8 @@
       }
      ]
     }
-   ]
+   ],
+   "phone": true
   }
  ],
  "siteStages": [],
@@ -710,76 +716,6 @@
   },
   {
    "type": "whoosh_in",
-   "lands": "list@243.40",
-   "gainDb": -3
-  },
-  {
-   "type": "tick",
-   "lands": "list@243.45",
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "lands": "list@243.60",
-   "gainDb": -5
-  },
-  {
-   "type": "pop",
-   "lands": "list@244.10",
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "lands": "list@244.60",
-   "gainDb": -4
-  },
-  {
-   "type": "swish",
-   "lands": "list@245.20",
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "lands": "list@245.80",
-   "gainDb": -4
-  },
-  {
-   "type": "chime",
-   "lands": "list@246.10",
-   "gainDb": -2
-  },
-  {
-   "type": "pop",
-   "lands": "list@246.55",
-   "gainDb": -3
-  },
-  {
-   "type": "swish",
-   "lands": "list@247.05",
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "lands": "list@247.25",
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "lands": "list@248.00",
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "lands": "list@248.70",
-   "gainDb": -4
-  },
-  {
-   "type": "pop",
-   "lands": "list@249.35",
-   "gainDb": -3
-  },
-  {
-   "type": "whoosh_in",
    "lands": "dev@275.55",
    "gainDb": -3
   },
@@ -815,6 +751,86 @@
    "type": "pop",
    "lands": "cta@298.75",
    "gainDb": -4
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "list@243.40",
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "lands": "list@243.45",
+   "gainDb": -5
+  },
+  {
+   "type": "swish",
+   "lands": "list@243.95",
+   "gainDb": -6
+  },
+  {
+   "type": "pop",
+   "lands": "list@244.50",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@244.95",
+   "gainDb": -4
+  },
+  {
+   "type": "swish",
+   "lands": "list@245.35",
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "lands": "list@245.85",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@246.25",
+   "gainDb": -4
+  },
+  {
+   "type": "chime",
+   "lands": "list@246.45",
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "lands": "list@246.75",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "list@247.05",
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "lands": "list@247.25",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@248.00",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@248.70",
+   "gainDb": -4
+  },
+  {
+   "type": "pop",
+   "lands": "list@249.35",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "offer@124.30",
+   "gainDb": -6
   }
  ],
  "vignette": 0.32,
@@ -870,13 +886,15 @@
       "kind": "store",
       "label": "ДЕМО",
       "beats": {
-       "catalog": "list@243.18",
-       "tap": "list@244.00",
-       "add": "list@244.50",
-       "checkout": "list@245.10",
-       "pay": "list@245.70",
-       "success": "list@246.00",
-       "toast": "list@246.40"
+       "catalog": "list@243.15",
+       "scroll": "list@243.55",
+       "tap": "list@244.40",
+       "add": "list@244.85",
+       "cart": "list@245.25",
+       "checkout": "list@245.75",
+       "pay": "list@246.15",
+       "success": "list@246.35",
+       "toast": "list@246.62"
       }
      }
     },
@@ -953,5 +971,6 @@
    "y": 400
   }
  ],
- "fadeIn": 6
+ "fadeIn": 6,
+ "captionBottom": 1480
 }

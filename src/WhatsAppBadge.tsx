@@ -64,7 +64,14 @@ export const WhatsAppBadge: React.FC<{ badge: Badge }> = ({ badge }) => {
               transform: `translateY(${(1 - b) * 40}px)`,
             }}
           >
-            {badge.number}
+            {Array.from(badge.number).map((ch, i) => {
+              const da = interpolate(f, [7 + i * 1.6, 13 + i * 1.6], [0, 1], { ...clamp, easing: out });
+              return (
+                <span key={i} style={{ display: 'inline-block', opacity: da, transform: `translateY(${(1 - da) * 18}px)` }}>
+                  {ch === ' ' ? '\u00A0' : ch}
+                </span>
+              );
+            })}
           </div>
         </div>
         {badge.cta || badge.button ? (

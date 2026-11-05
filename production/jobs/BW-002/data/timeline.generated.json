@@ -7,6 +7,7 @@
   "card2Scale": 1.4
  },
  "captionTopY": 190,
+ "captionBottom": 1480,
  "vignette": 0.32,
  "fadeIn": 6,
  "searchBars": [
@@ -62,12 +63,14 @@
       "label": "ДЕМО",
       "beats": {
        "catalog": 2,
-       "tap": 27,
-       "add": 42,
-       "checkout": 60,
-       "pay": 78,
-       "success": 87,
-       "toast": 99
+       "scroll": 14,
+       "tap": 39,
+       "add": 53,
+       "cart": 65,
+       "checkout": 80,
+       "pay": 92,
+       "success": 98,
+       "toast": 106
       }
      }
     },
@@ -233,6 +236,11 @@
    "frame": 307,
    "mode": "medium",
    "smooth": false
+  },
+  {
+   "frame": 358,
+   "mode": "close",
+   "smooth": true
   },
   {
    "frame": 486,
@@ -779,17 +787,18 @@
    "endFrame": 222,
    "srcStart": 2054,
    "rect": {
-    "x": 250,
-    "y": 820,
-    "w": 580,
-    "h": 760
+    "x": 190,
+    "y": 660,
+    "w": 700,
+    "h": 960
    },
+   "phone": true,
    "target": {
-    "s": 0.82,
+    "s": 0.98,
     "fx": 533,
     "fy": 760
    },
-   "textTop": 300,
+   "textTop": 230,
    "lines": [
     {
      "big": false,

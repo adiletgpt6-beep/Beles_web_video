@@ -142,6 +142,7 @@ const videoCards = (edit.videoCards ?? []).map((v) => {
     endFrame: anchor(v.to),
     srcStart: srcAt(startFrame),
     rect: v.rect,
+    ...(v.phone ? { phone: true } : {}),
     target: v.target,
     textTop: v.textTop,
     lines: v.lines.map((l) => ({ big: !!l.big, words: l.words.map((w) => ({ text: w.text, frame: L(w.at) })) })),
@@ -256,6 +257,7 @@ for (let i = 0; i < subtitles.length - 1; i++) {
 const timeline = {
   ...(edit.face ? { face: edit.face } : {}),
   ...(edit.captionTopY ? { captionTopY: edit.captionTopY } : {}),
+  ...(edit.captionBottom ? { captionBottom: edit.captionBottom } : {}),
   ...(edit.vignette ? { vignette: edit.vignette } : {}),
   ...(edit.fadeIn ? { fadeIn: edit.fadeIn } : {}),
   ...(searchBars.length ? { searchBars } : {}),

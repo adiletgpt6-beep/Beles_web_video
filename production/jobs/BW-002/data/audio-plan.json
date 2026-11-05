@@ -125,76 +125,6 @@
   },
   {
    "type": "whoosh_in",
-   "frame": 485,
-   "gainDb": -3
-  },
-  {
-   "type": "tick",
-   "frame": 498,
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "frame": 502,
-   "gainDb": -5
-  },
-  {
-   "type": "pop",
-   "frame": 517,
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "frame": 532,
-   "gainDb": -4
-  },
-  {
-   "type": "swish",
-   "frame": 545,
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "frame": 568,
-   "gainDb": -4
-  },
-  {
-   "type": "chime",
-   "frame": 577,
-   "gainDb": -2
-  },
-  {
-   "type": "pop",
-   "frame": 591,
-   "gainDb": -3
-  },
-  {
-   "type": "swish",
-   "frame": 601,
-   "gainDb": -5
-  },
-  {
-   "type": "tick",
-   "frame": 612,
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "frame": 634,
-   "gainDb": -4
-  },
-  {
-   "type": "tick",
-   "frame": 655,
-   "gainDb": -4
-  },
-  {
-   "type": "pop",
-   "frame": 675,
-   "gainDb": -3
-  },
-  {
-   "type": "whoosh_in",
    "frame": 692,
    "gainDb": -3
   },
@@ -232,6 +162,86 @@
    "type": "pop",
    "frame": 967,
    "gainDb": -4
+  },
+  {
+   "type": "whoosh_in",
+   "frame": 485,
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "frame": 498,
+   "gainDb": -5
+  },
+  {
+   "type": "swish",
+   "frame": 508,
+   "gainDb": -6
+  },
+  {
+   "type": "pop",
+   "frame": 529,
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "frame": 543,
+   "gainDb": -4
+  },
+  {
+   "type": "swish",
+   "frame": 550,
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "frame": 570,
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "frame": 582,
+   "gainDb": -4
+  },
+  {
+   "type": "chime",
+   "frame": 588,
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "frame": 597,
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "frame": 601,
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "frame": 612,
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "frame": 634,
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "frame": 655,
+   "gainDb": -4
+  },
+  {
+   "type": "pop",
+   "frame": 675,
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "frame": 359,
+   "gainDb": -6
   }
  ]
 }
