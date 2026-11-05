@@ -2,30 +2,30 @@ import { Easing, interpolate, useCurrentFrame } from 'remotion';
 import type { CameraKey, CameraMode } from './types';
 
 // Framing presets for the 1080x1920 presenter shot.
-// Points map as p' = s * p + t, i.e. scale s around origin (ox, oy).
-// Head top in the source sits at y≈600, face centre at y≈760.
-const PRESETS: Record<CameraMode, { s: number; ox: number; oy: number }> = {
-  wide: { s: 1.0, ox: 540, oy: 760 },
-  medium: { s: 1.14, ox: 540, oy: 760 },
-  close: { s: 1.26, ox: 540, oy: 760 },
-  // Pushes the presenter down so the upper ~37% of the frame is free for title + site card.
-  card: { s: 1.25, ox: 540, oy: 0 },
-  // Tighter variant of "card" for consecutive card takes, so the cut between two takes reads as a punch-in.
-  card2: { s: 1.32, ox: 540, oy: 0 },
-};
+// Points map as p' = s * p + t, i.e. scale s around the face centre (cx, cy).
+// Face metrics of the source (V5 source: head top y≈600, face centre y≈760) can be overridden per job
+// via timeline.face, so another take of the same studio with a different head height keeps the same framing rules.
+// cardScale/card2Scale: a source whose head sits higher needs a stronger push-down to free the top area.
+export type Face = { cx: number; cy: number; top: number; cardScale?: number; card2Scale?: number };
+export const DEFAULT_FACE: Face = { cx: 540, cy: 760, top: 600 };
 
-const toAffine = (m: CameraMode) => {
-  const p = PRESETS[m];
-  return { s: p.s, tx: p.ox * (1 - p.s), ty: p.oy * (1 - p.s) };
+const toAffine = (m: CameraMode, face: Face) => {
+  // "card"/"card2" scale around y = 0, which pushes the presenter down so the upper ~37% of the frame is free.
+  if (m === 'card' || m === 'card2') {
+    const s = (m === 'card' ? face.cardScale : face.card2Scale) ?? (m === 'card' ? 1.25 : 1.32);
+    return { s, tx: face.cx * (1 - s), ty: 0 };
+  }
+  const s = { wide: 1.0, medium: 1.14, close: 1.26 }[m];
+  return { s, tx: face.cx * (1 - s), ty: face.cy * (1 - s) };
 };
 
 const SMOOTH_FRAMES = 12;
 
-export const cameraAt = (keys: CameraKey[], frame: number) => {
+export const cameraAt = (keys: CameraKey[], frame: number, face: Face = DEFAULT_FACE) => {
   let idx = 0;
   for (let i = 0; i < keys.length; i++) if (keys[i].frame <= frame) idx = i;
   const cur = keys[idx];
-  const target = toAffine(cur.mode);
+  const target = toAffine(cur.mode, face);
   // Very slow push-in inside each camera segment keeps static shots alive (max +1.5%).
   const nextFrame = idx + 1 < keys.length ? keys[idx + 1].frame : cur.frame + 300;
   const drift = interpolate(frame, [cur.frame, nextFrame], [0, 0.015], {
@@ -34,7 +34,7 @@ export const cameraAt = (keys: CameraKey[], frame: number) => {
   });
   let res = target;
   if (cur.smooth && idx > 0 && frame < cur.frame + SMOOTH_FRAMES) {
-    const prev = toAffine(keys[idx - 1].mode);
+    const prev = toAffine(keys[idx - 1].mode, face);
     const k = interpolate(frame, [cur.frame, cur.frame + SMOOTH_FRAMES], [0, 1], {
       easing: Easing.bezier(0.33, 0, 0.2, 1),
       extrapolateLeft: 'clamp',
@@ -48,12 +48,12 @@ export const cameraAt = (keys: CameraKey[], frame: number) => {
   }
   // apply drift around the face centre
   const s2 = res.s * (1 + drift);
-  const fx = 540 * res.s + res.tx;
-  const fy = 760 * res.s + res.ty;
-  return { s: s2, tx: fx - 540 * s2, ty: fy - 760 * s2 };
+  const fx = face.cx * res.s + res.tx;
+  const fy = face.cy * res.s + res.ty;
+  return { s: s2, tx: fx - face.cx * s2, ty: fy - face.cy * s2 };
 };
 
-export const useCamera = (keys: CameraKey[]) => {
+export const useCamera = (keys: CameraKey[], face: Face = DEFAULT_FACE) => {
   const frame = useCurrentFrame();
-  return cameraAt(keys, frame);
+  return cameraAt(keys, frame, face);
 };

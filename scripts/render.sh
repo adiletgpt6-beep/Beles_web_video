@@ -6,15 +6,19 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 NAME="${NAME:-beles-web-v5-1080x1920}"
 PREVIEW="${PREVIEW:-preview-v5-720x1280}"
+# A job can render its own composition/entry and mix: ENTRY=production/jobs/BW-002/src/index.ts COMP=BelesReelBW002 AUDIO=public/media/bw002/voice.wav
+ENTRY="${ENTRY:-src/index.ts}"
+COMP="${COMP:-BelesReel}"
+AUDIO="${AUDIO:-public/media/voice.wav}"
 BROWSER_ARGS=()
 if [ -n "${CHROME:-}" ]; then BROWSER_ARGS=(--browser-executable="$CHROME"); fi
 mkdir -p out
 # 1) picture: Remotion, H.264 High, CRF 16 (keeps UI text and site screenshots crisp), yuv420p, 30 fps CFR
-npx remotion render src/index.ts BelesReel out/video-only.mp4 \
+npx remotion render "$ENTRY" "$COMP" out/video-only.mp4 \
   --codec=h264 --crf=16 --x264-preset=slow --pixel-format=yuv420p --muted \
   --concurrency="${CONCURRENCY:-2}" "${BROWSER_ARGS[@]}"
 # 2) mux with the processed voice track (video stream copied, no extra generation), AAC 48 kHz, faststart
-ffmpeg -hide_banner -y -i out/video-only.mp4 -i public/media/voice.wav \
+ffmpeg -hide_banner -y -i out/video-only.mp4 -i "$AUDIO" \
   -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 256k -ar 48000 -ac 2 \
   -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
   -movflags +faststart -shortest out/${NAME}.mp4

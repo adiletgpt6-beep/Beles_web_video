@@ -47,7 +47,7 @@ const useFonts = () => {
 };
 
 const Presenter: React.FC<{ timeline: Timeline; blur?: boolean }> = ({ timeline }) => {
-  const cam = useCamera(timeline.camera);
+  const cam = useCamera(timeline.camera, timeline.face);
   return (
     <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: '#140504' }}>
       <AbsoluteFill
@@ -87,17 +87,17 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
       />
       {timeline.behindText ? (
         <Sequence from={timeline.behindText.startFrame} durationInFrames={timeline.behindText.endFrame - timeline.behindText.startFrame} layout="none">
-          <BehindText data={timeline.behindText} camera={timeline.camera} />
+          <BehindText data={timeline.behindText} camera={timeline.camera} face={timeline.face} />
         </Sequence>
       ) : null}
       {(timeline.videoCards ?? []).map((v, i) => (
         <Sequence key={`vc${i}`} from={v.startFrame} durationInFrames={v.endFrame - v.startFrame} layout="none">
-          <VideoCard data={v} camera={timeline.camera} video={timeline.video} />
+          <VideoCard data={v} camera={timeline.camera} video={timeline.video} face={timeline.face} />
         </Sequence>
       ))}
       {(timeline.siteStages ?? []).map((st, i) => (
         <Sequence key={`ss${i}`} from={st.startFrame} durationInFrames={st.endFrame - st.startFrame} layout="none">
-          <SiteStage data={st} camera={timeline.camera} video={timeline.video} />
+          <SiteStage data={st} camera={timeline.camera} video={timeline.video} face={timeline.face} />
         </Sequence>
       ))}
       {(timeline.iconRows ?? []).map((r, i) => (
@@ -134,7 +134,7 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
           <WhatsAppBadge badge={timeline.badge} />
         </Sequence>
       ) : null}
-      {fontsReady ? <Captions subtitles={timeline.subtitles} /> : null}
+      {fontsReady ? <Captions subtitles={timeline.subtitles} topY={timeline.captionTopY} /> : null}
       <Audio src={staticFile(timeline.audio)} />
     </AbsoluteFill>
   );

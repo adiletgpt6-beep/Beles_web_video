@@ -11,7 +11,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const edit = JSON.parse(fs.readFileSync(path.join(root, 'data/edit.json'), 'utf8'));
+// EDIT / OUT_DIR let a job (production/jobs/<ID>/) build its own timeline without touching the baseline data/.
+const EDIT = process.env.EDIT ? path.resolve(process.env.EDIT) : path.join(root, 'data/edit.json');
+const OUT_DIR = process.env.OUT_DIR ? path.resolve(process.env.OUT_DIR) : path.join(root, 'data');
+const edit = JSON.parse(fs.readFileSync(EDIT, 'utf8'));
+const SOURCE_NAME = edit.sourceName ?? '1000218256.mp4';
 const FPS = edit.fps;
 
 const toF = (sec) => Math.round(sec * FPS);
@@ -125,6 +129,7 @@ const behindText = bt && (() => {
     srcStart: srcAt(startFrame),
     matteFrom: bt.matteFrom,
     matteTo: bt.matteTo,
+    ...(bt.matteDir ? { matteDir: bt.matteDir } : {}),
     y: bt.y,
     words: bt.words.map((w) => ({ text: w.text, from: L(w.from), to: L(w.to), color: w.color })),
   };
@@ -228,6 +233,8 @@ for (let i = 0; i < subtitles.length - 1; i++) {
 }
 
 const timeline = {
+  ...(edit.face ? { face: edit.face } : {}),
+  ...(edit.captionTopY ? { captionTopY: edit.captionTopY } : {}),
   fps: FPS,
   width: edit.width,
   height: edit.height,
@@ -248,25 +255,25 @@ const timeline = {
   siteStages,
   iconRows,
 };
-fs.writeFileSync(path.join(root, 'data/timeline.generated.json'), JSON.stringify(timeline, null, 1));
+fs.writeFileSync(path.join(OUT_DIR, 'timeline.generated.json'), JSON.stringify(timeline, null, 1));
 
 // 5. EDL (CSV + CMX3600) — source and record positions kept separately, units stated.
 const csv = ['clip_id,source_in_s,source_out_s,source_in_frame,source_out_frame,record_in_frame,record_out_frame,record_in_tc,record_out_tc,duration_frames,camera,text'];
-const cmx = ['TITLE: BELES WEB REEL', 'FCM: NON-DROP FRAME', `* FPS ${FPS}, SOURCE 1000218256.mp4`, ''];
+const cmx = ['TITLE: BELES WEB REEL', 'FCM: NON-DROP FRAME', `* FPS ${FPS}, SOURCE ${SOURCE_NAME}`, ''];
 clips.forEach((c, i) => {
   const s = segById[c.id];
   csv.push(
     [c.id, (c.srcInFrame / FPS).toFixed(3), (c.srcOutFrame / FPS).toFixed(3), c.srcInFrame, c.srcOutFrame, c.startFrame, c.startFrame + c.durationFrames, tc(c.startFrame), tc(c.startFrame + c.durationFrames), c.durationFrames, s.camera, `"${s.text.replace(/"/g, '""')}"`].join(','),
   );
   cmx.push(`${String(i + 1).padStart(3, '0')}  SRC      AA/V  C        ${tc(c.srcInFrame)} ${tc(c.srcOutFrame)} ${tc(c.startFrame)} ${tc(c.startFrame + c.durationFrames)}`);
-  cmx.push(`* FROM CLIP NAME: 1000218256.mp4  (${c.id})`);
+  cmx.push(`* FROM CLIP NAME: ${SOURCE_NAME}  (${c.id})`);
 });
-fs.writeFileSync(path.join(root, 'data/edl.csv'), csv.join('\n') + '\n');
-fs.writeFileSync(path.join(root, 'data/edl.edl'), cmx.join('\n') + '\n');
+fs.writeFileSync(path.join(OUT_DIR, 'edl.csv'), csv.join('\n') + '\n');
+fs.writeFileSync(path.join(OUT_DIR, 'edl.edl'), cmx.join('\n') + '\n');
 
 // 6. SRT
 const srt = subtitles.map((s, i) => `${i + 1}\n${srtTime(s.startFrame)} --> ${srtTime(s.endFrame)}\n${s.words.map((w) => w.text).join(' ')}\n`);
-fs.writeFileSync(path.join(root, 'data/subtitles.srt'), srt.join('\n'));
+fs.writeFileSync(path.join(OUT_DIR, 'subtitles.srt'), srt.join('\n'));
 
 // 7. Audio plan: exact same frame-accurate cuts + sound effects at overlay entrances.
 // Sound accents are listed explicitly in edit.json (only on meaningful appearances).
@@ -278,7 +285,7 @@ const sfx = (edit.sfx ?? []).map((x) => ({
   gainDb: x.gainDb ?? 0,
 }));
 fs.writeFileSync(
-  path.join(root, 'data/audio-plan.json'),
+  path.join(OUT_DIR, 'audio-plan.json'),
   JSON.stringify({ fps: FPS, durationInFrames, music: edit.music ? { ...edit.music, accentFrame: edit.music.accentAt ? anchor(edit.music.accentAt) : null } : null, clips: clips.map((c) => ({ id: c.id, srcInFrame: c.srcInFrame, srcOutFrame: c.srcOutFrame, startFrame: c.startFrame })), sfx }, null, 1),
 );
 
