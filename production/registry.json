@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "active_job_id": null,
-  "next_suggested_job_id": "BW-003",
+  "next_suggested_job_id": "BW-004",
   "jobs": [
     {
       "job_id": "BW-001",
       "role": "approved_baseline",
       "status": "approved",
       "source_sha256": "fc5236ae202126a45e38179bf26ef9bab28cfff7e9ccd1f34ff0c547dfe1a382",
+      "source_storage": "github_git_parts",
       "manifest": "production/jobs/BW-001/manifest.json",
       "next_step": "Ждать новый исходник; утверждённую V5 не переделывать.",
       "delivery_verified": true
@@ -17,9 +18,20 @@
       "role": "edit",
       "status": "rendered",
       "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+      "source_storage": "github_git_parts",
       "manifest": "production/jobs/BW-002/manifest.json",
       "next_step": "Утверждение пользователем v4 (production/jobs/BW-002/release/beles-bw002-v4-1080x1920.mp4): checkpoint BW-002 --status approved --user-approved; иначе — правки по замечаниям.",
       "delivery_verified": true
+    },
+    {
+      "job_id": "BW-003",
+      "role": "edit",
+      "status": "staged",
+      "source_sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
+      "source_storage": "cloudflare_r2_studio_broker",
+      "manifest": "production/jobs/BW-003/manifest.json",
+      "next_step": "1) В Studio добавить запись allowlist брокера для BW-003 по production/jobs/BW-003/studio/BW-003-broker-allowlist.md и задеплоить production; 2) в среде Claude Code с STUDIO_SOURCE_TOKEN выполнить команду загрузки из HANDOFF.md задания, затем python3 scripts/beles.py verify BW-003, записать source.probe в manifest, закоммитить и выполнить verify BW-003 --record-delivery (staged → queued). Монтаж не начинать до queued и короткого промпта пользователя.",
+      "delivery_verified": false
     }
   ]
 }

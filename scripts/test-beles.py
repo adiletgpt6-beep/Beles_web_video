@@ -199,6 +199,69 @@ class Workflow(unittest.TestCase):
         (self.repo / "production/jobs/BW-001/manifest.json").write_text(json.dumps(m))
         self.assertIn("escapes", self.cli("restore", "BW-001", ok=False)["error"])
 
+    def r2_args(self, video, upload="ced83175-8979-410f-8742-df793118b3de"):
+        return ("register-r2", "--name", "1000221272.mp4", "--bytes", str(video.stat().st_size),
+                "--sha256", digest(video), "--upload-id", upload, "--brief", "Изолированный R2 тест")
+
+    def test_r2_register_duplicates_and_queue_without_git_parts(self):
+        video = self.new_video()
+        first = self.cli(*self.r2_args(video))
+        self.assertEqual((first["job_id"], first["status"], first["storage"]),
+                         ("BW-002", "staged", "cloudflare_r2_studio_broker"))
+        self.commit()
+        self.assertFalse(list((self.repo / "production/media").glob(digest(video) + "*")))
+        before = self.tracked_snapshot()
+        self.assertTrue(self.cli(*self.r2_args(video))["duplicate"])  # same SHA, same upload
+        self.assertTrue(self.cli(*self.r2_args(video, "11111111-2222-4333-8444-555555555555"))["duplicate"])
+        self.assertTrue(self.cli("ingest", str(video), "--brief", "Повтор")["duplicate"])  # Git-parts path
+        self.assertEqual(before, self.tracked_snapshot())
+        other = self.repo / "other.bin"
+        other.write_bytes(b"different bytes")
+        bad = ("register-r2", "--name", "x.mp4", "--bytes", "15", "--sha256", digest(other),
+               "--upload-id", "ced83175-8979-410f-8742-df793118b3de", "--brief", "Конфликт upload")
+        self.assertIn("already registered", self.cli(*bad, ok=False)["error"])
+        self.assertIn("complete 64-hex", self.cli("register-r2", "--name", "x.mp4", "--bytes", "1",
+                                                  "--sha256", "abc", "--upload-id", "ced83175-8979-410f-8742-df793118b3de",
+                                                  "--brief", "x", ok=False)["error"])
+        self.assertEqual(len(self.cli("queue")["jobs"]), 2)
+        self.assertIsNone(self.cli("next")["job_id"])
+        # No download inside the tool: restore/verify fail with the broker hint until the cache exists.
+        self.assertIn("studio-fetch.mjs", self.cli("restore", "BW-002", ok=False)["error"])
+        self.assertIn("missing", self.cli("verify", "BW-002", ok=False)["error"])
+        self.assertIn("unverified", self.cli("checkpoint", "BW-002", "--status", "queued",
+                                             "--next-step", "x", ok=False)["error"])
+        manifest_path = self.repo / "production/jobs/BW-002/manifest.json"
+        m = json.loads(manifest_path.read_text())
+        self.assertIsNone(m["source"]["probe"])
+        cache = self.repo / m["source"]["cache_path"]
+        cache.parent.mkdir(parents=True)
+        shutil.copy(video, cache)
+        self.assertEqual(self.cli("restore", "BW-002")["action"], "already_valid")
+        checked = self.cli("verify", "BW-002")
+        self.assertFalse(checked["probe_reference_present"])
+        self.assertIn("no ffprobe reference", self.cli("verify", "BW-002", "--record-delivery", ok=False)["error"])
+        m["source"]["probe"] = checked["probe"]
+        manifest_path.write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        self.assertIn("Uncommitted", self.cli("verify", "BW-002", "--record-delivery", ok=False)["error"])
+        self.commit()
+        recorded = self.cli("verify", "BW-002", "--record-delivery")
+        self.assertEqual(recorded["transport"], "cloudflare_r2_studio_broker")
+        delivery = json.loads((self.repo / "production/jobs/BW-002/delivery.json").read_text())
+        self.assertEqual((delivery["verified"], delivery["sha256"], delivery["parts"]), (True, digest(video), []))
+        state = self.cli("status", "BW-002")
+        self.assertEqual(state["checkpoint"]["status"], "queued")
+        self.assertEqual(self.cli("next")["job_id"], "BW-002")
+        self.assertTrue(self.cli("queue")["jobs"][1]["delivery_verified"])
+        self.cli("checkpoint", "BW-002", "--status", "in_progress", "--next-step", "Расшифровать речь")
+        with cache.open("r+b") as f:
+            f.seek(50)
+            f.write(b"bad!")
+        self.assertIn("mismatch", self.cli("verify", "BW-002", ok=False)["error"])
+        self.assertIn("studio-fetch.mjs", self.cli("restore", "BW-002", ok=False)["error"])
+        m["source"]["parts"] = [{"path": "x"}]
+        manifest_path.write_text(json.dumps(m), encoding="utf-8")
+        self.assertIn("must not declare Git parts", self.cli("status", "BW-002", ok=False)["error"])
+
     def test_lock_and_idempotent_sync(self):
         before = self.tracked_snapshot()
         self.cli("sync")

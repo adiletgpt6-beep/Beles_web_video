@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "tests_run": 10,
-  "seconds": 10.796,
+  "tests_run": 11,
+  "seconds": 18.126,
   "cases": [
     {
       "test": "test_baseline_locked_and_empty_queue",
@@ -40,12 +40,16 @@
       "passed": true
     },
     {
+      "test": "test_r2_register_duplicates_and_queue_without_git_parts",
+      "passed": true
+    },
+    {
       "test": "test_unpublished_source_cannot_enter_queue",
       "passed": true
     }
   ],
   "scope": "Real BW-001 archive + synthetic video in disposable local Git repos; no network or production BW-002 created",
-  "python": "3.12.14",
+  "python": "3.13.18",
   "ffprobe": "ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers",
-  "tool_sha256": "157516ce923947e762b11baea968f5bd00e0cd3e8363c17d86d6d3da2381b72b"
+  "tool_sha256": "0d4e3af9f041856410b20ec97220d3cd1906431b6897ccbc754b7ccb8ea06371"
 }

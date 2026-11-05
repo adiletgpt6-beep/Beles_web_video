@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "job_id": "BW-003",
+  "status": "staged",
+  "updated_at": "2026-11-05T12:14:39+00:00",
+  "next_step": "1) В Studio добавить запись allowlist брокера для BW-003 по production/jobs/BW-003/studio/BW-003-broker-allowlist.md и задеплоить production; 2) в среде Claude Code с STUDIO_SOURCE_TOKEN выполнить команду загрузки из HANDOFF.md задания, затем python3 scripts/beles.py verify BW-003, записать source.probe в manifest, закоммитить и выполнить verify BW-003 --record-delivery (staged → queued). Монтаж не начинать до queued и короткого промпта пользователя.",
+  "note": "2026-11-05: BW-003 зарегистрирован один раз через beles.py register-r2 (без Git-частей, без повторной загрузки): 1000221272.mp4, 17528359 байт, SHA-256 88a05856…965d, uploadId ced83175-8979-410f-8742-df793118b3de, R2 байты проверены владельцем в Studio. Блокер доставки: брокер Studio отвечает 404 для BW-003 (BW-002 — 200, без токена — 401), allowlist содержит только BW-002; репозиторий Studio из этой сессии недоступен, изменение описано в studio/BW-003-broker-allowlist.md; запуск загрузчика с токеном в этой сессии отклонён классификатором разрешений. Исходник не скачан, доставка не подтверждена, монтаж/платные сервисы/VID/Issue не запускались.",
+  "artifacts": [
+    "production/jobs/BW-003/brief.md",
+    "production/jobs/BW-003/studio/BW-003-broker-allowlist.md"
+  ],
+  "events": [
+    {
+      "at": "2026-11-05T12:14:39+00:00",
+      "status": "staged",
+      "next_step": "1) В Studio добавить запись allowlist брокера для BW-003 по production/jobs/BW-003/studio/BW-003-broker-allowlist.md и задеплоить production; 2) в среде Claude Code с STUDIO_SOURCE_TOKEN выполнить команду загрузки из HANDOFF.md задания, затем python3 scripts/beles.py verify BW-003, записать source.probe в manifest, закоммитить и выполнить verify BW-003 --record-delivery (staged → queued). Монтаж не начинать до queued и короткого промпта пользователя.",
+      "note": "2026-11-05: BW-003 зарегистрирован один раз через beles.py register-r2 (без Git-частей, без повторной загрузки): 1000221272.mp4, 17528359 байт, SHA-256 88a05856…965d, uploadId ced83175-8979-410f-8742-df793118b3de, R2 байты проверены владельцем в Studio. Блокер доставки: брокер Studio отвечает 404 для BW-003 (BW-002 — 200, без токена — 401), allowlist содержит только BW-002; репозиторий Studio из этой сессии недоступен, изменение описано в studio/BW-003-broker-allowlist.md; запуск загрузчика с токеном в этой сессии отклонён классификатором разрешений. Исходник не скачан, доставка не подтверждена, монтаж/платные сервисы/VID/Issue не запускались.",
+      "artifacts": [
+        "production/jobs/BW-003/brief.md",
+        "production/jobs/BW-003/studio/BW-003-broker-allowlist.md"
+      ]
+    }
+  ]
+}

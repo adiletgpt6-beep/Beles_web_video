@@ -19,6 +19,10 @@ MAX_BYTES = 100 * 1024 * 1024
 ID_RE = re.compile(r"BW-[0-9]{3,}\Z")
 SHA_RE = re.compile(r"[0-9a-f]{64}\Z")
 STATUSES = ("staged", "queued", "in_progress", "blocked", "rendered", "approved")
+GIT_STORAGE = "github_git_parts"
+R2_STORAGE = "cloudflare_r2_studio_broker"
+UUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\Z")
+BROKER_SCRIPT = "https://balago-studio.vercel.app/studio-fetch.mjs"
 
 
 class Error(Exception):
@@ -137,7 +141,7 @@ def load_manifest(root, job_id):
     s = m.get("source", {})
     if m.get("job_id") != job_id or m.get("role") not in ("approved_baseline", "edit"):
         raise Error(f"Invalid identity/role in {job_id}")
-    if s.get("storage") != "github_git_parts" or not SHA_RE.fullmatch(s.get("sha256", "")):
+    if s.get("storage") not in (GIT_STORAGE, R2_STORAGE) or not SHA_RE.fullmatch(s.get("sha256", "")):
         raise Error(f"Unsupported or invalid source in {job_id}")
     if type(s.get("bytes")) is not int or s["bytes"] <= 0:
         raise Error(f"Invalid source size in {job_id}")
@@ -145,6 +149,19 @@ def load_manifest(root, job_id):
     safe_path(root, s.get("cache_path"))
     if len(cache.parts) < 2 or cache.parts[0] != "input":
         raise Error("Source cache must be inside input/")
+    if s["storage"] == R2_STORAGE:
+        # Existing private Studio/R2 upload: no Git parts; bytes arrive only via the authorized broker.
+        r2 = s.get("r2") or {}
+        if (r2.get("provider") != "cloudflare_r2" or not UUID_RE.fullmatch(r2.get("upload_id", ""))
+                or r2.get("object_key") != f"live/raw/{r2.get('upload_id')}/source.mp4"
+                or r2.get("repository") != m.get("repository")
+                or r2.get("bytes") != s["bytes"] or r2.get("sha256") != s["sha256"]):
+            raise Error(f"Invalid R2 source description in {job_id}")
+        if s.get("parts"):
+            raise Error(f"R2 source must not declare Git parts in {job_id}")
+        if s.get("probe") is not None and not isinstance(s["probe"], dict):
+            raise Error(f"Invalid probe reference in {job_id}")
+        return m
     parts = s.get("parts", [])
     if not parts:
         raise Error(f"No archived parts in {job_id}")
@@ -196,6 +213,12 @@ def next_id(items):
     return f"BW-{max([int(m['job_id'][3:]) for m, _ in items], default=0) + 1:03d}"
 
 
+def broker_command(m):
+    s = m["source"]
+    return (f"curl -fsSL {BROKER_SCRIPT} -o /tmp/belestudio-fetch.mjs && "
+            f"node /tmp/belestudio-fetch.mjs {m['repository']} {m['job_id']} {s['cache_path']}")
+
+
 def delivery(root, m):
     path = root / "production/jobs" / m["job_id"] / "delivery.json"
     if not path.exists():
@@ -209,7 +232,7 @@ def snapshot(root):
     entries = []
     for m, cp in items:
         entries.append({"job_id": m["job_id"], "role": m["role"], "status": cp["status"],
-                        "source_sha256": m["source"]["sha256"],
+                        "source_sha256": m["source"]["sha256"], "source_storage": m["source"]["storage"],
                         "manifest": f"production/jobs/{m['job_id']}/manifest.json",
                         "next_step": cp["next_step"], "delivery_verified": bool(delivery(root, m))})
     active = next((e["job_id"] for status in ("in_progress", "queued")
@@ -220,13 +243,23 @@ def snapshot(root):
 
 def handoff(m, cp):
     jid = m["job_id"]
+    if m["source"]["storage"] == R2_STORAGE:
+        r2 = m["source"]["r2"]
+        source_line = (f"Хранилище: приватный Cloudflare R2 через Studio source broker; uploadId `{r2['upload_id']}`, "
+                       f"объект `{r2['object_key']}`. Git-частей нет.\n")
+        resume = (f"Продолжение: `python3 scripts/beles.py status {jid}`; исходник получать только командой "
+                  f"`{broker_command(m)}` (нужен секрет STUDIO_SOURCE_TOKEN, URL и токен не публиковать), "
+                  f"затем `python3 scripts/beles.py verify {jid}`.")
+    else:
+        source_line = ""
+        resume = (f"Продолжение: `python3 scripts/beles.py status {jid}`, затем "
+                  f"`python3 scripts/beles.py restore {jid}` и `python3 scripts/beles.py verify {jid}`.")
     return (f"# {jid} — {cp['status']}\n\n"
             f"Роль: {m['role']}. Стиль: {m['approved_style']}. WhatsApp: {m['contact']}.\n\n"
             f"Следующий шаг: {cp['next_step']}\n\n{cp.get('note', '')}\n\n"
             f"Исходник: `{m['source']['original_name']}`, {m['source']['bytes']} байт.\n"
-            f"SHA-256: `{m['source']['sha256']}`. Манифест: `manifest.json`.\n\n"
-            f"Продолжение: `python3 scripts/beles.py status {jid}`, затем "
-            f"`python3 scripts/beles.py restore {jid}` и `python3 scripts/beles.py verify {jid}`.\n\n"
+            f"SHA-256: `{m['source']['sha256']}`. Манифест: `manifest.json`.\n{source_line}\n"
+            f"{resume}\n\n"
             "Точное состояние, заметки, артефакты и история — `checkpoint.json`; "
             "проверка доставки — `delivery.json` (если уже выполнена). "
             "Публикуйте checkpoint и рабочие материалы в GitHub перед сменой чата.\n")
@@ -325,6 +358,70 @@ def ingest(root, args):
             "sha256": actual["sha256"], "parts": len(parts), "next_step": cp["next_step"]}
 
 
+def register_r2(root, args):
+    """Register an existing, owner-verified private R2 upload as a job without Git parts or re-upload."""
+    sha = args.sha256.lower()
+    if not SHA_RE.fullmatch(sha):
+        raise Error("--sha256 must be the complete 64-hex SHA-256 of the R2 object")
+    if type(args.bytes) is not int or args.bytes <= 0:
+        raise Error("--bytes must be a positive integer")
+    upload_id = args.upload_id.lower()
+    if not UUID_RE.fullmatch(upload_id):
+        raise Error("--upload-id must be the Studio upload UUID")
+    object_key = args.object_key or f"live/raw/{upload_id}/source.mp4"
+    if object_key != f"live/raw/{upload_id}/source.mp4":
+        raise Error("--object-key must be live/raw/<upload-id>/source.mp4")
+    original_name = re.sub(r"[^\w.\-]", "_", Path(args.name).name)
+    if not original_name or original_name in (".", ".."):
+        raise Error("--name must be the original file name")
+    existing = jobs(root)
+    for m, _ in existing:
+        if m["source"]["sha256"] == sha:
+            return {"job_id": m["job_id"], "duplicate": True, "changed": False}
+        if (m["source"].get("r2") or {}).get("upload_id") == upload_id:
+            raise Error(f"Upload {upload_id} is already registered as {m['job_id']} with another SHA-256")
+    jid = next_id(existing)
+    state = read_json(root / "production/STATE.json")
+    m = {"schema_version": 1, "job_id": jid, "role": "edit",
+         "repository": state["repository"], "approved_style": state["approved_style"],
+         "contact": state["contact"]["display"], "created_at": now(),
+         "brief": {"title": args.title or original_name, "instructions": args.brief,
+                   "language": args.language, "site": args.site},
+         "source": {"original_name": Path(args.name).name, "bytes": args.bytes, "sha256": sha,
+                    "cache_path": f"input/{jid}/{original_name}", "storage": R2_STORAGE, "parts": [],
+                    "probe": None,
+                    "r2": {"provider": "cloudflare_r2", "repository": state["repository"],
+                           "upload_id": upload_id, "object_key": object_key,
+                           "bytes": args.bytes, "sha256": sha,
+                           "digest_method": "studio_owner_authenticated_r2_read_range_sha256",
+                           "verified_by": args.verified_by, "verified_at_date": args.verified_at},
+                    "delivery_transport": R2_STORAGE},
+         "delivery_verification": f"production/jobs/{jid}/delivery.json",
+         "ingest": {"status": "r2_upload_verified_by_owner", "delivery_verified": False,
+                    "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload."}}
+    cp = {"schema_version": 1, "job_id": jid, "status": "staged", "updated_at": now(),
+          "next_step": (f"В среде Claude Code с STUDIO_SOURCE_TOKEN получить исходник: {broker_command(m)}; "
+                        f"проверить размер/SHA-256/ffprobe, записать source.probe в manifest, закоммитить, "
+                        f"затем `python3 scripts/beles.py verify {jid} --record-delivery`."),
+          "note": args.brief, "artifacts": [], "events": []}
+    folder = root / "production/jobs" / jid
+    if folder.exists():
+        raise Error(f"Job directory already exists: {folder}")
+    prod = root / "production"
+    with tempfile.TemporaryDirectory(prefix=".beles-ingest-", dir=prod) as temp:
+        job = Path(temp) / "job"
+        job.mkdir()
+        write_json(job / "manifest.json", m)
+        write_json(job / "checkpoint.json", cp)
+        atomic_text(job / "brief.md", f"# {jid}: {m['brief']['title']}\n\n{args.brief}\n")
+        atomic_text(job / "HANDOFF.md", handoff(m, cp))
+        (prod / "jobs").mkdir(exist_ok=True)
+        os.rename(job, folder)
+    sync(root)
+    return {"job_id": jid, "duplicate": False, "status": "staged", "sha256": sha, "bytes": args.bytes,
+            "storage": R2_STORAGE, "upload_id": upload_id, "next_step": cp["next_step"]}
+
+
 def repair_part(root, part):
     path = safe_path(root, part["path"])
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -345,6 +442,8 @@ def repair_part(root, part):
 
 
 def archive_check(root, m, repair=False):
+    if m["source"]["storage"] == R2_STORAGE:
+        return []  # nothing archived in Git; the cache file itself is checked by restore/verify
     total = hashlib.sha256()
     size = 0
     results = []
@@ -375,10 +474,13 @@ def restore(root, jid):
     try:
         check_file(target, m["source"])
         info = probe(target)
-        validate_probe(info, m["source"]["probe"])
+        validate_probe(info, m["source"]["probe"] or {})
         return {"job_id": jid, "action": "already_valid", "parts": parts, "probe": info}
-    except Error:
-        pass
+    except Error as exc:
+        if m["source"]["storage"] == R2_STORAGE:
+            raise Error(f"{jid}: valid R2 source is not cached ({exc}). This tool never downloads it; "
+                        f"run the authorized Studio broker command (STUDIO_SOURCE_TOKEN required, never print "
+                        f"the signed URL): {broker_command(m)}") from exc
     target.parent.mkdir(parents=True, exist_ok=True)
     fd, name = tempfile.mkstemp(prefix=".beles-restore-", suffix=".mp4", dir=target.parent)
     try:
@@ -404,9 +506,19 @@ def verify(root, jid, record=False):
     source = safe_path(root, m["source"]["cache_path"])
     actual = check_file(source, m["source"])
     info = probe(source)
-    validate_probe(info, m["source"]["probe"])
+    reference = m["source"]["probe"]
+    if reference is None:
+        if record:
+            raise Error("Manifest has no ffprobe reference yet; record source.probe from this verified "
+                        "download, commit it, then rerun verify --record-delivery")
+    else:
+        validate_probe(info, reference)
     result = {"job_id": jid, "verified": True, "bytes": actual["bytes"],
-              "sha256": actual["sha256"], "parts": parts, "probe": info}
+              "sha256": actual["sha256"], "transport": m["source"]["storage"], "parts": parts, "probe": info,
+              "probe_reference_present": reference is not None}
+    if m["source"]["storage"] == R2_STORAGE:
+        result["r2"] = {k: m["source"]["r2"][k] for k in ("upload_id", "object_key")}
+        result["git_parts_complete"] = False
     if record:
         # Only accept archive metadata/parts identical to the checked Git commit.
         paths = [f"production/jobs/{jid}/manifest.json"] + [p["path"] for p in m["source"]["parts"]]
@@ -423,9 +535,12 @@ def verify(root, jid, record=False):
             write_json(folder / "delivery.json", result)
         cp = checkpoint_data(root, m)
         if cp["status"] == "staged":
+            note = ("Исходник получен через авторизованный Studio source broker (приватный R2) и проверен: "
+                    "размер, SHA-256 и ffprobe совпали с manifest." if m["source"]["storage"] == R2_STORAGE
+                    else "Исходник восстановлен и проверен из опубликованных Git-объектов.")
             cp.update({"status": "queued", "updated_at": now(),
-                       "next_step": "Прочитать brief.md и STYLE_GUIDE.md; расшифровать исходник и выбрать дубли.",
-                       "note": "Исходник восстановлен и проверен из опубликованных Git-объектов."})
+                       "next_step": "Прочитать brief.md, STYLE_GUIDE.md и EDITING_LESSONS.md; расшифровать исходник и выбрать дубли.",
+                       "note": note})
             write_json(folder / "checkpoint.json", cp)
         sync(root)
     return result
@@ -469,6 +584,19 @@ def main(argv=None):
     ing.add_argument("--title")
     ing.add_argument("--language", default="ky")
     ing.add_argument("--site")
+    reg = sub.add_parser("register-r2", help="Register an EXISTING owner-verified private R2 upload (Studio) "
+                         "as a job without Git parts or re-upload; duplicate SHA returns existing ID")
+    reg.add_argument("--name", required=True, help="Original file name, e.g. 1000221272.mp4")
+    reg.add_argument("--bytes", type=int, required=True)
+    reg.add_argument("--sha256", required=True)
+    reg.add_argument("--upload-id", required=True)
+    reg.add_argument("--object-key")
+    reg.add_argument("--brief", required=True)
+    reg.add_argument("--title")
+    reg.add_argument("--language", default="ky")
+    reg.add_argument("--site")
+    reg.add_argument("--verified-by", default="owner_studio_r2_byte_digest")
+    reg.add_argument("--verified-at", default=dt.date.today().isoformat())
     for name in ("status", "queue", "next", "sync"):
         cmd = sub.add_parser(name)
         if name == "status":
@@ -501,10 +629,10 @@ def main(argv=None):
             result = verify(root, args.job_id)
         else:
             with lock(root):
-                if args.command == "ingest":
+                if args.command in ("ingest", "register-r2"):
                     if not args.brief.strip():
                         raise Error("A nonempty brief is required")
-                    result = ingest(root, args)
+                    result = ingest(root, args) if args.command == "ingest" else register_r2(root, args)
                 elif args.command == "restore":
                     result = restore(root, args.job_id)
                 elif args.command == "verify":

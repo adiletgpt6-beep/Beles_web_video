@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "job_id": "BW-003",
+  "role": "edit",
+  "repository": "adiletgpt6-beep/Beles_web_video",
+  "approved_style": "Beles V5",
+  "contact": "0998 08 38 28",
+  "created_at": "2026-11-05T12:13:31+00:00",
+  "brief": {
+    "title": "Beles — новая съёмка 1000221272.mp4 (рекламный ролик BW-003)",
+    "instructions": "Смонтировать новый рекламный ролик Beles из исходника 1000221272.mp4. Тему, связную речь и лучшие дубли определить по самому видео; не выдумывать содержание, обещания и статистику. Техническое качество и темп — на уровне утверждённых V5 (BW-001) и BW-002 v4, но визуальная концепция обязана быть уникальной: не копировать композицию, палитру, типографику, анимации и структуру сцен предыдущих роликов (STYLE_GUIDE, раздел об уникальности; EDITING_LESSONS, QA-чеклист). Сохранить оригинальную кыргызскую речь и синхрон губ, субтитры на языке записи с проверкой ө/ү/ң, бело-голубую схему субтитров без общей подложки/плашки, читаемость на телефоне и safe zones, WhatsApp 0998 08 38 28 не менее 3 секунд. Сайт/магазин показывать только если он относится к речи, по WEBSITE_SHOWCASE_RULES. Записать в docs задания концепцию, аудиторию, палитру, типографику, motion-приёмы и отличия от BW-001/BW-002. Сохранить отдельно исходный код, таймлайн, субтитры, финальный MP4 и превью внутри production/jobs/BW-003/; эталон V5 и файлы BW-002 не менять. Платные API, GitHub Actions и рендер — только по явному указанию пользователя.",
+    "language": "ky",
+    "site": null
+  },
+  "source": {
+    "original_name": "1000221272.mp4",
+    "bytes": 17528359,
+    "sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
+    "cache_path": "input/BW-003/1000221272.mp4",
+    "storage": "cloudflare_r2_studio_broker",
+    "parts": [],
+    "probe": null,
+    "r2": {
+      "provider": "cloudflare_r2",
+      "repository": "adiletgpt6-beep/Beles_web_video",
+      "upload_id": "ced83175-8979-410f-8742-df793118b3de",
+      "object_key": "live/raw/ced83175-8979-410f-8742-df793118b3de/source.mp4",
+      "bytes": 17528359,
+      "sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
+      "digest_method": "studio_owner_authenticated_r2_read_range_sha256",
+      "verified_by": "owner_studio_r2_byte_digest_2026-11-05",
+      "verified_at_date": "2026-11-05"
+    },
+    "delivery_transport": "cloudflare_r2_studio_broker"
+  },
+  "delivery_verification": "production/jobs/BW-003/delivery.json",
+  "ingest": {
+    "status": "r2_upload_verified_by_owner",
+    "delivery_verified": false,
+    "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload."
+  }
+}
