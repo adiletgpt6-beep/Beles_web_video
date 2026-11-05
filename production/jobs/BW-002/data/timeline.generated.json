@@ -8,26 +8,27 @@
  },
  "captionTopY": 190,
  "vignette": 0.32,
+ "fadeIn": 6,
  "searchBars": [
   {
-   "startFrame": 1,
-   "endFrame": 97,
+   "startFrame": 0,
+   "endFrame": 95,
    "typed": "сиздин бизнесиңиз",
-   "typeFrom": 8,
-   "typeTo": 48,
-   "dotsFrom": 69,
+   "typeFrom": 7,
+   "typeTo": 47,
+   "dotsFrom": 68,
    "y": 190
   }
  ],
  "sideScenes": [
   {
-   "startFrame": 225,
-   "endFrame": 309,
+   "startFrame": 223,
+   "endFrame": 307,
    "phone": {
-    "x": 40,
+    "x": 46,
     "y": 300,
-    "w": 420,
-    "h": 840
+    "w": 480,
+    "h": 960
    },
    "contents": [
     {
@@ -37,7 +38,7 @@
       "image": "site/mobile-home-ky-full.png",
       "imageWidth": 1170,
       "imageHeight": 35316,
-      "label": "zeket.kg",
+      "label": "Интерфейстин мисалы · zeket.kg",
       "scrollFrom": 0,
       "scrollTo": 1500
      }
@@ -45,13 +46,13 @@
    ]
   },
   {
-   "startFrame": 489,
-   "endFrame": 694,
+   "startFrame": 487,
+   "endFrame": 692,
    "phone": {
-    "x": 40,
+    "x": 46,
     "y": 300,
-    "w": 420,
-    "h": 840
+    "w": 480,
+    "h": 960
    },
    "contents": [
     {
@@ -86,13 +87,13 @@
    ]
   },
   {
-   "startFrame": 696,
-   "endFrame": 824,
+   "startFrame": 694,
+   "endFrame": 822,
    "phone": {
-    "x": 40,
-    "y": 420,
-    "w": 420,
-    "h": 840
+    "x": 46,
+    "y": 410,
+    "w": 450,
+    "h": 900
    },
    "contents": [
     {
@@ -102,7 +103,7 @@
       "image": "site/mobile-home-ky-full.png",
       "imageWidth": 1170,
       "imageHeight": 35316,
-      "label": "zeket.kg",
+      "label": "Интерфейстин мисалы · zeket.kg",
       "scrollFrom": 1500,
       "scrollTo": 2700
      }
@@ -110,10 +111,10 @@
    ],
    "desktop": {
     "from": 70,
-    "x": 40,
-    "y": 1290,
+    "x": 46,
+    "y": 1330,
     "w": 520,
-    "h": 330,
+    "h": 290,
     "url": "zeket.kg/ky",
     "image": "site/desktop-home-ky-full.png",
     "imageWidth": 2880,
@@ -137,8 +138,8 @@
  ],
  "bulbs": [
   {
-   "startFrame": 845,
-   "endFrame": 925,
+   "startFrame": 843,
+   "endFrame": 923,
    "x": 830,
    "y": 400
   }
@@ -146,64 +147,64 @@
  "fps": 30,
  "width": 1080,
  "height": 1920,
- "durationInFrames": 1069,
+ "durationInFrames": 1067,
  "video": "media/bw002/source.mp4",
  "audio": "media/bw002/voice.wav",
  "clips": [
   {
    "id": "hook",
-   "srcInFrame": 1124,
+   "srcInFrame": 1126,
    "srcOutFrame": 1221,
    "startFrame": 0,
-   "durationFrames": 97
+   "durationFrames": 95
   },
   {
    "id": "insta",
    "srcInFrame": 2054,
    "srcOutFrame": 2181,
-   "startFrame": 97,
+   "startFrame": 95,
    "durationFrames": 127
   },
   {
    "id": "face",
    "srcInFrame": 2358,
    "srcOutFrame": 2443,
-   "startFrame": 224,
+   "startFrame": 222,
    "durationFrames": 85
   },
   {
    "id": "offer",
    "srcInFrame": 3672,
    "srcOutFrame": 3851,
-   "startFrame": 309,
+   "startFrame": 307,
    "durationFrames": 179
   },
   {
    "id": "list",
    "srcInFrame": 7292,
    "srcOutFrame": 7498,
-   "startFrame": 488,
+   "startFrame": 486,
    "durationFrames": 206
   },
   {
    "id": "dev",
    "srcInFrame": 8256,
    "srcOutFrame": 8386,
-   "startFrame": 694,
+   "startFrame": 692,
    "durationFrames": 130
   },
   {
    "id": "idea",
    "srcInFrame": 8478,
    "srcOutFrame": 8585,
-   "startFrame": 824,
+   "startFrame": 822,
    "durationFrames": 107
   },
   {
    "id": "cta",
    "srcInFrame": 8925,
    "srcOutFrame": 9063,
-   "startFrame": 931,
+   "startFrame": 929,
    "durationFrames": 138
   }
  ],
@@ -214,47 +215,47 @@
    "smooth": false
   },
   {
-   "frame": 69,
+   "frame": 67,
    "mode": "close",
    "smooth": true
   },
   {
-   "frame": 97,
+   "frame": 95,
    "mode": "wide",
    "smooth": false
   },
   {
-   "frame": 224,
+   "frame": 222,
    "mode": "right",
    "smooth": false
   },
   {
-   "frame": 309,
+   "frame": 307,
    "mode": "medium",
    "smooth": false
   },
   {
-   "frame": 488,
+   "frame": 486,
    "mode": "right",
    "smooth": false
   },
   {
-   "frame": 694,
+   "frame": 692,
    "mode": "right",
    "smooth": false
   },
   {
-   "frame": 824,
+   "frame": 822,
    "mode": "medium",
    "smooth": false
   },
   {
-   "frame": 872,
+   "frame": 870,
    "mode": "close",
    "smooth": true
   },
   {
-   "frame": 931,
+   "frame": 929,
    "mode": "medium",
    "smooth": false
   }
@@ -264,464 +265,463 @@
  "phones": [],
  "subtitles": [
   {
-   "startFrame": 4,
-   "endFrame": 34,
+   "startFrame": 2,
+   "endFrame": 32,
    "words": [
     {
      "text": "Кардарыңыз",
      "key": false,
-     "startFrame": 6
+     "startFrame": 4
     },
     {
      "text": "сизди",
      "key": false,
-     "startFrame": 30
+     "startFrame": 28
     }
    ]
   },
   {
-   "startFrame": 34,
-   "endFrame": 68,
+   "startFrame": 32,
+   "endFrame": 66,
    "words": [
     {
      "text": "интернеттен",
      "key": true,
-     "startFrame": 36
+     "startFrame": 34
     },
     {
      "text": "издегенде",
      "key": false,
-     "startFrame": 56
+     "startFrame": 54
     }
    ]
   },
   {
-   "startFrame": 68,
-   "endFrame": 100,
+   "startFrame": 66,
+   "endFrame": 98,
    "words": [
     {
      "text": "эмне",
      "key": true,
-     "startFrame": 70
+     "startFrame": 68
     },
     {
      "text": "табат?",
      "key": true,
-     "startFrame": 80
+     "startFrame": 78
     }
    ]
   },
   {
-   "startFrame": 100,
-   "endFrame": 150,
+   "startFrame": 98,
+   "endFrame": 148,
    "words": [
     {
      "text": "Инстаграм",
      "key": false,
-     "startFrame": 102
+     "startFrame": 100
     },
     {
      "text": "баракчаңыз",
      "key": false,
-     "startFrame": 120
+     "startFrame": 118
     },
     {
      "text": "элеби,",
      "key": false,
-     "startFrame": 138
+     "startFrame": 136
     }
    ],
    "scene": true
   },
   {
-   "startFrame": 150,
-   "endFrame": 227,
+   "startFrame": 148,
+   "endFrame": 225,
    "words": [
     {
      "text": "же",
      "key": false,
-     "startFrame": 152
+     "startFrame": 150
     },
     {
      "text": "профессионалдуу",
      "key": false,
-     "startFrame": 171
+     "startFrame": 169
     },
     {
      "text": "сайтыңыздыбы?",
      "key": false,
-     "startFrame": 196
+     "startFrame": 194
     }
    ],
    "scene": true
   },
   {
-   "startFrame": 227,
-   "endFrame": 269,
+   "startFrame": 225,
+   "endFrame": 267,
    "words": [
     {
      "text": "Бүгүнкү",
      "key": false,
-     "startFrame": 229
+     "startFrame": 227
     },
     {
      "text": "күндө",
      "key": false,
-     "startFrame": 247
+     "startFrame": 245
     },
     {
      "text": "жакшы",
      "key": false,
-     "startFrame": 253
+     "startFrame": 251
     },
     {
      "text": "сайт",
      "key": true,
-     "startFrame": 265
+     "startFrame": 263
     }
    ]
   },
   {
-   "startFrame": 269,
-   "endFrame": 313,
+   "startFrame": 267,
+   "endFrame": 311,
    "words": [
     {
      "text": "бизнесиңиздин",
      "key": false,
-     "startFrame": 271
+     "startFrame": 269
     },
     {
      "text": "жүзү.",
      "key": true,
-     "startFrame": 294
+     "startFrame": 292
     }
    ]
   },
   {
-   "startFrame": 313,
-   "endFrame": 360,
+   "startFrame": 311,
+   "endFrame": 358,
    "words": [
     {
      "text": "Биз",
      "key": false,
-     "startFrame": 315
+     "startFrame": 313
     },
     {
      "text": "жөн",
      "key": false,
-     "startFrame": 327
+     "startFrame": 325
     },
     {
      "text": "гана",
      "key": false,
-     "startFrame": 333
+     "startFrame": 331
     },
     {
      "text": "кооз",
      "key": false,
-     "startFrame": 339
+     "startFrame": 337
     },
     {
      "text": "сайт",
      "key": false,
-     "startFrame": 348
+     "startFrame": 346
     },
     {
      "text": "эмес,",
      "key": true,
-     "startFrame": 356
+     "startFrame": 354
     }
    ]
   },
   {
-   "startFrame": 360,
-   "endFrame": 404,
+   "startFrame": 358,
+   "endFrame": 402,
    "words": [
     {
      "text": "кардарларга",
      "key": false,
-     "startFrame": 362
+     "startFrame": 360
     },
     {
      "text": "ыңгайлуу,",
      "key": true,
-     "startFrame": 388
+     "startFrame": 386
     }
    ]
   },
   {
-   "startFrame": 404,
-   "endFrame": 488,
+   "startFrame": 402,
+   "endFrame": 486,
    "words": [
     {
      "text": "бизнесиңизди",
      "key": false,
-     "startFrame": 406
+     "startFrame": 404
     },
     {
      "text": "өнүктүрө",
      "key": false,
-     "startFrame": 442
+     "startFrame": 440
     },
     {
      "text": "турган",
      "key": false,
-     "startFrame": 453
+     "startFrame": 451
     },
     {
      "text": "сайт",
      "key": false,
-     "startFrame": 461
+     "startFrame": 459
     },
     {
      "text": "жасайбыз.",
      "key": false,
-     "startFrame": 467
+     "startFrame": 465
     }
    ],
    "scene": true
   },
   {
-   "startFrame": 501,
-   "endFrame": 550,
+   "startFrame": 499,
+   "endFrame": 548,
    "words": [
     {
      "text": "Интернет",
      "key": false,
-     "startFrame": 503
+     "startFrame": 501
     },
     {
      "text": "дүкөн,",
      "key": true,
-     "startFrame": 513
+     "startFrame": 511
     },
     {
      "text": "лендинг,",
      "key": true,
-     "startFrame": 524
+     "startFrame": 522
     }
    ]
   },
   {
-   "startFrame": 550,
-   "endFrame": 598,
+   "startFrame": 548,
+   "endFrame": 596,
    "words": [
     {
      "text": "онлайн",
      "key": true,
-     "startFrame": 552
+     "startFrame": 550
     },
     {
      "text": "брондоо",
      "key": true,
-     "startFrame": 578
+     "startFrame": 576
     },
     {
      "text": "же",
      "key": false,
-     "startFrame": 591
+     "startFrame": 589
     }
    ]
   },
   {
-   "startFrame": 598,
-   "endFrame": 642,
+   "startFrame": 596,
+   "endFrame": 640,
    "words": [
     {
      "text": "татаал",
      "key": false,
-     "startFrame": 600
+     "startFrame": 598
     },
     {
      "text": "веб-система,",
      "key": true,
-     "startFrame": 623
+     "startFrame": 621
     }
    ]
   },
   {
-   "startFrame": 642,
-   "endFrame": 694,
+   "startFrame": 640,
+   "endFrame": 692,
    "words": [
     {
      "text": "баардыгын",
      "key": true,
-     "startFrame": 644
+     "startFrame": 642
     },
     {
      "text": "ишке",
      "key": false,
-     "startFrame": 667
+     "startFrame": 665
     },
     {
      "text": "ашырабыз.",
      "key": false,
-     "startFrame": 672
+     "startFrame": 670
     }
    ]
   },
   {
-   "startFrame": 705,
-   "endFrame": 743,
+   "startFrame": 703,
+   "endFrame": 741,
    "words": [
     {
      "text": "Эң",
      "key": true,
-     "startFrame": 707
+     "startFrame": 705
     },
     {
      "text": "негизгиси,",
      "key": true,
-     "startFrame": 713
+     "startFrame": 711
     },
     {
      "text": "сайтыңыз",
      "key": false,
-     "startFrame": 723
+     "startFrame": 721
     }
    ],
    "place": "top"
   },
   {
-   "startFrame": 743,
-   "endFrame": 792,
+   "startFrame": 741,
+   "endFrame": 790,
    "words": [
     {
      "text": "телефонго",
      "key": true,
-     "startFrame": 744
+     "startFrame": 742
     },
     {
      "text": "да,",
      "key": false,
-     "startFrame": 763
+     "startFrame": 761
     },
     {
      "text": "компьютерге",
      "key": true,
-     "startFrame": 767
+     "startFrame": 765
     },
     {
      "text": "да",
      "key": false,
-     "startFrame": 789
+     "startFrame": 787
     }
    ],
    "place": "top"
   },
   {
-   "startFrame": 792,
-   "endFrame": 824,
+   "startFrame": 790,
+   "endFrame": 822,
    "words": [
     {
      "text": "ылайыктуу",
      "key": true,
-     "startFrame": 794
+     "startFrame": 792
     },
     {
      "text": "болот.",
      "key": false,
-     "startFrame": 807
+     "startFrame": 805
     }
    ],
    "place": "top"
   },
   {
-   "startFrame": 834,
-   "endFrame": 872,
+   "startFrame": 832,
+   "endFrame": 870,
    "words": [
     {
      "text": "Сиздин",
      "key": false,
-     "startFrame": 836
+     "startFrame": 834
     },
     {
      "text": "идеяңыз",
      "key": true,
-     "startFrame": 846
+     "startFrame": 844
     },
     {
      "text": "барбы?",
      "key": true,
-     "startFrame": 861
+     "startFrame": 859
     }
    ]
   },
   {
-   "startFrame": 872,
-   "endFrame": 931,
+   "startFrame": 870,
+   "endFrame": 929,
    "words": [
     {
      "text": "Биз",
      "key": false,
-     "startFrame": 874
+     "startFrame": 872
     },
     {
      "text": "аны",
      "key": false,
-     "startFrame": 892
+     "startFrame": 890
     },
     {
      "text": "ишке",
      "key": true,
-     "startFrame": 899
+     "startFrame": 897
     },
     {
      "text": "ашырабыз.",
      "key": true,
-     "startFrame": 907
+     "startFrame": 905
     }
-   ],
-   "place": "low"
+   ]
   },
   {
-   "startFrame": 938,
-   "endFrame": 978,
+   "startFrame": 936,
+   "endFrame": 976,
    "words": [
     {
      "text": "Азыр",
      "key": false,
-     "startFrame": 940
+     "startFrame": 938
     },
     {
      "text": "бизге",
      "key": false,
-     "startFrame": 957
+     "startFrame": 955
     },
     {
      "text": "жазыңыз,",
      "key": true,
-     "startFrame": 966
+     "startFrame": 964
     }
    ],
    "place": "top"
   },
   {
-   "startFrame": 978,
-   "endFrame": 1044,
+   "startFrame": 976,
+   "endFrame": 1042,
    "words": [
     {
      "text": "долбоорубузду",
      "key": false,
-     "startFrame": 980
+     "startFrame": 978
     },
     {
      "text": "чогуу",
      "key": true,
-     "startFrame": 1011
+     "startFrame": 1009
     },
     {
      "text": "талкуулайлы.",
      "key": true,
-     "startFrame": 1017
+     "startFrame": 1015
     }
    ],
    "place": "top"
   }
  ],
  "badge": {
-  "startFrame": 948,
-  "endFrame": 1069,
+  "startFrame": 946,
+  "endFrame": 1067,
   "text": "WhatsApp аркылуу жазыңыз",
   "number": "0998 08 38 28",
   "x": 520,
@@ -732,8 +732,8 @@
  "typeScenes": [
   {
    "id": "ts-grow",
-   "startFrame": 406,
-   "endFrame": 488,
+   "startFrame": 404,
+   "endFrame": 486,
    "small": {
     "text": "бизнесиңизди",
     "frame": 20
@@ -752,8 +752,8 @@
  ],
  "behindText": {
   "startFrame": 0,
-  "endFrame": 97,
-  "srcStart": 1124,
+  "endFrame": 95,
+  "srcStart": 1126,
   "matteFrom": 1125,
   "matteTo": 1220,
   "matteDir": "media/matte_bw002",
@@ -761,22 +761,22 @@
   "words": [
    {
     "text": "ИНТЕРНЕТ",
-    "from": 34,
-    "to": 64,
+    "from": 32,
+    "to": 62,
     "color": "white"
    },
    {
     "text": "ЭМНЕ ТАБАТ?",
-    "from": 65,
-    "to": 96,
+    "from": 63,
+    "to": 94,
     "color": "cyan"
    }
   ]
  },
  "videoCards": [
   {
-   "startFrame": 97,
-   "endFrame": 224,
+   "startFrame": 95,
+   "endFrame": 222,
    "srcStart": 2054,
    "rect": {
     "x": 250,

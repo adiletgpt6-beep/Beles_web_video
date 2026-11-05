@@ -20,6 +20,8 @@ export const WhatsAppBadge: React.FC<{ badge: Badge }> = ({ badge }) => {
   const a = interpolate(f, [0, 8], [0, 1], { ...clamp, easing: out }); // card + icon
   const b = interpolate(f, [5, 13], [0, 1], { ...clamp, easing: out }); // number (delayed)
   const glow = interpolate(f, [13, 22, 34], [0, 1, 0], clamp);
+  const bob = Math.sin((f / 54) * Math.PI * 2) * 2.5; // slow 1.8 s float, ±2.5 px
+  const shine = interpolate(f, [26, 50], [-0.4, 1.4], clamp); // one soft light sweep across the number
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       <div
@@ -27,7 +29,7 @@ export const WhatsAppBadge: React.FC<{ badge: Badge }> = ({ badge }) => {
           position: 'absolute',
           left: badge.x,
           top: badge.y,
-          transform: `translate(-50%, -50%) translateY(${(1 - a) * 36}px) scale(${0.92 + 0.08 * a})`,
+          transform: `translate(-50%, -50%) translateY(${(1 - a) * 36 + bob * a}px) scale(${0.92 + 0.08 * a})`,
           opacity: a,
           padding: '20px 34px 18px 26px',
           borderRadius: 34,
@@ -44,7 +46,10 @@ export const WhatsAppBadge: React.FC<{ badge: Badge }> = ({ badge }) => {
           </div>
           <span style={{ fontFamily: FONTS.body, fontWeight: 800, fontSize: 36, color: WA_DARK }}>{badge.text}</span>
         </div>
-        <div style={{ overflow: 'hidden', marginTop: 4 }}>
+        <div style={{ overflow: 'hidden', marginTop: 4, position: 'relative' }}>
+          {shine > -0.4 && shine < 1.4 ? (
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: `${shine * 100}%`, width: '22%', background: 'linear-gradient(100deg, rgba(56,204,255,0) 0%, rgba(56,204,255,0.28) 50%, rgba(56,204,255,0) 100%)', pointerEvents: 'none' }} />
+          ) : null}
           <div
             style={{
               fontFamily: FONTS.head,

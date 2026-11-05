@@ -257,6 +257,7 @@ const timeline = {
   ...(edit.face ? { face: edit.face } : {}),
   ...(edit.captionTopY ? { captionTopY: edit.captionTopY } : {}),
   ...(edit.vignette ? { vignette: edit.vignette } : {}),
+  ...(edit.fadeIn ? { fadeIn: edit.fadeIn } : {}),
   ...(searchBars.length ? { searchBars } : {}),
   ...(sideScenes.length ? { sideScenes } : {}),
   ...(bulbs.length ? { bulbs } : {}),

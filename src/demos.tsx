@@ -83,7 +83,7 @@ const I = {
 export const SearchBar: React.FC<{ data: SearchBarData }> = ({ data }) => {
   const f = useCurrentFrame();
   const len = data.endFrame - data.startFrame;
-  const a = interpolate(f, [0, 9], [0, 1], { ...clamp, easing: out });
+  const a = interpolate(f, [0, 6], [0, 1], { ...clamp, easing: out });
   const o = interpolate(f, [len - 7, len], [1, 0], clamp);
   const n = Math.round(interpolate(f, [data.typeFrom, data.typeTo], [0, data.typed.length], clamp));
   const text = data.typed.slice(0, n);
@@ -185,7 +185,7 @@ const Phone: React.FC<{ rect: { x: number; y: number; w: number; h: number }; en
       </div>
       <div style={{ position: 'absolute', top: 22, left: rect.w / 2 - 46, width: 92, height: 26, borderRadius: 13, background: '#0D0D0F' }} />
       {label ? (
-        <div style={{ position: 'absolute', top: -22, right: 18, padding: '6px 16px', borderRadius: 18, background: label === 'ДЕМО' ? 'rgba(56,204,255,0.95)' : 'rgba(255,255,255,0.96)', color: INK, fontFamily: FONTS.body, fontWeight: 800, fontSize: 22, letterSpacing: 1, boxShadow: '0 6px 16px rgba(0,0,0,0.35)' }}>
+        <div style={{ position: 'absolute', top: -24, right: 14, padding: '7px 16px', borderRadius: 20, background: label === 'ДЕМО' ? 'rgba(56,204,255,0.95)' : 'rgba(255,255,255,0.96)', color: INK, fontFamily: FONTS.body, fontWeight: 800, fontSize: label.length > 8 ? 19 : 22, letterSpacing: label.length > 8 ? 0 : 1, whiteSpace: 'nowrap', boxShadow: '0 6px 16px rgba(0,0,0,0.35)' }}>
           {label}
         </div>
       ) : null}
@@ -397,10 +397,15 @@ export const SideScene: React.FC<{ data: SideSceneData }> = ({ data }) => {
   const next = data.contents[idx + 1];
   const curEnd = next ? next.from : len;
   const xf = interpolate(f, [cur.from, cur.from + 7], [0, 1], { ...clamp, easing: inOut });
+  const BASE = 396;
+  const zoom = sw / BASE;
+  const scaled = (node: React.ReactNode) => (
+    <div style={{ position: 'absolute', left: 0, top: 0, width: BASE, height: sh / zoom, transformOrigin: '0 0', transform: `scale(${zoom})` }}>{node}</div>
+  );
   const render = (c: SideSceneContent, from: number, to: number) => {
     if (c.kind === 'site') return <SiteScroll f={f} from={from} to={to} c={c} w={sw} />;
-    if (c.kind === 'store') return <StoreDemo f={f} beats={c.beats} w={sw} h={sh} />;
-    return <AutomationDemo f={f} beats={c.beats} w={sw} h={sh} />;
+    if (c.kind === 'store') return scaled(<StoreDemo f={f} beats={c.beats} w={BASE} h={sh / zoom} />);
+    return scaled(<AutomationDemo f={f} beats={c.beats} w={BASE} h={sh / zoom} />);
   };
   const prev = idx > 0 ? data.contents[idx - 1] : null;
   const d = data.desktop;

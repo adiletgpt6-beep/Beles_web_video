@@ -1,16 +1,16 @@
 {
  "fps": 30,
- "durationInFrames": 1069,
+ "durationInFrames": 1067,
  "music": {
   "generator": "scripts/make-music.py",
   "gainDb": -18,
   "accentAt": "cta@298.45",
-  "accentFrame": 960
+  "accentFrame": 958
  },
  "clips": [
   {
    "id": "hook",
-   "srcInFrame": 1124,
+   "srcInFrame": 1126,
    "srcOutFrame": 1221,
    "startFrame": 0
   },
@@ -18,219 +18,219 @@
    "id": "insta",
    "srcInFrame": 2054,
    "srcOutFrame": 2181,
-   "startFrame": 97
+   "startFrame": 95
   },
   {
    "id": "face",
    "srcInFrame": 2358,
    "srcOutFrame": 2443,
-   "startFrame": 224
+   "startFrame": 222
   },
   {
    "id": "offer",
    "srcInFrame": 3672,
    "srcOutFrame": 3851,
-   "startFrame": 309
+   "startFrame": 307
   },
   {
    "id": "list",
    "srcInFrame": 7292,
    "srcOutFrame": 7498,
-   "startFrame": 488
+   "startFrame": 486
   },
   {
    "id": "dev",
    "srcInFrame": 8256,
    "srcOutFrame": 8386,
-   "startFrame": 694
+   "startFrame": 692
   },
   {
    "id": "idea",
    "srcInFrame": 8478,
    "srcOutFrame": 8585,
-   "startFrame": 824
+   "startFrame": 822
   },
   {
    "id": "cta",
    "srcInFrame": 8925,
    "srcOutFrame": 9063,
-   "startFrame": 931
+   "startFrame": 929
   }
  ],
  "sfx": [
   {
    "type": "swish",
-   "frame": 5,
+   "frame": 3,
    "gainDb": -4
   },
   {
    "type": "tick",
-   "frame": 18,
+   "frame": 16,
    "gainDb": -6
   },
   {
    "type": "tick",
-   "frame": 30,
+   "frame": 28,
    "gainDb": -6
   },
   {
    "type": "tick",
-   "frame": 42,
+   "frame": 40,
    "gainDb": -6
   },
   {
    "type": "whoosh_in",
-   "frame": 34,
+   "frame": 32,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 77,
+   "frame": 75,
    "gainDb": -2
   },
   {
    "type": "swish",
-   "frame": 102,
+   "frame": 100,
    "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 178,
+   "frame": 176,
    "gainDb": -3
   },
   {
    "type": "whoosh_in",
-   "frame": 224,
+   "frame": 222,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 296,
+   "frame": 294,
    "gainDb": -4
   },
   {
    "type": "whoosh_in",
-   "frame": 405,
+   "frame": 403,
    "gainDb": -2
   },
   {
    "type": "pop",
-   "frame": 447,
+   "frame": 445,
    "gainDb": -3
   },
   {
    "type": "tick",
-   "frame": 464,
+   "frame": 462,
    "gainDb": -3
   },
   {
    "type": "whoosh_in",
-   "frame": 487,
+   "frame": 485,
    "gainDb": -3
   },
   {
    "type": "tick",
-   "frame": 500,
+   "frame": 498,
    "gainDb": -5
   },
   {
    "type": "tick",
-   "frame": 504,
+   "frame": 502,
    "gainDb": -5
   },
   {
    "type": "pop",
-   "frame": 519,
+   "frame": 517,
    "gainDb": -4
   },
   {
    "type": "tick",
-   "frame": 534,
+   "frame": 532,
    "gainDb": -4
   },
   {
    "type": "swish",
-   "frame": 547,
+   "frame": 545,
    "gainDb": -5
   },
   {
    "type": "tick",
-   "frame": 570,
+   "frame": 568,
    "gainDb": -4
   },
   {
    "type": "chime",
-   "frame": 579,
+   "frame": 577,
    "gainDb": -2
   },
   {
    "type": "pop",
-   "frame": 593,
+   "frame": 591,
    "gainDb": -3
   },
   {
    "type": "swish",
-   "frame": 603,
+   "frame": 601,
    "gainDb": -5
   },
   {
    "type": "tick",
-   "frame": 614,
+   "frame": 612,
    "gainDb": -4
   },
   {
    "type": "tick",
-   "frame": 636,
+   "frame": 634,
    "gainDb": -4
   },
   {
    "type": "tick",
-   "frame": 657,
+   "frame": 655,
    "gainDb": -4
   },
   {
    "type": "pop",
-   "frame": 677,
+   "frame": 675,
    "gainDb": -3
   },
   {
    "type": "whoosh_in",
-   "frame": 694,
+   "frame": 692,
    "gainDb": -3
   },
   {
    "type": "swish",
-   "frame": 769,
+   "frame": 767,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 798,
+   "frame": 796,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 850,
+   "frame": 848,
    "gainDb": -2
   },
   {
    "type": "swish",
-   "frame": 875,
+   "frame": 873,
    "gainDb": -3
   },
   {
    "type": "tick",
-   "frame": 956,
+   "frame": 954,
    "gainDb": 0
   },
   {
    "type": "chime",
-   "frame": 960,
+   "frame": 958,
    "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 969,
+   "frame": 967,
    "gainDb": -4
   }
  ]
