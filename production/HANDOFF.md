@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio BW-002 broker production READY, next Claude action
+
+- Production Vercel Studio commit 5142c0305895666e1c4c8b7cd3a5f6aee64af591 confirmed READY. Vercel production env lists STUDIO_SOURCE_TOKEN_SHA256 as configured (value not requested/read), plus R2 credentials and STUDIO_TARGET_REPOS including Beles. This does NOT establish that Claude Code runtime has matching STUDIO_SOURCE_TOKEN.
+- START_HERE.md now includes a concrete curl/node Studio downloader command for the existing BW-002 and expected SHA-256; checkpoint commit 604995cee42fdded84cd5b1a2208450da7125fe0.
+- Remaining blocker: no Claude Code runtime tool/session available in this chat to execute authenticated download, so do not claim that Claude downloaded the MP4 or mark ingest complete. Claude should run downloader and share only size/hash/status, never secrets or presigned URL. No paid render.
+- If authenticated fetch succeeds and SHA-256 matches, next modify Beles ingest manifest/checkpoint/STATE to reflect R2 delivery with appropriate restore/verify path (old Git-parts transport 1/12 must not be treated complete).
+
+
 ## 2026-11-05 — Studio PR #173 merged, production deploying
 
 - Studio PR #173 https://github.com/adiletzainidinov/balago-video/pull/173 merged with squash SHA 5142c0305895666e1c4c8b7cd3a5f6aee64af591; GitHub mergeable true, Vercel preview tests 53/53 passed. Production deployment initializing at checkpoint.
