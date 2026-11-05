@@ -1,83 +1,957 @@
 {
- "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger.",
+ "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger. V2 (2026-11-05, full rework requested by the user): search-bar hook, presenter pushed right ('right' camera) with a phone beside him — real zeket.kg site scrolling (label zeket.kg), demo online store (catalog → product → cart → checkout → new-order toast) and demo automation flow (request → manager notification → CRM), labelled ДЕМО; phone + desktop window for 'телефонго да, компьютерге да'; idea bulb; WhatsApp badge with consultation line and pulsing button; cinematic vignette. Speech, takes and cuts are identical to v1.",
  "sourceName": "1000219289.mp4",
- "fps": 30, "width": 1080, "height": 1920,
- "video": "media/bw002/source.mp4", "audio": "media/bw002/voice.wav",
- "face": {"cx": 533, "cy": 650, "top": 469, "cardScale": 1.32, "card2Scale": 1.40},
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "video": "media/bw002/source.mp4",
+ "audio": "media/bw002/voice.wav",
+ "face": {
+  "cx": 533,
+  "cy": 650,
+  "top": 469,
+  "cardScale": 1.32,
+  "card2Scale": 1.4
+ },
  "captionTopY": 190,
- "music": {"generator": "scripts/make-music.py", "gainDb": -18, "accentAt": "cta@298.45"},
+ "music": {
+  "generator": "scripts/make-music.py",
+  "gainDb": -18,
+  "accentAt": "cta@298.45"
+ },
  "segments": [
-  {"id": "hook", "in": 37.45, "out": 40.70, "camera": "medium", "take": "2 of 3 (34.99–37.17 and 37.66–40.48 both 0% down-gaze; the later one ends with the open-hands question gesture 39.8–40.4)",
+  {
+   "id": "hook",
+   "in": 37.45,
+   "out": 40.7,
+   "camera": "medium",
+   "take": "2 of 3 (34.99–37.17 and 37.66–40.48 both 0% down-gaze; the later one ends with the open-hands question gesture 39.8–40.4)",
    "text": "Кардарыңыз сизди интернеттен издегенде эмне табат?",
-   "subs": [{"text": "Кардарыңыз сизди", "key": []}, {"text": "интернеттен издегенде", "key": ["интернеттен"]}, {"text": "эмне табат?", "key": ["эмне", "табат?"]}],
-   "words": [{"w": "Кардарыңыз", "t": 37.66}, {"w": "сизди", "t": 38.48}, {"w": "интернеттен", "t": 38.66}, {"w": "издегенде", "t": 39.34}, {"w": "эмне", "t": 39.80}, {"w": "табат?", "t": 40.12}],
-   "speechEnd": 40.48},
-  {"id": "insta", "in": 68.45, "out": 72.70, "camera": "wide", "take": "2 of 2 (60.59–64.32 looks down at 63.3–64.2; 68.9–72.5 0% down, open hands at 70.7)",
+   "subs": [
+    {
+     "text": "Кардарыңыз сизди",
+     "key": []
+    },
+    {
+     "text": "интернеттен издегенде",
+     "key": [
+      "интернеттен"
+     ]
+    },
+    {
+     "text": "эмне табат?",
+     "key": [
+      "эмне",
+      "табат"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Кардарыңыз",
+     "t": 37.66
+    },
+    {
+     "w": "сизди",
+     "t": 38.48
+    },
+    {
+     "w": "интернеттен",
+     "t": 38.66
+    },
+    {
+     "w": "издегенде",
+     "t": 39.34
+    },
+    {
+     "w": "эмне",
+     "t": 39.8
+    },
+    {
+     "w": "табат?",
+     "t": 40.12
+    }
+   ],
+   "speechEnd": 40.48
+  },
+  {
+   "id": "insta",
+   "in": 68.45,
+   "out": 72.7,
+   "camera": "wide",
+   "take": "2 of 2 (60.59–64.32 looks down at 63.3–64.2; 68.9–72.5 0% down, open hands at 70.7)",
    "text": "Инстаграм баракчаңыз элеби, же профессионалдуу сайтыңыздыбы?",
-   "subs": [{"text": "Инстаграм баракчаңыз элеби,", "scene": true}, {"text": "же профессионалдуу сайтыңыздыбы?", "scene": true}],
-   "words": [{"w": "Инстаграм", "t": 68.62}, {"w": "баракчаңыз", "t": 69.24}, {"w": "элеби,", "t": 69.82}, {"w": "же", "t": 70.30}, {"w": "профессионалдуу", "t": 70.94}, {"w": "сайтыңыздыбы?", "t": 71.75}],
-   "speechEnd": 72.46},
-  {"id": "face", "in": 78.60, "out": 81.42, "camera": "close", "take": "1 of 3 (79.05–81.34 0% down; 86.1–88.4 41% down; 91.5–93.8 6%)",
+   "subs": [
+    {
+     "text": "Инстаграм баракчаңыз элеби,",
+     "scene": true
+    },
+    {
+     "text": "же профессионалдуу сайтыңыздыбы?",
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Инстаграм",
+     "t": 68.62
+    },
+    {
+     "w": "баракчаңыз",
+     "t": 69.24
+    },
+    {
+     "w": "элеби,",
+     "t": 69.82
+    },
+    {
+     "w": "же",
+     "t": 70.3
+    },
+    {
+     "w": "профессионалдуу",
+     "t": 70.94
+    },
+    {
+     "w": "сайтыңыздыбы?",
+     "t": 71.75
+    }
+   ],
+   "speechEnd": 72.46
+  },
+  {
+   "id": "face",
+   "in": 78.6,
+   "out": 81.42,
+   "camera": "right",
+   "take": "1 of 3 (79.05–81.34 0% down; 86.1–88.4 41% down; 91.5–93.8 6%)",
    "text": "Бүгүнкү күндө жакшы сайт бизнесиңиздин жүзү.",
-   "subs": [{"text": "Бүгүнкү күндө жакшы сайт", "key": ["сайт"]}, {"text": "бизнесиңиздин жүзү.", "key": ["жүзү."]}],
-   "words": [{"w": "Бүгүнкү", "t": 78.75}, {"w": "күндө", "t": 79.35}, {"w": "жакшы", "t": 79.57}, {"w": "сайт", "t": 79.97}, {"w": "бизнесиңиздин", "t": 80.17}, {"w": "жүзү.", "t": 80.93}],
-   "speechEnd": 81.17},
-  {"id": "offer", "in": 122.40, "out": 128.35, "camera": "medium", "take": "122.9–128.2 (5% down; shortest complete wording; later takes 155.5–161.4 and 179.5–185.8 look down 15–20%)",
+   "subs": [
+    {
+     "text": "Бүгүнкү күндө жакшы сайт",
+     "key": [
+      "сайт"
+     ]
+    },
+    {
+     "text": "бизнесиңиздин жүзү.",
+     "key": [
+      "жүзү"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Бүгүнкү",
+     "t": 78.75
+    },
+    {
+     "w": "күндө",
+     "t": 79.35
+    },
+    {
+     "w": "жакшы",
+     "t": 79.57
+    },
+    {
+     "w": "сайт",
+     "t": 79.97
+    },
+    {
+     "w": "бизнесиңиздин",
+     "t": 80.17
+    },
+    {
+     "w": "жүзү.",
+     "t": 80.93
+    }
+   ],
+   "speechEnd": 81.17
+  },
+  {
+   "id": "offer",
+   "in": 122.4,
+   "out": 128.35,
+   "camera": "medium",
+   "take": "122.9–128.2 (5% down; shortest complete wording; later takes 155.5–161.4 and 179.5–185.8 look down 15–20%)",
    "text": "Биз жөн гана кооз сайт эмес, кардарларга ыңгайлуу, бизнесиңизди өнүктүрө турган сайт жасайбыз.",
-   "subs": [{"text": "Биз жөн гана кооз сайт эмес,", "key": ["эмес,"]}, {"text": "кардарларга ыңгайлуу,", "key": ["ыңгайлуу,"]}, {"text": "бизнесиңизди өнүктүрө турган сайт жасайбыз.", "scene": true}],
-   "words": [{"w": "Биз", "t": 122.59}, {"w": "жөн", "t": 122.99}, {"w": "гана", "t": 123.20}, {"w": "кооз", "t": 123.40}, {"w": "сайт", "t": 123.70}, {"w": "эмес,", "t": 123.95}, {"w": "кардарларга", "t": 124.15}, {"w": "ыңгайлуу,", "t": 125.03}, {"w": "бизнесиңизди", "t": 125.62}, {"w": "өнүктүрө", "t": 126.83}, {"w": "турган", "t": 127.21}, {"w": "сайт", "t": 127.45}, {"w": "жасайбыз.", "t": 127.65}],
-   "speechEnd": 128.13},
-  {"id": "list", "in": 243.08, "out": 249.92, "camera": "card", "take": "243.5–249.7 (complete list; 10% down at 247.2–247.8 while naming the web system — covered by the active tile)",
+   "subs": [
+    {
+     "text": "Биз жөн гана кооз сайт эмес,",
+     "key": [
+      "эмес"
+     ]
+    },
+    {
+     "text": "кардарларга ыңгайлуу,",
+     "key": [
+      "ыңгайлуу"
+     ]
+    },
+    {
+     "text": "бизнесиңизди өнүктүрө турган сайт жасайбыз.",
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Биз",
+     "t": 122.59
+    },
+    {
+     "w": "жөн",
+     "t": 122.99
+    },
+    {
+     "w": "гана",
+     "t": 123.2
+    },
+    {
+     "w": "кооз",
+     "t": 123.4
+    },
+    {
+     "w": "сайт",
+     "t": 123.7
+    },
+    {
+     "w": "эмес,",
+     "t": 123.95
+    },
+    {
+     "w": "кардарларга",
+     "t": 124.15
+    },
+    {
+     "w": "ыңгайлуу,",
+     "t": 125.03
+    },
+    {
+     "w": "бизнесиңизди",
+     "t": 125.62
+    },
+    {
+     "w": "өнүктүрө",
+     "t": 126.83
+    },
+    {
+     "w": "турган",
+     "t": 127.21
+    },
+    {
+     "w": "сайт",
+     "t": 127.45
+    },
+    {
+     "w": "жасайбыз.",
+     "t": 127.65
+    }
+   ],
+   "speechEnd": 128.13
+  },
+  {
+   "id": "list",
+   "in": 243.08,
+   "out": 249.92,
+   "camera": "right",
+   "take": "243.5–249.7 (complete list; 10% down at 247.2–247.8 while naming the web system — covered by the active tile)",
    "text": "Интернет дүкөн, лендинг, онлайн брондоо же татаал веб-система, баардыгын ишке ашырабыз.",
-   "subs": [{"text": "Интернет дүкөн, лендинг, онлайн брондоо же татаал веб-система,", "scene": true}, {"text": "баардыгын ишке ашырабыз.", "key": ["баардыгын"], "place": "low"}],
-   "words": [{"w": "Интернет", "t": 243.55}, {"w": "дүкөн,", "t": 243.89}, {"w": "лендинг,", "t": 244.25}, {"w": "онлайн", "t": 245.19}, {"w": "брондоо", "t": 246.07}, {"w": "же", "t": 246.49}, {"w": "татаал", "t": 246.80}, {"w": "веб-система,", "t": 247.55}, {"w": "баардыгын", "t": 248.27}, {"w": "ишке", "t": 249.03}, {"w": "ашырабыз.", "t": 249.21}],
-   "speechEnd": 249.67},
-  {"id": "dev", "in": 275.20, "out": 279.52, "camera": "card2", "take": "2 of 2 (257.7–265.2 restarts the phrase; 275.6–279.3 clean, 0% down)",
+   "subs": [
+    {
+     "text": "Интернет дүкөн, лендинг,",
+     "key": [
+      "дүкөн",
+      "лендинг"
+     ]
+    },
+    {
+     "text": "онлайн брондоо же",
+     "key": [
+      "онлайн",
+      "брондоо"
+     ]
+    },
+    {
+     "text": "татаал веб-система,",
+     "key": [
+      "веб-система"
+     ]
+    },
+    {
+     "text": "баардыгын ишке ашырабыз.",
+     "key": [
+      "баардыгын"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Интернет",
+     "t": 243.55
+    },
+    {
+     "w": "дүкөн,",
+     "t": 243.89
+    },
+    {
+     "w": "лендинг,",
+     "t": 244.25
+    },
+    {
+     "w": "онлайн",
+     "t": 245.19
+    },
+    {
+     "w": "брондоо",
+     "t": 246.07
+    },
+    {
+     "w": "же",
+     "t": 246.49
+    },
+    {
+     "w": "татаал",
+     "t": 246.8
+    },
+    {
+     "w": "веб-система,",
+     "t": 247.55
+    },
+    {
+     "w": "баардыгын",
+     "t": 248.27
+    },
+    {
+     "w": "ишке",
+     "t": 249.03
+    },
+    {
+     "w": "ашырабыз.",
+     "t": 249.21
+    }
+   ],
+   "speechEnd": 249.67
+  },
+  {
+   "id": "dev",
+   "in": 275.2,
+   "out": 279.52,
+   "camera": "right",
+   "take": "2 of 2 (257.7–265.2 restarts the phrase; 275.6–279.3 clean, 0% down)",
    "text": "Эң негизгиси, сайтыңыз телефонго да, компьютерге да ылайыктуу болот.",
-   "subs": [{"text": "Эң негизгиси, сайтыңыз", "key": ["негизгиси,"], "place": "low"}, {"text": "телефонго да, компьютерге да", "scene": true}, {"text": "ылайыктуу болот.", "key": ["ылайыктуу"], "place": "low"}],
-   "words": [{"w": "Эң", "t": 275.62}, {"w": "негизгиси,", "t": 275.84}, {"w": "сайтыңыз", "t": 276.18}, {"w": "телефонго", "t": 276.88}, {"w": "да,", "t": 277.50}, {"w": "компьютерге", "t": 277.64}, {"w": "да", "t": 278.38}, {"w": "ылайыктуу", "t": 278.52}, {"w": "болот.", "t": 278.96}],
-   "speechEnd": 279.26},
-  {"id": "idea", "in": 282.60, "out": 286.15, "camera": "medium", "take": "single (283.0–285.9, 0% down; points at the viewer 284.6–285.7)",
+   "subs": [
+    {
+     "text": "Эң негизгиси, сайтыңыз",
+     "key": [
+      "Эң",
+      "негизгиси"
+     ]
+    },
+    {
+     "text": "телефонго да, компьютерге да",
+     "key": [
+      "телефонго",
+      "компьютерге"
+     ]
+    },
+    {
+     "text": "ылайыктуу болот.",
+     "key": [
+      "ылайыктуу"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Эң",
+     "t": 275.62
+    },
+    {
+     "w": "негизгиси,",
+     "t": 275.84
+    },
+    {
+     "w": "сайтыңыз",
+     "t": 276.18
+    },
+    {
+     "w": "телефонго",
+     "t": 276.88
+    },
+    {
+     "w": "да,",
+     "t": 277.5
+    },
+    {
+     "w": "компьютерге",
+     "t": 277.64
+    },
+    {
+     "w": "да",
+     "t": 278.38
+    },
+    {
+     "w": "ылайыктуу",
+     "t": 278.52
+    },
+    {
+     "w": "болот.",
+     "t": 278.96
+    }
+   ],
+   "speechEnd": 279.26,
+   "subPlace": "top"
+  },
+  {
+   "id": "idea",
+   "in": 282.6,
+   "out": 286.15,
+   "camera": "medium",
+   "take": "single (283.0–285.9, 0% down; points at the viewer 284.6–285.7)",
    "text": "Сиздин идеяңыз барбы? Биз аны ишке ашырабыз.",
-   "subs": [{"text": "Сиздин идеяңыз барбы?", "key": ["идеяңыз"]}, {"text": "Биз аны ишке ашырабыз.", "key": ["ишке", "ашырабыз."], "place": "low"}],
-   "words": [{"w": "Сиздин", "t": 283.00}, {"w": "идеяңыз", "t": 283.34}, {"w": "барбы?", "t": 283.82}, {"w": "Биз", "t": 284.26}, {"w": "аны", "t": 284.88}, {"w": "ишке", "t": 285.10}, {"w": "ашырабыз.", "t": 285.38}],
-   "speechEnd": 285.84},
-  {"id": "cta", "in": 297.50, "out": 302.10, "camera": "medium", "take": "2 of 3 (293.9–296.6 27% down; 298.1–301.1 6% down, pointing-down gesture 297.9–298.6, smile until 302.2; 302.6–305.3 30% down)",
+   "subs": [
+    {
+     "text": "Сиздин идеяңыз барбы?",
+     "key": [
+      "идеяңыз",
+      "барбы"
+     ]
+    },
+    {
+     "text": "Биз аны ишке ашырабыз.",
+     "key": [
+      "ишке",
+      "ашырабыз"
+     ],
+     "place": "low"
+    }
+   ],
+   "words": [
+    {
+     "w": "Сиздин",
+     "t": 283.0
+    },
+    {
+     "w": "идеяңыз",
+     "t": 283.34
+    },
+    {
+     "w": "барбы?",
+     "t": 283.82
+    },
+    {
+     "w": "Биз",
+     "t": 284.26
+    },
+    {
+     "w": "аны",
+     "t": 284.88
+    },
+    {
+     "w": "ишке",
+     "t": 285.1
+    },
+    {
+     "w": "ашырабыз.",
+     "t": 285.38
+    }
+   ],
+   "speechEnd": 285.84
+  },
+  {
+   "id": "cta",
+   "in": 297.5,
+   "out": 302.1,
+   "camera": "medium",
+   "take": "2 of 3 (293.9–296.6 27% down; 298.1–301.1 6% down, pointing-down gesture 297.9–298.6, smile until 302.2; 302.6–305.3 30% down)",
    "text": "Азыр бизге жазыңыз, долбоорубузду чогуу талкуулайлы.",
    "subPlace": "top",
-   "subs": [{"text": "Азыр бизге жазыңыз,", "key": ["жазыңыз,"]}, {"text": "долбоорубузду чогуу талкуулайлы.", "key": ["чогуу"]}],
-   "words": [{"w": "Азыр", "t": 297.79}, {"w": "бизге", "t": 298.37}, {"w": "жазыңыз,", "t": 298.65}, {"w": "долбоорубузду", "t": 299.13}, {"w": "чогуу", "t": 300.15}, {"w": "талкуулайлы.", "t": 300.37}],
-   "speechEnd": 300.93}
+   "subs": [
+    {
+     "text": "Азыр бизге жазыңыз,",
+     "key": [
+      "жазыңыз"
+     ]
+    },
+    {
+     "text": "долбоорубузду чогуу талкуулайлы.",
+     "key": [
+      "чогуу",
+      "талкуулайлы"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Азыр",
+     "t": 297.79
+    },
+    {
+     "w": "бизге",
+     "t": 298.37
+    },
+    {
+     "w": "жазыңыз,",
+     "t": 298.65
+    },
+    {
+     "w": "долбоорубузду",
+     "t": 299.13
+    },
+    {
+     "w": "чогуу",
+     "t": 300.15
+    },
+    {
+     "w": "талкуулайлы.",
+     "t": 300.37
+    }
+   ],
+   "speechEnd": 300.93
+  }
  ],
- "camera": [{"at": "idea@284.20", "mode": "close", "smooth": true}],
- "titles": [], "cards": [], "phones": [],
- "behindText": {"from": "hook@37.45", "to": "hook@40.70", "matteFrom": 1125, "matteTo": 1220, "matteDir": "media/matte_bw002", "y": 560,
-  "words": [{"text": "ИНТЕРНЕТ", "from": "hook@38.60", "to": "hook@39.60", "color": "white"}, {"text": "ЭМНЕ ТАБАТ?", "from": "hook@39.64", "to": "hook@40.68", "color": "cyan"}]},
- "videoCards": [{"from": "insta@68.45", "to": "insta@72.70", "rect": {"x": 250, "y": 820, "w": 580, "h": 760}, "target": {"s": 0.82, "fx": 533, "fy": 760}, "textTop": 300,
-  "lines": [{"big": false, "words": [{"text": "Инстаграм", "at": "insta@68.62"}, {"text": "баракчаңыз", "at": "insta@69.24"}, {"text": "элеби,", "at": "insta@69.82"}]},
-            {"big": false, "words": [{"text": "же", "at": "insta@70.30"}]},
-            {"big": true, "words": [{"text": "профессионалдуу", "at": "insta@70.94"}]},
-            {"big": false, "words": [{"text": "сайтыңыздыбы?", "at": "insta@71.75"}]}]}],
+ "camera": [
+  {
+   "at": "hook@39.75",
+   "mode": "close",
+   "smooth": true
+  },
+  {
+   "at": "idea@284.20",
+   "mode": "close",
+   "smooth": true
+  }
+ ],
+ "titles": [],
+ "cards": [],
+ "phones": [],
+ "behindText": {
+  "from": "hook@37.45",
+  "to": "hook@40.70",
+  "matteFrom": 1125,
+  "matteTo": 1220,
+  "matteDir": "media/matte_bw002",
+  "y": 560,
+  "words": [
+   {
+    "text": "ИНТЕРНЕТ",
+    "from": "hook@38.60",
+    "to": "hook@39.60",
+    "color": "white"
+   },
+   {
+    "text": "ЭМНЕ ТАБАТ?",
+    "from": "hook@39.64",
+    "to": "hook@40.68",
+    "color": "cyan"
+   }
+  ]
+ },
+ "videoCards": [
+  {
+   "from": "insta@68.45",
+   "to": "insta@72.70",
+   "rect": {
+    "x": 250,
+    "y": 820,
+    "w": 580,
+    "h": 760
+   },
+   "target": {
+    "s": 0.82,
+    "fx": 533,
+    "fy": 760
+   },
+   "textTop": 300,
+   "lines": [
+    {
+     "big": false,
+     "words": [
+      {
+       "text": "Инстаграм",
+       "at": "insta@68.62"
+      },
+      {
+       "text": "баракчаңыз",
+       "at": "insta@69.24"
+      },
+      {
+       "text": "элеби,",
+       "at": "insta@69.82"
+      }
+     ]
+    },
+    {
+     "big": false,
+     "words": [
+      {
+       "text": "же",
+       "at": "insta@70.30"
+      }
+     ]
+    },
+    {
+     "big": true,
+     "words": [
+      {
+       "text": "профессионалдуу",
+       "at": "insta@70.94"
+      }
+     ]
+    },
+    {
+     "big": false,
+     "words": [
+      {
+       "text": "сайтыңыздыбы?",
+       "at": "insta@71.75"
+      }
+     ]
+    }
+   ]
+  }
+ ],
  "siteStages": [],
- "iconRows": [
-  {"from": "list@243.30", "to": "list@249.60", "y": 300, "items": [
-    {"icon": "cart", "label": "интернет дүкөн", "at": "list@243.50", "activeFrom": "list@243.55", "activeTo": "list@244.25"},
-    {"icon": "browser", "label": "лендинг", "at": "list@244.20", "activeFrom": "list@244.25", "activeTo": "list@245.19"},
-    {"icon": "calendar", "label": "онлайн брондоо", "at": "list@245.14", "activeFrom": "list@245.19", "activeTo": "list@246.75"},
-    {"icon": "layers", "label": "веб-система", "at": "list@246.75", "activeFrom": "list@246.80", "activeTo": "list@248.27"}]},
-  {"from": "dev@276.75", "to": "dev@279.45", "y": 300, "items": [
-    {"icon": "phone", "label": "телефон", "at": "dev@276.85", "activeFrom": "dev@276.88", "activeTo": "dev@277.64"},
-    {"icon": "laptop", "label": "компьютер", "at": "dev@277.60", "activeFrom": "dev@277.64", "activeTo": "dev@278.52"}]}],
- "typeScenes": [{"id": "ts-grow", "from": "offer@125.62", "to": "offer@128.35", "small": {"text": "бизнесиңизди", "at": "offer@126.31"}, "big": [{"text": "өнүктүрө", "at": "offer@126.83"}], "rise": {"text": "турган сайт жасайбыз", "at": "offer@127.30"}}],
- "badge": {"from": "cta@298.05", "to": "cta@302.10", "text": "WhatsApp аркылуу жазыңыз", "number": "0998 08 38 28", "x": 520, "y": 1170},
+ "iconRows": [],
+ "typeScenes": [
+  {
+   "id": "ts-grow",
+   "from": "offer@125.62",
+   "to": "offer@128.35",
+   "small": {
+    "text": "бизнесиңизди",
+    "at": "offer@126.31"
+   },
+   "big": [
+    {
+     "text": "өнүктүрө",
+     "at": "offer@126.83"
+    }
+   ],
+   "rise": {
+    "text": "турган сайт жасайбыз",
+    "at": "offer@127.30"
+   }
+  }
+ ],
+ "badge": {
+  "from": "cta@298.05",
+  "to": "cta@302.10",
+  "text": "WhatsApp аркылуу жазыңыз",
+  "number": "0998 08 38 28",
+  "x": 520,
+  "y": 1150,
+  "cta": "Консультация үчүн жазыңыз",
+  "button": "Жазыңыз"
+ },
  "sfx": [
-  {"type": "whoosh_in", "lands": "hook@38.95", "gainDb": -3}, {"type": "pop", "lands": "hook@40.02", "gainDb": -2},
-  {"type": "swish", "lands": "insta@68.80"}, {"type": "pop", "lands": "insta@71.15", "gainDb": -3},
-  {"type": "pop", "lands": "face@81.00", "gainDb": -4},
-  {"type": "whoosh_in", "lands": "offer@125.95", "gainDb": -2}, {"type": "pop", "lands": "offer@127.00", "gainDb": -3}, {"type": "tick", "lands": "offer@127.55", "gainDb": -3},
-  {"type": "tick", "lands": "list@243.75", "gainDb": -3}, {"type": "tick", "lands": "list@244.45", "gainDb": -3}, {"type": "tick", "lands": "list@245.40", "gainDb": -3}, {"type": "tick", "lands": "list@247.00", "gainDb": -3}, {"type": "pop", "lands": "list@248.40", "gainDb": -3},
-  {"type": "whoosh_in", "lands": "dev@277.10", "gainDb": -2}, {"type": "whoosh_in", "lands": "dev@277.85", "gainDb": -3}, {"type": "pop", "lands": "dev@278.65", "gainDb": -3},
-  {"type": "pop", "lands": "idea@283.45", "gainDb": -2}, {"type": "swish", "lands": "idea@284.45", "gainDb": -3},
-  {"type": "tick", "lands": "cta@298.32"}, {"type": "chime", "lands": "cta@298.48"}
+  {
+   "type": "swish",
+   "lands": "hook@37.80",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "hook@38.05",
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "lands": "hook@38.45",
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "lands": "hook@38.85",
+   "gainDb": -6
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "hook@38.95",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "hook@40.02",
+   "gainDb": -2
+  },
+  {
+   "type": "swish",
+   "lands": "insta@68.80"
+  },
+  {
+   "type": "pop",
+   "lands": "insta@71.15",
+   "gainDb": -3
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "face@78.95",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "face@81.00",
+   "gainDb": -4
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "offer@125.95",
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "lands": "offer@127.00",
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "lands": "offer@127.55",
+   "gainDb": -3
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "list@243.40",
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "lands": "list@243.45",
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "lands": "list@243.60",
+   "gainDb": -5
+  },
+  {
+   "type": "pop",
+   "lands": "list@244.10",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@244.60",
+   "gainDb": -4
+  },
+  {
+   "type": "swish",
+   "lands": "list@245.20",
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "lands": "list@245.80",
+   "gainDb": -4
+  },
+  {
+   "type": "chime",
+   "lands": "list@246.10",
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "lands": "list@246.55",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "list@247.05",
+   "gainDb": -5
+  },
+  {
+   "type": "tick",
+   "lands": "list@247.25",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@248.00",
+   "gainDb": -4
+  },
+  {
+   "type": "tick",
+   "lands": "list@248.70",
+   "gainDb": -4
+  },
+  {
+   "type": "pop",
+   "lands": "list@249.35",
+   "gainDb": -3
+  },
+  {
+   "type": "whoosh_in",
+   "lands": "dev@275.55",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "dev@277.85",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "dev@278.65",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "idea@283.45",
+   "gainDb": -2
+  },
+  {
+   "type": "swish",
+   "lands": "idea@284.45",
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "lands": "cta@298.32"
+  },
+  {
+   "type": "chime",
+   "lands": "cta@298.48"
+  },
+  {
+   "type": "pop",
+   "lands": "cta@298.75",
+   "gainDb": -4
+  }
+ ],
+ "vignette": 0.32,
+ "searchBars": [
+  {
+   "from": "hook@37.50",
+   "to": "hook@40.70",
+   "typed": "сиздин бизнесиңиз",
+   "typeFrom": "hook@37.75",
+   "typeTo": "hook@39.10",
+   "dotsFrom": "hook@39.80",
+   "y": 190
+  }
+ ],
+ "sideScenes": [
+  {
+   "from": "face@78.62",
+   "to": "face@81.43",
+   "phone": {
+    "x": 40,
+    "y": 300,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": "face@78.62",
+     "content": {
+      "kind": "site",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "label": "zeket.kg",
+      "scrollFrom": 0,
+      "scrollTo": 1500
+     }
+    }
+   ]
+  },
+  {
+   "from": "list@243.10",
+   "to": "list@249.93",
+   "phone": {
+    "x": 40,
+    "y": 300,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": "list@243.10",
+     "content": {
+      "kind": "store",
+      "label": "ДЕМО",
+      "beats": {
+       "catalog": "list@243.18",
+       "tap": "list@244.00",
+       "add": "list@244.50",
+       "checkout": "list@245.10",
+       "pay": "list@245.70",
+       "success": "list@246.00",
+       "toast": "list@246.40"
+      }
+     }
+    },
+    {
+     "from": "list@246.95",
+     "content": {
+      "kind": "automation",
+      "label": "ДЕМО",
+      "beats": {
+       "request": "list@247.00",
+       "notify": "list@247.75",
+       "crm": "list@248.45",
+       "done": "list@249.15"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "from": "dev@275.25",
+   "to": "dev@279.53",
+   "phone": {
+    "x": 40,
+    "y": 420,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": "dev@275.25",
+     "content": {
+      "kind": "site",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "label": "zeket.kg",
+      "scrollFrom": 1500,
+      "scrollTo": 2700
+     }
+    }
+   ],
+   "desktop": {
+    "from": "dev@277.60",
+    "x": 40,
+    "y": 1290,
+    "w": 520,
+    "h": 330,
+    "url": "zeket.kg/ky",
+    "image": "site/desktop-home-ky-full.png",
+    "imageWidth": 2880,
+    "imageHeight": 13910,
+    "views": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "w": 2880
+     },
+     {
+      "t": 1.8,
+      "x": 0,
+      "y": 420,
+      "w": 2880
+     }
+    ]
+   }
+  }
+ ],
+ "bulbs": [
+  {
+   "from": "idea@283.30",
+   "to": "idea@285.95",
+   "x": 830,
+   "y": 400
+  }
  ]
 }

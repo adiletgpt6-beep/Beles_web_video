@@ -15,6 +15,11 @@ const toAffine = (m: CameraMode, face: Face) => {
     const s = (m === 'card' ? face.cardScale : face.card2Scale) ?? (m === 'card' ? 1.25 : 1.32);
     return { s, tx: face.cx * (1 - s), ty: 0 };
   }
+  if (m === 'right') {
+    // face centre lands at (760, 760): the left 40% of the frame is free for a device demo
+    const s = 1.3;
+    return { s, tx: 760 - face.cx * s, ty: 760 - face.cy * s };
+  }
   const s = { wide: 1.0, medium: 1.14, close: 1.26 }[m];
   return { s, tx: face.cx * (1 - s), ty: face.cy * (1 - s) };
 };

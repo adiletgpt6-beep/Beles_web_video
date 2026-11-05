@@ -7,6 +7,142 @@
   "card2Scale": 1.4
  },
  "captionTopY": 190,
+ "vignette": 0.32,
+ "searchBars": [
+  {
+   "startFrame": 1,
+   "endFrame": 97,
+   "typed": "сиздин бизнесиңиз",
+   "typeFrom": 8,
+   "typeTo": 48,
+   "dotsFrom": 69,
+   "y": 190
+  }
+ ],
+ "sideScenes": [
+  {
+   "startFrame": 225,
+   "endFrame": 309,
+   "phone": {
+    "x": 40,
+    "y": 300,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": 0,
+     "content": {
+      "kind": "site",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "label": "zeket.kg",
+      "scrollFrom": 0,
+      "scrollTo": 1500
+     }
+    }
+   ]
+  },
+  {
+   "startFrame": 489,
+   "endFrame": 694,
+   "phone": {
+    "x": 40,
+    "y": 300,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": 0,
+     "content": {
+      "kind": "store",
+      "label": "ДЕМО",
+      "beats": {
+       "catalog": 2,
+       "tap": 27,
+       "add": 42,
+       "checkout": 60,
+       "pay": 78,
+       "success": 87,
+       "toast": 99
+      }
+     }
+    },
+    {
+     "from": 116,
+     "content": {
+      "kind": "automation",
+      "label": "ДЕМО",
+      "beats": {
+       "request": 117,
+       "notify": 140,
+       "crm": 161,
+       "done": 182
+      }
+     }
+    }
+   ]
+  },
+  {
+   "startFrame": 696,
+   "endFrame": 824,
+   "phone": {
+    "x": 40,
+    "y": 420,
+    "w": 420,
+    "h": 840
+   },
+   "contents": [
+    {
+     "from": 0,
+     "content": {
+      "kind": "site",
+      "image": "site/mobile-home-ky-full.png",
+      "imageWidth": 1170,
+      "imageHeight": 35316,
+      "label": "zeket.kg",
+      "scrollFrom": 1500,
+      "scrollTo": 2700
+     }
+    }
+   ],
+   "desktop": {
+    "from": 70,
+    "x": 40,
+    "y": 1290,
+    "w": 520,
+    "h": 330,
+    "url": "zeket.kg/ky",
+    "image": "site/desktop-home-ky-full.png",
+    "imageWidth": 2880,
+    "imageHeight": 13910,
+    "views": [
+     {
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "w": 2880
+     },
+     {
+      "frame": 54,
+      "x": 0,
+      "y": 420,
+      "w": 2880
+     }
+    ]
+   }
+  }
+ ],
+ "bulbs": [
+  {
+   "startFrame": 845,
+   "endFrame": 925,
+   "x": 830,
+   "y": 400
+  }
+ ],
  "fps": 30,
  "width": 1080,
  "height": 1920,
@@ -78,13 +214,18 @@
    "smooth": false
   },
   {
+   "frame": 69,
+   "mode": "close",
+   "smooth": true
+  },
+  {
    "frame": 97,
    "mode": "wide",
    "smooth": false
   },
   {
    "frame": 224,
-   "mode": "close",
+   "mode": "right",
    "smooth": false
   },
   {
@@ -94,12 +235,12 @@
   },
   {
    "frame": 488,
-   "mode": "card",
+   "mode": "right",
    "smooth": false
   },
   {
    "frame": 694,
-   "mode": "card2",
+   "mode": "right",
    "smooth": false
   },
   {
@@ -165,7 +306,7 @@
     },
     {
      "text": "табат?",
-     "key": false,
+     "key": true,
      "startFrame": 80
     }
    ]
@@ -251,7 +392,7 @@
     },
     {
      "text": "жүзү.",
-     "key": false,
+     "key": true,
      "startFrame": 294
     }
    ]
@@ -287,7 +428,7 @@
     },
     {
      "text": "эмес,",
-     "key": false,
+     "key": true,
      "startFrame": 356
     }
    ]
@@ -303,7 +444,7 @@
     },
     {
      "text": "ыңгайлуу,",
-     "key": false,
+     "key": true,
      "startFrame": 388
     }
    ]
@@ -342,7 +483,7 @@
   },
   {
    "startFrame": 501,
-   "endFrame": 642,
+   "endFrame": 550,
    "words": [
     {
      "text": "Интернет",
@@ -351,29 +492,41 @@
     },
     {
      "text": "дүкөн,",
-     "key": false,
+     "key": true,
      "startFrame": 513
     },
     {
      "text": "лендинг,",
-     "key": false,
+     "key": true,
      "startFrame": 524
-    },
+    }
+   ]
+  },
+  {
+   "startFrame": 550,
+   "endFrame": 598,
+   "words": [
     {
      "text": "онлайн",
-     "key": false,
+     "key": true,
      "startFrame": 552
     },
     {
      "text": "брондоо",
-     "key": false,
+     "key": true,
      "startFrame": 578
     },
     {
      "text": "же",
      "key": false,
      "startFrame": 591
-    },
+    }
+   ]
+  },
+  {
+   "startFrame": 598,
+   "endFrame": 642,
+   "words": [
     {
      "text": "татаал",
      "key": false,
@@ -381,11 +534,10 @@
     },
     {
      "text": "веб-система,",
-     "key": false,
+     "key": true,
      "startFrame": 623
     }
-   ],
-   "scene": true
+   ]
   },
   {
    "startFrame": 642,
@@ -406,8 +558,7 @@
      "key": false,
      "startFrame": 672
     }
-   ],
-   "place": "low"
+   ]
   },
   {
    "startFrame": 705,
@@ -415,12 +566,12 @@
    "words": [
     {
      "text": "Эң",
-     "key": false,
+     "key": true,
      "startFrame": 707
     },
     {
      "text": "негизгиси,",
-     "key": false,
+     "key": true,
      "startFrame": 713
     },
     {
@@ -429,7 +580,7 @@
      "startFrame": 723
     }
    ],
-   "place": "low"
+   "place": "top"
   },
   {
    "startFrame": 743,
@@ -437,7 +588,7 @@
    "words": [
     {
      "text": "телефонго",
-     "key": false,
+     "key": true,
      "startFrame": 744
     },
     {
@@ -447,7 +598,7 @@
     },
     {
      "text": "компьютерге",
-     "key": false,
+     "key": true,
      "startFrame": 767
     },
     {
@@ -456,7 +607,7 @@
      "startFrame": 789
     }
    ],
-   "scene": true
+   "place": "top"
   },
   {
    "startFrame": 792,
@@ -473,7 +624,7 @@
      "startFrame": 807
     }
    ],
-   "place": "low"
+   "place": "top"
   },
   {
    "startFrame": 834,
@@ -491,7 +642,7 @@
     },
     {
      "text": "барбы?",
-     "key": false,
+     "key": true,
      "startFrame": 861
     }
    ]
@@ -517,7 +668,7 @@
     },
     {
      "text": "ашырабыз.",
-     "key": false,
+     "key": true,
      "startFrame": 907
     }
    ],
@@ -539,7 +690,7 @@
     },
     {
      "text": "жазыңыз,",
-     "key": false,
+     "key": true,
      "startFrame": 966
     }
    ],
@@ -561,7 +712,7 @@
     },
     {
      "text": "талкуулайлы.",
-     "key": false,
+     "key": true,
      "startFrame": 1017
     }
    ],
@@ -574,7 +725,9 @@
   "text": "WhatsApp аркылуу жазыңыз",
   "number": "0998 08 38 28",
   "x": 520,
-  "y": 1170
+  "y": 1150,
+  "cta": "Консультация үчүн жазыңыз",
+  "button": "Жазыңыз"
  },
  "typeScenes": [
   {
@@ -686,62 +839,5 @@
   }
  ],
  "siteStages": [],
- "iconRows": [
-  {
-   "startFrame": 495,
-   "endFrame": 684,
-   "y": 300,
-   "items": [
-    {
-     "icon": "cart",
-     "label": "интернет дүкөн",
-     "frame": 6,
-     "activeFrom": 8,
-     "activeTo": 29
-    },
-    {
-     "icon": "browser",
-     "label": "лендинг",
-     "frame": 27,
-     "activeFrom": 29,
-     "activeTo": 57
-    },
-    {
-     "icon": "calendar",
-     "label": "онлайн брондоо",
-     "frame": 55,
-     "activeFrom": 57,
-     "activeTo": 104
-    },
-    {
-     "icon": "layers",
-     "label": "веб-система",
-     "frame": 104,
-     "activeFrom": 105,
-     "activeTo": 149
-    }
-   ]
-  },
-  {
-   "startFrame": 741,
-   "endFrame": 822,
-   "y": 300,
-   "items": [
-    {
-     "icon": "phone",
-     "label": "телефон",
-     "frame": 3,
-     "activeFrom": 3,
-     "activeTo": 26
-    },
-    {
-     "icon": "laptop",
-     "label": "компьютер",
-     "frame": 25,
-     "activeFrom": 26,
-     "activeTo": 53
-    }
-   ]
-  }
- ]
+ "iconRows": []
 }
