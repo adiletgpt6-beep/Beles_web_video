@@ -9,11 +9,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const plan = JSON.parse(fs.readFileSync(path.join(root, 'data/audio-plan.json'), 'utf8'));
+// PLAN / MEDIA let a job build its own mix (defaults = baseline V5 paths).
+const PLAN = process.env.PLAN ? path.resolve(process.env.PLAN) : path.join(root, 'data/audio-plan.json');
+const MEDIA = process.env.MEDIA ? path.resolve(process.env.MEDIA) : path.join(root, 'public/media');
+const plan = JSON.parse(fs.readFileSync(PLAN, 'utf8'));
 const FPS = plan.fps;
-const src = path.join(root, 'public/media/source48k.wav');
-const out = path.join(root, 'public/media/voice.wav');
-const tmp = path.join(root, 'public/media/mix_raw.wav');
+const src = path.join(MEDIA, 'source48k.wav');
+const out = path.join(MEDIA, 'voice.wav');
+const tmp = path.join(MEDIA, 'mix_raw.wav');
 const FADE = 0.012;
 const total = plan.durationInFrames / FPS;
 
@@ -32,7 +35,7 @@ parts.push(`[cat]highpass=f=75,afftdn=nr=7:nf=-44:tn=1,acompressor=threshold=-21
 const mixIn = ['[v]'];
 let next = 1;
 if (plan.music) {
-  const bed = path.join(root, 'public/media/music_bed.wav');
+  const bed = path.join(MEDIA, 'music_bed.wav');
   const accentArgs = plan.music.accentFrame != null ? [(plan.music.accentFrame / FPS).toFixed(3)] : [];
   execFileSync('python3', [path.join(root, 'scripts/make-music.py'), total.toFixed(3), bed, ...accentArgs], { stdio: 'inherit' });
   inputs.push('-i', bed);
@@ -74,7 +77,7 @@ if (process.env.STEMS) {
   const sfxCount = plan.sfx.length;
   const ins = inputs.slice(0, inputs.length - 2 * sfxCount);
   const graph = stemGraph.split(';').filter((p) => !/^\[\d+:a\]adelay/.test(p)).join(';');
-  execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...ins, '-filter_complex', graph, '-map', '[mo]', '-t', total.toFixed(6), '-c:a', 'pcm_s24le', path.join(root, 'public/media/stem_music.wav')], { stdio: 'inherit' });
+  execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...ins, '-filter_complex', graph, '-map', '[mo]', '-t', total.toFixed(6), '-c:a', 'pcm_s24le', path.join(MEDIA, 'stem_music.wav')], { stdio: 'inherit' });
   console.log('music stem written (gain', gain.toFixed(2), 'dB)');
 }
 console.log('mix:', out, 'measured input', j.input_i, 'LUFS', j.input_tp, 'dBTP');
