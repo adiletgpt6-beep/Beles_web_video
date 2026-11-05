@@ -22,7 +22,6 @@
   "next_suggested_job_id": "BW-004",
   "baseline_job_id": "BW-001",
   "pending": [
-    "BW-003 v1 — смонтирован и проверен (production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4); ждать отзыв/утверждение пользователя",
     "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
   ],
   "source": {
@@ -49,7 +48,8 @@
       "status",
       "queue",
       "next",
-      "sync"
+      "sync",
+      "register-studio-issue"
     ],
     "transport": "github_git_parts | cloudflare_r2_studio_broker (manifest source.storage)",
     "part_bytes": 6291456,
@@ -131,5 +131,7 @@
     "true_peak_dbtp": -2.2,
     "verification": "production/jobs/BW-003/docs/verification.md",
     "user_approved": false
-  }
+  },
+  "bw003_user_approved": true,
+  "bw003_approved_release": "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4"
 }
