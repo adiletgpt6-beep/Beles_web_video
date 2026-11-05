@@ -1,5 +1,12 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — BW-003 v1 смонтирован локально, проверен, опубликован (концепция «Түнкү смена»)
+
+- Сделано (Claude Code, облачная среда, без платных сервисов): локальный ASR (faster-whisper large-v3 черновик + `nineninesix/kyrgyz-whisper-medium` по регионам + скоринг спорных форм), взгляд/жесты MediaPipe, выбор 8 дублей, `production/jobs/BW-003/data/edit.json` → timeline/EDL/SRT/audio-plan, микс −15 LUFS (ночной вариант музыки), рендер Remotion, verify.sh, покадровый просмотр, одна полировка (панель переписки) до финального рендера. Документы: `docs/VISUAL_CONCEPT.md`, `docs/transcript.md`, `docs/edit-plan.md`, `docs/verification.md`.
+- Результат: `production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4` (18 316 469 байт, SHA-256 `57153074…5afc`, 32,33 с, 970 кадров, −14,9 LUFS / −2,2 dBTP), превью 720p, SRT. Концепция: одна ночь — часы 02:00, переписка без ответа, чек заказа из «принтера», дуга солнце→луна, wireframe-панели услуг, телефон на тумбочке с уведомлениями, чат-CTA WhatsApp 0998 08 38 28; палитра индиго + янтарь, заголовки Oswald, субтитры бело-голубые без подложки. Сцены V5/BW-002 не использованы.
+- Код: композиция задания `production/jobs/BW-003/src/` (`BelesReelBW003`, `night.tsx`); общие изменения обратно совместимы — `scripts/build-timeline.mjs` получил проход `overlays` (V5 timeline без изменений), `scripts/make-music.py` — env-варианты `MUSIC_BPM/MUSIC_TRANSPOSE/MUSIC_NO_DRUMS` (дефолт побайтно прежний). Воспроизведение — раздел «Воспроизведение» в `docs/edit-plan.md`; медиа в `public/media/bw003/` (gitignored, готовятся командами из edit-plan).
+- Не выполнено: прослушивание ушами, просмотр на телефоне, утверждение пользователя. Следующий шаг: отзыв пользователя → правки в `edit.json`/`src/night.tsx` и повторный рендер (~20 мин), либо `checkpoint BW-003 --status approved --user-approved`.
+
 ## 2026-11-05 — BW-003 доставлен: Claude Code скачал исходник через Studio broker и проверил; задание в очереди
 
 - Studio broker для BW-003 опубликован владельцем (PR #175, коммит 17bc2dc, Vercel READY); `POST /api/source/resolve` BW-003 с `STUDIO_SOURCE_TOKEN` → 200 (ранее 404).

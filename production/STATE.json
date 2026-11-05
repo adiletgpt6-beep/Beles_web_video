@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-05T12:59:00+00:00",
+  "updated_at": "2026-11-05T14:55:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -18,11 +18,11 @@
     "display": "0998 08 38 28",
     "international": "+996 998 08 38 28"
   },
-  "active_job_id": "BW-003",
+  "active_job_id": null,
   "next_suggested_job_id": "BW-004",
   "baseline_job_id": "BW-001",
   "pending": [
-    "BW-003 queued — исходник доставлен и проверен (R2 broker); ждать короткий промпт пользователя на монтаж с уникальной визуальной концепцией",
+    "BW-003 v1 — смонтирован и проверен (production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4); ждать отзыв/утверждение пользователя",
     "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
   ],
   "source": {
@@ -115,6 +115,21 @@
     },
     "claude_download_verified": true,
     "delivery_verified": true,
-    "edit_started": false
+    "edit_started": true
+  },
+  "bw003_render": {
+    "version": "v1",
+    "concept": "Түнкү смена (night shift) — docs/VISUAL_CONCEPT.md",
+    "final": "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4",
+    "bytes": 18316469,
+    "sha256": "5715307464592efc3cd2af6eb0082e3bfe0e4b12fb2b357be5490bededdd5afc",
+    "preview": "production/jobs/BW-003/release/preview-bw003-v1-720x1280.mp4",
+    "subtitles": "production/jobs/BW-003/release/beles-bw003-v1-subtitles-ky.srt",
+    "duration_s": 32.33,
+    "frames": 970,
+    "lufs": -14.9,
+    "true_peak_dbtp": -2.2,
+    "verification": "production/jobs/BW-003/docs/verification.md",
+    "user_approved": false
   }
 }
