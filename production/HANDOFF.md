@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — PR #172: independent R2 byte SHA-256 verification
+
+- Studio PR https://github.com/adiletzainidinov/balago-video/pull/172 (draft), branch feat/studio-bw002-r2-byte-digest-20261105, latest commit 7895e6c3fa4c82c0d27e53b800168fa3d600d818.
+- Owner-only POST /api/uploads/{id}/verify-bytes: R2 HEAD, bounded 4 MiB readRange over whole file (max 100 MiB), node:crypto SHA-256, compare against client-reported manifest SHA. Read-only, rate-limit 2/min; UI button after successful inspect. Test added. Vercel preview building, NOT YET validated/merged/deployed.
+- Existing R2 object: uploadId f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc, key live/raw/f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc/source.mp4, 70809997 bytes. Expected SHA-256 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640.
+- After successful Vercel preview and PR merge, owner must press R2 byte SHA-256 verification button in Studio. Until real R2 digest result: DO NOT mark BW-002 as verified; do not reupload, submit new Issue/VID, start rendering or paid Actions.
+
+
 ## 2026-11-05 — подтверждение владельцем Studio inspect R2 для BW-002
 
 - На скриншоте Studio успешно проверена существующая загрузка: uploadId=f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc; objectKey=live/raw/f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc/source.mp4; server repository=adiletgpt6-beep/Beles_web_video; R2 HEAD: file exists, 70809997 bytes, headMatchesManifest=true.
