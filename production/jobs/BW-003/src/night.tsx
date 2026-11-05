@@ -241,10 +241,10 @@ const ChatWait: React.FC<{ o: Overlay }> = ({ o }) => {
   const mm = (3 + minutesPassed) % 60;
   const dots = Math.floor(f / 8) % 3;
   const Bubble: React.FC<{ k: number; text: string; time: string; mine?: boolean }> = ({ k, text, time, mine }) => (
-    <div style={{ display: 'flex', justifyContent: mine ? 'flex-end' : 'flex-start', marginBottom: 14, opacity: k, transform: `translateY(${(1 - k) * 18}px) scale(${0.94 + 0.06 * k})`, transformOrigin: mine ? '100% 100%' : '0 100%' }}>
-      <div style={{ maxWidth: '82%', padding: '16px 22px', borderRadius: 26, borderBottomLeftRadius: mine ? 26 : 8, borderBottomRightRadius: mine ? 8 : 26, background: mine ? NIGHT.amber : 'rgba(255,255,255,0.12)', color: mine ? NIGHT.ink : NIGHT.white, fontFamily: FONTS.body, fontWeight: 700, fontSize: 30, lineHeight: 1.22 }}>
+    <div style={{ display: 'flex', justifyContent: mine ? 'flex-end' : 'flex-start', marginBottom: 10, opacity: k, transform: `translateY(${(1 - k) * 18}px) scale(${0.94 + 0.06 * k})`, transformOrigin: mine ? '100% 100%' : '0 100%' }}>
+      <div style={{ maxWidth: '84%', padding: '12px 20px', borderRadius: 24, borderBottomLeftRadius: mine ? 24 : 8, borderBottomRightRadius: mine ? 8 : 24, background: mine ? NIGHT.amber : 'rgba(255,255,255,0.12)', color: mine ? NIGHT.ink : NIGHT.white, fontFamily: FONTS.body, fontWeight: 700, fontSize: 28, lineHeight: 1.2 }}>
         {text}
-        <div style={{ fontSize: 19, fontWeight: 600, opacity: 0.65, marginTop: 4, textAlign: 'right' }}>{time}</div>
+        <div style={{ fontSize: 18, fontWeight: 600, opacity: 0.65, marginTop: 2, textAlign: 'right' }}>{time}</div>
       </div>
     </div>
   );
@@ -252,18 +252,18 @@ const ChatWait: React.FC<{ o: Overlay }> = ({ o }) => {
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       <Panel x={x} y={y} w={w} h={h} enter={enter} leave={leave} label="ДЕМО">
         {/* thread header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '18px 22px 12px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-          <div style={{ width: 52, height: 52, borderRadius: 26, background: 'linear-gradient(135deg, #FFB547, #F2587A)' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 22px 10px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <div style={{ width: 46, height: 46, borderRadius: 23, background: 'linear-gradient(135deg, #FFB547, #F2587A)' }} />
           <div>
             <Body text={(o.contact as string) ?? 'Кардар'} size={27} weight={800} k={enter} />
             <Body text={(o.status as string) ?? 'онлайн · 02:03'} size={19} color={NIGHT.dim} weight={600} k={enter} />
           </div>
         </div>
-        <div style={{ padding: '18px 22px 0' }}>
+        <div style={{ padding: '14px 22px 0' }}>
           <Bubble k={m1} text={(o.msg1 as string) ?? 'Саламатсызбы! Бул товар барбы?'} time="02:03" />
           <Bubble k={m2} text={(o.msg2 as string) ?? 'Баасы канча? Заказ кылайын'} time="02:04" />
           {/* "seen" + typing dots that never become an answer */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, opacity: seen, marginTop: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, opacity: seen, marginTop: 2 }}>
             <Svg d={I.check} size={24} color={NIGHT.dim} />
             <Body text={(o.seen as string) ?? 'Жооп жок…'} size={23} color={NIGHT.dim} weight={600} k={seen} />
             <span style={{ display: 'inline-flex', gap: 6, marginLeft: 4 }}>
@@ -274,7 +274,7 @@ const ChatWait: React.FC<{ o: Overlay }> = ({ o }) => {
           </div>
         </div>
         {/* waiting clock */}
-        <div style={{ position: 'absolute', left: 22, right: 22, bottom: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: waitK, transform: `translateY(${(1 - waitK) * 16}px)` }}>
+        <div style={{ position: 'absolute', left: 22, right: 22, bottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: waitK, transform: `translateY(${(1 - waitK) * 16}px)` }}>
           <Body text={(o.waitLabel as string) ?? 'Кардар күтүп жатат'} size={26} color={NIGHT.amber} weight={800} k={waitK} />
           <div style={{ fontFamily: FONTS.head, fontWeight: 700, fontSize: 54, color: NIGHT.white, fontVariantNumeric: 'tabular-nums', letterSpacing: 2 }}>
             {String(hh).padStart(2, '0')}
