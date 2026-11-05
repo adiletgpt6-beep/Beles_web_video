@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "job_id": "BW-003",
-  "status": "rendered",
-  "updated_at": "2026-11-05T14:51:16+00:00",
-  "next_step": "Показать пользователю production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4 (ссылка в ветке ccr-443bddaf-7eho4h); получить правки (edit.json / src/night.tsx → повторный рендер ~20 мин) или утверждение: checkpoint BW-003 --status approved --user-approved.",
-  "note": "2026-11-05: v1 смонтирован и проверен — концепция «Түнкү смена» (часы 02:00, переписка без ответа, чек заказа, дуга день-ночь, wireframe-панели услуг, телефон на тумбочке, чат-CTA WhatsApp). 32,33 с, 970 кадров, 8 дублей, −14,9 LUFS / −2,2 dBTP, SHA-256 57153074…5afc. verify.sh без ошибок, покадровый просмотр 28 кадров. Не выполнено: прослушивание ушами, просмотр на телефоне. Платные сервисы не использовались.",
+  "status": "approved",
+  "updated_at": "2026-11-05T18:16:00+00:00",
+  "next_step": "BW-003 v1 утверждён пользователем без правок 2026-11-06. Не изменять; перейти к автоматизации Studio → Beles → Claude.",
+  "note": "Пользователь явно подтвердил: «Исправления не нужны мне нравиться, переходим к автоматизации». Финальный MP4 остаётся прежним.",
   "artifacts": [
     "production/jobs/BW-003/brief.md",
     "production/jobs/BW-003/docs/VISUAL_CONCEPT.md",
@@ -63,6 +63,24 @@
         "production/jobs/BW-003/release/preview-bw003-v1-720x1280.mp4",
         "production/jobs/BW-003/studio/BW-003-broker-allowlist.md"
       ]
+    },
+    {
+      "at": "2026-11-05T18:16:00+00:00",
+      "status": "approved",
+      "next_step": "BW-003 v1 утверждён пользователем без правок 2026-11-06. Не изменять; перейти к автоматизации Studio → Beles → Claude.",
+      "note": "Пользователь явно подтвердил: «Исправления не нужны мне нравиться, переходим к автоматизации». Финальный MP4 остаётся прежним.",
+      "artifacts": [
+        "production/jobs/BW-003/brief.md",
+        "production/jobs/BW-003/docs/VISUAL_CONCEPT.md",
+        "production/jobs/BW-003/docs/edit-plan.md",
+        "production/jobs/BW-003/docs/transcript.md",
+        "production/jobs/BW-003/docs/verification.md",
+        "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4",
+        "production/jobs/BW-003/release/beles-bw003-v1-subtitles-ky.srt",
+        "production/jobs/BW-003/release/preview-bw003-v1-720x1280.mp4",
+        "production/jobs/BW-003/studio/BW-003-broker-allowlist.md"
+      ],
+      "user_approved": true
     }
   ]
 }
