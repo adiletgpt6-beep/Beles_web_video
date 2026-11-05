@@ -18,7 +18,7 @@
       "status": "rendered",
       "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
       "manifest": "production/jobs/BW-002/manifest.json",
-      "next_step": "Показать пользователю production/jobs/BW-002/release/beles-bw002-v1-1080x1920.mp4 (после push — по ссылке в ветке); получить правки или утверждение; опубликовать коммиты, как только GitHub снова принимает push.",
+      "next_step": "Получить отзыв пользователя на v2 (production/jobs/BW-002/release/beles-bw002-v2-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
       "delivery_verified": true
     }
   ]
