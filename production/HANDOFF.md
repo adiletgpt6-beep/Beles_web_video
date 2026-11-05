@@ -1,5 +1,12 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — подтверждение владельцем Studio inspect R2 для BW-002
+
+- На скриншоте Studio успешно проверена существующая загрузка: uploadId=f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc; objectKey=live/raw/f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc/source.mp4; server repository=adiletgpt6-beep/Beles_web_video; R2 HEAD: file exists, 70809997 bytes, headMatchesManifest=true.
+- Studio показывает client-reported SHA-256, начинающийся с 09d4a16da764f49602f34e6ad4bc417abe35c6...; это соответствует ожидаемому BW-002, но НЕ является независимым хешем байтов R2.
+- Следующий шаг: защищённым broker Studio получить именно этот объект R2, независимо вычислить SHA-256 всех 70809997 байт и сравнить с ожидаемым 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640; только затем зафиксировать source transport в BW-002 manifest и STATE. Не создавать VID/Issue, не повторять upload и не запускать платный монтаж.
+
+
 ## 2026-11-05 — Studio PR #171 объединён; production deploy ожидается
 
 - Vercel preview на commit c95335076615329264f6b1ce51b0aa276083cd62 завершился READY; npm typecheck, Vitest 50/50 tests и Next.js production build прошли. В том числе tests/inspect.test.ts 4/4.
