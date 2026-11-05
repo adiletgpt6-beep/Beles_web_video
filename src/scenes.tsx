@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Easing, Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame } from 'remotion';
 import type { BehindTextData, CameraKey, IconRowData, SiteStageData, VideoCardData } from './types';
-import { cameraAt } from './camera';
+import { cameraAt, DEFAULT_FACE, type Face } from './camera';
 import { COLORS, FONTS } from './layout';
 import { viewAt } from './SiteCard';
 
@@ -53,9 +53,10 @@ const PresenterMorph: React.FC<{
   rect: { x: number; y: number; w: number; h: number };
   circle: boolean;
   target: { s: number; fx: number; fy: number }; // source point (fx, fy) → shape centre at scale s
-}> = ({ video, srcStart, sceneStart, camera, k, rect, circle, target }) => {
+  face?: Face;
+}> = ({ video, srcStart, sceneStart, camera, k, rect, circle, target, face = DEFAULT_FACE }) => {
   const f = useCurrentFrame();
-  const cam = cameraAt(camera, sceneStart + f);
+  const cam = cameraAt(camera, sceneStart + f, face);
   const cx = rect.x + rect.w / 2;
   const cy = rect.y + rect.h / 2;
   const t1 = { s: target.s, tx: cx - target.s * target.fx, ty: cy - target.s * target.fy };
@@ -115,10 +116,10 @@ const Word: React.FC<{ text: string; at: number; size: number; color: string; we
 };
 
 // ── 1. Very large keyword on the curtain, partly behind the presenter (matte cut-out on top) ──────────────
-export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[] }> = ({ data, camera }) => {
+export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[]; face?: Face }> = ({ data, camera, face = DEFAULT_FACE }) => {
   const f = useCurrentFrame();
   const g = data.startFrame + f;
-  const cam = cameraAt(camera, g);
+  const cam = cameraAt(camera, g, face);
   const srcFrame = data.srcStart + f;
   const hasMatte = srcFrame >= data.matteFrom && srcFrame < data.matteTo;
   return (
@@ -158,7 +159,7 @@ export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[] }>
                     transform: `translateY(${(1 - a) * size * 0.5}px)`,
                   }}
                 >
-                  {ch}
+                  {ch === ' ' ? '\u00A0' : ch}
                 </span>
               );
             })}
@@ -167,7 +168,7 @@ export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[] }>
       })}
       {hasMatte ? (
         <div style={{ position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, transformOrigin: '0 0', transform: `translate(${cam.tx}px, ${cam.ty}px) scale(${cam.s})` }}>
-          <Img src={staticFile(`media/matte/${srcFrame}.png`)} style={{ width: 1080, height: 1920 }} />
+          <Img src={staticFile(`${data.matteDir ?? 'media/matte'}/${srcFrame}.png`)} style={{ width: 1080, height: 1920 }} />
         </div>
       ) : null}
     </AbsoluteFill>
@@ -175,7 +176,7 @@ export const BehindText: React.FC<{ data: BehindTextData; camera: CameraKey[] }>
 };
 
 // ── 2. Frame slides back into a rounded video card, opening space for the phrase ──────────────────────────
-export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; video: string }> = ({ data, camera, video }) => {
+export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; video: string; face?: Face }> = ({ data, camera, video, face }) => {
   const f = useCurrentFrame();
   const len = data.endFrame - data.startFrame;
   const k = Math.min(
@@ -188,7 +189,7 @@ export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; vid
       <AbsoluteFill style={{ opacity: Math.min(1, k * 1.5) }}>
         <PatternBg drift={f * 0.5} />
       </AbsoluteFill>
-      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.rect} circle={false} target={data.target} />
+      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.rect} circle={false} target={data.target} face={face} />
       <div style={{ position: 'absolute', left: 90, width: 810, top: data.textTop, opacity: 1 - textOut, transform: `translateY(${-textOut * 30}px)` }}>
         {data.lines.map((l, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: 'center', gap: 18, marginBottom: l.big ? 10 : 6 }}>
@@ -197,7 +198,7 @@ export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; vid
                 key={j}
                 text={w.text}
                 at={w.frame}
-                size={l.big ? fit(l.words.map((x) => x.text).join(' '), 190, 800) : 66}
+                size={l.big ? fit(l.words.map((x) => x.text).join(' '), 190, 800) : fit(l.words.map((x) => x.text).join(' '), 66, 780, 800)}
                 color={l.big ? COLORS.cyan : COLORS.white}
                 weight={l.big ? 900 : 800}
                 letters={l.big}
@@ -211,7 +212,7 @@ export const VideoCard: React.FC<{ data: VideoCardData; camera: CameraKey[]; vid
 };
 
 // ── 3. Site stage: the card from the previous shot keeps growing into a large window; presenter in a circle ─
-export const SiteStage: React.FC<{ data: SiteStageData; camera: CameraKey[]; video: string }> = ({ data, camera, video }) => {
+export const SiteStage: React.FC<{ data: SiteStageData; camera: CameraKey[]; video: string; face?: Face }> = ({ data, camera, video, face }) => {
   const f = useCurrentFrame();
   const len = data.endFrame - data.startFrame;
   const kin = interpolate(f, [0, 11], [0, 1], { ...clamp, easing: inOut });
@@ -240,7 +241,7 @@ export const SiteStage: React.FC<{ data: SiteStageData; camera: CameraKey[]; vid
       <AbsoluteFill style={{ opacity: Math.min(1, k * 1.4) }}>
         <PatternBg drift={f * 0.4} />
       </AbsoluteFill>
-      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.circle} circle target={data.target} />
+      <PresenterMorph video={video} srcStart={data.srcStart} sceneStart={data.startFrame} camera={camera} k={k} rect={data.circle} circle target={data.target} face={face} />
       <div
         style={{
           position: 'absolute',
@@ -329,6 +330,27 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M32 8 L58 22 L32 36 L6 22 Z" />
       <path d="M6 32 L32 46 L58 32" />
       <path d="M6 42 L32 56 L58 42" />
+    </>
+  ),
+  // BW-002: devices named in the speech ("телефонго да, компьютерге да")
+  phone: (
+    <>
+      <rect x="19" y="5" width="26" height="54" rx="5" />
+      <line x1="27" y1="11" x2="37" y2="11" />
+      <line x1="25" y1="20" x2="39" y2="20" />
+      <rect x="25" y="26" width="14" height="4" rx="1.5" />
+      <line x1="25" y1="36" x2="39" y2="36" />
+      <line x1="25" y1="42" x2="35" y2="42" />
+      <circle cx="32" cy="53" r="1.8" />
+    </>
+  ),
+  laptop: (
+    <>
+      <rect x="10" y="12" width="44" height="30" rx="4" />
+      <path d="M4 50 h56 l-4 6 h-48 z" />
+      <line x1="17" y1="20" x2="37" y2="20" />
+      <rect x="17" y="25" width="16" height="4" rx="1.5" />
+      <line x1="17" y1="35" x2="47" y2="35" />
     </>
   ),
 };
