@@ -4,7 +4,7 @@
 
 - User clicked «Проверить SHA-256 по байтам R2» in authenticated BalaGo Studio. UI explicitly says comparison with browser SHA-256 «совпадает»; R2 bytes read 17528359.
 - Existing upload: ced83175-8979-410f-8742-df793118b3de, source file 1000221272.mp4, object live/raw/ced83175-8979-410f-8742-df793118b3de/source.mp4, repository adiletgpt6-beep/Beles_web_video.
-- Full SHA-256 is clipped at right edge of screenshot, only visible prefix `88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d...`. DO NOT treat prefix as complete SHA or guess missing hex. User should copy exact full 64-char hash from UI (landscape view or text select) before creating schema-valid manifest and registering BW-003. Do not create duplicate VID/Issue.
+- User supplied full 64-character SHA-256: `88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d`. It matches the independently verified R2 screenshot prefix; Studio displayed `совпадает`. Register BW-003 once with this exact SHA. Do not create VID/Issue.
 - Existing registry has only BW-001 and BW-002; next_suggested_job_id BW-003. The R2 byte-integrity check is complete, but Claude broker for BW-003 not yet implemented and clean Claude download not yet verified. Do not claim delivery/queue or start paid render.
 
 
