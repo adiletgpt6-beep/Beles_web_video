@@ -1,0 +1,1 @@
+probe 2026-11-05 — checks whether the GitHub API accepts writes while git push is rejected; safe to delete
