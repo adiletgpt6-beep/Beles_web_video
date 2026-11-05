@@ -1,0 +1,35 @@
+== file: production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4 (22915748 bytes)
+== streams
+codec_name=h264
+profile=High
+width=1080
+height=1920
+pix_fmt=yuv420p
+color_space=bt709
+color_transfer=bt709
+color_primaries=bt709
+r_frame_rate=30/1
+avg_frame_rate=30/1
+bit_rate=4901794
+codec_name=aac
+profile=LC
+sample_rate=48000
+channels=2
+r_frame_rate=0/0
+avg_frame_rate=0/0
+bit_rate=243449
+duration=35.566667
+bit_rate=5154432
+== frame count
+1067
+== faststart (moov before mdat?)
+['ftyp', 'moov', 'free', 'mdat']
+== full decode errors (empty = none)
+== loudness (EBU R128)
+    I:         -14.9 LUFS
+    LRA:         1.8 LU
+== black frames (>=0.1 s)
+none
+== silences > 0.5 s at -40 dB
+[silencedetect @ 0x5613d1c84680] silence_start: 34.8631
+[silencedetect @ 0x5613d1c84680] silence_end: 35.584 | silence_duration: 0.720854

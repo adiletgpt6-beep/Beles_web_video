@@ -7,6 +7,7 @@ import {
   OffthreadVideo,
   Sequence,
   staticFile,
+  useCurrentFrame,
 } from 'remotion';
 import type { Timeline } from './types';
 import { useCamera } from './camera';
@@ -45,6 +46,12 @@ const useFonts = () => {
     if (ready) continueRender(handle);
   }, [ready, handle]);
   return ready;
+};
+
+const FadeIn: React.FC<{ frames: number }> = ({ frames }) => {
+  const f = useCurrentFrame();
+  const o = Math.max(0, 1 - f / frames);
+  return o > 0 ? <AbsoluteFill style={{ background: '#0A0E16', opacity: o }} /> : null;
 };
 
 const Presenter: React.FC<{ timeline: Timeline; blur?: boolean }> = ({ timeline }) => {
@@ -101,6 +108,7 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
           <Bulb x={b.x} y={b.y} len={b.endFrame - b.startFrame} />
         </Sequence>
       ))}
+      {timeline.fadeIn ? <FadeIn frames={timeline.fadeIn} /> : null}
       {timeline.vignette ? (
         <AbsoluteFill style={{ background: `radial-gradient(78% 60% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,${timeline.vignette}) 100%)` }} />
       ) : null}

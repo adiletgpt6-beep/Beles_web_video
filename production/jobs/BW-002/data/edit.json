@@ -1,5 +1,5 @@
 {
- "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger. V2 (2026-11-05, full rework requested by the user): search-bar hook, presenter pushed right ('right' camera) with a phone beside him — real zeket.kg site scrolling (label zeket.kg), demo online store (catalog → product → cart → checkout → new-order toast) and demo automation flow (request → manager notification → CRM), labelled ДЕМО; phone + desktop window for 'телефонго да, компьютерге да'; idea bulb; WhatsApp badge with consultation line and pulsing button; cinematic vignette. Speech, takes and cuts are identical to v1.",
+ "_doc": "BW-002 edit decision list (source input/BW-002/1000219289.mp4, 30 fps CFR, same studio as BW-001). Units as in V5 data/edit.json: segment in/out and all word/anchor times are SOURCE seconds; overlay-local times are seconds from the overlay start. Takes chosen by gaze into the lens (MediaPipe face landmarks, data/asr/gaze.json) and by the cleanest complete speech (kyrgyz-whisper-medium + forced scoring, see docs/transcript.md). Visual techniques reuse the V5 set: keyword behind the presenter (matte), rounded video card, icon rows for the spoken services/devices, typographic scene with the rising line, kinetic white+cyan captions without a plate, WhatsApp badge placed under the pointing finger. V2 (2026-11-05, full rework requested by the user): search-bar hook, presenter pushed right ('right' camera) with a phone beside him — real zeket.kg site scrolling (label zeket.kg), demo online store (catalog → product → cart → checkout → new-order toast) and demo automation flow (request → manager notification → CRM), labelled ДЕМО; phone + desktop window for 'телефонго да, компьютерге да'; idea bulb; WhatsApp badge with consultation line and pulsing button; cinematic vignette. Speech, takes and cuts are identical to v1. V3 (final polish): soft 6-frame fade-in, hook in-point trimmed, bigger phone demos (UI scaled from a 396 px base), consistent chest captions, delicate badge float + shine, external site labelled as an interface example.",
  "sourceName": "1000219289.mp4",
  "fps": 30,
  "width": 1080,
@@ -22,7 +22,7 @@
  "segments": [
   {
    "id": "hook",
-   "in": 37.45,
+   "in": 37.52,
    "out": 40.7,
    "camera": "medium",
    "take": "2 of 3 (34.99–37.17 and 37.66–40.48 both 0% down-gaze; the later one ends with the open-hands question gesture 39.8–40.4)",
@@ -422,8 +422,7 @@
      "key": [
       "ишке",
       "ашырабыз"
-     ],
-     "place": "low"
+     ]
     }
    ],
    "words": [
@@ -526,7 +525,7 @@
  "cards": [],
  "phones": [],
  "behindText": {
-  "from": "hook@37.45",
+  "from": "hook@37.52",
   "to": "hook@40.70",
   "matteFrom": 1125,
   "matteTo": 1220,
@@ -821,7 +820,7 @@
  "vignette": 0.32,
  "searchBars": [
   {
-   "from": "hook@37.50",
+   "from": "hook@37.52",
    "to": "hook@40.70",
    "typed": "сиздин бизнесиңиз",
    "typeFrom": "hook@37.75",
@@ -835,10 +834,10 @@
    "from": "face@78.62",
    "to": "face@81.43",
    "phone": {
-    "x": 40,
+    "x": 46,
     "y": 300,
-    "w": 420,
-    "h": 840
+    "w": 480,
+    "h": 960
    },
    "contents": [
     {
@@ -848,7 +847,7 @@
       "image": "site/mobile-home-ky-full.png",
       "imageWidth": 1170,
       "imageHeight": 35316,
-      "label": "zeket.kg",
+      "label": "Интерфейстин мисалы · zeket.kg",
       "scrollFrom": 0,
       "scrollTo": 1500
      }
@@ -859,10 +858,10 @@
    "from": "list@243.10",
    "to": "list@249.93",
    "phone": {
-    "x": 40,
+    "x": 46,
     "y": 300,
-    "w": 420,
-    "h": 840
+    "w": 480,
+    "h": 960
    },
    "contents": [
     {
@@ -900,10 +899,10 @@
    "from": "dev@275.25",
    "to": "dev@279.53",
    "phone": {
-    "x": 40,
-    "y": 420,
-    "w": 420,
-    "h": 840
+    "x": 46,
+    "y": 410,
+    "w": 450,
+    "h": 900
    },
    "contents": [
     {
@@ -913,7 +912,7 @@
       "image": "site/mobile-home-ky-full.png",
       "imageWidth": 1170,
       "imageHeight": 35316,
-      "label": "zeket.kg",
+      "label": "Интерфейстин мисалы · zeket.kg",
       "scrollFrom": 1500,
       "scrollTo": 2700
      }
@@ -921,10 +920,10 @@
    ],
    "desktop": {
     "from": "dev@277.60",
-    "x": 40,
-    "y": 1290,
+    "x": 46,
+    "y": 1330,
     "w": 520,
-    "h": 330,
+    "h": 290,
     "url": "zeket.kg/ky",
     "image": "site/desktop-home-ky-full.png",
     "imageWidth": 2880,
@@ -953,5 +952,6 @@
    "x": 830,
    "y": 400
   }
- ]
+ ],
+ "fadeIn": 6
 }

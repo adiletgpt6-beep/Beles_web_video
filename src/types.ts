@@ -167,6 +167,7 @@ export type Timeline = {
   face?: { cx: number; cy: number; top: number; cardScale?: number; card2Scale?: number };
   captionTopY?: number;
   vignette?: number; // 0..1 cinematic edge darkening (BW-002 v2)
+  fadeIn?: number; // frames of a soft fade from dark at the very start (BW-002 v3)
   searchBars?: SearchBarData[];
   sideScenes?: SideSceneData[];
   bulbs?: { startFrame: number; endFrame: number; x: number; y: number }[];
