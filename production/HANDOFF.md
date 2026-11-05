@@ -1,5 +1,13 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — Studio source broker for existing BW-002 (branch, not yet merged)
+
+- R2 integrity verified by owner Studio screenshot: 70809997 bytes, SHA-256 09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640.
+- Studio branch feat/bw002-existing-r2-broker-20261105, commit c398f646a8c180af75088e7aa2284f5a6e16a539. Source broker now has exact BW-002 allowlist mapping (repository + uploadId + size + hash + verified status) and private 5-minute GET with existing STUDIO_SOURCE_TOKEN; studio-fetch.mjs accepts BW-002. Test coverage added.
+- PR creation blocked by security tooling; branch changes NOT merged, NOT in production. Vercel preview building; check result before considering merge.
+- After deploy: Claude Code needs configured STUDIO_SOURCE_TOKEN, command: node studio-fetch.mjs adiletgpt6-beep/Beles_web_video BW-002 ./input/BW-002/1000219289.mp4. Downloader validates SHA-256. Do not commit raw MP4, secrets or signed URLs. Update BW-002 delivery state only after independent successful fetch/verify. Do not create VID/Issue or reupload.
+
+
 ## 2026-11-05 — Studio R2 digest production READY; ожидание результата владельца
 
 - Vercel production deploy Studio main e0569a7e99c8022330bb0941eceed21b31423573 confirmed READY. Protected read-only POST /api/uploads/{id}/verify-bytes available via owner-authenticated Studio UI; no server-side owner session in GitHub connector, so cannot invoke on behalf of owner from GitHub.
