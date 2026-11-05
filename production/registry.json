@@ -26,11 +26,11 @@
     {
       "job_id": "BW-003",
       "role": "edit",
-      "status": "rendered",
+      "status": "approved",
       "source_sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
       "source_storage": "cloudflare_r2_studio_broker",
       "manifest": "production/jobs/BW-003/manifest.json",
-      "next_step": "Показать пользователю production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4 (ссылка в ветке ccr-443bddaf-7eho4h); получить правки (edit.json / src/night.tsx → повторный рендер ~20 мин) или утверждение: checkpoint BW-003 --status approved --user-approved.",
+      "next_step": "Утверждено пользователем, изменений не требуется.",
       "delivery_verified": true
     }
   ]
