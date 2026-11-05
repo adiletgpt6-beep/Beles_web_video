@@ -205,6 +205,14 @@ const sideScenes = (edit.sideScenes ?? []).map((sc) => {
   };
 });
 const bulbs = (edit.bulbs ?? []).map((b) => ({ startFrame: anchor(b.from), endFrame: anchor(b.to), x: b.x, y: b.y }));
+// Generic job overlays (BW-003+): { kind, from, to, beats: { name: anchor }, ...props } → frames; beats become
+// overlay-local frames. Jobs render these with their own components; the baseline composition ignores the key.
+const overlays = (edit.overlays ?? []).map((o) => {
+  const startFrame = anchor(o.from);
+  const L = local(startFrame);
+  const { from, to, beats, ...props } = o;
+  return { ...props, startFrame, endFrame: anchor(to), beats: Object.fromEntries(Object.entries(beats ?? {}).map(([k, v]) => [k, L(v)])) };
+});
 const endCard = edit.endCard && { startFrame: anchor(edit.endCard.from), endFrame: anchor(edit.endCard.to), accent: edit.endCard.accent, main: edit.endCard.main };
 
 // 4. Subtitles: phrase groups authored per segment; every word carries its own start (source seconds,
@@ -263,6 +271,7 @@ const timeline = {
   ...(searchBars.length ? { searchBars } : {}),
   ...(sideScenes.length ? { sideScenes } : {}),
   ...(bulbs.length ? { bulbs } : {}),
+  ...(overlays.length ? { overlays } : {}),
   fps: FPS,
   width: edit.width,
   height: edit.height,

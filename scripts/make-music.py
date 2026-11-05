@@ -13,15 +13,20 @@ import wave
 
 import numpy as np
 
+import os
+
 SR = 48000
-BPM = 96.0
+# Job variants (BW-003): MUSIC_BPM, MUSIC_TRANSPOSE (semitones), MUSIC_NO_DRUMS=1. Defaults = the V5 bed, byte-identical.
+BPM = float(os.environ.get('MUSIC_BPM', '96'))
+TRANSPOSE = int(os.environ.get('MUSIC_TRANSPOSE', '0'))
+NO_DRUMS = os.environ.get('MUSIC_NO_DRUMS', '') == '1'
 BEAT = 60.0 / BPM
 BAR = 4 * BEAT
 rng = np.random.default_rng(7)
 
 
 def midi(n):
-    return 440.0 * 2 ** ((n - 69) / 12)
+    return 440.0 * 2 ** ((n + TRANSPOSE - 69) / 12)
 
 
 def onepole_lp(x, fc):
@@ -114,7 +119,7 @@ def main(total, out, accent=None):
                     L[j0:j1] += 0.07 * g * (1 - pan) * tone[: j1 - j0]
                     R[j0:j1] += 0.07 * g * pan * tone[: j1 - j0]
         # drums: soft kick on 1 and 3, shaker on off-beats (skip first bar for a gentle entry)
-        if b > 0 and not last:
+        if b > 0 and not last and not NO_DRUMS:
             for beat in range(4):
                 bt = t0 + beat * BEAT
                 if accent is not None and bt >= accent - 0.05:
