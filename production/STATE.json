@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-05T12:15:00+00:00",
+  "updated_at": "2026-11-05T12:59:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -18,11 +18,11 @@
     "display": "0998 08 38 28",
     "international": "+996 998 08 38 28"
   },
-  "active_job_id": null,
+  "active_job_id": "BW-003",
   "next_suggested_job_id": "BW-004",
   "baseline_job_id": "BW-001",
   "pending": [
-    "BW-003 staged — зарегистрирован (R2, без Git-частей); доставка блокирована: Studio broker 404 для BW-003, нужна запись allowlist (production/jobs/BW-003/studio/BW-003-broker-allowlist.md), затем скачивание и verify --record-delivery",
+    "BW-003 queued — исходник доставлен и проверен (R2 broker); ждать короткий промпт пользователя на монтаж с уникальной визуальной концепцией",
     "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
   ],
   "source": {
@@ -91,18 +91,30 @@
     "user_approved": false
   },
   "bw003_ingest": {
-    "status": "staged_registered_delivery_blocked",
+    "status": "delivered_via_r2_broker_queued",
     "manifest": "production/jobs/BW-003/manifest.json",
+    "delivery_proof": "production/jobs/BW-003/delivery.json",
+    "report": "production/reports/BW-003-r2-delivery.json",
     "source_name": "1000221272.mp4",
     "bytes": 17528359,
     "sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
     "r2_upload_id": "ced83175-8979-410f-8742-df793118b3de",
     "r2_object_key": "live/raw/ced83175-8979-410f-8742-df793118b3de/source.mp4",
     "r2_bytes_verified_by_owner": true,
-    "studio_broker_bw003": "HTTP 404 on 2026-11-05 (BW-002: 200; no token: 401) — allowlist entry required",
+    "studio_broker_bw003": "HTTP 200 on 2026-11-05 after Studio PR #175 (17bc2dc, Vercel READY)",
     "studio_change_spec": "production/jobs/BW-003/studio/BW-003-broker-allowlist.md",
-    "claude_download_verified": false,
-    "delivery_verified": false,
+    "probe": {
+      "duration_seconds": 216.735057,
+      "width": 1080,
+      "height": 1920,
+      "frame_rate": "30/1",
+      "video_codec": "av1",
+      "audio_codec": "aac",
+      "sample_rate": 44100,
+      "channels": 2
+    },
+    "claude_download_verified": true,
+    "delivery_verified": true,
     "edit_started": false
   }
 }

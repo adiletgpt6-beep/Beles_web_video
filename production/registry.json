@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_job_id": null,
+  "active_job_id": "BW-003",
   "next_suggested_job_id": "BW-004",
   "jobs": [
     {
@@ -26,12 +26,12 @@
     {
       "job_id": "BW-003",
       "role": "edit",
-      "status": "staged",
+      "status": "queued",
       "source_sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
       "source_storage": "cloudflare_r2_studio_broker",
       "manifest": "production/jobs/BW-003/manifest.json",
-      "next_step": "1) В Studio добавить запись allowlist брокера для BW-003 по production/jobs/BW-003/studio/BW-003-broker-allowlist.md и задеплоить production; 2) в среде Claude Code с STUDIO_SOURCE_TOKEN выполнить команду загрузки из HANDOFF.md задания, затем python3 scripts/beles.py verify BW-003, записать source.probe в manifest, закоммитить и выполнить verify BW-003 --record-delivery (staged → queued). Монтаж не начинать до queued и короткого промпта пользователя.",
-      "delivery_verified": false
+      "next_step": "Ждать короткий промпт пользователя на монтаж BW-003. Затем: исходник уже в input/BW-003/1000221272.mp4 (в новой среде — команда брокера из HANDOFF задания + verify BW-003); прочитать brief.md, STYLE_GUIDE.md, EDITING_LESSONS.md, WEBSITE_SHOWCASE_RULES.md; расшифровать кыргызскую речь (локальный ASR), выбрать дубли, записать уникальную визуальную концепцию в production/jobs/BW-003/docs/ перед монтажом. Эталон V5 и файлы BW-002 не менять; платные API/Actions не запускать.",
+      "delivery_verified": true
     }
   ]
 }

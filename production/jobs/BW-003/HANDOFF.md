@@ -1,16 +1,10 @@
-## Обновление 2026-11-05: Studio broker опубликован
-
-PR Studio #175 объединён в main, коммит `17bc2dcb0f8d86687cf7324cd9bdd6dd9c924793`. Vercel production подтвердил `READY`. Точное сопоставление BW-003 с существующим uploadId, размером и SHA-256 теперь включено в серверный broker. Упоминание 404 выше относится к состоянию **до** этого релиза.
-
-**Текущий блокер только один:** скачать файл в авторизованной среде Claude Code и подтвердить размер, SHA-256 и ffprobe. После этого выполнить `python3 scripts/beles.py verify BW-003 --record-delivery` по инструкции и обновить checkpoint/STATE. До фактической проверки статус `staged` сохраняется. Не создавать новый VID/Issue, не загружать исходник повторно и не запускать платные операции.
-
-# BW-003 — staged
+# BW-003 — queued
 
 Роль: edit. Стиль: Beles V5. WhatsApp: 0998 08 38 28.
 
-Следующий шаг: 1) В Studio добавить запись allowlist брокера для BW-003 по production/jobs/BW-003/studio/BW-003-broker-allowlist.md и задеплоить production; 2) в среде Claude Code с STUDIO_SOURCE_TOKEN выполнить команду загрузки из HANDOFF.md задания, затем python3 scripts/beles.py verify BW-003, записать source.probe в manifest, закоммитить и выполнить verify BW-003 --record-delivery (staged → queued). Монтаж не начинать до queued и короткого промпта пользователя.
+Следующий шаг: Ждать короткий промпт пользователя на монтаж BW-003. Затем: исходник уже в input/BW-003/1000221272.mp4 (в новой среде — команда брокера из HANDOFF задания + verify BW-003); прочитать brief.md, STYLE_GUIDE.md, EDITING_LESSONS.md, WEBSITE_SHOWCASE_RULES.md; расшифровать кыргызскую речь (локальный ASR), выбрать дубли, записать уникальную визуальную концепцию в production/jobs/BW-003/docs/ перед монтажом. Эталон V5 и файлы BW-002 не менять; платные API/Actions не запускать.
 
-2026-11-05: BW-003 зарегистрирован один раз через beles.py register-r2 (без Git-частей, без повторной загрузки): 1000221272.mp4, 17528359 байт, SHA-256 88a05856…965d, uploadId ced83175-8979-410f-8742-df793118b3de, R2 байты проверены владельцем в Studio. Блокер доставки: брокер Studio отвечает 404 для BW-003 (BW-002 — 200, без токена — 401), allowlist содержит только BW-002; репозиторий Studio из этой сессии недоступен, изменение описано в studio/BW-003-broker-allowlist.md; запуск загрузчика с токеном в этой сессии отклонён классификатором разрешений. Исходник не скачан, доставка не подтверждена, монтаж/платные сервисы/VID/Issue не запускались.
+2026-11-05: Claude Code скачал исходник через Studio source broker (BW-003 resolve → 200 после Studio PR #175 / 17bc2dc; токен и подписанный URL не раскрывались): 17528359 байт, SHA-256 88a05856…965d совпали с manifest и проверкой владельца по байтам R2; ffprobe 1080×1920, 30/1, av1 + aac 44100 Hz stereo, 216.735 с записан в source.probe (коммит 4d934fe). verify --record-delivery: delivery.json записан, staged → queued. Отчёт production/reports/BW-003-r2-delivery.json. MP4 в Git не публикуется. Монтаж, прослушивание, рендер, платные сервисы, VID/Issue и повторная загрузка не выполнялись.
 
 Исходник: `1000221272.mp4`, 17528359 байт.
 SHA-256: `88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d`. Манифест: `manifest.json`.

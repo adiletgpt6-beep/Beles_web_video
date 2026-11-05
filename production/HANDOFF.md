@@ -1,5 +1,14 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-05 — BW-003 доставлен: Claude Code скачал исходник через Studio broker и проверил; задание в очереди
+
+- Studio broker для BW-003 опубликован владельцем (PR #175, коммит 17bc2dc, Vercel READY); `POST /api/source/resolve` BW-003 с `STUDIO_SOURCE_TOKEN` → 200 (ранее 404).
+- Claude Code (облачная среда, `input/BW-003` отсутствовал) выполнил команду из `production/jobs/BW-003/HANDOFF.md` (`studio-fetch.mjs`, SHA-256 `fcee607e…de68`); токен и подписанный URL не печатались и не сохранялись.
+- Независимая проверка: 17 528 359 байт; SHA-256 `88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d` (sha256sum + python hashlib) — совпадает с manifest и проверкой владельца по байтам R2; ffprobe 1080×1920, 30/1, **AV1** + AAC 44100 Hz stereo, 216,735 с (6502 кадров) — записан в `manifest.source.probe` (коммит `4d934fe`). Отчёт: `production/reports/BW-003-r2-delivery.json`.
+- `python3 scripts/beles.py verify BW-003 --record-delivery` → `production/jobs/BW-003/delivery.json` (transport `cloudflare_r2_studio_broker`, checked_commit `4d934fe`), checkpoint `staged → queued`; `next` возвращает BW-003. Registry/STATE синхронизированы.
+- Ограничения: MP4 в Git не публикуется (`input/*` в .gitignore); в новой среде исходник получать только командой брокера из HANDOFF задания, затем `verify BW-003`. Исходник AV1 — при подготовке медиа учесть декодирование (как у BW-001). Монтаж, прослушивание, рендер, платные сервисы, VID/Issue и повторная загрузка не выполнялись.
+- Следующий шаг: короткий промпт пользователя на монтаж BW-003; перед монтажом записать в `production/jobs/BW-003/docs/` уникальную визуальную концепцию (STYLE_GUIDE, EDITING_LESSONS), не копируя V5 и BW-002 v4.
+
 ## 2026-11-05 — BW-003 зарегистрирован (R2, без Git-частей); доставка ждёт allowlist брокера Studio
 
 - Сделано: `scripts/beles.py` расширен — манифесты с `source.storage = cloudflare_r2_studio_broker` (поля `r2.upload_id/object_key/bytes/sha256`, `parts: []`, `probe` может быть `null` до первой проверенной загрузки); новая команда `register-r2` с защитой от дубликатов по SHA-256 и uploadId; `restore` для R2 ничего не скачивает и подсказывает команду брокера; `verify --record-delivery` для R2 требует закоммиченный manifest с `source.probe`, пишет `delivery.json` и переводит `staged → queued`. Тесты: `scripts/test-beles.py` 11/11 (`production/reports/workflow-integration.json`).

@@ -54,13 +54,14 @@
   },
   "delivery_verification": "production/jobs/BW-003/delivery.json",
   "ingest": {
-    "status": "downloaded_via_r2_broker_pending_record",
-    "delivery_verified": false,
+    "status": "delivered_via_r2_broker",
+    "delivery_verified": true,
     "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload.",
     "studio_broker": {
       "pr": "adiletzainidinov/balago-video#175",
       "commit": "17bc2dc",
       "resolve_bw003_http": 200
-    }
+    },
+    "delivery_verified_at": "2026-11-05T12:58:18+00:00"
   }
 }
