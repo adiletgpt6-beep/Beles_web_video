@@ -88,7 +88,7 @@ const Letters: React.FC<{ text: string; start: number; size: number; color: stri
   );
 };
 
-export const Captions: React.FC<{ subtitles: Subtitle[]; topY?: number }> = ({ subtitles, topY = TOP_Y }) => {
+export const Captions: React.FC<{ subtitles: Subtitle[]; topY?: number; bottom?: number }> = ({ subtitles, topY = TOP_Y, bottom }) => {
   const f = useCurrentFrame();
   const cur = subtitles.find((s) => f >= s.startFrame && f < s.endFrame);
   if (!cur || cur.scene) return null;
@@ -101,7 +101,8 @@ export const Captions: React.FC<{ subtitles: Subtitle[]; topY?: number }> = ({ s
   const rowH = (r: Row) => (r.big ? bigSize * 1.04 : SMALL * 1.18);
   const totalH = rows.reduce((h, r) => h + rowH(r), 0);
   const place = cur.place ?? 'chest';
-  const top = place === 'top' ? topY : PLACE_BOTTOM[place] - totalH;
+  const bottomEdge = bottom ? (place === 'low' ? bottom + 40 : bottom) : PLACE_BOTTOM[place];
+  const top = place === 'top' ? topY : bottomEdge - totalH;
   // leave: the whole phrase lifts and fades in the last 5 frames
   const leave = interpolate(local, [len - 5, len], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
 

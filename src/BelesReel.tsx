@@ -161,7 +161,7 @@ export const BelesReel: React.FC<{ timeline: Timeline }> = ({ timeline }) => {
           <WhatsAppBadge badge={timeline.badge} />
         </Sequence>
       ) : null}
-      {fontsReady ? <Captions subtitles={timeline.subtitles} topY={timeline.captionTopY} /> : null}
+      {fontsReady ? <Captions subtitles={timeline.subtitles} topY={timeline.captionTopY} bottom={timeline.captionBottom} /> : null}
       <Audio src={staticFile(timeline.audio)} />
     </AbsoluteFill>
   );

@@ -160,6 +160,20 @@ const PRODUCTS = [
       <rect x="20" y="34" width="24" height="14" rx="4" fill="#C4B5FD" />
     </>
   ) },
+  { name: 'Көз айнек', price: '1 790 сом', bg: 'linear-gradient(135deg,#FFF7E6,#FDE68A)', art: (
+    <>
+      <circle cx="20" cy="34" r="11" fill="#B45309" />
+      <circle cx="44" cy="34" r="11" fill="#B45309" />
+      <path d="M31 34 h2 M9 30 l-4 -6 M55 30 l4 -6" stroke="#78350F" strokeWidth="3" strokeLinecap="round" />
+    </>
+  ) },
+  { name: 'Термос', price: '2 150 сом', bg: 'linear-gradient(135deg,#FEE2E2,#FECACA)', art: (
+    <>
+      <rect x="22" y="14" width="20" height="42" rx="7" fill="#DC2626" />
+      <rect x="24" y="6" width="16" height="10" rx="3" fill="#7F1D1D" />
+      <rect x="26" y="26" width="12" height="14" rx="2" fill="#FCA5A5" />
+    </>
+  ) },
 ];
 
 const Phone: React.FC<{ rect: { x: number; y: number; w: number; h: number }; enter: number; exit: number; children: React.ReactNode; label?: string }> = ({ rect, enter, exit, children, label }) => {
@@ -199,7 +213,11 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
   const k = (from: number, d = 8) => interpolate(f, [from, from + d], [0, 1], { ...clamp, easing: out });
   const pad = 22;
   const cardW = (w - pad * 3) / 2;
+  const rowH = cardW + 92;
+  // catalog scrolls smoothly (mobile browse) before the first product is tapped
+  const scrollY = interpolate(f, [B('scroll'), B('scroll') + 22], [0, rowH], { ...clamp, easing: inOut });
   const sheet = k(B('tap') + 6, 10); // product sheet rises
+  const cart = k(B('cart'), 10); // cart screen
   const checkout = k(B('checkout'), 10);
   const success = k(B('success'), 10);
   const added = f >= B('add') + 4;
@@ -207,6 +225,7 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
   const press = (at: number) => interpolate(f, [at, at + 3, at + 8], [0, 1, 0], clamp);
   const fly = interpolate(f, [B('add') + 2, B('add') + 14], [0, 1], { ...clamp, easing: inOut });
   const cartCount = f >= B('add') + 14 ? 1 : 0;
+  const P = PRODUCTS[2];
   return (
     <div style={{ position: 'absolute', inset: 0, fontFamily: FONTS.body }}>
       {/* header */}
@@ -225,14 +244,14 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
         const a = k(B('catalog') + i * 4, 10);
         const col = i % 2;
         const row = Math.floor(i / 2);
-        const tapped = i === 0 ? press(B('tap')) : 0;
+        const tapped = i === 2 ? press(B('tap')) : 0;
         return (
           <div
             key={i}
             style={{
               position: 'absolute',
               left: pad + col * (cardW + pad),
-              top: 140 + row * (cardW + 92),
+              top: 140 + row * rowH - scrollY,
               width: cardW,
               height: cardW + 70,
               borderRadius: 22,
@@ -253,30 +272,63 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
       })}
       {/* tap ring */}
       {f >= B('tap') - 2 && f < B('tap') + 14 ? (
-        <div style={{ position: 'absolute', left: pad + cardW / 2 - 28, top: 140 + cardW / 2 - 28, width: 56, height: 56, borderRadius: 28, border: `4px solid ${COLORS.cyan}`, opacity: 1 - press(B('tap')) * 0.5, transform: `scale(${0.6 + 0.8 * interpolate(f, [B('tap') - 2, B('tap') + 12], [0, 1], clamp)})` }} />
+        <div style={{ position: 'absolute', left: pad + cardW / 2 - 28, top: 140 + rowH + cardW / 2 - 28 - scrollY, width: 56, height: 56, borderRadius: 28, border: `4px solid ${COLORS.cyan}`, opacity: 1 - press(B('tap')) * 0.5, transform: `scale(${0.6 + 0.8 * interpolate(f, [B('tap') - 2, B('tap') + 12], [0, 1], clamp)})` }} />
       ) : null}
       {/* product sheet → checkout → success */}
       {sheet > 0 ? (
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: h * 0.62, borderRadius: '30px 30px 0 0', background: '#fff', boxShadow: '0 -16px 40px rgba(16,24,40,0.18)', transform: `translateY(${(1 - sheet) * h * 0.62}px)`, overflow: 'hidden' }}>
           <div style={{ position: 'absolute', top: 12, left: '50%', width: 56, height: 6, borderRadius: 3, background: '#D5DAE3', transform: 'translateX(-50%)' }} />
           {/* product view */}
-          <div style={{ position: 'absolute', inset: 0, opacity: 1 - checkout, transform: `translateX(${-checkout * 60}px)` }}>
-            <div style={{ margin: '34px 22px 0', height: 190, borderRadius: 20, background: PRODUCTS[0].bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width={140} height={140} viewBox="0 0 64 64">{PRODUCTS[0].art}</svg>
+          <div style={{ position: 'absolute', inset: 0, opacity: 1 - cart, transform: `translateX(${-cart * 60}px)` }}>
+            <div style={{ margin: '34px 22px 0', height: 190, borderRadius: 20, background: P.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width={140} height={140} viewBox="0 0 64 64">{P.art}</svg>
             </div>
-            <div style={{ margin: '18px 22px 0', fontWeight: 900, fontSize: 30, color: INK }}>{PRODUCTS[0].name}</div>
-            <div style={{ margin: '4px 22px 0', fontWeight: 800, fontSize: 28, color: '#1D4ED8' }}>{PRODUCTS[0].price}</div>
+            <div style={{ margin: '18px 22px 0', fontWeight: 900, fontSize: 30, color: INK }}>{P.name}</div>
+            <div style={{ margin: '4px 22px 0', fontWeight: 800, fontSize: 28, color: '#1D4ED8' }}>{P.price}</div>
             <div style={{ margin: '6px 22px 0', fontWeight: 600, fontSize: 19, color: '#6B7280' }}>Бардык кардарларга ачык каталог</div>
             <div style={{ position: 'absolute', left: 22, right: 22, bottom: 26, height: 70, borderRadius: 20, background: added ? '#10B981' : INK, color: '#fff', fontWeight: 800, fontSize: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, transform: `scale(${1 - 0.05 * press(B('add'))})` }}>
               {added ? <Icon d={I.check} size={28} /> : <Icon d={I.cart} size={28} />}
               {added ? 'Себетке кошулду' : 'Себетке кошуу'}
             </div>
           </div>
+          {/* cart */}
+          <div style={{ position: 'absolute', inset: 0, opacity: cart * (1 - checkout), transform: `translateX(${(1 - cart) * 60 - checkout * 60}px)` }}>
+            <div style={{ margin: '36px 22px 0', display: 'flex', alignItems: 'center', gap: 12, fontWeight: 900, fontSize: 30, color: INK }}>
+              <Icon d={I.cart} size={32} color={INK} />
+              Себет
+            </div>
+            <div style={{ margin: '18px 22px 0', height: 96, borderRadius: 18, background: '#F3F5F9', display: 'flex', alignItems: 'center', padding: '0 14px', gap: 14 }}>
+              <div style={{ width: 68, height: 68, borderRadius: 14, background: P.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width={48} height={48} viewBox="0 0 64 64">{P.art}</svg>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 800, fontSize: 21, color: INK }}>{P.name}</div>
+                <div style={{ fontWeight: 700, fontSize: 19, color: '#1D4ED8' }}>{P.price}</div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontWeight: 800, fontSize: 20, color: INK }}>
+                <span style={{ width: 30, height: 30, borderRadius: 15, background: '#E5E9F0', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>−</span>1
+                <span style={{ width: 30, height: 30, borderRadius: 15, background: '#E5E9F0', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>+</span>
+              </div>
+            </div>
+            <div style={{ margin: '14px 22px 0', height: 62, borderRadius: 16, background: '#F3F5F9', display: 'flex', alignItems: 'center', padding: '0 16px', gap: 14 }}>
+              <Icon d={I.truck} size={28} color={INK} />
+              <span style={{ fontWeight: 700, fontSize: 21, color: INK, flex: 1 }}>Жеткирүү: Бишкек</span>
+              <span style={{ fontWeight: 800, fontSize: 21, color: '#1D4ED8' }}>0 сом</span>
+            </div>
+            <div style={{ margin: '18px 22px 0', display: 'flex', fontWeight: 900, fontSize: 26, color: INK }}>
+              <span>Жалпы</span>
+              <span style={{ flex: 1 }} />
+              <span>{P.price}</span>
+            </div>
+            <div style={{ position: 'absolute', left: 22, right: 22, bottom: 26, height: 70, borderRadius: 20, background: INK, color: '#fff', fontWeight: 800, fontSize: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${1 - 0.05 * press(B('checkout') - 4)})` }}>
+              Заказды тастыктоо
+            </div>
+          </div>
           {/* checkout */}
           <div style={{ position: 'absolute', inset: 0, opacity: checkout * (1 - success), transform: `translateX(${(1 - checkout) * 60}px)` }}>
             <div style={{ margin: '36px 22px 0', fontWeight: 900, fontSize: 30, color: INK }}>Заказды тастыктоо</div>
             {[
-              { icon: I.cart, t: `${PRODUCTS[0].name} × 1`, r: PRODUCTS[0].price },
+              { icon: I.cart, t: `${P.name} × 1`, r: P.price },
               { icon: I.truck, t: 'Жеткирүү: Бишкек', r: '0 сом' },
               { icon: I.card, t: 'Төлөө: карта', r: '' },
             ].map((row, i) => (
@@ -289,7 +341,7 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
             <div style={{ margin: '18px 22px 0', display: 'flex', fontWeight: 900, fontSize: 26, color: INK }}>
               <span>Жалпы</span>
               <span style={{ flex: 1 }} />
-              <span>{PRODUCTS[0].price}</span>
+              <span>{P.price}</span>
             </div>
             <div style={{ position: 'absolute', left: 22, right: 22, bottom: 26, height: 70, borderRadius: 20, background: '#1D4ED8', color: '#fff', fontWeight: 800, fontSize: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${1 - 0.05 * press(B('pay'))})` }}>
               Заказды жөнөтүү
@@ -302,7 +354,7 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
                 <Icon d={I.check} size={70} stroke={3} />
               </div>
               <div style={{ fontWeight: 900, fontSize: 30, color: INK, textAlign: 'center', padding: '0 20px' }}>Заказ кабыл алынды</div>
-              <div style={{ fontWeight: 600, fontSize: 20, color: '#6B7280' }}>№ 1024 · {PRODUCTS[0].price}</div>
+              <div style={{ fontWeight: 600, fontSize: 20, color: '#6B7280' }}>№ 1024 · {P.price}</div>
             </div>
           ) : null}
         </div>
@@ -319,7 +371,7 @@ const StoreDemo: React.FC<{ f: number; beats: Record<string, number>; w: number;
           </div>
           <div>
             <div style={{ color: '#fff', fontWeight: 800, fontSize: 22 }}>Жаңы заказ № 1024</div>
-            <div style={{ color: COLORS.cyan, fontWeight: 700, fontSize: 19 }}>{PRODUCTS[0].name} · {PRODUCTS[0].price}</div>
+            <div style={{ color: COLORS.cyan, fontWeight: 700, fontSize: 19 }}>{P.name} · {P.price}</div>
           </div>
         </div>
       ) : null}
@@ -387,7 +439,7 @@ export const SideScene: React.FC<{ data: SideSceneData }> = ({ data }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const len = data.endFrame - data.startFrame;
-  const enter = spring({ frame: f, fps, config: { damping: 20, stiffness: 110 } });
+  const enter = spring({ frame: f, fps, config: { damping: 26, stiffness: 90 } });
   const exit = interpolate(f, [len - 8, len], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const bezel = 12;
   const sw = data.phone.w - bezel * 2;
@@ -396,7 +448,7 @@ export const SideScene: React.FC<{ data: SideSceneData }> = ({ data }) => {
   const cur = data.contents[idx];
   const next = data.contents[idx + 1];
   const curEnd = next ? next.from : len;
-  const xf = interpolate(f, [cur.from, cur.from + 7], [0, 1], { ...clamp, easing: inOut });
+  const xf = interpolate(f, [cur.from, cur.from + 11], [0, 1], { ...clamp, easing: inOut });
   const BASE = 396;
   const zoom = sw / BASE;
   const scaled = (node: React.ReactNode) => (
@@ -409,14 +461,14 @@ export const SideScene: React.FC<{ data: SideSceneData }> = ({ data }) => {
   };
   const prev = idx > 0 ? data.contents[idx - 1] : null;
   const d = data.desktop;
-  const dk = d ? interpolate(f, [d.from, d.from + 12], [0, 1], { ...clamp, easing: out }) : 0;
+  const dk = d ? interpolate(f, [d.from, d.from + 16], [0, 1], { ...clamp, easing: out }) : 0;
   const v = d ? viewAt(d.views, f - d.from) : null;
   const sd = d && v ? d.w / v.w : 1;
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       <Phone rect={data.phone} enter={enter} exit={exit} label={cur.content.label}>
         {prev && xf < 1 ? <div style={{ position: 'absolute', inset: 0, opacity: 1 - xf }}>{render(prev.content, prev.from, cur.from)}</div> : null}
-        <div style={{ position: 'absolute', inset: 0, opacity: idx > 0 ? xf : 1, transform: idx > 0 ? `translateX(${(1 - xf) * 50}px)` : undefined }}>{render(cur.content, cur.from, curEnd)}</div>
+        <div style={{ position: 'absolute', inset: 0, opacity: idx > 0 ? xf : 1, transform: idx > 0 ? `translateX(${(1 - xf) * 36}px) scale(${0.97 + 0.03 * xf})` : undefined }}>{render(cur.content, cur.from, curEnd)}</div>
       </Phone>
       {d && v && dk > 0 ? (
         <div

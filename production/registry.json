@@ -18,7 +18,7 @@
       "status": "rendered",
       "source_sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
       "manifest": "production/jobs/BW-002/manifest.json",
-      "next_step": "Получить отзыв пользователя на v3 (production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4); правки → edit.json / src/demos.tsx → повторный рендер.",
+      "next_step": "Утверждение пользователем v4 (production/jobs/BW-002/release/beles-bw002-v4-1080x1920.mp4): checkpoint BW-002 --status approved --user-approved; иначе — правки по замечаниям.",
       "delivery_verified": true
     }
   ]

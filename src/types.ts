@@ -135,6 +135,7 @@ export type VideoCardData = {
   endFrame: number;
   srcStart: number;
   rect: Rect;
+  phone?: boolean; // BW-002 v4: draw the card as a smartphone (bezel + notch)
   target: Morph;
   textTop: number;
   lines: { big: boolean; words: { text: string; frame: number }[] }[];
@@ -166,6 +167,7 @@ export type Timeline = {
   // optional per-job presenter metrics (see src/camera.ts) and caption 'top' row position
   face?: { cx: number; cy: number; top: number; cardScale?: number; card2Scale?: number };
   captionTopY?: number;
+  captionBottom?: number; // chest-row bottom edge (default 1560); BW-002 v4 raises captions to 1480
   vignette?: number; // 0..1 cinematic edge darkening (BW-002 v2)
   fadeIn?: number; // frames of a soft fade from dark at the very start (BW-002 v3)
   searchBars?: SearchBarData[];

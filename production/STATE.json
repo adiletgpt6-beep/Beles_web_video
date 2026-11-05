@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-05T10:10:00+00:00",
+  "updated_at": "2026-11-05T12:00:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -22,7 +22,7 @@
   "next_suggested_job_id": "BW-003",
   "baseline_job_id": "BW-001",
   "pending": [
-    "BW-002 v3 (финальная полировка) смонтирован и проверен — ждать отзыв/утверждение пользователя"
+    "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
   ],
   "source": {
     "original_name": "1000218256.mp4",
@@ -74,18 +74,18 @@
     "edit_started": true
   },
   "bw002_render": {
-    "version": "v3",
-    "final": "production/jobs/BW-002/release/beles-bw002-v3-1080x1920.mp4",
-    "bytes": 22915748,
-    "sha256": "2714c3e7d5de4466c6b1608073cc42574e6236c99058a84cb6970898fbd8bc2d",
-    "preview": "production/jobs/BW-002/release/preview-bw002-v3-720x1280.mp4",
-    "subtitles": "production/jobs/BW-002/release/beles-bw002-v3-subtitles-ky.srt",
+    "version": "v4",
+    "final": "production/jobs/BW-002/release/beles-bw002-v4-1080x1920.mp4",
+    "bytes": 23436153,
+    "sha256": "7c6a099b5335759e49b2cae54a595f9d325a40affa91f952c9877d446f27c3db",
+    "preview": "production/jobs/BW-002/release/preview-bw002-v4-720x1280.mp4",
+    "subtitles": "production/jobs/BW-002/release/beles-bw002-v4-subtitles-ky.srt",
     "duration_s": 35.57,
     "frames": 1067,
     "lufs": -14.9,
     "true_peak_dbtp": -1.9,
     "verification": "production/jobs/BW-002/docs/verification.md",
-    "previous": "v1 and v2 files kept in release/; v1 data in data/v1/",
+    "previous": "v1–v3 files kept in release/; v1 data in data/v1/",
     "user_approved": false
   }
 }
