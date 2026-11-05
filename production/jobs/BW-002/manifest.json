@@ -101,6 +101,18 @@
       "audio_codec": "aac",
       "sample_rate": 44100,
       "channels": 2
+    },
+    "r2_verified_source": {
+      "provider": "cloudflare_r2",
+      "upload_id": "f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc",
+      "object_key": "live/raw/f41a7f3a-5b39-4d64-b9bd-86c2db1e8cfc/source.mp4",
+      "bytes": 70809997,
+      "sha256": "09d4a16da764f49602f34e6ad4bc417abe35c6b39384eeb7b61a82d3dcdfc640",
+      "digest_method": "studio_owner_authenticated_r2_read_range_sha256",
+      "verified_at_date": "2026-11-05",
+      "verified_by": "owner_studio_screenshot",
+      "access": "private_studio_object_store",
+      "transport_ready_for_claude": false
     }
   },
   "delivery_verification": "production/jobs/BW-002/delivery.json",
