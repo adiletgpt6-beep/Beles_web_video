@@ -1,0 +1,27 @@
+{
+  "job_id": "BW-004",
+  "verified": true,
+  "bytes": 40147656,
+  "sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
+  "transport": "cloudflare_r2_studio_broker",
+  "parts": [],
+  "probe": {
+    "duration_seconds": 464.352653,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "av1",
+    "audio_codec": "aac",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "probe_reference_present": true,
+  "r2": {
+    "upload_id": "bf1c41f8-9df7-4ed2-83ab-9f3145e939e9",
+    "object_key": "live/raw/bf1c41f8-9df7-4ed2-83ab-9f3145e939e9/source.mp4"
+  },
+  "git_parts_complete": false,
+  "checked_commit": "b452706c703501e1e04d5932e8c53c42a4ce8767",
+  "checked_at": "2026-11-07T16:58:15+00:00",
+  "origin": "https://github.com/adiletgpt6-beep/Beles_web_video"
+}
