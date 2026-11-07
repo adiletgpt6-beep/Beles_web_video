@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "job_id": "BW-004",
+  "role": "edit",
+  "repository": "adiletgpt6-beep/Beles_web_video",
+  "approved_style": "Beles V5",
+  "contact": "0998 08 38 28",
+  "created_at": "2026-11-07T16:42:24+00:00",
+  "brief": {
+    "title": "Beles Studio VID-001",
+    "instructions": "Смонтировать Beles VID-001 по production/studio/VID-001.md",
+    "language": "ky",
+    "site": null
+  },
+  "source": {
+    "original_name": "VID-001.mp4",
+    "bytes": 40147656,
+    "sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
+    "cache_path": "input/BW-004/VID-001.mp4",
+    "storage": "cloudflare_r2_studio_broker",
+    "parts": [],
+    "probe": null,
+    "r2": {
+      "provider": "cloudflare_r2",
+      "repository": "adiletgpt6-beep/Beles_web_video",
+      "upload_id": "bf1c41f8-9df7-4ed2-83ab-9f3145e939e9",
+      "object_key": "live/raw/bf1c41f8-9df7-4ed2-83ab-9f3145e939e9/source.mp4",
+      "bytes": 40147656,
+      "sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
+      "digest_method": "studio_owner_authenticated_r2_read_range_sha256",
+      "verified_by": "studio_submitted_issue_sha256_client_then_claude_verify",
+      "verified_at_date": "2026-11-07"
+    },
+    "delivery_transport": "cloudflare_r2_studio_broker"
+  },
+  "delivery_verification": "production/jobs/BW-004/delivery.json",
+  "ingest": {
+    "status": "r2_upload_verified_by_owner",
+    "delivery_verified": false,
+    "git_parts_note": "No Git-parts transport: the original lives only in private R2; do not re-upload."
+  },
+  "studio": {
+    "video_id": "VID-001",
+    "upload_id": "bf1c41f8-9df7-4ed2-83ab-9f3145e939e9"
+  }
+}

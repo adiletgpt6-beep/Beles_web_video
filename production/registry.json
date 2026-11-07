@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "active_job_id": null,
-  "next_suggested_job_id": "BW-004",
+  "next_suggested_job_id": "BW-005",
   "jobs": [
     {
       "job_id": "BW-001",
@@ -30,8 +30,18 @@
       "source_sha256": "88a058563539d8596ce356b8ab92ba0e3336971fe73dc218544482be7715965d",
       "source_storage": "cloudflare_r2_studio_broker",
       "manifest": "production/jobs/BW-003/manifest.json",
-      "next_step": "Утверждено пользователем, изменений не требуется.",
+      "next_step": "BW-003 v1 утверждён пользователем без правок 2026-11-06. Не изменять; перейти к автоматизации Studio → Beles → Claude.",
       "delivery_verified": true
+    },
+    {
+      "job_id": "BW-004",
+      "role": "edit",
+      "status": "staged",
+      "source_sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
+      "source_storage": "cloudflare_r2_studio_broker",
+      "manifest": "production/jobs/BW-004/manifest.json",
+      "next_step": "Получить исходник через Studio broker с идентификатором VID-001 (не BW-004): curl -fsSL https://balago-studio.vercel.app/studio-fetch.mjs -o /tmp/belestudio-fetch.mjs && node /tmp/belestudio-fetch.mjs adiletgpt6-beep/Beles_web_video VID-001 input/BW-004/VID-001.mp4 (SHA-256 скрипта fcee607e…de68), затем ffprobe → manifest.source.probe, verify BW-004 --record-delivery и монтаж по production/studio/VID-001.md",
+      "delivery_verified": false
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-05T14:55:00+00:00",
+  "updated_at": "2026-11-07T16:42:24+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -19,7 +19,7 @@
     "international": "+996 998 08 38 28"
   },
   "active_job_id": null,
-  "next_suggested_job_id": "BW-004",
+  "next_suggested_job_id": "BW-005",
   "baseline_job_id": "BW-001",
   "pending": [
     "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
