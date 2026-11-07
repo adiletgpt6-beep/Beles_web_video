@@ -40,3 +40,6 @@ python3 production/jobs/BW-004/qa/ab_audit.py production/jobs/BW-004/data/timeli
 ```
 
 Не использовано: реальные сайты (в речи не названы), статистика, обещания, сцены V5/BW-002/BW-003.
+
+## v2 (2026-11-08) — кадры
+Длительность 32,60 с (978 кадров). Клипы: hook 0–106, m1 106–288, m2 288–500, m3 500–617, offer 617–782, cta 782–879, tail 879–978. B-сцены: three 48–118, beauty 184–302, mobile 380–512, checklist 605–704, cta 834–978. Остальное — как в таблице v1 (тот же порядок A/B и сцены); выбор дублей — `repeats-audit.md`. Рендер: `NAME=beles-bw004-v2-1080x1920 PREVIEW=preview-bw004-v2-720x1280` с теми же ENTRY/COMP/AUDIO. Данные v1 — `data/v1/`.

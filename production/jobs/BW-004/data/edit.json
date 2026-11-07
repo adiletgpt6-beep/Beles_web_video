@@ -1,5 +1,5 @@
 {
- "_doc": "BW-004 (Studio VID-001) edit decision list. Source input/BW-004/VID-001.mp4 (AV1 1080x1920 30 fps → public/media/bw004/source.mp4 H.264 CFR, same grade as scripts/prepare-media.sh). Segment in/out, word times and overlay anchors are SOURCE seconds; build with scripts/build-timeline.mjs (EDIT/OUT_DIR). Concept «Үч ката» (docs/VISUAL_CONCEPT.md): strict A/B alternation — A presenter+captions, B full-screen paper scenes (kinds three/beauty/mobile/checklist/cta, src/paper.tsx). Every take change happens under fully opaque paper (B), except offer→cta (presenter jump cut between two A shots with a framing change).",
+ "_doc": "BW-004 (Studio VID-001) edit decision list. Source input/BW-004/VID-001.mp4 (AV1 1080x1920 30 fps → public/media/bw004/source.mp4 H.264 CFR, same grade as scripts/prepare-media.sh). Segment in/out, word times and overlay anchors are SOURCE seconds; build with scripts/build-timeline.mjs (EDIT/OUT_DIR). Concept «Үч ката» (docs/VISUAL_CONCEPT.md): strict A/B alternation — A presenter+captions, B full-screen paper scenes (kinds three/beauty/mobile/checklist/cta, src/paper.tsx). Every take change happens under fully opaque paper (B), except offer→cta (presenter jump cut between two A shots with a framing change). v2 (2026-11-08): accidental repeat «сайт, сайт» removed from the hook; takes re-chosen by the rule «last successful attempt, else the previous one» (see docs/repeats-audit.md). v1 data kept in data/v1/.",
  "sourceName": "VID-001.mp4",
  "fps": 30,
  "width": 1080,
@@ -18,19 +18,19 @@
  "music": {
   "generator": "scripts/make-music.py (MUSIC_BPM=100 MUSIC_TRANSPOSE=2)",
   "gainDb": -21,
-  "accentAt": "cta@449.30"
+  "accentAt": "cta@461.17"
  },
  "segments": [
   {
    "id": "hook",
-   "in": 74.36,
+   "in": 75.12,
    "out": 78.66,
    "camera": "medium",
-   "take": "2nd of two back-to-back deliveries in 71.72–78.38 (the 1st breaks off at «үч катар»); 0% down-gaze",
-   "text": "Сайт жасатканы жатасызбы? Анда бул үч катаны кетирбеңиз.",
+   "take": "v2: LAST attempt 75.36–78.30 only. v1 started at 74.36 and contained the isolated false start «Сайт» (74.48–74.86) → audible «сайт, сайт». Attempts: 71.24–74.30 (broken at «үч катар»), 74.48–74.86 (false start), 75.36–78.30 (complete, chosen).",
+   "text": "Сайт жасаткан жатасызбы? Анда бул үч катаны кетирбеңиз.",
    "subs": [
     {
-     "text": "Сайт жасатканы жатасызбы?",
+     "text": "Сайт жасаткан жатасызбы?",
      "key": [
       "Сайт"
      ]
@@ -46,15 +46,15 @@
    "words": [
     {
      "w": "Сайт",
-     "t": 74.48
+     "t": 75.42
     },
     {
-     "w": "жасатканы",
-     "t": 75.36
+     "w": "жасаткан",
+     "t": 75.7
     },
     {
      "w": "жатасызбы?",
-     "t": 75.85
+     "t": 76.05
     },
     {
      "w": "анда",
@@ -62,29 +62,29 @@
     },
     {
      "w": "бул",
-     "t": 77.1
+     "t": 77.08
     },
     {
      "w": "үч",
-     "t": 77.25
+     "t": 77.22
     },
     {
      "w": "катаны",
-     "t": 77.4
+     "t": 77.38
     },
     {
      "w": "кетирбеңиз.",
-     "t": 77.75
+     "t": 77.68
     }
    ],
-   "speechEnd": 78.32
+   "speechEnd": 78.3
   },
   {
    "id": "m1",
    "in": 150.1,
    "out": 156.15,
    "camera": "close",
-   "take": "150.44–155.34, complete sentence, 8% down-gaze; alternatives 105.7 (pause inside), 126.7 (restart), 162.1 («буруп»)",
+   "take": "150.44–155.34 (correct «көңүл буруу»). The LAST complete attempt 162.10–167.18 has the slip «көңүл буруп» (kyscore prefers «буруп» there) → rejected per «last successful, else previous»; 157.0–160.6 broken («…биринчи ката»).",
    "text": "Биринчи ката: сайттын кооздугуна көңүл буруу, сайт кооз эле эмес, кардарга ыңгайлуу болушу керек.",
    "subs": [
     {
@@ -170,11 +170,11 @@
   },
   {
    "id": "m2",
-   "in": 246.15,
-   "out": 253.1,
+   "in": 290.9,
+   "out": 297.95,
    "camera": "medium",
-   "take": "246.53–252.70, 0% down-gaze, «текшербөө» scored best for this take (data/asr/kyscore-results.txt)",
-   "text": "Экинчи ката: телефондон кандай ачыларын текшербөө, анткени көпчүлүк кардарлар телефон аркылуу киришет.",
+   "take": "v2: LAST complete attempt 291.14–297.52 (0% down-gaze). Earlier complete attempts 193, 207, 219, 231, 246 (v1), 260; 271+276 split; 241, 280, 285, 288 false starts.",
+   "text": "Экинчи ката: телефондон кандай ачыларды текшерүү, анткени көпчүлүк кардарлар сайтка телефон аркылуу киришет.",
    "subs": [
     {
      "text": "Экинчи ката:",
@@ -189,9 +189,9 @@
      ]
     },
     {
-     "text": "ачыларын текшербөө,",
+     "text": "ачыларды текшерүү,",
      "key": [
-      "текшербөө"
+      "текшерүү"
      ]
     },
     {
@@ -199,68 +199,72 @@
      "scene": true
     },
     {
-     "text": "телефон аркылуу киришет.",
+     "text": "сайтка телефон аркылуу киришет.",
      "scene": true
     }
    ],
    "words": [
     {
      "w": "Экинчи",
-     "t": 246.53
+     "t": 291.2
     },
     {
      "w": "ката:",
-     "t": 246.95
+     "t": 291.75
     },
     {
      "w": "телефондон",
-     "t": 247.61
+     "t": 292.32
     },
     {
      "w": "кандай",
-     "t": 248.05
+     "t": 292.78
     },
     {
-     "w": "ачыларын",
-     "t": 248.35
+     "w": "ачыларды",
+     "t": 293.0
     },
     {
-     "w": "текшербөө,",
-     "t": 248.7
+     "w": "текшерүү,",
+     "t": 293.35
     },
     {
      "w": "анткени",
-     "t": 249.85
+     "t": 294.38
     },
     {
      "w": "көпчүлүк",
-     "t": 250.1
+     "t": 294.7
     },
     {
      "w": "кардарлар",
-     "t": 250.65
+     "t": 295.15
+    },
+    {
+     "w": "сайтка",
+     "t": 296.14
     },
     {
      "w": "телефон",
-     "t": 251.61
+     "t": 296.54
     },
     {
      "w": "аркылуу",
-     "t": 251.98
+     "t": 296.82
     },
     {
      "w": "киришет.",
-     "t": 252.25
+     "t": 297.05
     }
    ],
-   "speechEnd": 252.7
+   "speechEnd": 297.52
   },
   {
    "id": "m3",
-   "in": 304.1,
-   "out": 308.12,
+   "in": 308.6,
+   "out": 312.5,
    "camera": "close",
-   "take": "304.48–307.80, 0% down-gaze (the 320.4 take: 12%)",
+   "take": "v2: 308.91–312.08 (second of three complete attempts, steady gaze). The LAST attempt 320.42–324.48 looks down at its start (down-gaze 0.45 at 320.8–321.3) → rejected; v1 used the first attempt 303.74.",
    "text": "Үчүнчү ката: сайтты жасап, анан өнүктүрбөй коюу.",
    "subs": [
     {
@@ -285,41 +289,41 @@
    "words": [
     {
      "w": "Үчүнчү",
-     "t": 304.48
+     "t": 308.91
     },
     {
      "w": "ката:",
-     "t": 304.9
+     "t": 309.3
     },
     {
      "w": "сайтты",
-     "t": 305.54
+     "t": 309.98
     },
     {
      "w": "жасап,",
-     "t": 305.9
+     "t": 310.3
     },
     {
      "w": "анан",
-     "t": 306.76
+     "t": 311.04
     },
     {
      "w": "өнүктүрбөй",
-     "t": 306.95
+     "t": 311.22
     },
     {
      "w": "коюу.",
-     "t": 307.45
+     "t": 311.72
     }
    ],
-   "speechEnd": 307.8
+   "speechEnd": 312.08
   },
   {
    "id": "offer",
    "in": 436.85,
    "out": 442.36,
    "camera": "medium",
-   "take": "437.04–442.30, clean, 3% down-gaze (391.6: 15%, others restart)",
+   "take": "437.04–442.30 — LAST complete attempt (333, 340, 357–384, 391, 400–419, 422–436 earlier; several with restarts «биз бул, биз бул»). The pause after «Биз» (437.20–437.66) is a natural breath, not a repeat.",
    "text": "Биз бул нерселердин баарын эске алып, бизнесиңизге лайыктуу заманбап сайт түзөбүз.",
    "subs": [
     {
@@ -393,10 +397,10 @@
   },
   {
    "id": "cta",
-   "in": 446.85,
-   "out": 450.04,
+   "in": 459.05,
+   "out": 462.3,
    "camera": "close",
-   "take": "447.1–450.0, 0% down-gaze; the 458.8 repeat is cut short",
+   "take": "v2: LAST complete attempt 459.38–461.90. v1 used the first attempt 447.10–450.00; 451–458 is a muddled repeat (rejected).",
    "text": "Сизге сапаттуу сайт керекпи? Анда бизге жазыңыз.",
    "subs": [
     {
@@ -413,34 +417,34 @@
    "words": [
     {
      "w": "Сизге",
-     "t": 447.1
+     "t": 459.38
     },
     {
      "w": "сапаттуу",
-     "t": 447.62
+     "t": 459.76
     },
     {
      "w": "сайт",
-     "t": 448.15
+     "t": 460.15
     },
     {
      "w": "керекпи?",
-     "t": 448.4
+     "t": 460.34
     },
     {
      "w": "анда",
-     "t": 449.08
+     "t": 460.98
     },
     {
      "w": "бизге",
-     "t": 449.3
+     "t": 461.17
     },
     {
      "w": "жазыңыз.",
-     "t": 449.55
+     "t": 461.4
     }
    ],
-   "speechEnd": 450.0
+   "speechEnd": 461.9
   },
   {
    "id": "tail",
@@ -468,7 +472,7 @@
   {
    "kind": "beauty",
    "from": "m1@152.70",
-   "to": "m2@246.55",
+   "to": "m2@291.35",
    "beats": {
     "bad": "m1@153.68",
     "good": "m1@154.45"
@@ -476,15 +480,15 @@
   },
   {
    "kind": "mobile",
-   "from": "m2@249.40",
-   "to": "m3@304.50",
+   "from": "m2@293.95",
+   "to": "m3@309.00",
    "beats": {
-    "fix": "m2@251.55"
+    "fix": "m2@296.50"
    }
   },
   {
    "kind": "checklist",
-   "from": "m3@307.78",
+   "from": "m3@312.10",
    "to": "offer@439.75",
    "beats": {
     "r1": "offer@437.85",
@@ -494,12 +498,12 @@
   },
   {
    "kind": "cta",
-   "from": "cta@448.85",
+   "from": "cta@460.80",
    "to": "tail@63.30",
    "hold": true,
    "beats": {
-    "num": "cta@449.30",
-    "btn": "cta@449.60"
+    "num": "cta@461.17",
+    "btn": "cta@461.45"
    }
   }
  ],
@@ -526,12 +530,12 @@
   },
   {
    "type": "swish",
-   "lands": "m2@249.80",
+   "lands": "m2@294.40",
    "gainDb": -3
   },
   {
    "type": "pop",
-   "lands": "m2@251.95",
+   "lands": "m2@296.90",
    "gainDb": -3
   },
   {
@@ -556,12 +560,12 @@
   },
   {
    "type": "swish",
-   "lands": "cta@449.20",
+   "lands": "cta@461.10",
    "gainDb": -3
   },
   {
    "type": "chime",
-   "lands": "cta@449.75",
+   "lands": "cta@461.60",
    "gainDb": -2
   }
  ]

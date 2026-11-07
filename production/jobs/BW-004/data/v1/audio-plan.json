@@ -1,0 +1,116 @@
+{
+ "fps": 30,
+ "durationInFrames": 999,
+ "music": {
+  "generator": "scripts/make-music.py (MUSIC_BPM=100 MUSIC_TRANSPOSE=2)",
+  "gainDb": -21,
+  "accentAt": "cta@449.30",
+  "accentFrame": 878
+ },
+ "clips": [
+  {
+   "id": "hook",
+   "srcInFrame": 2231,
+   "srcOutFrame": 2360,
+   "startFrame": 0
+  },
+  {
+   "id": "m1",
+   "srcInFrame": 4503,
+   "srcOutFrame": 4685,
+   "startFrame": 129
+  },
+  {
+   "id": "m2",
+   "srcInFrame": 7385,
+   "srcOutFrame": 7593,
+   "startFrame": 311
+  },
+  {
+   "id": "m3",
+   "srcInFrame": 9123,
+   "srcOutFrame": 9244,
+   "startFrame": 519
+  },
+  {
+   "id": "offer",
+   "srcInFrame": 13106,
+   "srcOutFrame": 13271,
+   "startFrame": 640
+  },
+  {
+   "id": "cta",
+   "srcInFrame": 13406,
+   "srcOutFrame": 13501,
+   "startFrame": 805
+  },
+  {
+   "id": "tail",
+   "srcInFrame": 1800,
+   "srcOutFrame": 1899,
+   "startFrame": 900
+  }
+ ],
+ "sfx": [
+  {
+   "type": "swish",
+   "frame": 77,
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "frame": 105,
+   "gainDb": -4
+  },
+  {
+   "type": "swish",
+   "frame": 214,
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "frame": 270,
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "frame": 415,
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "frame": 485,
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "frame": 639,
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "frame": 673,
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "frame": 689,
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "frame": 702,
+   "gainDb": -6
+  },
+  {
+   "type": "swish",
+   "frame": 870,
+   "gainDb": -3
+  },
+  {
+   "type": "chime",
+   "frame": 892,
+   "gainDb": -2
+  }
+ ]
+}

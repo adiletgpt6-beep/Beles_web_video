@@ -1,16 +1,16 @@
 {
  "fps": 30,
- "durationInFrames": 999,
+ "durationInFrames": 978,
  "music": {
   "generator": "scripts/make-music.py (MUSIC_BPM=100 MUSIC_TRANSPOSE=2)",
   "gainDb": -21,
-  "accentAt": "cta@449.30",
-  "accentFrame": 878
+  "accentAt": "cta@461.17",
+  "accentFrame": 845
  },
  "clips": [
   {
    "id": "hook",
-   "srcInFrame": 2231,
+   "srcInFrame": 2254,
    "srcOutFrame": 2360,
    "startFrame": 0
   },
@@ -18,98 +18,98 @@
    "id": "m1",
    "srcInFrame": 4503,
    "srcOutFrame": 4685,
-   "startFrame": 129
+   "startFrame": 106
   },
   {
    "id": "m2",
-   "srcInFrame": 7385,
-   "srcOutFrame": 7593,
-   "startFrame": 311
+   "srcInFrame": 8727,
+   "srcOutFrame": 8939,
+   "startFrame": 288
   },
   {
    "id": "m3",
-   "srcInFrame": 9123,
-   "srcOutFrame": 9244,
-   "startFrame": 519
+   "srcInFrame": 9258,
+   "srcOutFrame": 9375,
+   "startFrame": 500
   },
   {
    "id": "offer",
    "srcInFrame": 13106,
    "srcOutFrame": 13271,
-   "startFrame": 640
+   "startFrame": 617
   },
   {
    "id": "cta",
-   "srcInFrame": 13406,
-   "srcOutFrame": 13501,
-   "startFrame": 805
+   "srcInFrame": 13772,
+   "srcOutFrame": 13869,
+   "startFrame": 782
   },
   {
    "id": "tail",
    "srcInFrame": 1800,
    "srcOutFrame": 1899,
-   "startFrame": 900
+   "startFrame": 879
   }
  ],
  "sfx": [
   {
    "type": "swish",
-   "frame": 77,
+   "frame": 54,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 105,
+   "frame": 82,
    "gainDb": -4
   },
   {
    "type": "swish",
-   "frame": 214,
+   "frame": 191,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 270,
+   "frame": 247,
    "gainDb": -3
   },
   {
    "type": "swish",
-   "frame": 415,
+   "frame": 388,
    "gainDb": -3
   },
   {
    "type": "pop",
-   "frame": 485,
+   "frame": 468,
    "gainDb": -3
   },
   {
    "type": "swish",
-   "frame": 639,
+   "frame": 616,
    "gainDb": -3
   },
   {
    "type": "tick",
-   "frame": 673,
+   "frame": 650,
    "gainDb": -6
   },
   {
    "type": "tick",
-   "frame": 689,
+   "frame": 666,
    "gainDb": -6
   },
   {
    "type": "tick",
-   "frame": 702,
+   "frame": 679,
    "gainDb": -6
   },
   {
    "type": "swish",
-   "frame": 870,
+   "frame": 838,
    "gainDb": -3
   },
   {
    "type": "chime",
-   "frame": 892,
+   "frame": 858,
    "gainDb": -2
   }
  ]

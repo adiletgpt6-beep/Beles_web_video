@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07T18:30:00+00:00",
+  "updated_at": "2026-11-08T00:00:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -23,7 +23,7 @@
   "baseline_job_id": "BW-001",
   "pending": [
     "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя",
-    "BW-004 (Studio VID-001) v1 — смонтирован и проверен (A/B 0 нарушений), ждёт отзыва/утверждения пользователя"
+    "BW-004 (Studio VID-001) v2 — повтор «сайт, сайт» убран, дубли по правилу «последний удачный»; ждёт отзыва/утверждения"
   ],
   "source": {
     "original_name": "1000218256.mp4",
@@ -137,12 +137,14 @@
   "bw003_approved_release": "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4",
   "bw004_render": {
     "studio_video_id": "VID-001",
-    "version": "v1",
-    "final": "production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4",
-    "bytes": 16317901,
-    "sha256": "cd74480ecc4137d915a6604eaa2d12e98b4af8883ceb9e831a29b10daa8d9b8d",
+    "version": "v2",
+    "final": "production/jobs/BW-004/release/beles-bw004-v2-1080x1920.mp4",
+    "bytes": 16233014,
+    "sha256": "d3309447885729aaff8291a1f888503bd92fd2892c3b79e605b6625c724e8c50",
     "verification": "production/jobs/BW-004/docs/verification.md",
     "ab_audit_violations": 0,
-    "user_approved": false
+    "user_approved": false,
+    "repeats_audit": "production/jobs/BW-004/docs/repeats-audit.md",
+    "previous": "production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4"
   }
 }

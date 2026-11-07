@@ -1,0 +1,568 @@
+{
+ "_doc": "BW-004 (Studio VID-001) edit decision list. Source input/BW-004/VID-001.mp4 (AV1 1080x1920 30 fps → public/media/bw004/source.mp4 H.264 CFR, same grade as scripts/prepare-media.sh). Segment in/out, word times and overlay anchors are SOURCE seconds; build with scripts/build-timeline.mjs (EDIT/OUT_DIR). Concept «Үч ката» (docs/VISUAL_CONCEPT.md): strict A/B alternation — A presenter+captions, B full-screen paper scenes (kinds three/beauty/mobile/checklist/cta, src/paper.tsx). Every take change happens under fully opaque paper (B), except offer→cta (presenter jump cut between two A shots with a framing change).",
+ "sourceName": "VID-001.mp4",
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "video": "media/bw004/source.mp4",
+ "audio": "media/bw004/voice.wav",
+ "face": {
+  "cx": 560,
+  "cy": 720,
+  "top": 460
+ },
+ "captionTopY": 300,
+ "captionBottom": 1530,
+ "vignette": 0.22,
+ "fadeIn": 6,
+ "music": {
+  "generator": "scripts/make-music.py (MUSIC_BPM=100 MUSIC_TRANSPOSE=2)",
+  "gainDb": -21,
+  "accentAt": "cta@449.30"
+ },
+ "segments": [
+  {
+   "id": "hook",
+   "in": 74.36,
+   "out": 78.66,
+   "camera": "medium",
+   "take": "2nd of two back-to-back deliveries in 71.72–78.38 (the 1st breaks off at «үч катар»); 0% down-gaze",
+   "text": "Сайт жасатканы жатасызбы? Анда бул үч катаны кетирбеңиз.",
+   "subs": [
+    {
+     "text": "Сайт жасатканы жатасызбы?",
+     "key": [
+      "Сайт"
+     ]
+    },
+    {
+     "text": "анда бул үч катаны кетирбеңиз.",
+     "key": [
+      "катаны"
+     ],
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Сайт",
+     "t": 74.48
+    },
+    {
+     "w": "жасатканы",
+     "t": 75.36
+    },
+    {
+     "w": "жатасызбы?",
+     "t": 75.85
+    },
+    {
+     "w": "анда",
+     "t": 76.82
+    },
+    {
+     "w": "бул",
+     "t": 77.1
+    },
+    {
+     "w": "үч",
+     "t": 77.25
+    },
+    {
+     "w": "катаны",
+     "t": 77.4
+    },
+    {
+     "w": "кетирбеңиз.",
+     "t": 77.75
+    }
+   ],
+   "speechEnd": 78.32
+  },
+  {
+   "id": "m1",
+   "in": 150.1,
+   "out": 156.15,
+   "camera": "close",
+   "take": "150.44–155.34, complete sentence, 8% down-gaze; alternatives 105.7 (pause inside), 126.7 (restart), 162.1 («буруп»)",
+   "text": "Биринчи ката: сайттын кооздугуна көңүл буруу, сайт кооз эле эмес, кардарга ыңгайлуу болушу керек.",
+   "subs": [
+    {
+     "text": "Биринчи ката:",
+     "key": [
+      "Биринчи"
+     ]
+    },
+    {
+     "text": "сайттын кооздугуна көңүл буруу,",
+     "key": [
+      "кооздугуна"
+     ]
+    },
+    {
+     "text": "сайт кооз эле эмес,",
+     "scene": true
+    },
+    {
+     "text": "кардарга ыңгайлуу болушу керек.",
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Биринчи",
+     "t": 150.44
+    },
+    {
+     "w": "ката:",
+     "t": 150.72
+    },
+    {
+     "w": "сайттын",
+     "t": 150.9
+    },
+    {
+     "w": "кооздугуна",
+     "t": 151.45
+    },
+    {
+     "w": "көңүл",
+     "t": 151.95
+    },
+    {
+     "w": "буруу,",
+     "t": 152.3
+    },
+    {
+     "w": "сайт",
+     "t": 153.12
+    },
+    {
+     "w": "кооз",
+     "t": 153.3
+    },
+    {
+     "w": "эле",
+     "t": 153.5
+    },
+    {
+     "w": "эмес,",
+     "t": 153.68
+    },
+    {
+     "w": "кардарга",
+     "t": 154.06
+    },
+    {
+     "w": "ыңгайлуу",
+     "t": 154.45
+    },
+    {
+     "w": "болушу",
+     "t": 154.8
+    },
+    {
+     "w": "керек.",
+     "t": 155.02
+    }
+   ],
+   "speechEnd": 155.35
+  },
+  {
+   "id": "m2",
+   "in": 246.15,
+   "out": 253.1,
+   "camera": "medium",
+   "take": "246.53–252.70, 0% down-gaze, «текшербөө» scored best for this take (data/asr/kyscore-results.txt)",
+   "text": "Экинчи ката: телефондон кандай ачыларын текшербөө, анткени көпчүлүк кардарлар телефон аркылуу киришет.",
+   "subs": [
+    {
+     "text": "Экинчи ката:",
+     "key": [
+      "Экинчи"
+     ]
+    },
+    {
+     "text": "телефондон кандай",
+     "key": [
+      "телефондон"
+     ]
+    },
+    {
+     "text": "ачыларын текшербөө,",
+     "key": [
+      "текшербөө"
+     ]
+    },
+    {
+     "text": "анткени көпчүлүк кардарлар",
+     "scene": true
+    },
+    {
+     "text": "телефон аркылуу киришет.",
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Экинчи",
+     "t": 246.53
+    },
+    {
+     "w": "ката:",
+     "t": 246.95
+    },
+    {
+     "w": "телефондон",
+     "t": 247.61
+    },
+    {
+     "w": "кандай",
+     "t": 248.05
+    },
+    {
+     "w": "ачыларын",
+     "t": 248.35
+    },
+    {
+     "w": "текшербөө,",
+     "t": 248.7
+    },
+    {
+     "w": "анткени",
+     "t": 249.85
+    },
+    {
+     "w": "көпчүлүк",
+     "t": 250.1
+    },
+    {
+     "w": "кардарлар",
+     "t": 250.65
+    },
+    {
+     "w": "телефон",
+     "t": 251.61
+    },
+    {
+     "w": "аркылуу",
+     "t": 251.98
+    },
+    {
+     "w": "киришет.",
+     "t": 252.25
+    }
+   ],
+   "speechEnd": 252.7
+  },
+  {
+   "id": "m3",
+   "in": 304.1,
+   "out": 308.12,
+   "camera": "close",
+   "take": "304.48–307.80, 0% down-gaze (the 320.4 take: 12%)",
+   "text": "Үчүнчү ката: сайтты жасап, анан өнүктүрбөй коюу.",
+   "subs": [
+    {
+     "text": "Үчүнчү ката:",
+     "key": [
+      "Үчүнчү"
+     ]
+    },
+    {
+     "text": "сайтты жасап,",
+     "key": [
+      "жасап"
+     ]
+    },
+    {
+     "text": "анан өнүктүрбөй коюу.",
+     "key": [
+      "өнүктүрбөй"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Үчүнчү",
+     "t": 304.48
+    },
+    {
+     "w": "ката:",
+     "t": 304.9
+    },
+    {
+     "w": "сайтты",
+     "t": 305.54
+    },
+    {
+     "w": "жасап,",
+     "t": 305.9
+    },
+    {
+     "w": "анан",
+     "t": 306.76
+    },
+    {
+     "w": "өнүктүрбөй",
+     "t": 306.95
+    },
+    {
+     "w": "коюу.",
+     "t": 307.45
+    }
+   ],
+   "speechEnd": 307.8
+  },
+  {
+   "id": "offer",
+   "in": 436.85,
+   "out": 442.36,
+   "camera": "medium",
+   "take": "437.04–442.30, clean, 3% down-gaze (391.6: 15%, others restart)",
+   "text": "Биз бул нерселердин баарын эске алып, бизнесиңизге лайыктуу заманбап сайт түзөбүз.",
+   "subs": [
+    {
+     "text": "Биз бул нерселердин",
+     "scene": true
+    },
+    {
+     "text": "баарын эске алып,",
+     "scene": true
+    },
+    {
+     "text": "бизнесиңизге лайыктуу",
+     "key": [
+      "бизнесиңизге"
+     ]
+    },
+    {
+     "text": "заманбап сайт түзөбүз.",
+     "key": [
+      "заманбап"
+     ]
+    }
+   ],
+   "words": [
+    {
+     "w": "Биз",
+     "t": 437.04
+    },
+    {
+     "w": "бул",
+     "t": 437.66
+    },
+    {
+     "w": "нерселердин",
+     "t": 437.85
+    },
+    {
+     "w": "баарын",
+     "t": 438.4
+    },
+    {
+     "w": "эске",
+     "t": 438.68
+    },
+    {
+     "w": "алып,",
+     "t": 438.88
+    },
+    {
+     "w": "бизнесиңизге",
+     "t": 439.7
+    },
+    {
+     "w": "лайыктуу",
+     "t": 440.3
+    },
+    {
+     "w": "заманбап",
+     "t": 441.18
+    },
+    {
+     "w": "сайт",
+     "t": 441.55
+    },
+    {
+     "w": "түзөбүз.",
+     "t": 441.8
+    }
+   ],
+   "speechEnd": 442.3
+  },
+  {
+   "id": "cta",
+   "in": 446.85,
+   "out": 450.04,
+   "camera": "close",
+   "take": "447.1–450.0, 0% down-gaze; the 458.8 repeat is cut short",
+   "text": "Сизге сапаттуу сайт керекпи? Анда бизге жазыңыз.",
+   "subs": [
+    {
+     "text": "Сизге сапаттуу сайт керекпи?",
+     "key": [
+      "сапаттуу"
+     ]
+    },
+    {
+     "text": "анда бизге жазыңыз.",
+     "scene": true
+    }
+   ],
+   "words": [
+    {
+     "w": "Сизге",
+     "t": 447.1
+    },
+    {
+     "w": "сапаттуу",
+     "t": 447.62
+    },
+    {
+     "w": "сайт",
+     "t": 448.15
+    },
+    {
+     "w": "керекпи?",
+     "t": 448.4
+    },
+    {
+     "w": "анда",
+     "t": 449.08
+    },
+    {
+     "w": "бизге",
+     "t": 449.3
+    },
+    {
+     "w": "жазыңыз.",
+     "t": 449.55
+    }
+   ],
+   "speechEnd": 450.0
+  },
+  {
+   "id": "tail",
+   "in": 60.0,
+   "out": 63.3,
+   "camera": "medium",
+   "take": "silent presenter before the first take; fully covered by the final WhatsApp card (mode B), gives the number ≥3 s on screen",
+   "text": "",
+   "subs": [],
+   "words": [],
+   "speechEnd": 60.0
+  }
+ ],
+ "overlays": [
+  {
+   "kind": "three",
+   "from": "hook@76.72",
+   "to": "m1@150.50",
+   "beats": {
+    "three": "hook@77.20",
+    "kata": "hook@77.40",
+    "no": "hook@77.75"
+   }
+  },
+  {
+   "kind": "beauty",
+   "from": "m1@152.70",
+   "to": "m2@246.55",
+   "beats": {
+    "bad": "m1@153.68",
+    "good": "m1@154.45"
+   }
+  },
+  {
+   "kind": "mobile",
+   "from": "m2@249.40",
+   "to": "m3@304.50",
+   "beats": {
+    "fix": "m2@251.55"
+   }
+  },
+  {
+   "kind": "checklist",
+   "from": "m3@307.78",
+   "to": "offer@439.75",
+   "beats": {
+    "r1": "offer@437.85",
+    "r2": "offer@438.40",
+    "r3": "offer@438.82"
+   }
+  },
+  {
+   "kind": "cta",
+   "from": "cta@448.85",
+   "to": "tail@63.30",
+   "hold": true,
+   "beats": {
+    "num": "cta@449.30",
+    "btn": "cta@449.60"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "type": "swish",
+   "lands": "hook@77.10",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "hook@77.85",
+   "gainDb": -4
+  },
+  {
+   "type": "swish",
+   "lands": "m1@153.10",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "m1@154.80",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "m2@249.80",
+   "gainDb": -3
+  },
+  {
+   "type": "pop",
+   "lands": "m2@251.95",
+   "gainDb": -3
+  },
+  {
+   "type": "swish",
+   "lands": "offer@437.00",
+   "gainDb": -3
+  },
+  {
+   "type": "tick",
+   "lands": "offer@437.95",
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "lands": "offer@438.50",
+   "gainDb": -6
+  },
+  {
+   "type": "tick",
+   "lands": "offer@438.92",
+   "gainDb": -6
+  },
+  {
+   "type": "swish",
+   "lands": "cta@449.20",
+   "gainDb": -3
+  },
+  {
+   "type": "chime",
+   "lands": "cta@449.75",
+   "gainDb": -2
+  }
+ ]
+}
