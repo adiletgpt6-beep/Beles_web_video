@@ -1,0 +1,85 @@
+import React, { useEffect, useState } from 'react';
+import { AbsoluteFill, Audio, continueRender, delayRender, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from 'remotion';
+import { useCamera } from '../../../../src/camera';
+import { Captions } from '../../../../src/Captions';
+import type { TimelineBW004 } from './types';
+import { PaperScene, overlayActive } from './paper';
+
+// BW-004 composition — strict A/B grammar (STYLE_GUIDE 2026-11-07):
+//   A: presenter + kinetic captions only (no other element on screen);
+//   B: full-screen paper scene, presenter completely covered, captions off (separate SRT keeps the full text).
+// A→B: the presenter dissolves into an EMPTY paper frame; only when the paper is fully opaque do the scene
+// elements enter. B→A: elements leave first, then the empty paper dissolves back to the presenter.
+// So no frame ever shows the presenter together with a scene element (checked by scripts/ab-check in docs).
+const useFonts = () => {
+  const [handle] = useState(() => delayRender('fonts'));
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const sample = 'ӨөҮүҢң Сайт 0998 08 38 28';
+    Promise.all([
+      document.fonts.load(`700 80px Oswald`, sample),
+      document.fonts.load(`600 40px Montserrat`, sample),
+      document.fonts.load(`700 40px Montserrat`, sample),
+      document.fonts.load(`800 40px Montserrat`, sample),
+      document.fonts.load(`900 40px Montserrat`, sample),
+    ])
+      .then(() => document.fonts.ready)
+      .then(() => setReady(true))
+      .catch((e) => {
+        console.error(e);
+        setReady(true);
+      });
+  }, [handle]);
+  useEffect(() => {
+    if (ready) continueRender(handle);
+  }, [ready, handle]);
+  return ready;
+};
+
+const FadeIn: React.FC<{ frames: number }> = ({ frames }) => {
+  const f = useCurrentFrame();
+  const o = Math.max(0, 1 - f / frames);
+  return o > 0 ? <AbsoluteFill style={{ background: '#0B0606', opacity: o }} /> : null;
+};
+
+const Presenter: React.FC<{ timeline: TimelineBW004 }> = ({ timeline }) => {
+  const cam = useCamera(timeline.camera, timeline.face);
+  return (
+    <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: '#140504' }}>
+      <AbsoluteFill style={{ transformOrigin: '0 0', transform: `translate(${cam.tx}px, ${cam.ty}px) scale(${cam.s})` }}>
+        {timeline.clips.map((c) => (
+          <Sequence key={c.id} from={c.startFrame} durationInFrames={c.durationFrames} layout="none">
+            <AbsoluteFill>
+              <OffthreadVideo src={staticFile(timeline.video)} startFrom={c.srcInFrame} muted style={{ width: '100%', height: '100%' }} />
+            </AbsoluteFill>
+          </Sequence>
+        ))}
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const ModeACaptions: React.FC<{ timeline: TimelineBW004 }> = ({ timeline }) => {
+  const f = useCurrentFrame();
+  // captions belong to mode A only: hidden for the whole B window, transitions included
+  if (overlayActive(timeline.overlays ?? [], f)) return null;
+  return <Captions subtitles={timeline.subtitles} topY={timeline.captionTopY} bottom={timeline.captionBottom} />;
+};
+
+export const BelesReelBW004: React.FC<{ timeline: TimelineBW004 }> = ({ timeline }) => {
+  const fontsReady = useFonts();
+  return (
+    <AbsoluteFill style={{ backgroundColor: '#140504' }}>
+      <Presenter timeline={timeline} />
+      {timeline.vignette ? <AbsoluteFill style={{ background: `radial-gradient(78% 60% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,${timeline.vignette}) 100%)` }} /> : null}
+      {fontsReady ? <ModeACaptions timeline={timeline} /> : null}
+      {(timeline.overlays ?? []).map((o, i) => (
+        <Sequence key={`ov${i}`} from={o.startFrame} durationInFrames={o.endFrame - o.startFrame} layout="none">
+          <PaperScene o={o} />
+        </Sequence>
+      ))}
+      {timeline.fadeIn ? <FadeIn frames={timeline.fadeIn} /> : null}
+      <Audio src={staticFile(timeline.audio)} />
+    </AbsoluteFill>
+  );
+};
