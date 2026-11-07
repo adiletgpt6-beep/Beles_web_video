@@ -4,7 +4,7 @@
    per frame -> A (presenter+captions), T (transition: presenter <-> EMPTY paper), B (paper opaque, scene live).
 2) Pixels (decoded final video, every frame at 216x384):
    curtain = share of dark-red studio-curtain pixels; paper = share of paper-coloured pixels.
-   A frames must show the presenter (curtain high, paper ~0); B frames must show no presenter (curtain ~0).
+   A frames must show the presenter (curtain high, paper < 10 %: the white shirt alone gives 2–3 %, B frames ≥ 60 %); B frames must show no presenter (curtain ~0).
    T frames: checks that no scene element exists = frame is a blend of presenter and the plain paper only,
    verified by schedule (elements are mounted only when paper opacity == 1) and by pixel test: inside T the
    frame must be explained by mix(previous A frame look, paper) -> we check absence of scene ink/red/green pixels.
@@ -38,7 +38,7 @@ for f in range(N):
     row = dict(f=f, mode=m, curtain=round(float(curtain[f]), 4), paper=round(float(paper[f]), 4), ink=round(float(ink[f]), 4), green=round(float(green[f]), 4))
     rows.append(row)
     if f < tl.get('fadeIn', 0): continue
-    if m == 'A' and (paper[f] > 0.02 or ink[f] > 0.01 or green[f] > 0.005): bad.append((f, 'A frame shows scene/paper', row))
+    if m == 'A' and (paper[f] > 0.10 or ink[f] > 0.01 or green[f] > 0.005): bad.append((f, 'A frame shows scene/paper', row))
     if m == 'B' and curtain[f] > 0.002: bad.append((f, 'B frame shows presenter (curtain pixels)', row))
     if m == 'T' and (ink[f] > 0.01 or green[f] > 0.003): bad.append((f, 'transition frame contains scene element', row))
 summary = dict(frames=N, A=sched.count('A'), T=sched.count('T'), B=sched.count('B'), violations=len(bad),

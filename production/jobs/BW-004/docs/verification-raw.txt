@@ -1,0 +1,35 @@
+== file: out/beles-bw004-v1-1080x1920.mp4 (16317901 bytes)
+== streams
+codec_name=h264
+profile=High
+width=1080
+height=1920
+pix_fmt=yuv420p
+color_space=bt709
+color_transfer=bt709
+color_primaries=bt709
+r_frame_rate=30/1
+avg_frame_rate=30/1
+bit_rate=3667829
+codec_name=aac
+profile=LC
+sample_rate=48000
+channels=2
+r_frame_rate=0/0
+avg_frame_rate=0/0
+bit_rate=243185
+duration=33.300000
+bit_rate=3920216
+== frame count
+999
+== faststart (moov before mdat?)
+['ftyp', 'moov', 'free', 'mdat']
+== full decode errors (empty = none)
+== loudness (EBU R128)
+    I:         -14.9 LUFS
+    LRA:         3.1 LU
+== black frames (>=0.1 s)
+none
+== silences > 0.5 s at -40 dB
+[silencedetect @ 0x560259963680] silence_start: 32.5403
+[silencedetect @ 0x560259963680] silence_end: 33.3013 | silence_duration: 0.761083

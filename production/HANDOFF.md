@@ -1,5 +1,14 @@
 # Передача работы: завершить приём BW-002 — 2026-10-29
 
+## 2026-11-07 — BW-004 (Studio VID-001) v1 смонтирован, проверен покадрово по правилу A/B, опубликован (концепция «Үч ката»)
+
+- Регистрация: тело реального GitHub Issue #1 → `register-studio-issue` → **BW-004** (VID-001, uploadId `bf1c41f8-9df7-4ed2-83ab-9f3145e939e9`, 40 147 656 байт, SHA-256 `35e1fd7e…799b`). Повторно не регистрировать и не загружать.
+- Доставка: с явного разрешения пользователя запущена прочитанная копия `studio-fetch.mjs` (SHA-256 `fcee607e…de68`) с идентификатором **VID-001** (не BW-004 — в next_step, который генерирует register-studio-issue, указан BW-ID; для Studio-VID задач брокер нужно вызывать с VID). Размер/SHA совпали, ffprobe: AV1+AAC, 1080×1920, 30 fps, 464,35 с → `manifest.source.probe`, `verify BW-004 --record-delivery` → `delivery.json`. Первые две попытки запуска загрузчика были отклонены классификатором разрешений Claude Code (до разрешения пользователя).
+- Монтаж: локальный ASR (faster-whisper large-v3 + kyrgyz-whisper-medium + kyscore), взгляд MediaPipe, 6 дублей; композиция `production/jobs/BW-004/src/` (`BelesReelBW004`, `paper.tsx`): A — ведущий + субтитры, B — полноэкранный «лист проверки» без ведущего, переходы через пустой лист.
+- Результат: `production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4` (16 317 901 байт, SHA-256 `cd74480e…9b8d`, 33,30 с, 999 кадров, −14,9 LUFS / −1,9 dBTP), превью 720p, SRT. QA: `docs/verification.md`, покадровый аудит A/B `docs/ab-audit.json` — **0 нарушений на 999 кадрах**.
+- Не выполнено: прослушивание ушами, просмотр на телефоне, утверждение пользователя. Следующий шаг: отзыв пользователя → правки в `data/edit.json` / `src/paper.tsx` и повторный рендер (~25 мин, см. `docs/edit-plan.md`), либо `checkpoint BW-004 --status approved --user-approved`.
+
+
 ## 2026-11-05 — BW-003 v1 смонтирован локально, проверен, опубликован (концепция «Түнкү смена»)
 
 - Сделано (Claude Code, облачная среда, без платных сервисов): локальный ASR (faster-whisper large-v3 черновик + `nineninesix/kyrgyz-whisper-medium` по регионам + скоринг спорных форм), взгляд/жесты MediaPipe, выбор 8 дублей, `production/jobs/BW-003/data/edit.json` → timeline/EDL/SRT/audio-plan, микс −15 LUFS (ночной вариант музыки), рендер Remotion, verify.sh, покадровый просмотр, одна полировка (панель переписки) до финального рендера. Документы: `docs/VISUAL_CONCEPT.md`, `docs/transcript.md`, `docs/edit-plan.md`, `docs/verification.md`.

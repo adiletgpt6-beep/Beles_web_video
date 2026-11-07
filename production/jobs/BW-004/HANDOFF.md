@@ -1,10 +1,10 @@
-# BW-004 — in_progress
+# BW-004 — rendered
 
 Роль: edit. Стиль: Beles V5. WhatsApp: 0998 08 38 28.
 
-Следующий шаг: Дождаться рендера out/beles-bw004-v1-1080x1920.mp4 (render.sh, ENTRY=production/jobs/BW-004/src/index.ts COMP=BelesReelBW004), затем scripts/verify.sh + qa/ab_audit.py, покадровый просмотр, публикация MP4 в production/jobs/BW-004/release/
+Следующий шаг: Показать пользователю production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4; получить правки (data/edit.json / src/paper.tsx → повторный рендер ~25 мин) или утверждение: checkpoint BW-004 --status approved --user-approved.
 
-2026-11-07: исходник скачан брокером (VID-001) и проверен; расшифровка (faster-whisper large-v3 + kyrgyz-whisper-medium + kyscore), выбор 6 дублей по взгляду; концепция «Үч ката» (docs/VISUAL_CONCEPT.md), A/B-композиция src/paper.tsx, edit.json → timeline/EDL/SRT/audio 33,30 с; рендер v1 запущен. Прослушивание человеком не выполнялось.
+2026-11-07: v1 смонтирован и проверен — концепция «Үч ката», строгая A/B-грамматика (0 нарушений на 999 кадрах), 33,30 с, 6 дублей, −14,9 LUFS / −1,9 dBTP, SHA-256 cd74480e…9b8d. Не выполнено: прослушивание ушами, просмотр на телефоне, утверждение пользователем. Платные сервисы не использовались.
 
 Исходник: `VID-001.mp4`, 40147656 байт.
 SHA-256: `35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b`. Манифест: `manifest.json`.

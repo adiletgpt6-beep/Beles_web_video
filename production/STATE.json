@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07T16:58:15+00:00",
+  "updated_at": "2026-11-07T18:30:00+00:00",
   "repository": "adiletgpt6-beep/Beles_web_video",
   "canonical_branch": "ccr-443bddaf-7eho4h",
   "system_status": "ready",
@@ -18,11 +18,12 @@
     "display": "0998 08 38 28",
     "international": "+996 998 08 38 28"
   },
-  "active_job_id": "BW-004",
+  "active_job_id": null,
   "next_suggested_job_id": "BW-005",
   "baseline_job_id": "BW-001",
   "pending": [
-    "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя"
+    "BW-002 v4 — финальная версия по последней доработке; задание завершено, ждать утверждение пользователя",
+    "BW-004 (Studio VID-001) v1 — смонтирован и проверен (A/B 0 нарушений), ждёт отзыва/утверждения пользователя"
   ],
   "source": {
     "original_name": "1000218256.mp4",
@@ -133,5 +134,15 @@
     "user_approved": false
   },
   "bw003_user_approved": true,
-  "bw003_approved_release": "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4"
+  "bw003_approved_release": "production/jobs/BW-003/release/beles-bw003-v1-1080x1920.mp4",
+  "bw004_render": {
+    "studio_video_id": "VID-001",
+    "version": "v1",
+    "final": "production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4",
+    "bytes": 16317901,
+    "sha256": "cd74480ecc4137d915a6604eaa2d12e98b4af8883ceb9e831a29b10daa8d9b8d",
+    "verification": "production/jobs/BW-004/docs/verification.md",
+    "ab_audit_violations": 0,
+    "user_approved": false
+  }
 }

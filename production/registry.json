@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_job_id": "BW-004",
+  "active_job_id": null,
   "next_suggested_job_id": "BW-005",
   "jobs": [
     {
@@ -36,11 +36,11 @@
     {
       "job_id": "BW-004",
       "role": "edit",
-      "status": "in_progress",
+      "status": "rendered",
       "source_sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
       "source_storage": "cloudflare_r2_studio_broker",
       "manifest": "production/jobs/BW-004/manifest.json",
-      "next_step": "Дождаться рендера out/beles-bw004-v1-1080x1920.mp4 (render.sh, ENTRY=production/jobs/BW-004/src/index.ts COMP=BelesReelBW004), затем scripts/verify.sh + qa/ab_audit.py, покадровый просмотр, публикация MP4 в production/jobs/BW-004/release/",
+      "next_step": "Показать пользователю production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4; получить правки (data/edit.json / src/paper.tsx → повторный рендер ~25 мин) или утверждение: checkpoint BW-004 --status approved --user-approved.",
       "delivery_verified": true
     }
   ]
