@@ -43,3 +43,6 @@ python3 production/jobs/BW-004/qa/ab_audit.py production/jobs/BW-004/data/timeli
 
 ## v2 (2026-11-08) — кадры
 Длительность 32,60 с (978 кадров). Клипы: hook 0–106, m1 106–288, m2 288–500, m3 500–617, offer 617–782, cta 782–879, tail 879–978. B-сцены: three 48–118, beauty 184–302, mobile 380–512, checklist 605–704, cta 834–978. Остальное — как в таблице v1 (тот же порядок A/B и сцены); выбор дублей — `repeats-audit.md`. Рендер: `NAME=beles-bw004-v2-1080x1920 PREVIEW=preview-bw004-v2-720x1280` с теми же ENTRY/COMP/AUDIO. Данные v1 — `data/v1/`.
+
+## v3 (2026-11-09)
+Тот же монтаж, что v2 (978 кадров). Новое: SFX-план в `data/edit.json` (air/swoosh/pop/tick/click/chime), движение в `src/paper.tsx` (шторка пустого листа, `zoomStyle`, `Tap`), микс `LEVEL_CLIPS=1 VOICE_NR=10 VOICE_EQ=1 MUSIC_BPM=100 MUSIC_TRANSPOSE=2`. Эффекты: `python3 production/jobs/BW-004/scripts/make-sfx-bw004.py assets/sfx`. С музыкой пользователя: `bash production/jobs/BW-004/scripts/render-with-reference-music.sh /путь/1000223289.mp4 v4`.

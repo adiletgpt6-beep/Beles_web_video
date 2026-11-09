@@ -128,6 +128,26 @@ const Badge: React.FC<{ x: number; y: number; t: number; at: number; ok: boolean
   );
 };
 
+// Finger tap on a button: a soft ring presses in, then one ripple spreads (paired with the 'click' sound).
+const Tap: React.FC<{ x: number; y: number; t: number; at: number }> = ({ x, y, t, at }) => {
+  const a = ramp(t, at - 8, 8) * (1 - ramp(t, at + 10, 8));
+  const press = ramp(t, at - 3, 3) * (1 - ramp(t, at + 3, 5));
+  const r = ramp(t, at, 16);
+  if (a <= 0 && (r <= 0 || r >= 1)) return null;
+  return (
+    <>
+      <div style={{ position: 'absolute', left: x - 120 * r, top: y - 120 * r, width: 240 * r, height: 240 * r, borderRadius: 300, border: `5px solid rgba(255,255,255,${0.85 * (1 - r)})`, boxShadow: `0 0 0 3px rgba(16,35,63,${0.18 * (1 - r)})` }} />
+      <div style={{ position: 'absolute', left: x - 42, top: y - 42, width: 84, height: 84, borderRadius: 84, background: 'rgba(255,255,255,0.55)', border: '4px solid rgba(16,35,63,0.55)', opacity: a, transform: `scale(${1 - 0.18 * press})` }} />
+    </>
+  );
+};
+
+// Smooth "camera" push onto an element inside a scene: scale around (ox, oy), in at `from`, back out at `to`.
+const zoomStyle = (t: number, from: number, to: number, amount: number, ox: number, oy: number): React.CSSProperties => {
+  const z = 1 + amount * (ramp(t, from, 16) - ramp(t, to, 16));
+  return { position: 'absolute', inset: 0, transform: `scale(${z})`, transformOrigin: `${ox}px ${oy}px` };
+};
+
 const DemoLabel: React.FC<{ t: number; y?: number }> = ({ t, y = 1586 }) => (
   <div style={{ position: 'absolute', left: 90, width: 810, top: y, textAlign: 'center', fontFamily: BODY, fontWeight: 700, fontSize: 26, letterSpacing: 3, color: P.soft, opacity: 0.8 * ramp(t, 10, 12) }}>ДЕМО-МАКЕТ</div>
 );
@@ -140,7 +160,7 @@ const Three: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, beat
   return (
     <>
       <div style={{ position: 'absolute', left: 90, width: 810, top: 236, textAlign: 'center', fontFamily: BODY, fontWeight: 800, fontSize: 54, color: P.soft, opacity: ramp(t, 0, 12) }}>Сайт жасатканда</div>
-      <div style={{ position: 'absolute', left: 90, width: 810, top: 300, textAlign: 'center', fontFamily: HEAD, fontWeight: 700, fontSize: 660, lineHeight: 1, color: P.ink, opacity: k, transform: `scale(${0.9 + 0.1 * k})`, transformOrigin: '50% 60%' }}>3</div>
+      <div style={{ position: 'absolute', left: 90, width: 810, top: 300, textAlign: 'center', fontFamily: HEAD, fontWeight: 700, fontSize: 660, lineHeight: 1, color: P.ink, opacity: k, transform: `scale(${(0.9 + 0.1 * k) * (1 + 0.0009 * Math.max(0, t - beats.three + IN))})`, transformOrigin: '50% 60%' }}>3</div>
       <div style={{ position: 'absolute', left: 90, width: 810, top: 990, display: 'flex', justifyContent: 'center', gap: 6 }}>
         {Array.from('КАТА').map((ch, i) => {
           const a = ramp(t, kata + i * 2, 10);
@@ -200,7 +220,7 @@ const ClearScreen: React.FC<{ t: number; btn: number }> = ({ t, btn }) => (
         </div>
       </div>
     ))}
-    <div style={{ position: 'absolute', left: 34, right: 34, top: 790, height: 130, borderRadius: 30, background: P.green, color: '#fff', fontWeight: 900, fontSize: 46, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${1 + 0.03 * Math.sin(Math.max(0, t - btn) / 5) * (t > btn ? 1 : 0)})` }}>Заказ берүү</div>
+    <div style={{ position: 'absolute', left: 34, right: 34, top: 790, height: 130, borderRadius: 30, background: P.green, color: '#fff', fontWeight: 900, fontSize: 46, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${1 - 0.045 * (ramp(t, btn - 3, 3) - ramp(t, btn + 3, 6))})` }}>Заказ берүү</div>
   </AbsoluteFill>
 );
 
@@ -213,10 +233,11 @@ const Beauty: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, bea
     <>
       <Tag text="1-КАТА" t={t} />
       <Headline a="Кооз, бирок ыңгайсыз" b="Кардарга ыңгайлуу" swap={good} t={t} />
+      <div style={zoomStyle(t, bad - 2, good - 8, 0.16, 668, 470)}>
       <Phone t={t}>
         <PrettyScreen t={t} />
         <div style={{ position: 'absolute', inset: 0, clipPath: `inset(${wipe}% 0 0 0)` }}>
-          <ClearScreen t={t} btn={good + 10} />
+          <ClearScreen t={t} btn={good + 22} />
         </div>
         {ring > 0 ? (
           <div style={{ position: 'absolute', left: 372, top: 868, width: 166, height: 98, borderRadius: 60, border: `6px dashed ${P.red}`, opacity: ring, transform: `scale(${1.25 - 0.25 * ring})` }} />
@@ -225,9 +246,13 @@ const Beauty: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, bea
       {ring > 0 ? (
         <div style={{ position: 'absolute', left: 300, top: 1236, opacity: ring, background: P.red, color: '#fff', fontFamily: BODY, fontWeight: 900, fontSize: 40, padding: '12px 26px', borderRadius: 18 }}>Баскыч кайда?</div>
       ) : null}
+      <Tap x={495} y={1343} t={t} at={good + 22} />
+      </div>
       <Badge x={CX + 290} y={500} t={t} at={bad} ok={false} />
       {t >= good ? <Badge x={CX + 290} y={500} t={t} at={good + 6} ok /> : null}
-      <DemoLabel t={t} />
+      <div style={{ opacity: 1 - (ramp(t, bad - 2, 10) - ramp(t, good - 2, 14)) }}>
+        <DemoLabel t={t} />
+      </div>
     </>
   );
 };
@@ -296,6 +321,7 @@ const Mobile: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, bea
     <>
       <Tag text="2-КАТА" t={t} />
       <Headline a="Телефондо текшерилген эмес" b="Телефонго ылайыкталган" swap={fix} t={t} />
+      <div style={zoomStyle(t, 16, fix - 10, 0.08, 790, 470)}>
       <Phone t={t}>
         <div style={{ position: 'absolute', inset: 0, opacity: 1 - k, transform: `scale(${1 + 0.06 * k})` }}>
           <DesktopSqueezed t={t} />
@@ -304,6 +330,7 @@ const Mobile: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, bea
           <MobileScreen />
         </div>
       </Phone>
+      </div>
       {[
         { text: 'Майда текст', x: 108, y: 760 },
         { text: 'Кесилип калды', x: 520, y: 1010 },
@@ -316,7 +343,9 @@ const Mobile: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, bea
       )}
       <Badge x={CX + 290} y={500} t={t} at={14} ok={false} />
       {t >= fix ? <Badge x={CX + 290} y={500} t={t} at={fix + 6} ok /> : null}
-      <DemoLabel t={t} />
+      <div style={{ opacity: 1 - (ramp(t, 16, 10) - ramp(t, fix - 4, 14)) }}>
+        <DemoLabel t={t} />
+      </div>
     </>
   );
 };
@@ -332,8 +361,9 @@ const Checklist: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, 
         const a = ramp(t, 4 + i * 4, 12);
         const g = ramp(t, at[i], 12);
         const y = 560 + i * 290;
+        const bump = ramp(t, at[i], 6) * (1 - ramp(t, at[i] + 6, 10));
         return (
-          <div key={i} style={{ position: 'absolute', left: 90, width: 810, top: y, height: 220, opacity: a, transform: `translateX(${(1 - a) * -40}px)` }}>
+          <div key={i} style={{ position: 'absolute', left: 90, width: 810, top: y, height: 220, opacity: a, transform: `translateX(${(1 - a) * -40}px) scale(${1 + 0.045 * bump})`, transformOrigin: '90px 110px' }}>
             <div style={{ position: 'absolute', left: 0, top: 20, width: 180, height: 180, borderRadius: 30, border: `8px solid ${g > 0.5 ? P.green : P.ink}`, boxSizing: 'border-box', background: '#fff' }}>
               <div style={{ position: 'absolute', left: -22, top: -22, width: 56, height: 56, borderRadius: 56, background: P.ink, color: '#fff', fontFamily: HEAD, fontSize: 34, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</div>
               <div style={{ position: 'absolute', left: 18, top: 18, opacity: 1 - g }}>
@@ -358,7 +388,7 @@ const Cta: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, beats 
   const btn = beats.btn - IN;
   const icon = ramp(t, 4, 14);
   const digits = '0998 08 38 28';
-  const pulse = t > btn + 12 ? 1 + 0.025 * Math.sin((t - btn - 12) / 7) : 1;
+  const pulse = 1 - 0.045 * (ramp(t, btn + 27, 3) - ramp(t, btn + 33, 6)); // pressed by the Tap at btn + 30
   return (
     <>
       <Headline a="Сапаттуу сайт керекпи?" t={t} y={250} size={66} />
@@ -369,7 +399,7 @@ const Cta: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, beats 
         </svg>
       </div>
       <div style={{ position: 'absolute', left: 90, width: 810, top: 760, textAlign: 'center', fontFamily: BODY, fontWeight: 900, fontSize: 58, color: '#128C4A', opacity: ramp(t, 8, 12) }}>WhatsApp</div>
-      <div style={{ position: 'absolute', left: 60, width: 870, top: 870, display: 'flex', justifyContent: 'center' }}>
+      <div style={{ position: 'absolute', left: 60, width: 870, top: 870, display: 'flex', justifyContent: 'center', transform: `scale(${1 + 0.05 * ramp(t, num + 14, 60)})`, transformOrigin: '435px 68px' }}>
         {Array.from(digits).map((ch, i) => {
           const a = ramp(t, num + i * 1.2, 9);
           return (
@@ -382,6 +412,7 @@ const Cta: React.FC<{ t: number; beats: Record<string, number> }> = ({ t, beats 
       <div style={{ position: 'absolute', left: CX - 330, top: 1120, width: 660, height: 140, borderRadius: 70, background: P.green, color: '#fff', fontFamily: BODY, fontWeight: 900, fontSize: 58, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: ramp(t, btn, 12), transform: `scale(${(0.85 + 0.15 * ramp(t, btn, 12)) * pulse})`, boxShadow: '0 18px 40px rgba(22,163,106,0.35)' }}>
         Бизге жазыңыз
       </div>
+      <Tap x={CX} y={1190} t={t} at={btn + 30} />
     </>
   );
 };
@@ -396,7 +427,17 @@ export const PaperScene: React.FC<{ o: Overlay }> = ({ o }) => {
   const exit = o.hold ? 0 : interpolate(f, [liveEnd - EXIT, liveEnd], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const Scene = { three: Three, beauty: Beauty, mobile: Mobile, checklist: Checklist, cta: Cta }[o.kind];
   return (
-    <AbsoluteFill style={{ opacity: paper }}>
+    <AbsoluteFill
+      style={
+        paper >= 1
+          ? undefined
+          : {
+              // feathered upward wipe of the EMPTY paper (no scene element is mounted while paper < 1)
+              WebkitMaskImage: `linear-gradient(to top, #000 ${paper * 140 - 40}%, rgba(0,0,0,0) ${paper * 140}%)`,
+              maskImage: `linear-gradient(to top, #000 ${paper * 140 - 40}%, rgba(0,0,0,0) ${paper * 140}%)`,
+            }
+      }
+    >
       <Paper f={f} />
       {live ? (
         <AbsoluteFill style={{ opacity: 1 - exit, transform: `translateY(${-exit * 26}px)` }}>

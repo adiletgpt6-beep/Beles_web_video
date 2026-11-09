@@ -1,0 +1,591 @@
+{
+ "face": {
+  "cx": 560,
+  "cy": 720,
+  "top": 460
+ },
+ "captionTopY": 300,
+ "captionBottom": 1530,
+ "vignette": 0.22,
+ "fadeIn": 6,
+ "overlays": [
+  {
+   "kind": "three",
+   "startFrame": 48,
+   "endFrame": 118,
+   "beats": {
+    "three": 14,
+    "kata": 20,
+    "no": 31
+   }
+  },
+  {
+   "kind": "beauty",
+   "startFrame": 184,
+   "endFrame": 302,
+   "beats": {
+    "bad": 29,
+    "good": 53
+   }
+  },
+  {
+   "kind": "mobile",
+   "startFrame": 380,
+   "endFrame": 512,
+   "beats": {
+    "fix": 76
+   }
+  },
+  {
+   "kind": "checklist",
+   "startFrame": 605,
+   "endFrame": 704,
+   "beats": {
+    "r1": 42,
+    "r2": 58,
+    "r3": 71
+   }
+  },
+  {
+   "kind": "cta",
+   "hold": true,
+   "startFrame": 834,
+   "endFrame": 978,
+   "beats": {
+    "num": 11,
+    "btn": 20
+   }
+  }
+ ],
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "durationInFrames": 978,
+ "video": "media/bw004/source.mp4",
+ "audio": "media/bw004/voice.wav",
+ "clips": [
+  {
+   "id": "hook",
+   "srcInFrame": 2254,
+   "srcOutFrame": 2360,
+   "startFrame": 0,
+   "durationFrames": 106
+  },
+  {
+   "id": "m1",
+   "srcInFrame": 4503,
+   "srcOutFrame": 4685,
+   "startFrame": 106,
+   "durationFrames": 182
+  },
+  {
+   "id": "m2",
+   "srcInFrame": 8727,
+   "srcOutFrame": 8939,
+   "startFrame": 288,
+   "durationFrames": 212
+  },
+  {
+   "id": "m3",
+   "srcInFrame": 9258,
+   "srcOutFrame": 9375,
+   "startFrame": 500,
+   "durationFrames": 117
+  },
+  {
+   "id": "offer",
+   "srcInFrame": 13106,
+   "srcOutFrame": 13271,
+   "startFrame": 617,
+   "durationFrames": 165
+  },
+  {
+   "id": "cta",
+   "srcInFrame": 13772,
+   "srcOutFrame": 13869,
+   "startFrame": 782,
+   "durationFrames": 97
+  },
+  {
+   "id": "tail",
+   "srcInFrame": 1800,
+   "srcOutFrame": 1899,
+   "startFrame": 879,
+   "durationFrames": 99
+  }
+ ],
+ "camera": [
+  {
+   "frame": 0,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 106,
+   "mode": "close",
+   "smooth": false
+  },
+  {
+   "frame": 288,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 500,
+   "mode": "close",
+   "smooth": false
+  },
+  {
+   "frame": 617,
+   "mode": "medium",
+   "smooth": false
+  },
+  {
+   "frame": 782,
+   "mode": "close",
+   "smooth": false
+  },
+  {
+   "frame": 879,
+   "mode": "medium",
+   "smooth": false
+  }
+ ],
+ "cards": [],
+ "titles": [],
+ "phones": [],
+ "subtitles": [
+  {
+   "startFrame": 7,
+   "endFrame": 49,
+   "words": [
+    {
+     "text": "Сайт",
+     "key": true,
+     "startFrame": 9
+    },
+    {
+     "text": "жасаткан",
+     "key": false,
+     "startFrame": 17
+    },
+    {
+     "text": "жатасызбы?",
+     "key": false,
+     "startFrame": 28
+    }
+   ]
+  },
+  {
+   "startFrame": 49,
+   "endFrame": 106,
+   "words": [
+    {
+     "text": "анда",
+     "key": false,
+     "startFrame": 51
+    },
+    {
+     "text": "бул",
+     "key": false,
+     "startFrame": 58
+    },
+    {
+     "text": "үч",
+     "key": false,
+     "startFrame": 63
+    },
+    {
+     "text": "катаны",
+     "key": true,
+     "startFrame": 67
+    },
+    {
+     "text": "кетирбеңиз.",
+     "key": false,
+     "startFrame": 76
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 114,
+   "endFrame": 128,
+   "words": [
+    {
+     "text": "Биринчи",
+     "key": true,
+     "startFrame": 116
+    },
+    {
+     "text": "ката:",
+     "key": false,
+     "startFrame": 125
+    }
+   ]
+  },
+  {
+   "startFrame": 128,
+   "endFrame": 195,
+   "words": [
+    {
+     "text": "сайттын",
+     "key": false,
+     "startFrame": 130
+    },
+    {
+     "text": "кооздугуна",
+     "key": true,
+     "startFrame": 147
+    },
+    {
+     "text": "көңүл",
+     "key": false,
+     "startFrame": 162
+    },
+    {
+     "text": "буруу,",
+     "key": false,
+     "startFrame": 172
+    }
+   ]
+  },
+  {
+   "startFrame": 195,
+   "endFrame": 223,
+   "words": [
+    {
+     "text": "сайт",
+     "key": false,
+     "startFrame": 197
+    },
+    {
+     "text": "кооз",
+     "key": false,
+     "startFrame": 202
+    },
+    {
+     "text": "эле",
+     "key": false,
+     "startFrame": 208
+    },
+    {
+     "text": "эмес,",
+     "key": false,
+     "startFrame": 213
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 223,
+   "endFrame": 274,
+   "words": [
+    {
+     "text": "кардарга",
+     "key": false,
+     "startFrame": 225
+    },
+    {
+     "text": "ыңгайлуу",
+     "key": false,
+     "startFrame": 237
+    },
+    {
+     "text": "болушу",
+     "key": false,
+     "startFrame": 247
+    },
+    {
+     "text": "керек.",
+     "key": false,
+     "startFrame": 254
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 295,
+   "endFrame": 329,
+   "words": [
+    {
+     "text": "Экинчи",
+     "key": true,
+     "startFrame": 297
+    },
+    {
+     "text": "ката:",
+     "key": false,
+     "startFrame": 314
+    }
+   ]
+  },
+  {
+   "startFrame": 329,
+   "endFrame": 349,
+   "words": [
+    {
+     "text": "телефондон",
+     "key": true,
+     "startFrame": 331
+    },
+    {
+     "text": "кандай",
+     "key": false,
+     "startFrame": 344
+    }
+   ]
+  },
+  {
+   "startFrame": 349,
+   "endFrame": 391,
+   "words": [
+    {
+     "text": "ачыларды",
+     "key": false,
+     "startFrame": 351
+    },
+    {
+     "text": "текшерүү,",
+     "key": true,
+     "startFrame": 362
+    }
+   ]
+  },
+  {
+   "startFrame": 391,
+   "endFrame": 443,
+   "words": [
+    {
+     "text": "анткени",
+     "key": false,
+     "startFrame": 392
+    },
+    {
+     "text": "көпчүлүк",
+     "key": false,
+     "startFrame": 402
+    },
+    {
+     "text": "кардарлар",
+     "key": false,
+     "startFrame": 416
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 443,
+   "endFrame": 497,
+   "words": [
+    {
+     "text": "сайтка",
+     "key": false,
+     "startFrame": 445
+    },
+    {
+     "text": "телефон",
+     "key": false,
+     "startFrame": 457
+    },
+    {
+     "text": "аркылуу",
+     "key": false,
+     "startFrame": 466
+    },
+    {
+     "text": "киришет.",
+     "key": false,
+     "startFrame": 473
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 508,
+   "endFrame": 540,
+   "words": [
+    {
+     "text": "Үчүнчү",
+     "key": true,
+     "startFrame": 509
+    },
+    {
+     "text": "ката:",
+     "key": false,
+     "startFrame": 521
+    }
+   ]
+  },
+  {
+   "startFrame": 540,
+   "endFrame": 571,
+   "words": [
+    {
+     "text": "сайтты",
+     "key": false,
+     "startFrame": 541
+    },
+    {
+     "text": "жасап,",
+     "key": true,
+     "startFrame": 551
+    }
+   ]
+  },
+  {
+   "startFrame": 571,
+   "endFrame": 620,
+   "words": [
+    {
+     "text": "анан",
+     "key": false,
+     "startFrame": 573
+    },
+    {
+     "text": "өнүктүрбөй",
+     "key": true,
+     "startFrame": 579
+    },
+    {
+     "text": "коюу.",
+     "key": false,
+     "startFrame": 594
+    }
+   ]
+  },
+  {
+   "startFrame": 620,
+   "endFrame": 661,
+   "words": [
+    {
+     "text": "Биз",
+     "key": false,
+     "startFrame": 622
+    },
+    {
+     "text": "бул",
+     "key": false,
+     "startFrame": 641
+    },
+    {
+     "text": "нерселердин",
+     "key": false,
+     "startFrame": 647
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 661,
+   "endFrame": 700,
+   "words": [
+    {
+     "text": "баарын",
+     "key": false,
+     "startFrame": 663
+    },
+    {
+     "text": "эске",
+     "key": false,
+     "startFrame": 671
+    },
+    {
+     "text": "алып,",
+     "key": false,
+     "startFrame": 677
+    }
+   ],
+   "scene": true
+  },
+  {
+   "startFrame": 700,
+   "endFrame": 745,
+   "words": [
+    {
+     "text": "бизнесиңизге",
+     "key": true,
+     "startFrame": 702
+    },
+    {
+     "text": "лайыктуу",
+     "key": false,
+     "startFrame": 720
+    }
+   ]
+  },
+  {
+   "startFrame": 745,
+   "endFrame": 782,
+   "words": [
+    {
+     "text": "заманбап",
+     "key": true,
+     "startFrame": 746
+    },
+    {
+     "text": "сайт",
+     "key": false,
+     "startFrame": 758
+    },
+    {
+     "text": "түзөбүз.",
+     "key": false,
+     "startFrame": 765
+    }
+   ]
+  },
+  {
+   "startFrame": 790,
+   "endFrame": 838,
+   "words": [
+    {
+     "text": "Сизге",
+     "key": false,
+     "startFrame": 791
+    },
+    {
+     "text": "сапаттуу",
+     "key": true,
+     "startFrame": 803
+    },
+    {
+     "text": "сайт",
+     "key": false,
+     "startFrame": 815
+    },
+    {
+     "text": "керекпи?",
+     "key": false,
+     "startFrame": 820
+    }
+   ]
+  },
+  {
+   "startFrame": 838,
+   "endFrame": 878,
+   "words": [
+    {
+     "text": "анда",
+     "key": false,
+     "startFrame": 839
+    },
+    {
+     "text": "бизге",
+     "key": false,
+     "startFrame": 845
+    },
+    {
+     "text": "жазыңыз.",
+     "key": false,
+     "startFrame": 852
+    }
+   ],
+   "scene": true
+  }
+ ],
+ "typeScenes": [],
+ "videoCards": [],
+ "siteStages": [],
+ "iconRows": []
+}

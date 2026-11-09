@@ -1,5 +1,5 @@
 {
- "_doc": "BW-004 (Studio VID-001) edit decision list. Source input/BW-004/VID-001.mp4 (AV1 1080x1920 30 fps → public/media/bw004/source.mp4 H.264 CFR, same grade as scripts/prepare-media.sh). Segment in/out, word times and overlay anchors are SOURCE seconds; build with scripts/build-timeline.mjs (EDIT/OUT_DIR). Concept «Үч ката» (docs/VISUAL_CONCEPT.md): strict A/B alternation — A presenter+captions, B full-screen paper scenes (kinds three/beauty/mobile/checklist/cta, src/paper.tsx). Every take change happens under fully opaque paper (B), except offer→cta (presenter jump cut between two A shots with a framing change). v2 (2026-11-08): accidental repeat «сайт, сайт» removed from the hook; takes re-chosen by the rule «last successful attempt, else the previous one» (see docs/repeats-audit.md). v1 data kept in data/v1/.",
+ "_doc": "BW-004 (Studio VID-001) edit decision list. Source input/BW-004/VID-001.mp4 (AV1 1080x1920 30 fps → public/media/bw004/source.mp4 H.264 CFR, same grade as scripts/prepare-media.sh). Segment in/out, word times and overlay anchors are SOURCE seconds; build with scripts/build-timeline.mjs (EDIT/OUT_DIR). Concept «Үч ката» (docs/VISUAL_CONCEPT.md): strict A/B alternation — A presenter+captions, B full-screen paper scenes (kinds three/beauty/mobile/checklist/cta, src/paper.tsx). Every take change happens under fully opaque paper (B), except offer→cta (presenter jump cut between two A shots with a framing change). v2 (2026-11-08): accidental repeat «сайт, сайт» removed from the hook; takes re-chosen by the rule «last successful attempt, else the previous one» (see docs/repeats-audit.md). v1 data kept in data/v1/. v3 (2026-11-09): motion pass (feathered paper wipe, element push-ins, button taps), job SFX palette (air/swoosh/click + pop/tick/chime), per-take loudness levelling; v2 data kept in data/v2/.",
  "sourceName": "VID-001.mp4",
  "fps": 30,
  "width": 1080,
@@ -509,39 +509,94 @@
  ],
  "sfx": [
   {
-   "type": "swish",
-   "lands": "hook@77.10",
-   "gainDb": -3
+   "type": "air",
+   "lands": "hook@77.05",
+   "gainDb": 0
   },
   {
    "type": "pop",
-   "lands": "hook@77.85",
-   "gainDb": -4
+   "lands": "hook@77.22",
+   "gainDb": -6
   },
   {
-   "type": "swish",
-   "lands": "m1@153.10",
-   "gainDb": -3
+   "type": "tick",
+   "lands": "hook@77.80",
+   "gainDb": -8
+  },
+  {
+   "type": "tick",
+   "lands": "hook@77.97",
+   "gainDb": -8
+  },
+  {
+   "type": "tick",
+   "lands": "hook@78.13",
+   "gainDb": -8
+  },
+  {
+   "type": "air",
+   "lands": "m1@150.42",
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "lands": "m1@153.03",
+   "gainDb": 0
   },
   {
    "type": "pop",
-   "lands": "m1@154.80",
-   "gainDb": -3
+   "lands": "m1@153.75",
+   "gainDb": -6
   },
   {
-   "type": "swish",
-   "lands": "m2@294.40",
-   "gainDb": -3
+   "type": "swoosh",
+   "lands": "m1@154.60",
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "lands": "m1@154.78",
+   "gainDb": -5
+  },
+  {
+   "type": "click",
+   "lands": "m1@155.18",
+   "gainDb": -2
+  },
+  {
+   "type": "air",
+   "lands": "m2@291.30",
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "lands": "m2@294.28",
+   "gainDb": 0
+  },
+  {
+   "type": "pop",
+   "lands": "m2@294.75",
+   "gainDb": -6
+  },
+  {
+   "type": "swoosh",
+   "lands": "m2@296.62",
+   "gainDb": -2
   },
   {
    "type": "pop",
    "lands": "m2@296.90",
-   "gainDb": -3
+   "gainDb": -5
   },
   {
-   "type": "swish",
-   "lands": "offer@437.00",
-   "gainDb": -3
+   "type": "air",
+   "lands": "m3@308.95",
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "lands": "m3@312.43",
+   "gainDb": 0
   },
   {
    "type": "tick",
@@ -559,13 +614,23 @@
    "gainDb": -6
   },
   {
-   "type": "swish",
-   "lands": "cta@461.10",
-   "gainDb": -3
+   "type": "air",
+   "lands": "offer@439.72",
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "lands": "cta@461.13",
+   "gainDb": 0
   },
   {
    "type": "chime",
    "lands": "cta@461.60",
+   "gainDb": -2
+  },
+  {
+   "type": "click",
+   "lands": "tail@60.15",
    "gainDb": -2
   }
  ]

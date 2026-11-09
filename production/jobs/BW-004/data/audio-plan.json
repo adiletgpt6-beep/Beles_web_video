@@ -53,39 +53,94 @@
  ],
  "sfx": [
   {
-   "type": "swish",
-   "frame": 54,
-   "gainDb": -3
+   "type": "air",
+   "frame": 44,
+   "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 82,
-   "gainDb": -4
+   "frame": 63,
+   "gainDb": -6
   },
   {
-   "type": "swish",
-   "frame": 191,
-   "gainDb": -3
+   "type": "tick",
+   "frame": 80,
+   "gainDb": -8
+  },
+  {
+   "type": "tick",
+   "frame": 85,
+   "gainDb": -8
+  },
+  {
+   "type": "tick",
+   "frame": 90,
+   "gainDb": -8
+  },
+  {
+   "type": "air",
+   "frame": 102,
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "frame": 180,
+   "gainDb": 0
   },
   {
    "type": "pop",
-   "frame": 247,
-   "gainDb": -3
+   "frame": 216,
+   "gainDb": -6
   },
   {
-   "type": "swish",
-   "frame": 388,
-   "gainDb": -3
+   "type": "swoosh",
+   "frame": 236,
+   "gainDb": -2
+  },
+  {
+   "type": "pop",
+   "frame": 246,
+   "gainDb": -5
+  },
+  {
+   "type": "click",
+   "frame": 258,
+   "gainDb": -2
+  },
+  {
+   "type": "air",
+   "frame": 286,
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "frame": 375,
+   "gainDb": 0
+  },
+  {
+   "type": "pop",
+   "frame": 404,
+   "gainDb": -6
+  },
+  {
+   "type": "swoosh",
+   "frame": 455,
+   "gainDb": -2
   },
   {
    "type": "pop",
    "frame": 468,
-   "gainDb": -3
+   "gainDb": -5
   },
   {
-   "type": "swish",
-   "frame": 616,
-   "gainDb": -3
+   "type": "air",
+   "frame": 497,
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "frame": 601,
+   "gainDb": 0
   },
   {
    "type": "tick",
@@ -103,13 +158,23 @@
    "gainDb": -6
   },
   {
-   "type": "swish",
-   "frame": 838,
-   "gainDb": -3
+   "type": "air",
+   "frame": 689,
+   "gainDb": -5
+  },
+  {
+   "type": "air",
+   "frame": 830,
+   "gainDb": 0
   },
   {
    "type": "chime",
    "frame": 858,
+   "gainDb": -2
+  },
+  {
+   "type": "click",
+   "frame": 884,
    "gainDb": -2
   }
  ]

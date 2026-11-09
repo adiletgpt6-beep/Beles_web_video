@@ -2,12 +2,13 @@
   "schema_version": 1,
   "job_id": "BW-004",
   "status": "rendered",
-  "updated_at": "2026-11-07T19:16:19+00:00",
-  "next_step": "Показать пользователю v2 production/jobs/BW-004/release/beles-bw004-v2-1080x1920.mp4; получить правки или утверждение: checkpoint BW-004 --status approved --user-approved. Выдача через R2/Studio (DELIVERY_RULES) требует endpoints в Studio.",
-  "note": "2026-11-08: v2 — убран повтор «сайт, сайт» (ложный старт 74,48–74,86 в хуке), дубли пересобраны по правилу «последний удачный, иначе предыдущий» (docs/repeats-audit.md); 32,60 с, 978 кадров, −14,9 LUFS / −1,9 dBTP, SHA-256 d3309447…4c8e50; A/B 0 нарушений; ASR итогового MP4 без повторов. v1 сохранён. Не выполнено: прослушивание ушами, просмотр на телефоне, утверждение.",
+  "updated_at": "2026-11-09T18:45:10+00:00",
+  "next_step": "Передать в среду Claude Code файл 1000223289.mp4 (в репозиторий, Studio или вложением сеанса) и выполнить: bash production/jobs/BW-004/scripts/render-with-reference-music.sh <файл> v4; затем прослушать выбранный фрагмент, проверить и опубликовать v4.",
+  "note": "2026-11-09: v3 — эффекты air/swoosh/pop/tick/click/chime, движение (шторка пустого листа, приближения, нажатия), выравнивание громкости дублей, NR 10; 32,60 с, −15,0 LUFS / −1,6 dBTP, A/B 0 нарушений, повторов нет; SHA-256 1426d98f…fb59. Музыка из 1000223289.mp4 НЕ вставлена: файла нет в среде Claude (вложений нет, нет в GitHub/Studio). v1, v2 сохранены.",
   "artifacts": [
     "production/jobs/BW-004/docs/VISUAL_CONCEPT.md",
     "production/jobs/BW-004/docs/ab-audit-v2.json",
+    "production/jobs/BW-004/docs/ab-audit-v3.json",
     "production/jobs/BW-004/docs/ab-audit.json",
     "production/jobs/BW-004/docs/edit-plan.md",
     "production/jobs/BW-004/docs/repeats-audit.md",
@@ -17,8 +18,11 @@
     "production/jobs/BW-004/release/beles-bw004-v1-subtitles-ky.srt",
     "production/jobs/BW-004/release/beles-bw004-v2-1080x1920.mp4",
     "production/jobs/BW-004/release/beles-bw004-v2-subtitles-ky.srt",
+    "production/jobs/BW-004/release/beles-bw004-v3-1080x1920.mp4",
     "production/jobs/BW-004/release/preview-bw004-v1-720x1280.mp4",
-    "production/jobs/BW-004/release/preview-bw004-v2-720x1280.mp4"
+    "production/jobs/BW-004/release/preview-bw004-v2-720x1280.mp4",
+    "production/jobs/BW-004/release/preview-bw004-v3-720x1280.mp4",
+    "production/jobs/BW-004/scripts/render-with-reference-music.sh"
   ],
   "events": [
     {
@@ -70,6 +74,31 @@
         "production/jobs/BW-004/release/beles-bw004-v2-subtitles-ky.srt",
         "production/jobs/BW-004/release/preview-bw004-v1-720x1280.mp4",
         "production/jobs/BW-004/release/preview-bw004-v2-720x1280.mp4"
+      ]
+    },
+    {
+      "at": "2026-11-09T18:45:10+00:00",
+      "status": "rendered",
+      "next_step": "Передать в среду Claude Code файл 1000223289.mp4 (в репозиторий, Studio или вложением сеанса) и выполнить: bash production/jobs/BW-004/scripts/render-with-reference-music.sh <файл> v4; затем прослушать выбранный фрагмент, проверить и опубликовать v4.",
+      "note": "2026-11-09: v3 — эффекты air/swoosh/pop/tick/click/chime, движение (шторка пустого листа, приближения, нажатия), выравнивание громкости дублей, NR 10; 32,60 с, −15,0 LUFS / −1,6 dBTP, A/B 0 нарушений, повторов нет; SHA-256 1426d98f…fb59. Музыка из 1000223289.mp4 НЕ вставлена: файла нет в среде Claude (вложений нет, нет в GitHub/Studio). v1, v2 сохранены.",
+      "artifacts": [
+        "production/jobs/BW-004/docs/VISUAL_CONCEPT.md",
+        "production/jobs/BW-004/docs/ab-audit-v2.json",
+        "production/jobs/BW-004/docs/ab-audit-v3.json",
+        "production/jobs/BW-004/docs/ab-audit.json",
+        "production/jobs/BW-004/docs/edit-plan.md",
+        "production/jobs/BW-004/docs/repeats-audit.md",
+        "production/jobs/BW-004/docs/transcript.md",
+        "production/jobs/BW-004/docs/verification.md",
+        "production/jobs/BW-004/release/beles-bw004-v1-1080x1920.mp4",
+        "production/jobs/BW-004/release/beles-bw004-v1-subtitles-ky.srt",
+        "production/jobs/BW-004/release/beles-bw004-v2-1080x1920.mp4",
+        "production/jobs/BW-004/release/beles-bw004-v2-subtitles-ky.srt",
+        "production/jobs/BW-004/release/beles-bw004-v3-1080x1920.mp4",
+        "production/jobs/BW-004/release/preview-bw004-v1-720x1280.mp4",
+        "production/jobs/BW-004/release/preview-bw004-v2-720x1280.mp4",
+        "production/jobs/BW-004/release/preview-bw004-v3-720x1280.mp4",
+        "production/jobs/BW-004/scripts/render-with-reference-music.sh"
       ]
     }
   ]

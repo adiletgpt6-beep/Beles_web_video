@@ -315,7 +315,7 @@ fs.writeFileSync(path.join(OUT_DIR, 'subtitles.srt'), srt.join('\n'));
 // 7. Audio plan: exact same frame-accurate cuts + sound effects at overlay entrances.
 // Sound accents are listed explicitly in edit.json (only on meaningful appearances).
 // "lands" anchors give the moment a move ends; the sound is shifted so its peak falls exactly there.
-const PEAK = { whoosh_in: 0.36, swish: 0.16, tick: 0, pop: 0, chime: 0 };
+const PEAK = { whoosh_in: 0.36, swish: 0.16, tick: 0, pop: 0, chime: 0, air: 0.45, swoosh: 0.18, click: 0 }; // air/swoosh/click: BW-004 v3
 const sfx = (edit.sfx ?? []).map((x) => ({
   type: x.type,
   frame: Math.max(0, anchor(x.lands) - Math.round((PEAK[x.type] ?? 0) * FPS)),

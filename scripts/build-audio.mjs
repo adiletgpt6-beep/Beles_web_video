@@ -22,24 +22,47 @@ const total = plan.durationInFrames / FPS;
 
 const inputs = ['-i', src];
 const parts = [];
+// LEVEL_CLIPS=1 (BW-004 v3): measure each take's integrated loudness and match it to the median (±4 dB cap),
+// so takes recorded minutes apart sound equally loud. Off by default (earlier mixes unchanged).
+const clipGain = plan.clips.map(() => 0);
+if (process.env.LEVEL_CLIPS) {
+  const lufs = plan.clips.map((c) => {
+    const a = c.srcInFrame / FPS;
+    const d = (c.srcOutFrame - c.srcInFrame) / FPS;
+    const o = execFileSync('bash', ['-c', `ffmpeg -hide_banner -nostats -ss ${a} -t ${d} -i "${src}" -af ebur128 -f null - 2>&1 | grep -E '^ +I:' | tail -1`], { encoding: 'utf8' });
+    const v = parseFloat(o.replace(/[^-0-9.]/g, ''));
+    return Number.isFinite(v) && v > -50 ? v : null;
+  });
+  const valid = lufs.filter((v) => v !== null).sort((x, y) => x - y);
+  const med = valid[Math.floor(valid.length / 2)];
+  lufs.forEach((v, i) => (clipGain[i] = v === null ? 0 : Math.max(-4, Math.min(4, med - v))));
+  console.log('clip loudness', lufs.map((v) => (v === null ? 'silent' : v.toFixed(1))).join(' '), '→ gains dB', clipGain.map((g) => g.toFixed(1)).join(' '));
+}
 plan.clips.forEach((c, i) => {
   const a = c.srcInFrame / FPS;
   const b = c.srcOutFrame / FPS;
   const d = b - a;
-  parts.push(`[0:a]atrim=start=${a.toFixed(6)}:end=${b.toFixed(6)},asetpts=PTS-STARTPTS,afade=t=in:d=${FADE},afade=t=out:st=${(d - FADE).toFixed(6)}:d=${FADE}[c${i}]`);
+  const g = clipGain[i] ? `,volume=${clipGain[i].toFixed(2)}dB` : '';
+  parts.push(`[0:a]atrim=start=${a.toFixed(6)}:end=${b.toFixed(6)},asetpts=PTS-STARTPTS${g},afade=t=in:d=${FADE},afade=t=out:st=${(d - FADE).toFixed(6)}:d=${FADE}[c${i}]`);
 });
 parts.push(plan.clips.map((_, i) => `[c${i}]`).join('') + `concat=n=${plan.clips.length}:v=0:a=1[cat]`);
 // Gentle voice chain: rumble cut, light broadband denoise, soft compression; split for the music side-chain.
 // VOICE_EQ=1 (BW-002 v2): gentle presence lift and low-mid cleanup after the denoiser; off by default (V5 mix unchanged).
 const voiceEq = process.env.VOICE_EQ ? 'equalizer=f=3200:t=q:w=1.2:g=2,equalizer=f=190:t=q:w=1.1:g=-1.5,' : '';
-parts.push(`[cat]highpass=f=75,afftdn=nr=7:nf=-44:tn=1,${voiceEq}acompressor=threshold=-21dB:ratio=2.3:attack=8:release=140:makeup=1.5,asplit=2[v][vkey]`);
+const nr = process.env.VOICE_NR ?? '7'; // BW-004 v3 uses a slightly stronger, still transparent setting
+parts.push(`[cat]highpass=f=75,afftdn=nr=${nr}:nf=-44:tn=1,${voiceEq}acompressor=threshold=-21dB:ratio=2.3:attack=8:release=140:makeup=1.5,asplit=2[v][vkey]`);
 
 const mixIn = ['[v]'];
 let next = 1;
 if (plan.music) {
   const bed = path.join(MEDIA, 'music_bed.wav');
-  const accentArgs = plan.music.accentFrame != null ? [(plan.music.accentFrame / FPS).toFixed(3)] : [];
-  execFileSync('python3', [path.join(root, 'scripts/make-music.py'), total.toFixed(3), bed, ...accentArgs], { stdio: 'inherit' });
+  if (process.env.MUSIC_FILE) {
+    // BW-004 v3: a prepared bed (e.g. music supplied by the user, cut/faded by the job's prep script) instead of the synth bed
+    execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', path.resolve(process.env.MUSIC_FILE), '-t', total.toFixed(6), '-ar', '48000', '-ac', '2', '-c:a', 'pcm_s24le', bed], { stdio: 'inherit' });
+  } else {
+    const accentArgs = plan.music.accentFrame != null ? [(plan.music.accentFrame / FPS).toFixed(3)] : [];
+    execFileSync('python3', [path.join(root, 'scripts/make-music.py'), total.toFixed(3), bed, ...accentArgs], { stdio: 'inherit' });
+  }
   inputs.push('-i', bed);
   const g = plan.music.gainDb ?? -24;
   // Keep the speech band clear, then duck under the voice (≈ −3 dB extra while speaking).
@@ -56,7 +79,7 @@ if (plan.music) {
 plan.sfx.forEach((s, i) => {
   inputs.push('-i', path.join(root, `assets/sfx/${s.type}.wav`));
   const delay = Math.round((s.frame / FPS) * 1000);
-  const base = { whoosh_in: -17, swish: -19, tick: -18, pop: -19, chime: -21 }[s.type] ?? -18; // well under the voice
+  const base = { whoosh_in: -17, swish: -19, tick: -18, pop: -19, chime: -21, air: -23, swoosh: -21, click: -21 }[s.type] ?? -18; // well under the voice
   parts.push(`[${next}:a]adelay=${delay}:all=1,volume=${base + (s.gainDb ?? 0)}dB[s${i}]`);
   mixIn.push(`[s${i}]`);
   next++;

@@ -40,7 +40,7 @@
       "source_sha256": "35e1fd7eaadffbf1203c3ba169ed4bc65c7d99d6fe5e33fa15d05fad8c94799b",
       "source_storage": "cloudflare_r2_studio_broker",
       "manifest": "production/jobs/BW-004/manifest.json",
-      "next_step": "Показать пользователю v2 production/jobs/BW-004/release/beles-bw004-v2-1080x1920.mp4; получить правки или утверждение: checkpoint BW-004 --status approved --user-approved. Выдача через R2/Studio (DELIVERY_RULES) требует endpoints в Studio.",
+      "next_step": "Передать в среду Claude Code файл 1000223289.mp4 (в репозиторий, Studio или вложением сеанса) и выполнить: bash production/jobs/BW-004/scripts/render-with-reference-music.sh <файл> v4; затем прослушать выбранный фрагмент, проверить и опубликовать v4.",
       "delivery_verified": true
     }
   ]
